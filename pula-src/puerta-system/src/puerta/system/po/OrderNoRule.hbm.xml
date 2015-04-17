@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.OrderNoRule root -->
+	<class name="puerta.system.po.OrderNoRule" table="ordernorule">
+		<id name="id" type="string">
+			<column name="id" length="36"/>
+			<generator class="uuid2"/>
+		</id>
+		<property name="name" column="name" type="string" length="20"/>
+		<property name="dateFormat" column="dateFormat" type="string" length="20"/>
+		<property name="prefix" column="prefix" type="string" length="5"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="reCountByDay" column="reCountByDay" type="boolean"/>
+		<property name="noLength" column="noLength" type="int"/>
+		<property name="suffix" column="suffix" type="string" length="5"/>
+		<property name="no" column="no" type="string" length="40"/>
+		<property name="cacheRule"/>
+	</class>
+</hibernate-mapping>

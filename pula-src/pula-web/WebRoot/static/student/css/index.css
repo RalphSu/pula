@@ -1,0 +1,586 @@
+
+body,form,p,frameset,frame{
+	padding:0;margin:0;border:0
+
+}
+
+
+
+.r{
+float:right;
+}
+.l{
+float:left;
+}
+.c{
+clear:both;
+}
+.h{
+display:none;
+}
+
+html{
+	overflow:hidden;
+}
+
+body {
+	background: #C3FAF7;
+	margin:0;
+	padding: 0;
+	
+	font-family: "Verdana", "Tahoma", "Helvetica", "Sans-Serif","SimSun";
+	font-size: 12px;
+	overflow:hidden;
+	
+}
+
+#loginDiv{
+	background:url("../images/login.jpg") left top  no-repeat;
+	width:1021px;
+	height:700px;
+	margin:0px auto;
+	position:relative;
+}
+
+#loginDiv #loginId{
+	position:absolute;
+	right:145px;
+	top:264px;
+	border:0px;
+	width:200px;
+	height:30px;
+	background:transparent;
+}
+#loginDiv #userPwd{
+	position:absolute;
+	right:145px;
+	top:314px;
+	border:0px;
+	width:200px;
+	height:30px;
+	background:transparent;
+}
+
+
+#loginDiv #userPwd{
+	position:absolute;
+	right:145px;
+	top:314px;
+	border:0px;
+	width:200px;
+	height:30px;
+	background:transparent;
+}
+
+#loginDiv #btnSubmit{
+	
+	position:absolute;
+	right:186px;
+	top:384px;
+	border:0px;
+	text-indent:-30em;
+	width:130px;
+	height:50px;
+	background:transparent;
+	cursor:pointer;
+}
+
+#btnStudentMode{
+	display:block;
+	
+	position:absolute;
+	left:260px;
+	top:15px;
+	width:155px;
+	height:50px;
+	border:0px;
+	background:url("../images/shim.gif");
+	cursor:pointer;
+}
+
+#btnTeacherMode{
+	display:block;	
+	position:absolute;
+	left:615px;
+	top:15px;
+	width:155px;
+	height:50px;
+	border:0px;
+	background:url("../images/shim.gif");
+	cursor:pointer;
+}
+
+#btnMyPoints{
+
+	display:block;	
+	position:absolute;
+	left:260px;
+	top:15px;
+	width:155px;
+	height:50px;
+	border:0px solid blue;
+	background:url("../images/shim.gif");
+	cursor:pointer;	
+	
+	text-indent:-30em;
+
+}
+
+
+#btnMyCourse{
+
+	display:block;	
+	position:absolute;
+	left:438px;
+	top:15px;
+	width:155px;
+	height:50px;
+	border:0px solid blue;
+	background:url("../images/shim.gif");
+	cursor:pointer;	
+	
+	text-indent:-30em;
+
+}
+
+#userInfoDiv{
+
+	display:block;	
+	position:absolute;
+	right:228px;
+	top:210px;
+	width:115px;
+	height:50px;
+	/*border:1px solid blue;*/
+	line-height:50px;
+	text-indent:10px;
+	color:white;
+	font-size:14px;
+	font-weight:bold;
+}
+
+#btnMyStat{
+
+	display:block;	
+	position:absolute;
+	left:615px;
+	top:15px;
+	width:155px;
+	height:50px;
+	border:0px solid blue;
+	background:url("../images/shim.gif");
+	cursor:pointer;	
+	
+	text-indent:-30em;
+
+}
+
+#btnLogout{
+	display:block;	
+	position:absolute;
+	left:623px;
+	top:555px;
+	width:145px;
+	height:50px;
+	border:0px solid blue;
+	background:url("../images/shim.gif");
+	cursor:pointer;	
+	
+	text-indent:-30em;	
+}
+
+#btnChangePassword{
+	display:block;	
+	position:absolute;
+	left:458px;
+	top:555px;
+	width:145px;
+	height:50px;
+	border:0px solid blue;
+	background:url("../images/shim.gif");
+	cursor:pointer;	
+	text-indent:-30em;	
+}
+
+#wrapper{
+	width:700px;
+	padding:265px 0px 0px 175px;
+}
+
+#container_wrapper{
+	background:url("../images/background.jpg") top center no-repeat ;
+	height:700px;
+	margin:0px auto;
+	width:1188px;
+}
+
+
+.container{
+	width:1021px;
+	height:700px;
+	position:relative;
+	float:right;
+}
+
+#container_points{
+	background:url("../images/points.jpg") right top  no-repeat;
+}
+
+#container_course{
+	background:url("../images/course.jpg") right top  no-repeat;
+}
+#container_stat{
+	background:url("../images/stat.jpg") right top  no-repeat;
+}
+
+#container_changePassword{
+	background:url("../images/changepassword.jpg") right top  no-repeat;
+}
+
+.innerFrame {
+	WIDTH: 100%; HEIGHT: 100%
+}
+
+#midPanel{
+	height:28px;
+	background: #F0F0F0;	
+	border-bottom: 1px #3C78B5 solid;
+	border-top: 1px #3C78B5 solid;	
+}
+
+#menuPanel{
+	width:670px;
+	float:left;
+}
+#tabsWrapper{	
+	overflow:hidden;
+	width:400px;
+	height:26px;
+
+	position:relative
+}
+
+
+.tabs-tool{
+	float:left;
+	width:50px;
+	height:26px;
+	overflow:hidden;
+}
+
+.tabs-tool div{
+	float:left;	
+	margin-top:5px;
+}
+.tabs-tool div span{
+	display:block;
+	height:16px;
+	width:16px;
+}
+.tabs-tool .tab-prev span{
+	background:url("../images/index/prev.png") no-repeat;cursor:pointer;
+}
+
+.tabs-tool .tab-prev span.disabled{
+	background:url("../../laputa/images/fact/b_d.png") no-repeat;cursor:pointer;
+}
+
+.tabs-tool .tab-next span{
+	background:url("../images/index/play.png") no-repeat;cursor:pointer;
+
+}
+.tabs-tool .tab-next span.disabled{
+	background:url("../../laputa/images/fact/p_d.png") no-repeat;cursor:pointer;
+
+}
+#tabsPanel{
+	height:26px;
+	width:1000px;
+	float:left;
+}
+
+#tabsPanel div.tab{
+	position:relative;
+	font-size:14px;
+	margin:4px 0px 0px 5px;
+	padding:0px 25px 0px 10px; 
+	height:23px;
+	line-height:23px;
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+	float:left;
+	cursor:pointer;
+	overflow:hidden;
+}
+
+#tabsPanel div.tab a span.close{	
+	position:absolute;
+	right:4px;
+	top:5px;
+	background:url("../images/chrome/close.png") no-repeat;
+	height:12px;
+	width:12px;
+	cursor:pointer;
+
+}
+
+#tabsPanel div.tab a:hover span.close{
+	background:url("../images/chrome/close-hover.png") no-repeat;
+	height:12px;
+	width:12px;
+	cursor:pointer;
+
+}
+#tabsPanel .actived{
+	background-color:white;
+}
+
+#indexPanel{
+	height:100px;
+	width:100%;
+	background-color:#f7f8f3;
+	background:url("../images/index/bg.png");
+	overflow:hidden;
+}
+
+#topPanel{
+	text-align:right;
+	height:20px;
+	background:black;
+	color:white;
+}
+#topBar{
+	text-align:right;
+	height:10px;
+}
+
+#middlePanel{
+	float:left;
+	height:37px;
+	border-left:1px solid #ccc;
+	margin-top:10px;
+	margin-bottom:10px;
+	line-height:37px;
+}
+
+#middlePanel span{
+	
+	padding-left:10px;
+}
+
+#rightWrapper{
+	background:url("../images/index/right.png");
+	height:100px;
+	width:551px;
+	float:right;
+}
+
+#rightPanel{
+	position:absolute;
+	height :20px;
+	top:4px;
+	right:10px;
+
+}
+#rightPanel A{
+
+	margin-top: 4px;
+	padding: 4px 4px 2px 10px;
+	/*background-image: url("../images/index/links.gif");*/
+	border-left:1px solid #ccc;
+	background-repeat:no-repeat;
+	background-position:4px 4px;
+	color:black;
+    /** border-right: 1px black solid;		 **/
+}
+
+#logoPanel{
+	width:699px;
+	height:100px;
+	float :left;
+	background-image: url("../images/index/left.png");
+}
+
+
+#topPanel A{
+
+	margin-top: 2px;
+	padding: 2px 4px 2px 10px;
+	background-image: url("../images/index/links.gif");
+	background-repeat:no-repeat;
+	background-position:4px 4px;
+	color:blue;
+    /** border-right: 1px black solid;		 **/
+}
+
+
+
+.dlg {
+	margin: 10;
+	padding: 10;
+	
+	font-family: "Verdana", "Tahoma", "Helvetica", "Sans-Serif";
+	font-size: 13px;
+
+}
+
+
+input, textarea, select, td {
+	font-size: 13px;
+	font-family: "Verdana", "Tahoma", "Helvetica", "Sans-Serif";
+}
+
+a:link, a:visited, a:active {
+	color: #003366;
+	text-decoration: none;
+}
+
+a:hover { 
+	text-decoration: underline;
+	color: #F37A0C;
+}
+
+.toolBar {
+	background: ButtonFace;
+	border-style: Solid;
+	border-width: 1px;
+	border-left-color: ButtonHighlight;
+	border-right-color: ButtonShadow;
+	border-top-color: ButtonHighlight;
+	border-bottom-color: ButtonShadow;
+}
+
+.grid {
+    margin: 2px 0px 5px 0px;
+    border-collapse: collapse;
+	color:white;
+}
+
+.grid th  {
+
+    border: 1px solid #ccc;
+    padding: 2px 4px 2px 4px;
+    background: #f0f0f0;
+    text-align: center;
+}
+
+.grid a{
+	color:white;
+}
+
+.grid td  {
+    border: 1px solid #ccc;
+    padding: 3px 4px 3px 4px;
+}
+
+.tabletitle {
+	font-size: 14px;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+    padding: 3px 0px 2px 0px;
+    margin: 8px 4px 2px 0px;
+	color: #003366;
+	border-bottom: 1px solid #3c78b5;
+}
+
+.breadcrumbs {
+    background-color: #f0f0f0;
+ 	border-color: #3c78b5;
+	border-width: 1px 0px 1px 0px;
+	border-style: solid;
+    font-size: 11px;
+    padding: 3px 0px 3px 0px;
+}
+
+.greybox {
+	BORDER-BOTTOM: #ddd 1px solid; BORDER-LEFT: #ddd 1px solid; BORDER-RIGHT: #ddd 1px solid; BORDER-TOP: #ddd 1px solid; MARGIN: 1px 1px 10px; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 3px
+}
+
+input.error  {
+	border-color : Red;
+	border-style : solid;
+}
+
+span.error  {
+	color : Red;
+}
+
+tr.title {
+	font-weight:bold; 
+	background-color: #E88B00; 
+	color:white;
+}
+
+tr.header {
+	background-color: #E7DB7E; 
+	font-weight:bold;
+}
+
+.tips {
+	font-size: 12px;
+	color: black;
+	background-color: FFFFE1;
+	border: 1px solid black;
+}
+.attn{
+	font-weight:bold; 
+	background-color: #FFCC00; 
+
+}
+.redstar{
+	color:red;
+	font-weight:bold;
+}
+
+
+
+
+.logger{
+	position:absolute;
+	right:1px;
+	top:1px;
+	border:1px solid #ccc;
+	background:#ffcc33;
+	padding:5px;
+}
+
+
+.text-c{
+	text-align:center;
+}
+
+.courses{
+	margin:10px 0px 10px 50px;
+}
+.course-item{
+	border:1px solid white;
+	width:200px;
+	height:20px;
+	color:white;
+	float:left;
+	padding-left:10px;
+	margin-left:5px;
+}
+
+#oldPassword{
+	position:absolute;
+	top:360px;
+	left:450px;
+	width:180px;
+}
+
+#newPassword{
+	position:absolute;
+	top:405px;
+	left:450px;
+	width:180px;
+}
+
+
+#newPassword2{
+	position:absolute;
+	top:450px;
+	left:450px;
+	width:180px;
+}

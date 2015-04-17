@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.ParameterFolder root -->
+	<class name="puerta.system.po.ParameterFolder" table="parameterfolder">
+		<id name="id" type="string">
+			<column name="id" length="36"/>
+			<generator class="uuid2"/>
+		</id>
+		<property name="name" column="name" type="string" length="40"/>
+		<property name="indexNo" column="indexNo" type="int"/>
+		<many-to-one name="page" column="page" class="puerta.system.po.ParameterPage"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="no" column="no" type="string" length="40"/>
+		<many-to-one name="appField" column="appField" class="puerta.system.po.AppField"/>
+	</class>
+</hibernate-mapping>

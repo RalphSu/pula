@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.ActorRole root -->
+	<class name="puerta.system.po.ActorRole" table="actorrole">
+		<id name="id" type="string">
+			<column name="id" length="36"/>
+			<generator class="uuid2"/>
+		</id>
+		<property name="actorId" column="actorId" type="string" length="36"/>
+		<many-to-one name="role" column="role" class="puerta.system.po.SysRole"/>
+	</class>
+</hibernate-mapping>

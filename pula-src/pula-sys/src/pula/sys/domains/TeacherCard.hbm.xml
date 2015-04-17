@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.TeacherCard root -->
+	<class name="pula.sys.domains.TeacherCard" table="teachercard">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="card" column="card" class="pula.sys.domains.Card"/>
+		<property name="current" column="current_" type="boolean"/>
+		<many-to-one name="teacher" column="teacher" class="pula.sys.domains.Teacher"/>
+		<property name="createdTime"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.Shortcut root -->
+	<class name="puerta.system.po.Shortcut" table="shortcut">
+		<id name="id" type="string">
+			<column name="id" length="36"/>
+			<generator class="uuid2"/>
+		</id>
+		<property name="url" column="url" type="string" length="100"/>
+		<property name="name" column="name" type="string" length="40"/>
+		<property name="indexNo" column="indexNo" type="int"/>
+		<many-to-one name="purview" column="purview" class="puerta.system.po.Purview"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="no" column="no" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

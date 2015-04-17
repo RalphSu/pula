@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.TrainLog root -->
+	<class name="pula.sys.domains.TrainLog" table="trainlog">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="creator" column="creator" class="pula.sys.domains.SysUser"/>
+		<property name="comments" column="comments" type="string" length="200"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="content" column="content" type="string" length="200"/>
+		<property name="trainDate" column="trainDate" type="calendar"/>
+		<bag name="items" lazy="true" order-by="indexNo asc">
+			<key column="trainLog"/>
+			<one-to-many class="pula.sys.domains.TrainLogItem"/>
+		</bag>
+		<many-to-one name="branch" column="branch" class="pula.sys.domains.Branch"/>
+		<property name="location" column="location" type="string" length="100"/>
+		<many-to-one name="updater" column="updater" class="pula.sys.domains.SysUser"/>
+		<property name="trainer" column="trainer" type="string" length="40"/>
+		<property name="createdTime" column="createdTime" type="calendar"/>
+		<property name="updatedTime" column="updatedTime" type="calendar"/>
+	</class>
+</hibernate-mapping>

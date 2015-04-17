@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.Insider root -->
+	<class name="puerta.system.po.Insider" table="insider">
+		<id name="id" type="string">
+			<column name="id" length="36"/>
+			<generator class="uuid2"/>
+		</id>
+		<property name="enabled" column="enabled" type="boolean"/>
+		<property name="password" column="password" type="string" length="40"/>
+		<property name="name" column="name" type="string" length="20"/>
+		<property name="loginId" column="loginId" type="string" length="10"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="comments" column="comments" type="string" length="100"/>
+	</class>
+</hibernate-mapping>

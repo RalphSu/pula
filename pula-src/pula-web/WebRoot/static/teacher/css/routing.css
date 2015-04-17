@@ -1,0 +1,148 @@
+.t-simple-no input{ width: 100px}
+.t-simple-no select{ width:100px}
+
+#ticketErrorPanel {
+	padding:5px;
+	border:1px solid #ffcc99;
+	background:#ffefbf;
+	margin:10px;
+}
+
+#ticketErrorPanel span{
+	font-weight:bold;
+	line-height:30px;
+}
+
+#pnl_copy .t-simple-no input{ width: 200px}
+
+.ticket_status10{
+	color:green;
+}
+
+.ticket_status30{
+	color:white;
+	background:red;
+}
+.ticket_status40{
+	background:#660000;
+	color:white;
+}
+.ticket_status-10{
+	background:#ccffff;
+	color:#3300cc;
+}
+
+.ticket_status-80{
+	background:#ff66ff;
+	color:#ccffff;
+}
+#partBatchIndexNo{
+	color:#ccc;
+	font-size:140px;
+	position:absolute;
+	right:10px;
+	bottom:100px;
+	height:100px;
+	width:100px;
+	z-index:1;
+}
+#partBatchTool{
+	position:absolute;
+	right:40px;
+	bottom:20px;
+	height:100px;
+	width:240px;
+	z-index:10;
+	text-align:center;
+}
+
+
+#pnl_ticketErrors{
+	background:#ffedd2;
+	border:1px solid #ff9900;
+	width:290px;
+	height:95px;
+	padding:10px 5px;
+	position:absolute;
+	line-height:25px;
+	
+}
+#pnl_ticketErrors select.id{
+	width:270px;
+}
+
+
+
+#pnl_ticketErrors strong{
+	color:red;
+}
+#pnl_ticketErrors div{
+	position:relative;
+}
+#pnl_ticketErrors span.arrow{
+	position:absolute;
+	right:-19px;
+	top:-40px;
+	background:url("../images/arrow_r.png");
+	height:24px;
+	width:23px;
+}
+
+.ptp0{
+	color:#ccc;
+}
+
+.ptp1{
+	color:red;
+}
+
+.ptp2{
+	color:#660000;
+}
+
+#partBatchTips{
+	margin:5px;
+	padding:5px;
+	border:1px solid #ffcc99;
+	background-color:#ffeedd;
+	height:20px;
+	width:210px;
+}
+
+
+.canceled{
+
+	color:white;
+	background:#f2f2f2;
+	text-decoration: line-through;
+}
+
+#pnl_listticket{
+	width:200px;
+	height:300px;
+	overflow:hidden;
+	padding:10px;
+	font-size:12px;
+}
+
+#pnl_listticket div{
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	border-bottom:1px solid #ccc;
+}
+
+div.indexNo{
+	position:relative;
+	height:20px;
+	line-height:20px;
+
+}
+
+div.indexNo p {
+	position:absolute;
+	right:2px;
+	bottom:0px;
+	font-size:8px;
+	font-family:'sans-serif';
+}

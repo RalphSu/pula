@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.Counter root -->
+	<class name="pula.sys.domains.Counter" table="counter">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="counter" column="counter" type="int"/>
+		<property name="refId" column="refId" type="string" length="40"/>
+		<property name="no" column="no" type="string" length="40"/>
+		<property name="updatedTime" column="updatedTime" type="calendar"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.Vendee root -->
+	<class name="puerta.system.po.Vendee" table="vendee">
+		<id name="id" type="string">
+			<column name="id" length="36"/>
+			<generator class="uuid2"/>
+		</id>
+		<property name="name" column="name" type="string" length="200"/>
+		<property name="machineNo" column="machineNo" type="string" length="40"/>
+		<property name="registerNo" column="registerNo" type="string" length="240"/>
+	</class>
+</hibernate-mapping>

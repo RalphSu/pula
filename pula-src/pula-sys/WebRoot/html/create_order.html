@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>创建订单</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="x-ua-compatible" content="ie=7" />
+  <link rel="stylesheet" type="text/css" href="/pula-sys/static/app/css/base.css?">
+<script type="text/javascript" src="/pula-sys/static/library/yui/yui_2.8.1/build/yahoo/yahoo.js"></script>
+<script type="text/javascript" src="/pula-sys/static/library/yui/yui_2.8.1/build/event/event.js"></script>
+<script type="text/javascript" src="/pula-sys/static/library/yui/yui_2.8.1/build/dom/dom.js"></script>
+<script type="text/javascript" src="/pula-sys/static/library/mootools/mootools-core-1.4.1-src.js"></script> 
+  <script type="text/javascript" src="/pula-sys/static/laputa/javascript/nilvar-validation.js"></script>
+  <script type="text/javascript" src="/pula-sys/static/laputa/javascript/nilvar-utils.js"></script>
+  <script type="text/javascript" src="/pula-sys/static/laputa/javascript/nilvar-form.js"></script>
+  <script type="text/javascript" src="/pula-sys/static/laputa/javascript/pager.js"></script>
+  <script type="text/javascript" src="/pula-sys/static/laputa/javascript/helper.js"></script>
+  <script type="text/javascript" src="/pula-sys/static/laputa/javascript/puerta-mix.js"></script>
+  <script type="text/JavaScript" src="/pula-sys/static/app/javascript/lang/chs.js" ></script>
+  <script type="text/JavaScript" src="/pula-sys/static/app/javascript/globals.js" ></script>
+</head>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function goBack(){
+		
+		goURL('');
+
+	}
+	
+var pa_vars = {
+	base :'/pula-sys'
+}
+	-->
+</SCRIPT>	
+<body bgcolor="#FFFFFF" class="yui-skin-sam"><style>
+.top .text{
+	line-height:25px;
+	height:25px;
+	margin-top:3px;
+	color:#5f5f5f;
+}
+
+.photo  {
+	width:140px;
+}
+
+.photo a img {
+	border:1px solid #ccc;
+	margin:0px auto;
+	width:120px;
+	height:120px;
+	display:block;
+}
+#attachmentDiv span.fileName{
+	border:1px solid #ccc;
+	background:#fafafa;
+	padding:0px 16px 0px 4px;
+	display:inline-block;
+	
+	height:20px;
+	line-height:20px;
+	position:relative;
+	margin-right:10px;
+}
+#attachmentDiv a.remove{
+	display:block;
+	position:absolute;
+	width:16px;
+	height:16px;
+	background:url("/pula-sys/static/app/images/remove.png") no-repeat right top;
+	cursor:pointer;
+	right:0px;
+	top:0px;
+}
+
+#attachmentDiv span.gray{
+	color:#ccc;
+}
+
+
+#uploadFile{
+width:80px;
+height:20px;
+cursor:pointer;
+}
+</style>
+  <div class="top" id="__top"> </div>
+<div class="body">
+    <!-- condition -->
+	<!-- edit form -->
+	
+	<form action="/pula-sys/app/teacher/create" method="post" id="addForm">
+	<table border="0" class="grid" width="800">
+<colgroup>
+        <col style="width:80px;"></col>
+        <col ></col> 
+        <col style="width:80px;"></col>
+        <col ></col> 
+        <col style="width:140px;"></col>
+</colgroup>
+  <tr class="title"> 
+    <td colspan="5">学员信息</td>
+  </tr>
+    <tr> 
+    <td width="100">学员<font color=red>&nbsp;</font></td>
+    <td >
+	<input type="text" name="teacher.no" value="输入学员编号" id="teacher.no"/>
+	<img src="../static/laputa/images/16X16/add.png" width="16" height="16" style="cursor:pointer" id="imgNew"/></td>
+    <td>学员姓名</td>
+    <td >
+	王小马
+	</td>
+	<td rowspan="5" valign="attop" class="photo">
+	<A href="#" id="uploadPic"><img src="/pula-sys/static/app/images/nophoto.jpg"/></A>
+	
+	</td>
+	</tr>
+   <tr> 
+	<td>性别</td>
+	<td>
+		<label>男</label></td>
+	<td>年龄</td>
+	<td>12岁</td>
+   </tr><tr class="title"> 
+    <td colspan="4">产品信息</td>
+  </tr><tr>
+		<td>购买产品</td>
+		<td><label for="select"></label>
+		  <select name="select" id="select">
+		    <option value="1">2014年16课程</option>
+		    <option value="2">2014年32课程</option>
+		    <option value="3">2014年48课程优惠款</option>
+        </select></td>
+	
+		<td>价格</td>
+		<td>&nbsp;</td>
+	</tr><tr>
+		<td>课程数量</td>
+		<td>&nbsp;</td>
+	
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr><tr class="title"> 
+    <td colspan="5">销售信息</td>
+  </tr>		
+	
+	<tr>
+		<td>主销售人员</td>
+		<td><input type="text" name="teacher.speciality" maxlength="20" id="teacher.speciality"></td>
+	
+		<td>辅销售人员</td>
+		<td colspan="2"><input type="text" name="teacher.zip" maxlength="12" id="teacher.zip" ></td>
+	</tr>
+	<tr><td>辅助教师</td>
+		<td ><input type="text" name="teacher.zip" maxlength="12" id="teacher.zip" ></td>
+		<td>佣金类型</td>
+		<td colspan="2">
+		<input name="a" type="radio" value="" /> 5/5
+        		<input name="a" type="radio" value="" /> 3/7
+                		<input name="a" type="radio" value="" /> 2/8
+		
+		</td>
+	</tr>
+	
+	<tr>
+		<td>备注</td>
+		<td colspan="4"><input type="text" name="teacher.comments" id="teacher.comments" size="60" maxlength="100"></td>
+	</tr>
+
+	
+	
+	  <tr> 
+		<td colspan="5">
+		
+		<div class="l">
+			<input type="button" value="保存" id="saveBtn" accesskey="s"/>
+			<input type="hidden" name="jsonAttachment" id="jsonAttachment" value="[]" />
+		<input type="hidden" name="teacher.id" id="teacher.id" value="0"/>
+		</div>
+		<div class="r">
+			ALT+S 保存
+		</div>
+		
+		</td>
+	  </tr> 
+	</table>
+	</form>
+</div>
+<div id="divStudent" class="h">
+<table border="0" class="grid" width="700">
+	<colgroup><col style="width:100px"/>
+	<col /><col style="width:100px"/>
+	<col />
+	</colgroup>
+	  <tr> 
+		<td >姓名</td>
+		<td ><input type="text" name="teacher.speciality2" maxlength="20" id="teacher.speciality2" /></td>
+		<td >生日</td>
+		<td ><input type="text" name="teacher.speciality3" maxlength="20" id="teacher.speciality3" /></td>
+	  </tr> 
+	  <tr> 
+		<td >备注</td>
+		<td colspan="3"><input type="text" name="classroom.comments" id="classroom.comments" size="60" maxlength="80"/> </td>
+	  </tr> 
+	  <tr> 
+		<td colspan="4"><span class="l">
+		  <input type="button" value="保存" id="saveBtn2" accesskey="s"/>
+		</span></td>
+	  </tr> 
+	</table>
+</div>
+<!-- others -->
+<script src="/pula-sys/static/library/jscalendar/calendar.js" type="text/JavaScript"></script>
+<script src="/pula-sys/static/library/jscalendar/lang/chs_utf8.js" type="text/JavaScript"></script>
+<script src="/pula-sys/static/library/jscalendar/calendar-setup.js" type="text/JavaScript"></script>
+<link rel="stylesheet" type="text/css" href="/pula-sys/static/library/jscalendar/calendar-brown.css"/><link rel="stylesheet" type="text/css" href="/pula-sys/static/app/css/t-style.css"></link>
+<script type="text/javascript" src="/pula-sys/static/library/puerta/t-table.js"></script> 
+<script type="text/javascript" src="/pula-sys/static/app/javascript/demo.js"></script>
+<script type="text/javascript" src="/pula-sys/static/library/mootools/modules/mbox/mt.mbox.js"></script>
+<script type="text/javascript" src="/pula-sys/static/library/puerta/t-simple-no.js"></script>
+<script type="text/javascript" src="/pula-sys/static/library/puerta/t-datagrid.js"></script>
+<script type="text/javascript" src="/pula-sys/static/library/mootools/modules/UUID.js"></script>
+<script type="text/javascript">
+
+var pageVars = {
+	queryString:'',
+	action : '_create',
+	id :'',
+	base :'/pula-sys',
+	imagePath:'/pula-sys/static/laputa/images/icons/',
+	updateMode:false,
+	noPhoto:'/pula-sys/static/app/images/nophoto.jpg'
+}
+
+var lang = {
+	name:'名称',no:'编号',domain:'新增订单',
+	materialNo:'物料编号',
+	materialName:'物料名称',space:'区域',picNo:'图号',msgSelectFirst:'请选择...',uploadPic:'上传照片',uploadFile:'上传附件',
+	quantity:'数量',lineMsg:"第{index}行:{message}\n",needQty:'需要填写数量',needSpace:'需要选取区域',
+	needDetail:"至少需要填写一行明细数据",cancel:'取消',relationShip:'关系',phone:'电话',address:'地址',
+	name:'姓名',attachmentItem:'<span class="fileName"><a href="#" data="{fileId}" dataId="{id}" class="download" title="下载">{fileName}</a><a href="#" data="{fileId}" dataId="{id}" class="remove" title="删除"></a></span>',
+	noneAttachment:"<span class='gray'>暂无附件</span>"
+}
+
+
+
+
+
+
+
+	function check(){
+	
+
+		if(isEmpty($F("teacher.no"))){
+			alert("请填写编号");
+			$("teacher.no").focus();
+			return false; 
+		}
+
+		if(isEmpty($F("teacher.name"))){
+			alert("请填写姓名");
+			$("teacher.name").focus();
+			return false; 
+		}
+		
+
+		var len = $$(".rGender:checked").length ;
+		if(len==0){
+			alert('请选取性别');
+			$$(".rGender")[0].focus();
+			return false;
+		}
+		
+		len = $$(".rStatus:checked").length ;
+		if(len==0){
+			alert('请选取状态');
+			$$(".rStatus")[0].focus();
+			return false;
+		}
+
+		len = $$(".rLevel:checked").length ;
+		if(len==0){
+			alert('请选取级别');
+			$$(".rLevel")[0].focus();
+			return false;
+		}
+
+		len = $F("teacher.comments").length ;
+		if(len>200){
+			alert("备注信息过长，请填写200字以内信息");
+			$("teacher.comments").focus();
+			return false;
+		}
+
+		var pass = true ;
+		$$(".dateField").each ( function(el){
+			if( !pass ) return ;
+			var dv = $F( el );
+			if( !isEmpty( dv ) &&  !isDate( dv )){
+				alert("请正确填写日期");
+				el.focus();
+				pass =false; 
+				return ;
+			}
+		});
+
+		if(!pass ) {
+			return false ;
+		}
+
+		
+		return true ;
+	}
+
+	var pes = null ;
+	window.addEvent('domready',function(){
+		pes = new PPage({"id":"pes","pageMode":"pageMode","searchForm":"searchForm","addForm":"addForm"});
+
+		pes.mock();
+	pes.updateAttachments();
+
+	
+
+});
+
+
+
+</script>
+
+
+
+<script type="text/javascript" src="/pula-sys/static/laputa/javascript/bottom.js"></script>
+<!-- <script type="text/javascript" src="/pula-sys/static/app/javascript/tracker.js"></script> -->
+</body>
+</html>
+

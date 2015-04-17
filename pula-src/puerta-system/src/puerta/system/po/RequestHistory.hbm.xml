@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.RequestHistory root -->
+	<class name="puerta.system.po.RequestHistory" table="requesthistory">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="url" column="url" type="string" length="200"/>
+		<property name="extras" column="extras" type="string" length="1000"/>
+		<property name="createdTime" column="createdTime" type="calendar"/>
+		<many-to-one name="purview" column="purview" class="puerta.system.po.Purview"/>
+		<property name="actorId" column="actorId" type="string" length="40"/>
+		<property name="ip" column="ip" type="string" length="20"/>
+	</class>
+</hibernate-mapping>

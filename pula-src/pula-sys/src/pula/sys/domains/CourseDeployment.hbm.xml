@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.CourseDeployment root -->
+	<class name="pula.sys.domains.CourseDeployment" table="coursedeployment">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="course" column="course" class="pula.sys.domains.Course"/>
+		<many-to-one name="creator" column="creator" class="pula.sys.domains.SysUser"/>
+		<property name="createdTime" column="createdTime" type="calendar"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<many-to-one name="updater" column="updater" class="pula.sys.domains.SysUser"/>
+		<property name="updatedTime" column="updatedTime" type="calendar"/>
+		<many-to-one name="classroom" column="classroom" class="pula.sys.domains.Classroom"/>
+	</class>
+</hibernate-mapping>

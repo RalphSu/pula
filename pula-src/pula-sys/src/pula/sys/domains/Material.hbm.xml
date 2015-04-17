@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.Material root -->
+	<class name="pula.sys.domains.Material" table="material">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="name" type="string" length="40"/>
+		<many-to-one name="category" column="category" class="pula.sys.domains.SysCategory"/>
+		<property name="brand" column="brand" type="string" length="40"/>
+		<property name="weight" column="weight" type="double"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="comments" column="comments" type="string" length="200"/>
+		<property name="unit" column="unit" type="string" length="40"/>
+		<property name="superficialArea" column="superficialArea" type="double"/>
+		<property name="raw" column="raw" type="string" length="40"/>
+		<property name="no" column="no" type="string" length="40"/>
+		<property name="pinyin" column="pinyin" type="string" length="100"/>
+		<property name="enabled"/>
+	</class>
+</hibernate-mapping>

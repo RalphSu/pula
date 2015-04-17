@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.SystemLog root -->
+	<class name="puerta.system.po.SystemLog" table="systemlog">
+		<id name="id" type="string">
+			<column name="id" length="36"/>
+			<generator class="uuid2"/>
+		</id>
+		<property name="extendInfo" column="extendInfo" type="string" length="100"/>
+		<property name="event" column="event" type="string" length="40"/>
+		<property name="eventTime" column="eventTime" type="calendar"/>
+		<property name="ip" column="ip" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

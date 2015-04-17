@@ -1,0 +1,15 @@
+.nilmoon .moon{
+	font-size:12px;
+	margin:4px;
+	cursor:pointer;
+}
+.nilmoon .selected{
+	font-weight:bold;
+	color:white; 
+	text-decoration: underline;
+	background-color:darkblue;
+	border:1px solid #BBC9EA;
+}
+.nilmoon .links{
+	cursor:pointer;
+}

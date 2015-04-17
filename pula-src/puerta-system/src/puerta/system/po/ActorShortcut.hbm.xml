@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.ActorShortcut root -->
+	<class name="puerta.system.po.ActorShortcut" table="actorshortcut">
+		<id name="id" type="string">
+			<column name="id" length="36"/>
+			<generator class="uuid2"/>
+		</id>
+		<many-to-one name="shortcut" column="shortcut" class="puerta.system.po.Shortcut"/>
+		<property name="indexNo" column="indexNo" type="int"/>
+		<property name="actorId" column="actorId" type="string" length="36"/>
+	</class>
+</hibernate-mapping>

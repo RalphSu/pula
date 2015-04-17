@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.Purview root -->
+	<class name="puerta.system.po.Purview" table="purview">
+		<id name="id" type="string">
+			<column name="id" length="36"/>
+			<generator class="uuid2"/>
+		</id>
+		<property name="menuItem" column="menuItem" type="boolean"/>
+		<property name="defaultURL" column="defaultURL" type="string" length="100"/>
+		<many-to-one name="parentPurview" column="parentPurview" class="puerta.system.po.Purview"/>
+		<property name="level" column="level" type="int" />
+		<property name="name" column="name" type="string" length="40"/>
+		<many-to-one name="module" column="module" class="puerta.system.po.Module"/>
+		<property name="visible" column="visible" type="boolean"/>
+		<many-to-one name="appField" column="appField" class="puerta.system.po.AppField"/>
+		<property name="treePath" column="treePath" type="string" length="240"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="leaf" column="leaf" type="boolean"/>
+		<property name="indexNo" column="indexNo" type="int"/>
+		<property name="no" column="no" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

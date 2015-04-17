@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.DictLimb root -->
+	<class name="puerta.system.po.DictLimb" table="dictlimb">
+		<id name="id" type="string">
+			<column name="id" length="36"/>
+			<generator class="uuid2"/>
+		</id>
+		<property name="indexNo" column="indexNo" type="int"/>
+		<many-to-one name="parent" column="parent" class="puerta.system.po.DictLimb"/>
+		<property name="treePath" column="treePath" type="string" length="100"/>
+		<property name="no" column="no" type="string" length="40"/>
+		<property name="level" column="level" type="int"/>
+		<property name="removed"/>
+		<property name="name" length="80"/>
+		<property name="parentNo" length="20"/>
+	</class>
+</hibernate-mapping>

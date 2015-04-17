@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.SysRole root -->
+	<class name="puerta.system.po.SysRole" table="sysrole">
+		<id name="id" type="string">
+			<column name="id" length="36"/>
+			<generator class="uuid2"/>
+		</id>
+		<property name="name" column="name" type="string" length="100"/>
+		<many-to-one name="appField" column="appField" class="puerta.system.po.AppField"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="no" column="no" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.TransferOrder root -->
+	<class name="pula.sys.domains.TransferOrder" table="transferorder">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="outNo" column="outNo" type="string" length="40"/>
+		<property name="arriveQuantity" column="arriveQuantity" type="int"/>
+		<many-to-one name="toBranch" column="toBranch" class="pula.sys.domains.Branch"/>
+		<many-to-one name="creator" column="creator" class="pula.sys.domains.SysUser"/>
+		<many-to-one name="fromBranch" column="fromBranch" class="pula.sys.domains.Branch"/>
+		<property name="quantity" column="quantity" type="int"/>
+		<property name="orderDate" column="orderDate" type="calendar"/>
+		<property name="canceled" column="canceled" type="boolean"/>
+		<property name="comments" column="comments" type="string" length="200"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<many-to-one name="material" column="material" class="pula.sys.domains.Material"/>
+		<many-to-one name="updater" column="updater" class="pula.sys.domains.SysUser"/>
+		<property name="createdTime" column="createdTime" type="calendar"/>
+		<property name="updatedTime" column="updatedTime" type="calendar"/>
+		<property name="refId"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- puerta.system.po.PurviewToRequestUri root -->
+	<class name="puerta.system.po.PurviewToRequestUri" table="purviewtorequesturi">
+		<id name="id" type="string">
+			<column name="id" length="36"/>
+			<generator class="uuid2"/>
+		</id>
+		<many-to-one name="requestUri" column="requestUri" class="puerta.system.po.RequestUri"/>
+		<many-to-one name="purview" column="purview" class="puerta.system.po.Purview"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.Gift root -->
+	<class name="pula.sys.domains.Gift" table="gift">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="name" type="string" length="40"/>
+		<many-to-one name="category" column="category" class="pula.sys.domains.SysCategory"/>
+		<property name="brand" column="brand" type="string" length="40"/>
+		<property name="beginTime" column="beginTime" type="calendar"/>
+		<property name="weight" column="weight" type="double"/>
+		<property name="pinyin" column="pinyin" type="string" length="100"/>
+		<property name="endTime" column="endTime" type="calendar"/>
+		<property name="comments" column="comments" type="string" length="200"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="enabled" column="enabled" type="boolean"/>
+		<property name="superficialArea" column="superficialArea" type="double"/>
+		<property name="unit" column="unit" type="string" length="40"/>
+		<property name="raw" column="raw" type="string" length="40"/>
+		<property name="points" column="points" type="int"/>
+		<property name="no" column="no" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

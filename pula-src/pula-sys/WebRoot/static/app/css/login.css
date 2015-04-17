@@ -1,0 +1,85 @@
+body {TEXT-ALIGN: center;}
+#center {position:relative; margin-top:20px;MARGIN-RIGHT: auto; MARGIN-LEFT: auto;width:800px;height:500px;border:4px solid #cccccc } 
+#info{
+	position:absolute;
+	top:470px;
+	left:0px;
+	height:20px;
+	width:240px;
+	font-size:9pt;
+	color:white;
+	font-family:Tahoma;
+}
+#info A{
+	color:white;
+	text-decoration: none;
+	font-size:9pt;
+	font-weight:bold;
+}
+#info .p{
+	font-size:8pt;
+}
+#form{
+	TEXT-ALIGN: left;
+	position:absolute;
+	top:340px;
+	left:440px;
+	font-size:9pt;
+	font-family:Tahoma;
+	padding:10px 0px 0px 20px;
+}
+
+.text{
+	font-size:9pt;
+	border:1px solid #ccc;
+	width:150px;
+	
+}
+#form div{
+	padding-top:5px;
+	height:20px;
+	color:#8c8c8c;
+}
+.btn{
+	color:#8c8c8c;
+	font-weight:bold;
+	margin-left:60px;
+	border:1px solid #8c8c8c;
+	padding:0px 10px 0px 10px;
+}
+
+
+.clear { /* generic container (i.e. div) for floating buttons */
+    overflow: hidden;
+    width: 100%;
+}
+
+a.button {
+    background: transparent url('../images/login/btna.png') no-repeat scroll top right;
+    color: #444;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+a.button span {
+    background: transparent url('../images/login/btnb.png') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+} 
+
+a.button:active {
+    background-position: bottom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button:active span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+} 
