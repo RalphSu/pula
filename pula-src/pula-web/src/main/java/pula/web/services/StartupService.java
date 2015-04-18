@@ -1,4 +1,4 @@
-package pula.services;
+package pula.web.services;
 
 import javax.annotation.Resource;
 

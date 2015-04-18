@@ -19,8 +19,8 @@ import puerta.system.vo.JsonResult;
 import puerta.system.vo.MapBean;
 import pula.controllers.http.JsonResultWithMap;
 import pula.controllers.http.JsonResultWithPage;
-import pula.services.SessionUserService;
-import pula.services.TeacherService;
+import pula.web.services.SessionUserService;
+import pula.web.services.TeacherService;
 
 @Controller
 public class ScoreController {

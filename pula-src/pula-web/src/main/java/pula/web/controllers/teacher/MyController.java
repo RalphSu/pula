@@ -16,8 +16,8 @@ import puerta.support.service.SessionBox;
 import puerta.system.service.SessionService;
 import puerta.system.vo.JsonResult;
 import pula.controllers.http.JsonResultWithMap;
-import pula.services.SessionUserService;
-import pula.services.TeacherService;
+import pula.web.services.SessionUserService;
+import pula.web.services.TeacherService;
 
 @Controller("myTeacher")
 public class MyController {

@@ -20,8 +20,8 @@ import puerta.system.vo.JsonResult;
 import puerta.system.vo.MapBean;
 import pula.controllers.http.JsonResultCourseMix;
 import pula.controllers.http.JsonResultWithMap;
-import pula.services.SessionUserService;
-import pula.services.StudentService;
+import pula.web.services.SessionUserService;
+import pula.web.services.StudentService;
 
 @Controller
 public class CourseController {

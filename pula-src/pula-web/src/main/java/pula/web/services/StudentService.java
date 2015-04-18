@@ -1,4 +1,4 @@
-package pula.services;
+package pula.web.services;
 
 import java.util.List;
 
@@ -12,15 +12,15 @@ import puerta.system.keeper.ParameterKeeper;
 import puerta.system.service.SessionService;
 import puerta.system.vo.JsonResult;
 import pula.BhzqConstants;
-import pula.controllers.http.JsonResultWithList;
+import pula.controllers.http.JsonResultCourseMix;
+import pula.controllers.http.JsonResultPointsMix;
 import pula.controllers.http.JsonResultWithMap;
-import pula.controllers.http.JsonResultWithPage;
 import pula.controllers.http.PostParameter;
 import pula.controllers.http.Response;
 import pula.miscs.MD5Checker;
 
 @Service
-public class TeacherService {
+public class StudentService {
 
 	@Resource
 	private SessionService sessionService;
@@ -51,7 +51,7 @@ public class TeacherService {
 
 	private String getBaseUrl() {
 		return parameterKeeper.getString(BhzqConstants.BASE_URL,
-				"http://localhost:8125/pula-sys/app/teacherinterface/");
+				"http://localhost:8125/pula-sys/app/studentinterface/");
 	}
 
 	private PostParameter[] buildParameters(PostParameter... params) {
@@ -63,7 +63,6 @@ public class TeacherService {
 
 			ppList.add(params[i]);
 		}
-
 		String ip = sessionService.env().getIp();
 		ppList.add(cpp("ip", ip));
 		paramsList.add(ip);
@@ -120,36 +119,59 @@ public class TeacherService {
 		return new PostParameter(k, v);
 	}
 
-	// 待评分的信息
-	public JsonResultWithPage list4score(Long pageIndex, String actorId) {
+	public JsonResultPointsMix getPointsLog(Long pageIndex, String actorId) {
 		String base_url = getBaseUrl();
 		try {
 			Response r = client.post(
-					base_url + "list4score",
+					base_url + "getPointsLog",
 					buildParameters(cpp("pageIndex", pageIndex.toString()),
 							cpp("actorId", actorId)));
 
-			JsonResultWithPage m = r.asJsonResultWithPage();
+			JsonResultPointsMix jr = JacksonUtil.get(r.asString(),
+					JsonResultPointsMix.class);
 
-			return m;
+			return jr;
 
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return JsonResultWithPage.error(e);
+			return JsonResultPointsMix.error(e);
 		}
 	}
 
-	public JsonResultWithMap getCourseTaskStudent4Score(long id, String actorId) {
+	public JsonResultCourseMix getCourses(int type, String actorId) {
 		String base_url = getBaseUrl();
 		try {
 			Response r = client.post(
-					base_url + "getCourseTaskStudent4Score",
-					buildParameters(cpp("id", String.valueOf(id)),
+					base_url + "getCourses",
+					buildParameters(cpp("type", String.valueOf(type)),
 							cpp("actorId", actorId)));
 
-			JsonResultWithMap m = r.asJsonResultWithMap();
+			JsonResultCourseMix jr = JacksonUtil.get(r.asString(),
+					JsonResultCourseMix.class);
 
-			return m;
+			return jr;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return JsonResultCourseMix.error(e);
+		}
+	}
+
+	public JsonResultWithMap getCoursesGame(long courseId, String actorId) {
+		String base_url = getBaseUrl();
+		try {
+			Response r = client.post(
+					base_url + "getCoursesGame",
+					buildParameters(
+							cpp("courseTaskResultStudentId",
+									String.valueOf(courseId)),
+							cpp("actorId", actorId)));
+
+			JsonResultWithMap jr = JacksonUtil.get(r.asString(),
+					JsonResultWithMap.class);
+
+			return jr;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -157,41 +179,20 @@ public class TeacherService {
 		}
 	}
 
-	public JsonResultWithMap getStudentWorkFile(long id, String actorId) {
+	public JsonResult takeGamePoints(long courseTaskResultStudentId,
+			String actorId) {
 		String base_url = getBaseUrl();
 		try {
 			Response r = client.post(
-					base_url + "getStudentWorkFile",
-					buildParameters(cpp("id", String.valueOf(id)),
+					base_url + "takeGamePoints",
+					buildParameters(
+							cpp("courseTaskResultStudentId",
+									String.valueOf(courseTaskResultStudentId)),
 							cpp("actorId", actorId)));
 
-			JsonResultWithMap m = r.asJsonResultWithMap();
+			JsonResult jr = JacksonUtil.get(r.asString(), JsonResult.class);
 
-			return m;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return JsonResultWithMap.error(e);
-		}
-	}
-
-	public JsonResult makeScore(long id, String actorId, int s1, int s2,
-			int s3, int s4, int s5) {
-		String base_url = getBaseUrl();
-		try {
-			Response r = client.post(
-					base_url + "makeScore",
-					buildParameters(cpp("id", String.valueOf(id)),
-							cpp("s1", String.valueOf(s1)),
-							cpp("s2", String.valueOf(s2)),
-							cpp("s3", String.valueOf(s3)),
-							cpp("s4", String.valueOf(s4)),
-							cpp("s5", String.valueOf(s5)),
-							cpp("actorId", actorId)));
-
-			JsonResult m = r.asJsonResult();
-
-			return m;
+			return jr;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -199,24 +200,20 @@ public class TeacherService {
 		}
 	}
 
-	public JsonResultWithList getCalendar(int year, int month, String actorId) {
+	public JsonResultWithMap getRadar(String actorId) {
 		String base_url = getBaseUrl();
-
 		try {
-			Response r = client.post(
-					base_url + "getCalendar",
-					buildParameters(cpp("year", String.valueOf(year)),
-							cpp("month", String.valueOf(month)),
-							cpp("actorId", actorId)));
+			Response r = client.post(base_url + "getRadar",
+					buildParameters(cpp("actorId", actorId)));
 
-			JsonResultWithList jr = JacksonUtil.get(r.asString(),
-					JsonResultWithList.class);
+			JsonResultWithMap jr = JacksonUtil.get(r.asString(),
+					JsonResultWithMap.class);
 
 			return jr;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return JsonResultWithList.error(e);
+			return JsonResultWithMap.error(e);
 		}
 	}
 }

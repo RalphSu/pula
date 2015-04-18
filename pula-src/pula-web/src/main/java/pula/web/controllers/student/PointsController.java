@@ -13,9 +13,9 @@ import puerta.support.Pe;
 import puerta.support.annotation.Barrier;
 import puerta.system.vo.MapBean;
 import pula.controllers.http.JsonResultPointsMix;
-import pula.services.SessionUserService;
-import pula.services.StudentService;
 import pula.vo.PageInfo;
+import pula.web.services.SessionUserService;
+import pula.web.services.StudentService;
 
 @Controller
 public class PointsController {

@@ -3,7 +3,7 @@
  * WXL 2009
  * $Id$
  */
-package pula.services;
+package pula.web.services;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
