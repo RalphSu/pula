@@ -1,5 +1,5 @@
 
-<#import "/laputa/macros/commonFront.ftl" as b>
+<#import "/app/macros/commonFront.ftl" as b>
 <@b.html title="platform.admin.logout">
 
 <BR><div align="center">
