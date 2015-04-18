@@ -1,21 +1,21 @@
 package puerta.support.utils;    
    
-import java.io.File;    
-import java.io.FileInputStream;    
-import java.io.FileOutputStream;    
-import java.io.InputStream;    
-import java.io.OutputStream;    
-import java.security.*;    
-import java.text.DateFormat;    
-import java.text.ParseException;    
-import java.util.Date;    
-import java.util.Properties;    
-import java.util.Random;    
-   
-import javax.crypto.Cipher;    
-import javax.crypto.SecretKey;    
-import javax.crypto.SecretKeyFactory;    
-import javax.crypto.spec.DESKeySpec;    
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.security.SecureRandom;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
    
 /**   
  * 字符串工具集合   

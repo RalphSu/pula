@@ -276,7 +276,6 @@ public class FileHelper {
 	 * @return
 	 */
 	public static boolean mkdir(String path) {
-		boolean flag = false;
 		File dir;
 
 		if (path == null) {
@@ -286,10 +285,6 @@ public class FileHelper {
 
 		// 新建文件对象
 		dir = new File(path);
-		if (dir == null) {
-			logger.error("路径(" + path + ")无效，导致实例无法创建");
-			return false;
-		}
 
 		if (dir.isFile()) {
 			logger.error("路径(" + path + ")指向一个文件");

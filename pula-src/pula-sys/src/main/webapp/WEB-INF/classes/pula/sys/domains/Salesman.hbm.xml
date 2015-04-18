@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.Salesman root -->
+	<class name="pula.sys.domains.Salesman" table="salesman">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="comments" column="comments" type="string" length="240"/>
+		<property name="name" column="name" type="string" length="40"/>
+		<property name="mobile" column="mobile" type="string" length="20"/>
+		<many-to-one name="creator" column="creator" class="pula.sys.domains.SysUser"/>
+		<many-to-one name="sysUser" column="sysUser" class="pula.sys.domains.SysUser"/>
+		<property name="enabled" column="enabled" type="boolean"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="phone" column="phone" type="string" length="40"/>
+		<property name="gender" column="gender" type="int"/>
+		<many-to-one name="branch" column="branch" class="pula.sys.domains.Branch"/>
+		<many-to-one name="updater" column="updater" class="pula.sys.domains.SysUser"/>
+		<property name="no" column="no" type="string" length="40"/>
+		<property name="createdTime" column="createdTime" type="calendar"/>
+		<property name="updatedTime" column="updatedTime" type="calendar"/>
+		<property name="giftPoints"/>
+	</class>
+</hibernate-mapping>

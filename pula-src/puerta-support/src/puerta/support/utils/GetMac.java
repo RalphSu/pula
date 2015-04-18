@@ -1,13 +1,7 @@
 package puerta.support.utils;
 
 import java.net.NetworkInterface;
-import java.security.SecureRandom;
 import java.util.Enumeration;
-
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
 
 public class GetMac {
 

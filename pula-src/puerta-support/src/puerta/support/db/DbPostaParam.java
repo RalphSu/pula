@@ -6,7 +6,7 @@ import java.util.List;
 public class DbPostaParam {
 	public static final int FROM = 1;
 	public static final int DEST = 2;
-	private static final Object[] EMPTY_ARRAY = new Object[] {};
+//	private static final Object[] EMPTY_ARRAY = new Object[] {};
 
 	private String sql;
 	private List<Object> params;

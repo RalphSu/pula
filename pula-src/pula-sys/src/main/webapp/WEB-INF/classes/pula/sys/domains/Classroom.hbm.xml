@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.Classroom root -->
+	<class name="pula.sys.domains.Classroom" table="classroom">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="name" type="string" length="40"/>
+		<many-to-one name="creator" column="creator" class="pula.sys.domains.SysUser"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="enabled" column="enabled" type="boolean"/>
+		<many-to-one name="branch" column="branch" class="pula.sys.domains.Branch"/>
+		<many-to-one name="updater" column="updater" class="pula.sys.domains.SysUser"/>
+		<property name="no" column="no" type="string" length="40"/>
+		<property name="createdTime" column="createdTime" type="calendar"/>
+		<property name="updatedTime" column="updatedTime" type="calendar"/>
+	</class>
+</hibernate-mapping>

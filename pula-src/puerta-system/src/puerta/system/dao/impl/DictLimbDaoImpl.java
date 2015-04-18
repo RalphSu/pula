@@ -21,7 +21,6 @@ import org.springframework.stereotype.Repository;
 
 import puerta.support.PageInfo;
 import puerta.support.PaginationSupport;
-import puerta.support.dao.TreePathPo;
 import puerta.support.mls.Mls;
 import puerta.support.utils.StringTool;
 import puerta.support.vo.TreeNodeDTO;

@@ -8,14 +8,17 @@ import org.apache.catalina.connector.Connector;
 import org.apache.catalina.startup.Embedded;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.modeler.util.IntrospectionUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import puerta.support.Pe;
 
+
+
+@SuppressWarnings("deprecation")
 public class T55Starter {
 
-	private static final Logger logger = Logger.getLogger(T55Starter.class);
+	private static final Logger logger = LoggerFactory.getLogger(T55Starter.class);
 	public static final String DEFAULT_ROOT = "D:\\server\\apache-tomcat-5.5.33-embed";
 	public static String URI_ENCODING = "UTF-8";
 	public static boolean SECURE = false;
@@ -75,7 +78,6 @@ public class T55Starter {
 		}
 
 		T55Starter s = new T55Starter();
-		// root = "D:\\server\\apache-tomcat-5.5.28-embed";
 		logger.info("Tomcat Home =" + root);
 		logger.info("Deploy Apps =" + deploy);
 		logger.info("Mapping Path=" + mapping);
@@ -124,6 +126,7 @@ public class T55Starter {
 	public Embedded createTomcat(String root, String[] deploy,
 			String[] mapping, int port) throws Exception {
 		Embedded tomcat = new Embedded();
+//		Tomcat tomcat = new Tomcat();
 
 		// logger.info("file :" + tomcat.getClass().getResource(".").getFile());
 
@@ -217,27 +220,27 @@ public class T55Starter {
 		tomcat.addConnector(c);
 
 		if (SECURE) {
-			Connector ssl = tomcat.createConnector(addr, SSL_PORT, true);
-
-			IntrospectionUtils.setAttribute(ssl, "sslProtocol", "TLS");
-			IntrospectionUtils.setProperty(ssl, "keystoreFile",
-					"D:\\work\\escort\\openssl\\localhost.jks");
-			IntrospectionUtils.setProperty(ssl, "truststoreFile",
-					"D:\\work\\escort\\openssl\\证书\\root\\root.jks");
-			IntrospectionUtils.setProperty(ssl, "keystoreType", "JKS");
-			if (CLIENT_AUTH) {
-				IntrospectionUtils.setProperty(ssl, "clientAuth", "true");
-			} else {
-				IntrospectionUtils.setProperty(ssl, "clientAuth", "false");
-			}
-			IntrospectionUtils.setProperty(ssl, "keystorePass", "123456");
-			IntrospectionUtils.setProperty(ssl, "acceptCount", "100");
-			IntrospectionUtils.setProperty(ssl, "truststorePass", "123456");
-			IntrospectionUtils.setProperty(ssl, "truststoreType", "JKS");
-			ssl.setProtocol("SSL");
-
-			// System.out.println(ssl.getProtocol());
-			tomcat.addConnector(ssl);
+//			Connector ssl = tomcat.createConnector(addr, SSL_PORT, true);
+//
+//			IntrospectionUtils.setAttribute(ssl, "sslProtocol", "TLS");
+//			IntrospectionUtils.setProperty(ssl, "keystoreFile",
+//					"D:\\work\\escort\\openssl\\localhost.jks");
+//			IntrospectionUtils.setProperty(ssl, "truststoreFile",
+//					"D:\\work\\escort\\openssl\\证书\\root\\root.jks");
+//			IntrospectionUtils.setProperty(ssl, "keystoreType", "JKS");
+//			if (CLIENT_AUTH) {
+//				IntrospectionUtils.setProperty(ssl, "clientAuth", "true");
+//			} else {
+//				IntrospectionUtils.setProperty(ssl, "clientAuth", "false");
+//			}
+//			IntrospectionUtils.setProperty(ssl, "keystorePass", "123456");
+//			IntrospectionUtils.setProperty(ssl, "acceptCount", "100");
+//			IntrospectionUtils.setProperty(ssl, "truststorePass", "123456");
+//			IntrospectionUtils.setProperty(ssl, "truststoreType", "JKS");
+//			ssl.setProtocol("SSL");
+//
+//			// System.out.println(ssl.getProtocol());
+//			tomcat.addConnector(ssl);
 		}
 
 		return tomcat;

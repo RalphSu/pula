@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.StudentPoints root -->
+	<class name="pula.sys.domains.StudentPoints" table="studentpoints">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="owner" column="owner" class="pula.sys.domains.Student"/>
+		<property name="fromType" column="fromType" type="int"/>
+		<property name="minorType" column="minorType" type="int"/>
+		<property name="comments" column="comments" type="string" length="200"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="points" column="points" type="int"/>
+		<many-to-one name="admin" column="admin" class="pula.sys.domains.SysUser"/>
+		<property name="createdTime" column="createdTime" type="calendar"/>
+		<many-to-one name="gift" column="gift" class="pula.sys.domains.Gift"/>
+		<property name="refId" length="36"/>
+	</class>
+</hibernate-mapping>

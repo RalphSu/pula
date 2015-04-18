@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
 import puerta.PuertaWeb;
-import puerta.support.Pe;
 import puerta.support.utils.RegisterTool;
 import puerta.system.base.HibernateGenericDao;
 import puerta.system.dao.VendeeDao;

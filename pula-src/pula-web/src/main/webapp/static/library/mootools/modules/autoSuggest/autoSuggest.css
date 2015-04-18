@@ -1,0 +1,31 @@
+/**
+ * autoSuggest.css
+ *
+ * http://www.theWittyRejoinder.com/autoSuggest.php
+ * @version		0.9
+ *
+ * @license		MIT-style license http://www.opensource.org/licenses/mit-license.php
+ * @author		Matthew (matthew at theWittyRejoinder.com)
+ */
+ul.suggestions {
+	padding: 5px;
+	background-color: #ffffff;
+	z-index: 10;
+	position: absolute;
+	border: 1px solid #ccc;
+	margin-top: 0px;
+	margin-left: 0px;
+}
+
+li.suggestionClass{
+	list-style: none;
+	cursor: pointer;	
+}
+
+li.suggestionHover{
+	background-color: #cccccc;
+}
+
+span.queriedValue{
+	font-weight: bold;
+}

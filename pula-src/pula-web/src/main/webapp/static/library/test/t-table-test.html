@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>client.title</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="x-ua-compatible" content="ie=7" />
+  <link rel="stylesheet" type="text/css" href="../../app/css/base.css?">
+<script type="text/javascript" src="../../library/yui/yui_2.8.1/build/yahoo/yahoo.js"></script>
+<script type="text/javascript" src="../../library/yui/yui_2.8.1/build/event/event.js"></script>
+<script type="text/javascript" src="../../library/yui/yui_2.8.1/build/dom/dom.js"></script>
+<script type="text/javascript" src="../../library/mootools/mootools-core-1.4.1-src.js"></script> 
+  <script type="text/javascript" src="../../laputa/javascript/nilvar-validation.js"></script>
+  <script type="text/javascript" src="../../laputa/javascript/nilvar-utils.js"></script>
+  <script type="text/javascript" src="../../laputa/javascript/nilvar-form.js"></script>
+  <script type="text/javascript" src="../../laputa/javascript/pager.js"></script>
+  <script type="text/javascript" src="../../laputa/javascript/helper.js"></script>
+  <script type="text/javascript" src="../../laputa/javascript/puerta-mix.js"></script>
+  <script type="text/JavaScript" src="../../app/javascript/lang/chs.js" ></script>
+  <script type="text/JavaScript" src="../../app/javascript/globals.js" ></script>
+</head>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function goBack(){
+		
+		goURL('');
+
+	}
+	
+
+	-->
+</SCRIPT>	
+<body bgcolor="#FFFFFF" class="yui-skin-sam">  <div class="top" id="__top"> </div>
+<div class="body">
+    <!-- condition -->
+   
+
+    <!-- listview -->
+    <div class="l forList" id="listview">
+      <form id="batchForm">
+        <div id="dt"> </div>
+      </form>
+      <!-- left ends --> 
+    </div>
+
+	
+  </div>
+<!-- others -->
+<link rel="stylesheet" type="text/css" href="../../app/css/t-style.css"></link>
+<script type="text/javascript" src="../../library/puerta/t-table.js"></script> 
+<script type="text/javascript" src="../../library/mootools/modules/mbox/mt.mbox.js"></script>
+<script type="text/javascript" src="../../library/puerta/t-simple-no.js"></script>
+<script type="text/javascript">
+
+var pageVars = {
+	queryString:'',
+	action : '_create',
+	id :'',
+	base :'/hgsys'
+}
+
+var lang = {
+	name:'名称',no:'编号',domain:'客户',linkman:'联系人',phone:'电话',email:'Email',status:'状态'
+}
+var  initViewTable = function(){
+			var getRequestParam = function(){
+				return '';
+			}
+			var onSelectRow = function(i,tr){
+				if(i==-1){
+					//this.navigateHistory("id", 'create');
+				}else{
+					//var data = this.dt.rows[i] ;
+					//this.showData(data);
+					//this.navigateHistory("id", ''+data.id);
+				}
+			}
+			var cfgs = {
+				id :'dt',
+				container:'dt',
+				height:PGlobals.minusHeight.bind(['__top']),
+				url:"../../../app/client/list",
+				requestParam:getRequestParam.bind(this),
+				selectRow:onSelectRow.bind(this),
+				columns: [
+					{label:TTable.checkAll,width:24,key:'id',formatter:TTable.formatCheckbox},
+					{label:lang.no,width:100,key:'no'},
+					{label:lang.name,key:'name'},
+					{label:lang.linkman,width:100,key:'linkman'},
+					{label:lang.phone,width:120,key:'phone'},
+					{label:lang.email,width:320,key:'email',formatter:TTable.formatEmail},
+					{label:lang.status,width:33,key:'enabled',formatter:TTable.formatEnabled}
+					
+				]
+			};
+
+			if(PGlobals.smallScreen()){
+				cfgs.selectRow = null ;
+				cfgs.intoRow = onSelectRow.bind(this) ;
+			}
+
+			this.dt = new TTable(cfgs);		
+			
+			this.dt.draw();
+			
+		}
+
+
+initViewTable();
+	
+</script>
+
+
+</body>
+</html>
+

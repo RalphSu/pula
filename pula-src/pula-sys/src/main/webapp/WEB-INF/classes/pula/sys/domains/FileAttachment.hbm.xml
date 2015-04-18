@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.FileAttachment root -->
+	<class name="pula.sys.domains.FileAttachment" table="fileattachment">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="fileId" column="fileId" type="string" length="100"/>
+		<property name="name" column="name" type="string" length="80"/>
+		<property name="type" column="type" type="int"/>
+		<property name="extName" column="extName" type="string" length="8"/>
+		<property name="createdTime" column="createdTime" type="calendar"/>
+		<property name="refId" length="40" />
+		<property name="removed" column="removed" type="boolean"/>
+	</class>
+</hibernate-mapping>

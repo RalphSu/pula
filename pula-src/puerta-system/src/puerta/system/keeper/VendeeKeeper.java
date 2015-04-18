@@ -4,18 +4,17 @@ import java.util.Calendar;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import puerta.PuertaWeb;
 import puerta.support.utils.RegisterTool;
 import puerta.system.dao.VendeeDao;
 import puerta.system.po.Vendee;
 
 @Service
 public class VendeeKeeper {
-	private static final Logger logger = Logger.getLogger(VendeeKeeper.class);
+	private static final Logger logger = LoggerFactory.getLogger(VendeeKeeper.class);
 
 	@Resource
 	private VendeeDao vendeeDao;

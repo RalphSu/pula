@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.Course root -->
+	<class name="pula.sys.domains.Course" table="course">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="expiredTime" column="expiredTime" type="calendar"/>
+		<property name="name" column="name" type="string" length="80"/>
+		<many-to-one name="category" column="category" class="pula.sys.domains.SysCategory"/>
+		<many-to-one name="subCategory" column="subCategory" class="pula.sys.domains.SysCategory"/>
+		<many-to-one name="creator" column="creator" class="pula.sys.domains.SysUser"/>
+		<property name="showInWeb" column="showInWeb" type="boolean"/>
+		<property name="publishTime" column="publishTime" type="calendar"/>
+		<property name="comments" column="comments" type="string" length="200"/>
+		<property name="removed" column="removed" type="boolean"/>
+		<property name="enabled" column="enabled" type="boolean"/>
+		<property name="indexNo" column="indexNo" type="int"/>
+		<many-to-one name="updater" column="updater" class="pula.sys.domains.SysUser"/>
+		<property name="no" column="no" type="string" length="40"/>
+		<property name="key" column="key_" type="string" length="40"/>
+		<property name="createdTime" column="createdTime" type="calendar"/>
+		<property name="updatedTime" column="updatedTime" type="calendar"/>
+		<property name="minutes"/>
+	</class>
+</hibernate-mapping>

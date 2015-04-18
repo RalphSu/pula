@@ -13,9 +13,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Base64;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.xerces.impl.dv.util.Base64;
 
 /**
  * 
@@ -41,7 +41,7 @@ public class FileTool {
 
 		String base64 = data;
 
-		byte[] bs = Base64.decode(base64);
+		byte[] bs = Base64.getDecoder().decode(base64);
 		OutputStream os = null;
 		try {
 			os = new FileOutputStream(f);
@@ -76,7 +76,7 @@ public class FileTool {
 			byte[] bs = new byte[n];
 			is = new FileInputStream(f);
 			is.read(bs);
-			return Base64.encode(bs);
+			return Base64.getEncoder().encodeToString(bs);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

@@ -1,32 +1,77 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>pula-web</artifactId>
-  <build>
-    <sourceDirectory>src</sourceDirectory>
-    <resources>
-      <resource>
-        <directory>conf</directory>
-        <excludes>
-          <exclude>**/*.java</exclude>
-        </excludes>
-      </resource>
-    </resources>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-  <packaging>war</packaging>
-  <parent>
-  	<groupId>com.pula</groupId>
-  	<artifactId>pula-parent</artifactId>
-  	<version>0.0.1-SNAPSHOT</version>
-  	<relativePath>../pula-parent</relativePath>
-  </parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>pula-web</artifactId>
+	<packaging>war</packaging>
+
+	<properties>
+		<warName>pula-web</warName>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.3.v20140905</version>
+				<configuration>
+					<stopKey>STOP</stopKey>
+					<stopPort>9999</stopPort>
+					<scanIntervalSeconds>5</scanIntervalSeconds>
+					<contextPath>/pula-web</contextPath>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>${warName}</warName>
+					<outputDirectory>target</outputDirectory>
+					<webResources>
+						<webResource>
+							<directory>${basedir}/src/main/webapp/WEB-INF</directory>
+							<targetPath>WEB-INF</targetPath>
+							<filtering>true</filtering>
+						</webResource>
+					</webResources>
+					<archive>
+						<manifestEntries>
+							<version>${project.version}</version>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<parent>
+		<groupId>com.pula</groupId>
+		<artifactId>pula-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pula-parent</relativePath>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.pula</groupId>
+			<artifactId>puerta-system</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.puerta</groupId>
+			<artifactId>puerta-support</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>

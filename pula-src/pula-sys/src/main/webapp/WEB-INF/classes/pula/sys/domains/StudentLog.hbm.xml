@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.StudentLog root -->
+	<class name="pula.sys.domains.StudentLog" table="studentlog">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="extendInfo" column="extendInfo" type="string" length="200"/>
+		<many-to-one name="student" column="student" class="pula.sys.domains.Student"/>
+		<many-to-one name="branch" column="branch" class="pula.sys.domains.Branch"/>
+		<property name="event" column="event" type="string" length="40"/>
+		<property name="eventTime" column="eventTime" type="calendar"/>
+		<property name="ip" column="ip" type="string" length="40"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- pula.sys.domains.ActivityBranch root -->
+	<class name="pula.sys.domains.ActivityBranch" table="activitybranch">
+		<id name="id" type="long" column="id">
+			<generator class="native"/>
+		</id>
+		<many-to-one name="branch" column="branch" class="pula.sys.domains.Branch"/>
+		<many-to-one name="activity" column="activity" class="pula.sys.domains.Activity"/>
+	</class>
+</hibernate-mapping>
