@@ -1,0 +1,7 @@
+pula-sys
+
+主系统/业务系统
+
+pula-web
+
+网站模块 ,通过restful http api (json) 和业务系统交互
