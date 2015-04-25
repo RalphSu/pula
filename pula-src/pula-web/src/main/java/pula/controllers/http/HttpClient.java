@@ -1,8 +1,6 @@
 package pula.controllers.http;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URLEncoder;
 
 import org.apache.commons.httpclient.Header;
@@ -121,6 +119,7 @@ public class HttpClient {
 		}
 		HttpMethodParams param = postMethod.getParams();
 		param.setContentCharset("UTF-8");
+		postMethod.addRequestHeader("Accept", "application/json");
 		if (WithTokenHeader) {
 			return httpRequest(postMethod);
 		} else {
@@ -164,11 +163,10 @@ public class HttpClient {
 				log(header.getName() + ":" + header.getValue());
 			}
 			Response response = new Response();
-			response.setResponseAsString(readString(method));
+			response.setResponseAsString(method.getResponseBodyAsString());
 			log(response.toString() + "\n");
 
 			if (responseCode != OK)
-
 			{
 				try {
 					throw new HttpException(getCause(responseCode),
@@ -187,17 +185,17 @@ public class HttpClient {
 
 	}
 
-	private String readString(HttpMethod method) throws IOException {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				method.getResponseBodyAsStream()));
-		StringBuffer stringBuffer = new StringBuffer();
-		String str = "";
-		while ((str = reader.readLine()) != null) {
-			stringBuffer.append(str);
-		}
-		String ts = stringBuffer.toString();
-		return ts;
-	}
+//	private String readString(HttpMethod method) throws IOException {
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(
+//				method.getResponseBodyAsStream()));
+//		StringBuffer stringBuffer = new StringBuffer();
+//		String str = "";
+//		while ((str = reader.readLine()) != null) {
+//			stringBuffer.append(str);
+//		}
+//		String ts = stringBuffer.toString();
+//		return ts;
+//	}
 
 	/**
 	 * log调试
