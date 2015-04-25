@@ -27,7 +27,7 @@
 					<stopKey>STOP</stopKey>
 					<stopPort>9999</stopPort>
 					<scanIntervalSeconds>5</scanIntervalSeconds>
-					<contextPath>/</contextPath>
+					<contextPath>/pula-sys</contextPath>
 				</configuration>
 			</plugin>
 
@@ -41,7 +41,7 @@
 						<webResource>
 							<directory>${basedir}/src/main/webapp/WEB-INF</directory>
 							<targetPath>WEB-INF</targetPath>
-							<filtering>true</filtering>
+							<filtering>false</filtering>
 						</webResource>
 					</webResources>
 					<archive>

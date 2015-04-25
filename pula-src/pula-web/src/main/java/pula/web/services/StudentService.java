@@ -51,7 +51,7 @@ public class StudentService {
 
 	private String getBaseUrl() {
 		return parameterKeeper.getString(BhzqConstants.BASE_URL,
-				"http://localhost:8125/pula-sys/app/studentinterface/");
+				"http://localhost/pula-sys/app/studentinterface/");
 	}
 
 	private PostParameter[] buildParameters(PostParameter... params) {
@@ -61,7 +61,7 @@ public class StudentService {
 
 			paramsList.add(params[i].getValue());
 
-			ppList.add(params[i]);
+			ppList.add(params[i]); 
 		}
 		String ip = sessionService.env().getIp();
 		ppList.add(cpp("ip", ip));

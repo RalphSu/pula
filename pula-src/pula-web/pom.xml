@@ -41,7 +41,7 @@
 						<webResource>
 							<directory>${basedir}/src/main/webapp/WEB-INF</directory>
 							<targetPath>WEB-INF</targetPath>
-							<filtering>true</filtering>
+							<filtering>false</filtering>
 						</webResource>
 					</webResources>
 					<archive>
