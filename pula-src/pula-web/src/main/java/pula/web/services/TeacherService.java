@@ -50,8 +50,9 @@ public class TeacherService {
 	}
 
 	private String getBaseUrl() {
-		return parameterKeeper.getString(BhzqConstants.BASE_URL,
-				"http://localhost/pula-sys/app/teacherinterface/");
+//		return parameterKeeper.getString(BhzqConstants.BASE_URL,
+				return "http://localhost/pula-sys/app/teacherinterface/";
+	    //);
 	}
 
 	private PostParameter[] buildParameters(PostParameter... params) {
