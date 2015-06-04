@@ -131,7 +131,7 @@ public class CourseClientServiceController {
 		}
 		// System.out.println("code=" + code);
 
-		return JsonResult.s();
+		return JsonResult.s(String.format("机器码%s已经申请激活，请等待处理或者与总部联系！", code));
 	}
 
 	// 获得激活信息

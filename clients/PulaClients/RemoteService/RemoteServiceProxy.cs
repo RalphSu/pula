@@ -13,7 +13,7 @@ namespace RemoteService
 
         private static string GetURL(string u)
         {
-            return "http://localhost:8125/pula-sys/app/courseclientservice/"+u;
+            return "http://localhost/pula-sys/app/courseclientservice/"+u;
         }
 
         public static JsonResult CheckLogin(string usr, string pwd)
@@ -37,21 +37,21 @@ namespace RemoteService
 
         public static JsonResult RequestActive(string code, string comments)
         {
-             try
+            try
             {
-            var param_dict = new ParamValueBuilder();
-            param_dict.Add("code",code);
-            param_dict.Add("comments", comments);
-            string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetURL("requestActive"), param_dict.Build(), null,null,Encoding.UTF8, null));
+                var param_dict = new ParamValueBuilder();
+                param_dict.Add("code", code);
+                param_dict.Add("comments", comments);
+                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetURL("requestActive"), param_dict.Build(), null, null, Encoding.UTF8, null));
 
-            //JsonResult sr = JSON.parse<JsonResult>(json);
-            JsonResult m = JsonConvert.DeserializeObject<JsonResult>(json);
-            return m;
+                //JsonResult sr = JSON.parse<JsonResult>(json);
+                JsonResult m = JsonConvert.DeserializeObject<JsonResult>(json);
+                return m;
             }
-             catch (Exception ex)
-             {
-                 return JsonResult.Create(ex);
-             }
+            catch (Exception ex)
+            {
+                return JsonResult.Create(ex);
+            }
         }
 
         public static JsonResult SyncActive(string code)

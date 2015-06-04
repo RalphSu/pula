@@ -50,10 +50,8 @@ public class StudentService {
 	}
 
 	private String getBaseUrl() {
-//		return parameterKeeper.getString(BhzqConstants.BASE_URL,
-				return "http://localhost/pula-sys/app/studentinterface/";
-//				return "http://localhost/app/studentinterface/";
-//				        );
+//				return "http://localhost/pula-sys/app/studentinterface/";
+				return "http://localhost:8080/app/studentinterface/";
 	}
 
 	private PostParameter[] buildParameters(PostParameter... params) {

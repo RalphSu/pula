@@ -32,7 +32,7 @@ public class MyController {
 	@RequestMapping
 	public ModelAndView entry() { // 如果没有登录,就去登录
 
-		// 如果已经登录，直接显示首页 // sessionService.get() ModelAndView m = new
+		// 如果已经登录，直接显示首页
 		ModelAndView m = new ModelAndView();
 		SessionBox sb = sessionService.get();
 		if (sb != null) {
