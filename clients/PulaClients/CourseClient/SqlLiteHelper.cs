@@ -42,17 +42,25 @@ namespace CourseClient
 
         public static DataSet ExecuteQuery(string cmdText, params object[] p)
         {
-            using (SQLiteConnection conn = new SQLiteConnection(ConnectionString))
+            try
             {
-                using (SQLiteCommand command = new SQLiteCommand())
+                using (SQLiteConnection conn = new SQLiteConnection(ConnectionString))
                 {
-                    DataSet ds = new DataSet();
-                    PrepareCommand(command, conn, cmdText, p);
-                    SQLiteDataAdapter da = new SQLiteDataAdapter(command);
-                    da.Fill(ds);
-                    return ds;
+                    using (SQLiteCommand command = new SQLiteCommand())
+                    {
+                        DataSet ds = new DataSet();
+                        PrepareCommand(command, conn, cmdText, p);
+                        SQLiteDataAdapter da = new SQLiteDataAdapter(command);
+                        da.Fill(ds);
+                        return ds;
+                    }
                 }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return new DataSet();
         }
 
         public static int ExecuteNonQuery(string cmdText, params object[] p)

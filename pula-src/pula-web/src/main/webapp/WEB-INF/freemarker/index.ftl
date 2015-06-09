@@ -1,11 +1,13 @@
 <#import "/teacher/macros/taglibs.ftl" as b>
 <html>
 <head>
-<title>普拉星球-教学管理系统</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="${base}/static/teacher/css/index.css">
-  <script type="text/javascript" src="${base}/static/library/mootools/mootools-core-1.3-full-compat-yc.js"></script>
-  <script type="text/javascript" src="${base}/static/laputa/javascript/helper.js"></script>
+	<title>普拉星球-教学管理系统</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="${base}/static/library/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${base}/static/css/index.css">
+	<script type="text/javascript" src="${base}/static/library/mootools/mootools-core-1.3-full-compat-yc.js"></script>
+	<script type="text/javascript" src="${base}/static/laputa/javascript/helper.js"></script>
+	<script type="text/javascript" src="${base}/static/library/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <style>
 
@@ -20,13 +22,18 @@
 	<input type="submit" value="确定" id="btnSubmit">
 </form>
 
-
-<a id="btnStudentMode" href="${base}/student/my/entry"></a>
-<a id="btnTeacherMode" href="${base}/teacher/my/entry"></a>
+<div id="topNavBar">
+<a id="btnStudentMode" class="" href="${base}/student/my/entry" >会员登录</a>
+<a id="btnTeacherMode" href="${base}/teacher/my/entry">老师登录</a>
+<a id="btnContactUsMode" href="http://www.zt-zoo.net">普拉星球</a>
+<a id="btnMileageMode" href="${base}/mileage/entry">积分充值</a>
+<a id="btnGameMode" href="${base}/game/my/entry">轻松一下</a>
+<a id="btnHelpMode" href="${base}/help">帮助</a>
+</div>
 
 </div>
 
-</div><SCRIPT type="text/javascript">
+<SCRIPT type="text/javascript">
 <!--
 	function login(){
 		if($('loginId').value == ""){
