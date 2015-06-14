@@ -10,7 +10,8 @@ namespace SQLLiteTest
 {
     static class Program
     {
-        static string ConnectionString = "Datasource=Test.db3;Version=3;New=True;Compress=True;Pooling=true;FailIfMissing=false";
+        static string ConnectionString = "Data Source=pula.db;Pooling=true;FailIfMissing=false";
+        // const string NewConnection = "Data Source=test.db;Pooling=true;FailIfMissing=false";
 
         /// <summary>
         /// The main entry point for the application.
@@ -21,21 +22,33 @@ namespace SQLLiteTest
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            string message = "abc";
             //AddLog("don't have machine code yet ");
             // string cmdText = "insert into system(machine_code) values('abc')";
+            // create table
+
+
             string cmdText = "select machine_code,node_name,active_code,expire_time from system";
-            using (SQLiteConnection conn = new SQLiteConnection(ConnectionString))
+            try
             {
-                using (SQLiteCommand cmd = new SQLiteCommand())
+                using (SQLiteConnection conn = new SQLiteConnection(ConnectionString))
                 {
                     conn.Open();
-                    cmd.Parameters.Clear();
-                    cmd.Connection = conn;
-                    cmd.CommandText = cmdText;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandTimeout = 30;
-                    cmd.ExecuteNonQuery();
+                    using (SQLiteCommand cmd = new SQLiteCommand())
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Connection = conn;
+                        cmd.CommandText = cmdText;// "create table system(machine_code varchar(200))";
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandTimeout = 30;
+                        cmd.ExecuteReader();
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                message = e.Message + "\n" +
+                          e.StackTrace;
             }
 
             //AddLog("inserted :" + n.ToString());
@@ -53,7 +66,7 @@ namespace SQLLiteTest
             //}
 
 
-            Application.Run(new Form1());
+            Application.Run(new Form1(message));
         }
 
 
