@@ -24,6 +24,7 @@ import puerta.support.Pe;
 import puerta.support.ViewResult;
 import puerta.support.annotation.Barrier;
 import puerta.support.annotation.ObjectParam;
+import puerta.support.utils.FileHelper;
 import puerta.support.utils.JacksonUtil;
 import puerta.support.utils.WxlSugar;
 import puerta.support.vo.SelectOptionList;
@@ -286,6 +287,8 @@ public class StudentController {
 		String filePath = parameterKeeper
 				.getFilePath(BhzqConstants.FILE_STUDENT_DIR);
 
+        FileHelper.mkdir(filePath);
+		
 		String srcPath = parameterKeeper
 				.getFilePath(BhzqConstants.FILE_UPLOAD_DIR);
 

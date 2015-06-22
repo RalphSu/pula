@@ -301,7 +301,7 @@ public class FileHelper {
 			return true;
 		} else {
 			// 存在也算成功
-			logger.warn("路径(" + path + ")已经存在，跳过创建");
+			logger.info("路径(" + path + ")已经存在，跳过创建");
 			return true;
 		}
 	}
