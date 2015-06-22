@@ -236,7 +236,7 @@ public class StudentPointsController {
 		comments = gift.string("no") + " " + gift.string("name") + " :"
 				+ comments;
 
-		studentPointsService.save(wu_id, StudentPoints.FROM_EXCHANGE, points,
+		studentPointsService.save(wu_id, StudentPoints.FROM_EXCHANGE, points * -1,
 				comments, StudentPoints.MT_NONE, t_gift,
 				GiftHelper.buildRefId(t_gift.getId()));
 

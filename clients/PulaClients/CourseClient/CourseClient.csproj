@@ -124,6 +124,7 @@
     <Compile Include="SqlLiteHelper.cs" />
     <Compile Include="StoreModel.cs" />
     <Compile Include="SwfHelper.cs" />
+    <Compile Include="TestCapture.cs" />
     <Compile Include="UIHelper.cs" />
     <EmbeddedResource Include="FrmActive.resx">
       <DependentUpon>FrmActive.cs</DependentUpon>
