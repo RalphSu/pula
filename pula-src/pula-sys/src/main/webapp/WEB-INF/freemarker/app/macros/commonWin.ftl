@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>PULA SYSTEM</title>
+<link rel="Shortcut Icon" href="${base}/static/app/images/icon/logo-icon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="x-ua-compatible" content="ie=7" />
 <link rel="stylesheet" type="text/css" href="${base}/static/app/css/index.css">
 <link rel="stylesheet" type="text/css" href="${base}/static/app/css/yui/menu/menu.css">

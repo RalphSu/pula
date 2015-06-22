@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>普拉星球-教学管理系统</title>
+<link rel="Shortcut Icon" href="${base}/static/app/images/icon/logo-icon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${base}/static/app/css/index.css">
   <script type="text/javascript" src="${base}/static/library/mootools/mootools-core-1.3-full-compat-yc.js"></script>
