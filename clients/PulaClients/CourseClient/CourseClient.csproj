@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>CourseClient.Program</StartupObject>
+    <StartupObject>CourseClient.TestUploadWork</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>logo-icon.ico</ApplicationIcon>
@@ -125,6 +125,7 @@
     <Compile Include="StoreModel.cs" />
     <Compile Include="SwfHelper.cs" />
     <Compile Include="TestCapture.cs" />
+    <Compile Include="TestUploadWork.cs" />
     <Compile Include="UIHelper.cs" />
     <EmbeddedResource Include="FrmActive.resx">
       <DependentUpon>FrmActive.cs</DependentUpon>
