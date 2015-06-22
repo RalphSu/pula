@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.BtnWrite = new System.Windows.Forms.Button();
             this.BtnRead = new System.Windows.Forms.Button();
             this.BtnSetup = new System.Windows.Forms.Button();
@@ -45,9 +46,10 @@
             // 
             // BtnWrite
             // 
-            this.BtnWrite.Location = new System.Drawing.Point(21, 27);
+            this.BtnWrite.Location = new System.Drawing.Point(28, 31);
+            this.BtnWrite.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnWrite.Name = "BtnWrite";
-            this.BtnWrite.Size = new System.Drawing.Size(232, 24);
+            this.BtnWrite.Size = new System.Drawing.Size(309, 28);
             this.BtnWrite.TabIndex = 0;
             this.BtnWrite.Text = "写卡信息";
             this.BtnWrite.UseVisualStyleBackColor = true;
@@ -55,9 +57,10 @@
             // 
             // BtnRead
             // 
-            this.BtnRead.Location = new System.Drawing.Point(21, 71);
+            this.BtnRead.Location = new System.Drawing.Point(28, 82);
+            this.BtnRead.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnRead.Name = "BtnRead";
-            this.BtnRead.Size = new System.Drawing.Size(232, 24);
+            this.BtnRead.Size = new System.Drawing.Size(309, 28);
             this.BtnRead.TabIndex = 0;
             this.BtnRead.Text = "读卡信息";
             this.BtnRead.UseVisualStyleBackColor = true;
@@ -65,9 +68,10 @@
             // 
             // BtnSetup
             // 
-            this.BtnSetup.Location = new System.Drawing.Point(21, 116);
+            this.BtnSetup.Location = new System.Drawing.Point(28, 134);
+            this.BtnSetup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnSetup.Name = "BtnSetup";
-            this.BtnSetup.Size = new System.Drawing.Size(232, 24);
+            this.BtnSetup.Size = new System.Drawing.Size(309, 28);
             this.BtnSetup.TabIndex = 0;
             this.BtnSetup.Text = "配置";
             this.BtnSetup.UseVisualStyleBackColor = true;
@@ -75,13 +79,15 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TssComPort,
             this.toolStripStatusLabel1,
             this.TssCardRfid});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 245);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 283);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(650, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(867, 25);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
@@ -89,53 +95,57 @@
             // TssComPort
             // 
             this.TssComPort.Name = "TssComPort";
-            this.TssComPort.Size = new System.Drawing.Size(131, 17);
+            this.TssComPort.Size = new System.Drawing.Size(167, 20);
             this.TssComPort.Text = "toolStripStatusLabel1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(44, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(54, 20);
             this.toolStripStatusLabel1.Text = "卡标识";
             // 
             // TssCardRfid
             // 
             this.TssCardRfid.Name = "TssCardRfid";
-            this.TssCardRfid.Size = new System.Drawing.Size(131, 17);
+            this.TssCardRfid.Size = new System.Drawing.Size(167, 20);
             this.TssCardRfid.Text = "toolStripStatusLabel2";
             // 
             // LblNo
             // 
             this.LblNo.AutoSize = true;
-            this.LblNo.Location = new System.Drawing.Point(330, 27);
+            this.LblNo.Location = new System.Drawing.Point(440, 31);
+            this.LblNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblNo.Name = "LblNo";
-            this.LblNo.Size = new System.Drawing.Size(35, 13);
+            this.LblNo.Size = new System.Drawing.Size(55, 15);
             this.LblNo.TabIndex = 2;
             this.LblNo.Text = "label1";
             // 
             // LblName
             // 
             this.LblName.AutoSize = true;
-            this.LblName.Location = new System.Drawing.Point(330, 53);
+            this.LblName.Location = new System.Drawing.Point(440, 61);
+            this.LblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblName.Name = "LblName";
-            this.LblName.Size = new System.Drawing.Size(35, 13);
+            this.LblName.Size = new System.Drawing.Size(55, 15);
             this.LblName.TabIndex = 3;
             this.LblName.Text = "label2";
             // 
             // LblType
             // 
             this.LblType.AutoSize = true;
-            this.LblType.Location = new System.Drawing.Point(330, 82);
+            this.LblType.Location = new System.Drawing.Point(440, 95);
+            this.LblType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblType.Name = "LblType";
-            this.LblType.Size = new System.Drawing.Size(35, 13);
+            this.LblType.Size = new System.Drawing.Size(55, 15);
             this.LblType.TabIndex = 4;
             this.LblType.Text = "label3";
             // 
             // BtnInitCard
             // 
-            this.BtnInitCard.Location = new System.Drawing.Point(21, 162);
+            this.BtnInitCard.Location = new System.Drawing.Point(28, 187);
+            this.BtnInitCard.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnInitCard.Name = "BtnInitCard";
-            this.BtnInitCard.Size = new System.Drawing.Size(232, 23);
+            this.BtnInitCard.Size = new System.Drawing.Size(309, 27);
             this.BtnInitCard.TabIndex = 5;
             this.BtnInitCard.Text = "初始化卡片(&I)";
             this.BtnInitCard.UseVisualStyleBackColor = true;
@@ -143,17 +153,18 @@
             // 
             // TbCardId
             // 
-            this.TbCardId.Location = new System.Drawing.Point(21, 204);
+            this.TbCardId.Location = new System.Drawing.Point(28, 235);
+            this.TbCardId.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TbCardId.Name = "TbCardId";
             this.TbCardId.ReadOnly = true;
-            this.TbCardId.Size = new System.Drawing.Size(232, 20);
+            this.TbCardId.Size = new System.Drawing.Size(308, 25);
             this.TbCardId.TabIndex = 6;
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 267);
+            this.ClientSize = new System.Drawing.Size(867, 308);
             this.Controls.Add(this.TbCardId);
             this.Controls.Add(this.BtnInitCard);
             this.Controls.Add(this.LblType);
@@ -164,6 +175,8 @@
             this.Controls.Add(this.BtnRead);
             this.Controls.Add(this.BtnWrite);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmMain";

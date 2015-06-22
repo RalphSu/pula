@@ -38,17 +38,20 @@
             this.swf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.swf.Enabled = true;
             this.swf.Location = new System.Drawing.Point(0, 0);
+            this.swf.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.swf.Name = "swf";
             this.swf.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("swf.OcxState")));
-            this.swf.Size = new System.Drawing.Size(502, 337);
+            this.swf.Size = new System.Drawing.Size(669, 389);
             this.swf.TabIndex = 0;
             // 
             // FrmLand
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(502, 337);
+            this.ClientSize = new System.Drawing.Size(669, 389);
             this.Controls.Add(this.swf);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FrmLand";
             this.Text = "FrmLand";
             this.Shown += new System.EventHandler(this.FrmLand_Shown);

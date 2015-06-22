@@ -42,9 +42,10 @@
             this.swf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.swf.Enabled = true;
             this.swf.Location = new System.Drawing.Point(0, 0);
+            this.swf.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.swf.Name = "swf";
             this.swf.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("swf.OcxState")));
-            this.swf.Size = new System.Drawing.Size(780, 488);
+            this.swf.Size = new System.Drawing.Size(1040, 563);
             this.swf.TabIndex = 0;
             this.swf.OnProgress += new AxShockwaveFlashObjects._IShockwaveFlashEvents_OnProgressEventHandler(this.swf_OnProgress);
             this.swf.FlashCall += new AxShockwaveFlashObjects._IShockwaveFlashEvents_FlashCallEventHandler(this.swf_FlashCall);
@@ -66,11 +67,13 @@
             // 
             // FrmLoading
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 488);
+            this.ClientSize = new System.Drawing.Size(1040, 563);
             this.Controls.Add(this.swf);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FrmLoading";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Loading...";

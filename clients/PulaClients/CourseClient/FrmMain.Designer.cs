@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.pb = new System.Windows.Forms.ProgressBar();
             this.tbLog = new System.Windows.Forms.TextBox();
             this.btnSyncCourse = new System.Windows.Forms.Button();
@@ -41,25 +42,28 @@
             // 
             // pb
             // 
-            this.pb.Location = new System.Drawing.Point(12, 232);
+            this.pb.Location = new System.Drawing.Point(16, 268);
+            this.pb.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pb.Name = "pb";
-            this.pb.Size = new System.Drawing.Size(696, 23);
+            this.pb.Size = new System.Drawing.Size(928, 27);
             this.pb.TabIndex = 0;
             // 
             // tbLog
             // 
-            this.tbLog.Location = new System.Drawing.Point(12, 57);
+            this.tbLog.Location = new System.Drawing.Point(16, 66);
+            this.tbLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbLog.Multiline = true;
             this.tbLog.Name = "tbLog";
             this.tbLog.ReadOnly = true;
-            this.tbLog.Size = new System.Drawing.Size(696, 160);
+            this.tbLog.Size = new System.Drawing.Size(927, 184);
             this.tbLog.TabIndex = 1;
             // 
             // btnSyncCourse
             // 
-            this.btnSyncCourse.Location = new System.Drawing.Point(279, 12);
+            this.btnSyncCourse.Location = new System.Drawing.Point(372, 14);
+            this.btnSyncCourse.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSyncCourse.Name = "btnSyncCourse";
-            this.btnSyncCourse.Size = new System.Drawing.Size(75, 23);
+            this.btnSyncCourse.Size = new System.Drawing.Size(100, 27);
             this.btnSyncCourse.TabIndex = 2;
             this.btnSyncCourse.Text = "同步课程(&C)";
             this.btnSyncCourse.UseVisualStyleBackColor = true;
@@ -69,9 +73,10 @@
             // 
             this.btnSyncCourseTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnSyncCourseTask.ForeColor = System.Drawing.Color.Green;
-            this.btnSyncCourseTask.Location = new System.Drawing.Point(12, 12);
+            this.btnSyncCourseTask.Location = new System.Drawing.Point(16, 14);
+            this.btnSyncCourseTask.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSyncCourseTask.Name = "btnSyncCourseTask";
-            this.btnSyncCourseTask.Size = new System.Drawing.Size(94, 23);
+            this.btnSyncCourseTask.Size = new System.Drawing.Size(125, 27);
             this.btnSyncCourseTask.TabIndex = 3;
             this.btnSyncCourseTask.Text = "同步课程任务(&C)";
             this.btnSyncCourseTask.UseVisualStyleBackColor = true;
@@ -79,9 +84,10 @@
             // 
             // BtnCheckCourse
             // 
-            this.BtnCheckCourse.Location = new System.Drawing.Point(384, 12);
+            this.BtnCheckCourse.Location = new System.Drawing.Point(512, 14);
+            this.BtnCheckCourse.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnCheckCourse.Name = "BtnCheckCourse";
-            this.BtnCheckCourse.Size = new System.Drawing.Size(125, 23);
+            this.BtnCheckCourse.Size = new System.Drawing.Size(167, 27);
             this.BtnCheckCourse.TabIndex = 4;
             this.BtnCheckCourse.Text = "检查课程资源(&R)";
             this.BtnCheckCourse.UseVisualStyleBackColor = true;
@@ -90,17 +96,19 @@
             // lblSyncLeft
             // 
             this.lblSyncLeft.AutoSize = true;
-            this.lblSyncLeft.Location = new System.Drawing.Point(119, 19);
+            this.lblSyncLeft.Location = new System.Drawing.Point(159, 22);
+            this.lblSyncLeft.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSyncLeft.Name = "lblSyncLeft";
-            this.lblSyncLeft.Size = new System.Drawing.Size(35, 13);
+            this.lblSyncLeft.Size = new System.Drawing.Size(55, 15);
             this.lblSyncLeft.TabIndex = 5;
             this.lblSyncLeft.Text = "label1";
             // 
             // btnCourseStart
             // 
-            this.btnCourseStart.Location = new System.Drawing.Point(542, 179);
+            this.btnCourseStart.Location = new System.Drawing.Point(723, 207);
+            this.btnCourseStart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCourseStart.Name = "btnCourseStart";
-            this.btnCourseStart.Size = new System.Drawing.Size(69, 23);
+            this.btnCourseStart.Size = new System.Drawing.Size(92, 27);
             this.btnCourseStart.TabIndex = 6;
             this.btnCourseStart.Text = "开始[模拟]";
             this.btnCourseStart.UseVisualStyleBackColor = true;
@@ -108,9 +116,10 @@
             // 
             // btnCourseEnd
             // 
-            this.btnCourseEnd.Location = new System.Drawing.Point(629, 179);
+            this.btnCourseEnd.Location = new System.Drawing.Point(839, 207);
+            this.btnCourseEnd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCourseEnd.Name = "btnCourseEnd";
-            this.btnCourseEnd.Size = new System.Drawing.Size(69, 23);
+            this.btnCourseEnd.Size = new System.Drawing.Size(92, 27);
             this.btnCourseEnd.TabIndex = 7;
             this.btnCourseEnd.Text = "结束[模拟]";
             this.btnCourseEnd.UseVisualStyleBackColor = true;
@@ -118,9 +127,10 @@
             // 
             // BtnSetup
             // 
-            this.BtnSetup.Location = new System.Drawing.Point(633, 12);
+            this.BtnSetup.Location = new System.Drawing.Point(844, 14);
+            this.BtnSetup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnSetup.Name = "BtnSetup";
-            this.BtnSetup.Size = new System.Drawing.Size(75, 23);
+            this.BtnSetup.Size = new System.Drawing.Size(100, 27);
             this.BtnSetup.TabIndex = 8;
             this.BtnSetup.Text = "设置(&S)";
             this.BtnSetup.UseVisualStyleBackColor = true;
@@ -128,9 +138,9 @@
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 267);
+            this.ClientSize = new System.Drawing.Size(960, 308);
             this.Controls.Add(this.BtnSetup);
             this.Controls.Add(this.btnCourseEnd);
             this.Controls.Add(this.btnCourseStart);
@@ -141,6 +151,8 @@
             this.Controls.Add(this.tbLog);
             this.Controls.Add(this.pb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmMain";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSetup));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,50 +41,56 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 20);
+            this.label1.Location = new System.Drawing.Point(16, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.Size = new System.Drawing.Size(37, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "串口";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 60);
+            this.label2.Location = new System.Drawing.Point(16, 69);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.Size = new System.Drawing.Size(60, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "用户名:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 92);
+            this.label3.Location = new System.Drawing.Point(16, 106);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.Size = new System.Drawing.Size(45, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "密码:";
             // 
             // TbUsername
             // 
-            this.TbUsername.Location = new System.Drawing.Point(80, 57);
+            this.TbUsername.Location = new System.Drawing.Point(107, 66);
+            this.TbUsername.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TbUsername.Name = "TbUsername";
-            this.TbUsername.Size = new System.Drawing.Size(175, 20);
+            this.TbUsername.Size = new System.Drawing.Size(232, 25);
             this.TbUsername.TabIndex = 4;
             // 
             // TbPassword
             // 
-            this.TbPassword.Location = new System.Drawing.Point(80, 92);
+            this.TbPassword.Location = new System.Drawing.Point(107, 106);
+            this.TbPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TbPassword.Name = "TbPassword";
             this.TbPassword.PasswordChar = '*';
-            this.TbPassword.Size = new System.Drawing.Size(175, 20);
+            this.TbPassword.Size = new System.Drawing.Size(232, 25);
             this.TbPassword.TabIndex = 5;
             // 
             // BtnOK
             // 
-            this.BtnOK.Location = new System.Drawing.Point(80, 129);
+            this.BtnOK.Location = new System.Drawing.Point(107, 149);
+            this.BtnOK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnOK.Name = "BtnOK";
-            this.BtnOK.Size = new System.Drawing.Size(75, 23);
+            this.BtnOK.Size = new System.Drawing.Size(100, 27);
             this.BtnOK.TabIndex = 6;
             this.BtnOK.Text = "确定(&S)";
             this.BtnOK.UseVisualStyleBackColor = true;
@@ -102,16 +109,17 @@
             "COM6",
             "COM7",
             "COM8"});
-            this.CbCom.Location = new System.Drawing.Point(80, 17);
+            this.CbCom.Location = new System.Drawing.Point(107, 20);
+            this.CbCom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CbCom.Name = "CbCom";
-            this.CbCom.Size = new System.Drawing.Size(121, 21);
+            this.CbCom.Size = new System.Drawing.Size(160, 23);
             this.CbCom.TabIndex = 7;
             // 
             // FrmSetup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 164);
+            this.ClientSize = new System.Drawing.Size(379, 189);
             this.Controls.Add(this.CbCom);
             this.Controls.Add(this.BtnOK);
             this.Controls.Add(this.TbPassword);
@@ -120,6 +128,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmSetup";

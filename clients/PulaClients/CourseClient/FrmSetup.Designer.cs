@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSetup));
             this.label1 = new System.Windows.Forms.Label();
             this.BtnOK = new System.Windows.Forms.Button();
             this.CbCom = new System.Windows.Forms.ComboBox();
@@ -36,17 +37,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 20);
+            this.label1.Location = new System.Drawing.Point(16, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.Size = new System.Drawing.Size(37, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "串口";
             // 
             // BtnOK
             // 
-            this.BtnOK.Location = new System.Drawing.Point(80, 59);
+            this.BtnOK.Location = new System.Drawing.Point(107, 68);
+            this.BtnOK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnOK.Name = "BtnOK";
-            this.BtnOK.Size = new System.Drawing.Size(75, 23);
+            this.BtnOK.Size = new System.Drawing.Size(100, 27);
             this.BtnOK.TabIndex = 6;
             this.BtnOK.Text = "确定(&S)";
             this.BtnOK.UseVisualStyleBackColor = true;
@@ -65,20 +68,23 @@
             "COM6",
             "COM7",
             "COM8"});
-            this.CbCom.Location = new System.Drawing.Point(80, 17);
+            this.CbCom.Location = new System.Drawing.Point(107, 20);
+            this.CbCom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CbCom.Name = "CbCom";
-            this.CbCom.Size = new System.Drawing.Size(121, 21);
+            this.CbCom.Size = new System.Drawing.Size(160, 23);
             this.CbCom.TabIndex = 7;
             // 
             // FrmSetup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 100);
+            this.ClientSize = new System.Drawing.Size(379, 115);
             this.Controls.Add(this.CbCom);
             this.Controls.Add(this.BtnOK);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmSetup";

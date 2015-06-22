@@ -33,6 +33,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CourseClient.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo-icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge.Controls, Version=2.2.5.0, Culture=neutral, PublicKeyToken=a8ac264d1dc6b9d9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -179,6 +185,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="logo-icon.ico" />
     <Content Include="MasterCom.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
