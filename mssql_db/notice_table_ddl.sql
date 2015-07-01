@@ -1,32 +1,27 @@
-USE [pula_sys]
+USE [pulasys]
 GO
 
-/****** Object:  Table [dbo].[notices]    Script Date: 2015/6/7 21:56:23 ******/
-DROP TABLE [dbo].[notices]
+/****** Object:  Table [dbo].[notice]    Script Date: 2015/7/1 23:49:08 ******/
+DROP TABLE [dbo].[notice]
 GO
 
-/****** Object:  Table [dbo].[notices]    Script Date: 2015/6/7 21:56:24 ******/
+/****** Object:  Table [dbo].[notice]    Script Date: 2015/7/1 23:49:08 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-SET ANSI_PADDING ON
-GO
+CREATE TABLE [dbo].[notice](
+	[noticeId] [int] NOT NULL,
+	[title] [nvarchar](400) NULL,
+	[formattedTitle] [nvarchar](2000) NULL,
+	[content] text NULL,
+	[imgPath] [nvarchar](400) NULL,
+	[suffix] [nvarchar](10) NULL,
+	[createTime] [datetime] NULL,
+	[updateTime] [datetime] NULL
+) ON [PRIMARY]
 
-CREATE TABLE [dbo].[notices](
-	[noticeId] [bigint] NOT NULL,
-	[title] [varchar](200) NOT NULL,
-	[summary] [varchar](400) NOT NULL,
-	[noticeContent] [text] NOT NULL,
-	[DataChange_LastTime] [datetime] NOT NULL,
-	[DataChange_CreateTime] [datetime] NOT NULL,
-	[publishedBy] [varchar](50) NULL
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-GO
-
-SET ANSI_PADDING OFF
 GO
 
