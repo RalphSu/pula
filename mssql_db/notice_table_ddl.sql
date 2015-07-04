@@ -14,13 +14,17 @@ GO
 
 CREATE TABLE [dbo].[notice](
 	[noticeId] [int] NOT NULL,
+	[no] [varchar(40)] NULL,
 	[title] [nvarchar](400) NULL,
 	[formattedTitle] [nvarchar](2000) NULL,
 	[content] text NULL,
 	[imgPath] [nvarchar](400) NULL,
 	[suffix] [nvarchar](10) NULL,
 	[createTime] [datetime] NULL,
-	[updateTime] [datetime] NULL
+	[updateTime] [datetime] NULL,
+	[comments] nvarchar(400) NULL,
+	[removed] [int] NULL,
+	[enabled] [int] NULL
 ) ON [PRIMARY]
 
 GO

@@ -17,18 +17,26 @@ GO
 
 CREATE TABLE [dbo].[time_course](
 	[courseId] [int] NOT NULL,
+	[no] [varchar(40)] NULL,
 	[courseType] [int] NULL,
-	[courseName] [nvarchar](200) NULL,
+	[name] [nvarchar](200) NULL,
 	[branchName] [nvarchar](200) NULL,
+	[classRoomName] [nvarchar](200) NULL,
 	[price] [decimal](18, 0) NULL,
 	[maxStudentNum] [int] NULL,
 	[startTime] [datetime] NULL,
 	[endTime] [datetime] NULL,
+	[durationMinute] [int] NULL,
 	[startHour] [int] NULL,
 	[startMinute] [int] NULL,
 	[startWeekDay] [varchar](50) NULL,
 	[createTime] [datetime] NULL,
-	[updateTime] [datetime] NULL
+	[updateTime] [datetime] NULL,
+	[comments] nvarchar(400) NULL,
+	[removed] [int] NULL,
+	[enabled] [int] NULL,
+	[creator] nvarchar(400) NULL,
+	[updator] nvarchar(400) NULL
 ) ON [PRIMARY]
 
 GO

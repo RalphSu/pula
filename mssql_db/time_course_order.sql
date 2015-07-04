@@ -14,6 +14,7 @@ GO
 
 CREATE TABLE [dbo].[time_course_order](
 	[courseId] [int] NOT NULL,
+	[no] [varchar(40)] NULL,
 	[studentId] [int] NOT NULL,
 	[buyType] [int] NULL,
 	[paied] [decimal](18, 0) NULL,
@@ -21,7 +22,10 @@ CREATE TABLE [dbo].[time_course_order](
 	[usedCount] [int] NULL,
 	[usedCost] [decimal](18, 0) NULL,
 	[createTime] [datetime] NULL,
-	[updateTime] [datetime] NULL
+	[updateTime] [datetime] NULL,
+	[comments] nvarchar(400) NULL,
+	[removed] [int] NULL,
+	[enabled] [int] NULL
 ) ON [PRIMARY]
 
 GO
