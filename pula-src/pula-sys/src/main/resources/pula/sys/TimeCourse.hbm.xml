@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- pula.sys.domains.Course root -->
+ <class name="pula.sys.domains.TimeCourse" table="time_course">
+  <id column="id" name="id" type="long">
+   <generator class="native"/>
+  </id>
+  <property column="name" generated="never" lazy="false" length="80"
+   name="name" type="string"/>
+  <property column="comments" generated="never" lazy="false"
+   length="200" name="comments" type="string"/>
+  <property column="removed" generated="never" lazy="false"
+   name="removed" type="boolean"/>
+  <property column="enabled" generated="never" lazy="false"
+   name="enabled" type="boolean"/>
+  <property column="no" generated="never" lazy="false" length="40"
+   name="no" type="string"/>
+  <property column="createTime" generated="never" lazy="false"
+   name="createTime" type="date"/>
+  <property column="updateTime" generated="never" lazy="false"
+   name="updateTime" type="date"/>
+  <property column="durationMinute" generated="never" lazy="false"
+   name="durationMinute" type="int"/>
+  <property column="courseType" name="courseType" type="int"/>
+  <property column="branchName" name="branchName" type="string"/>
+  <property column="classRoomName" name="classRoomName" type="string"/>
+  <property column="price" name="price" type="double"/>
+  <property column="maxStudentNum" name="maxStudentNum" type="int"/>
+  <property column="startTime" name="startTime" type="date"/>
+  <property column="endTime" name="endTime" type="date"/>
+  <property column="startHour" name="startHour" type="int"/>
+  <property column="startMinute" name="startMinute" type="int"/>
+  <property column="startWeekDay" name="startWeekDay" type="int"/>
+  <property column="creator" name="creator" type="string"/>
+  <property column="updator" name="updator" type="string"/>
+ </class>
+</hibernate-mapping>
