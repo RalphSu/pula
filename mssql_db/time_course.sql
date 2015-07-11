@@ -1,4 +1,4 @@
-USE [pulasys]
+USE [pula_sys]
 GO
 
 /****** Object:  Table [dbo].[time_course]    Script Date: 2015/7/1 23:49:35 ******/
@@ -16,8 +16,8 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [dbo].[time_course](
-	[courseId] [int] NOT NULL,
-	[no] [varchar(40)] NULL,
+	[id] [int] NOT NULL PRIMARY KEY IDENTITY,
+	[no] [nvarchar](40) NULL,
 	[courseType] [int] NULL,
 	[name] [nvarchar](200) NULL,
 	[branchName] [nvarchar](200) NULL,

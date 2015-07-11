@@ -11,4 +11,24 @@ import puerta.support.dao.CommonCondition;
  */
 public class NoticeCondition extends CommonCondition {
 
+    private int enabledStatus;
+
+    private String keywords;
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
+    public int getEnabledStatus() {
+        return enabledStatus;
+    }
+
+    public void setEnabledStatus(int enabledStatus) {
+        this.enabledStatus = enabledStatus;
+    }
+
 }

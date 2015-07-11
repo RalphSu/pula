@@ -1,4 +1,4 @@
-USE [pulasys]
+USE [pula_sys]
 GO
 
 /****** Object:  Table [dbo].[time_course_order]    Script Date: 2015/7/1 23:49:45 ******/
@@ -13,7 +13,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [pula_sys].[dbo].[time_course_order](
-	[id] [int] NOT NULL,
+	[id] [int] NOT NULL PRIMARY KEY IDENTITY,
 	[courseId] [int] NOT NULL,
 	[no] nvarchar(40) NULL,
 	[studentId] [int] NOT NULL,
@@ -30,10 +30,13 @@ CREATE TABLE [pula_sys].[dbo].[time_course_order](
 ) ON [PRIMARY]
 
 
+/****** Object:  Table [dbo].[time_course_order]    Script Date: 2015/7/1 23:49:45 ******/
+DROP TABLE [dbo].[time_course_usage]
+GO
 CREATE TABLE [dbo].[time_course_usage](
-	[id] [int] NOT NULL,
+	[id] [int] NOT NULL PRIMARY KEY IDENTITY,
 	[courseId] [int] NOT NULL,
-	[no] [varchar(40)] NULL,
+	[no] [varchar](40) NULL,
 	[studentId] [int] NOT NULL,
 	[usedCount] [int] NULL,
 	[usedCost] [decimal](18, 0) NULL,
