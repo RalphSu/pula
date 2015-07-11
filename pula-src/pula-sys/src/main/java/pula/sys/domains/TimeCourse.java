@@ -5,8 +5,6 @@ package pula.sys.domains;
 
 import java.util.Date;
 
-import org.omg.CORBA.TCKind;
-
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
 

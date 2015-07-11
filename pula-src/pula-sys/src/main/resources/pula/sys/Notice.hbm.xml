@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- pula.sys.domains.Course root -->
+ <class name="pula.sys.domains.Notice" table="time_course">
+  <id column="id" name="id" type="long">
+   <generator class="native"/>
+  </id>
+  <property column="comment" generated="never" lazy="false" length="200"
+   name="comment" type="string"/>
+  <property column="removed" generated="never" lazy="false"
+   name="removed" type="boolean"/>
+  <property column="enabled" generated="never" lazy="false"
+   name="enabled" type="boolean"/>
+  <property column="content" generated="never" lazy="false" length="40"
+   name="content" type="string"/>
+  <property column="createTime" generated="never" lazy="false"
+   name="createTime" type="date"/>
+  <property column="updateTime" generated="never" lazy="false"
+   name="updateTime" type="date"/>
+  <property column="formattedTitle" generated="never" lazy="false"
+   name="formattedTitle" type="string"/>
+  <property column="title" generated="never" lazy="false" name="title" type="string"/>
+  <property column="imgPath" generated="never" lazy="false"
+   name="imgPath" type="string"/>
+  <property column="suffix" generated="never" lazy="false" name="suffix" type="string"/>
+  <property column="creator" generated="never" lazy="false"
+   name="creator" type="string"/>
+  <property column="updator" generated="never" lazy="false"
+   name="updator" type="string"/>
+ </class>
+</hibernate-mapping>

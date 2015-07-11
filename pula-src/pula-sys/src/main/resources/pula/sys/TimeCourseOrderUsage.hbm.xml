@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- pula.sys.domains.Course root -->
+ <class name="pula.sys.domains.TimeCourseOrder" table="time_course_order">
+  <id column="id" name="id" type="long">
+   <generator class="native"/>
+  </id>
+  <property column="comments" generated="never" lazy="false"
+   length="200" name="comments" type="string"/>
+  <property column="removed" generated="never" lazy="false"
+   name="removed" type="boolean"/>
+  <property column="enabled" generated="never" lazy="false"
+   name="enabled" type="boolean"/>
+  <property column="no" generated="never" lazy="false" length="40"
+   name="no" type="string"/>
+  <property column="createTime" generated="never" lazy="false"
+   name="createTime" type="date"/>
+  <property column="updateTime" generated="never" lazy="false"
+   name="updateTime" type="date"/>
+  <property column="courseId" generated="never" lazy="false"
+   name="courseId" type="long"/>
+  <property column="studentId" generated="never" lazy="false"
+   name="studentId" type="long"/>
+  <property column="buyType" generated="never" lazy="false"
+   name="buyType" type="int"/>
+  <property column="paied" generated="never" lazy="false" name="paied" type="int"/>
+  <property column="paiedCount" generated="never" lazy="false"
+   name="paiedCount" type="int"/>
+  <property column="creator" generated="never" lazy="false"
+   name="creator" type="string"/>
+  <property column="updator" generated="never" lazy="false"
+   name="updator" type="string"/>
+  <property column="remainCount" generated="never" lazy="false"
+   name="remainCount" type="int"/>
+  <property column="remainCost" generated="never" lazy="false"
+   name="remainCost" type="int"/>
+ </class>
+</hibernate-mapping>

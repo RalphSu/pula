@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
@@ -22,6 +23,7 @@ import puerta.support.ViewResult;
 import puerta.support.annotation.Barrier;
 import puerta.support.annotation.ObjectParam;
 import puerta.support.utils.WxlSugar;
+import puerta.system.dao.LoggerDao;
 import puerta.system.keeper.ParameterKeeper;
 import puerta.system.service.SessionService;
 import puerta.system.vo.JsonResult;
@@ -80,6 +82,8 @@ public class TimeCourseController {
     @Resource
     private TimeCourseDao courseDao;
     @Resource
+    private LoggerDao logDao;
+    @Resource
     private ParameterKeeper parameterKeeper;
     @Resource
     private SessionService sessionService;
@@ -131,7 +135,9 @@ public class TimeCourseController {
         cc.setEnabled(true);
 
         courseDao.save(cc);
-
+        
+        logDao.doLog("create", cc);
+        
         return ViewResult.JSON_SUCCESS;
     }
 
@@ -144,6 +150,8 @@ public class TimeCourseController {
         cc.setUpdator(sessionService.getActorId());
 
         courseDao.update(cc);
+        
+        logDao.doLog("update", cc);
 
         return ViewResult.JSON_SUCCESS;
     }
@@ -154,6 +162,7 @@ public class TimeCourseController {
     public String remove(
             @RequestParam(value = "objId", required = false) Long[] id) {
         courseDao.deleteById(id);
+        logDao.doLog("deleteTimeCourse", StringUtils.join(id));
         return ViewResult.JSON_SUCCESS;
     }
 

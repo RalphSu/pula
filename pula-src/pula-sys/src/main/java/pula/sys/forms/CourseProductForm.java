@@ -1,8 +1,8 @@
 package pula.sys.forms;
 
+import puerta.support.utils.DateExTool;
 import pula.sys.domains.Branch;
 import pula.sys.domains.CourseProduct;
-import puerta.support.utils.DateExTool;
 
 public class CourseProductForm extends CourseProduct {
 	private String beginTimeText;

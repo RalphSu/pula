@@ -12,13 +12,29 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[time_course_order](
+CREATE TABLE [pula_sys].[dbo].[time_course_order](
+	[id] [int] NOT NULL,
+	[courseId] [int] NOT NULL,
+	[no] nvarchar(40) NULL,
+	[studentId] [int] NOT NULL,
+	[buyType] [int] NULL,
+	[paied] [int] NULL,
+	[paiedCount] [int] NULL,
+	[remainCount] [int] NULL,
+	[remainCost] [int] NULL,
+	[createTime] [datetime] NULL,
+	[updateTime] [datetime] NULL,
+	[comments] nvarchar(400) NULL,
+	[removed] [int] NULL,
+	[enabled] [int] NULL
+) ON [PRIMARY]
+
+
+CREATE TABLE [dbo].[time_course_usage](
+	[id] [int] NOT NULL,
 	[courseId] [int] NOT NULL,
 	[no] [varchar(40)] NULL,
 	[studentId] [int] NOT NULL,
-	[buyType] [int] NULL,
-	[paied] [decimal](18, 0) NULL,
-	[paiedCount] [int] NULL,
 	[usedCount] [int] NULL,
 	[usedCost] [decimal](18, 0) NULL,
 	[createTime] [datetime] NULL,
@@ -28,5 +44,7 @@ CREATE TABLE [dbo].[time_course_order](
 	[enabled] [int] NULL
 ) ON [PRIMARY]
 
+
 GO
+
 

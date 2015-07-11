@@ -1,7 +1,5 @@
 package pula.sys.forms;
 
-import java.util.List;
-
 import puerta.support.utils.DateExTool;
 import pula.sys.domains.TrainLog;
 

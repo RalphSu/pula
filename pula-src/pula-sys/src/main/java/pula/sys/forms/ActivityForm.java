@@ -1,7 +1,7 @@
 package pula.sys.forms;
 
-import pula.sys.domains.Activity;
 import puerta.support.utils.DateExTool;
+import pula.sys.domains.Activity;
 
 public class ActivityForm extends Activity {
 	private String beginDateText;
