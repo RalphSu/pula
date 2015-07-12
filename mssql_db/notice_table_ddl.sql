@@ -1,4 +1,4 @@
-USE [pulasys]
+USE [pula_sys]
 GO
 
 /****** Object:  Table [dbo].[notice]    Script Date: 2015/7/1 23:49:08 ******/
@@ -14,7 +14,7 @@ GO
 
 CREATE TABLE [dbo].[notice](
 	[noticeId] [int] NOT NULL,
-	[no] [varchar(40)] NULL,
+	[no] [varchar] (40) NULL,
 	[title] [nvarchar](400) NULL,
 	[formattedTitle] [nvarchar](2000) NULL,
 	[content] text NULL,

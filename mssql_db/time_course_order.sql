@@ -1,4 +1,4 @@
-USE [pulasys]
+USE [pula_sys]
 GO
 
 /****** Object:  Table [dbo].[time_course_order]    Script Date: 2015/7/1 23:49:45 ******/
@@ -33,7 +33,7 @@ CREATE TABLE [pula_sys].[dbo].[time_course_order](
 CREATE TABLE [dbo].[time_course_usage](
 	[id] [int] NOT NULL,
 	[courseId] [int] NOT NULL,
-	[no] [varchar(40)] NULL,
+	[no] [varchar] (40) NULL,
 	[studentId] [int] NOT NULL,
 	[usedCount] [int] NULL,
 	[usedCost] [decimal](18, 0) NULL,
