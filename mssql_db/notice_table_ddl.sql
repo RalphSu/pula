@@ -13,8 +13,13 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[notice](
+<<<<<<< HEAD
 	[noticeId] [int] NOT NULL,
 	[no] [varchar] (40) NULL,
+=======
+	[id] [int] NOT NULL PRIMARY KEY IDENTITY,
+	[no] [nvarchar](40) NULL,
+>>>>>>> bdd6f0d72594d6e59a2a8ae4d944983c7678cbb9
 	[title] [nvarchar](400) NULL,
 	[formattedTitle] [nvarchar](2000) NULL,
 	[content] text NULL,
