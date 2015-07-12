@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/loading" />
+
+    <ScrollView
+        android:id="@+id/data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_note_tzls" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="8dp"
+                    android:text="旅行专题"
+                    android:textColor="#0099CC"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/abc_ic_go" />
+
+                <TextView
+                    android:id="@+id/zhuanti_tour_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="23dp"
+                    android:layout_marginTop="8dp"
+                    android:text="更多"
+                    android:textColor="#0099CC"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <com.yuhj.ontheway.widget.CustomListView
+                android:id="@+id/lvxing_zhuanti_listView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dividerHeight="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" >
+            </com.yuhj.ontheway.widget.CustomListView>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_note_tzls" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="8dp"
+                    android:text="图片专题"
+                    android:textColor="#0099CC"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/abc_ic_go" />
+
+                <TextView
+                    android:id="@+id/zhuanti_image_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="23dp"
+                    android:layout_marginTop="8dp"
+                    android:text="更多"
+                    android:textColor="#0099CC"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <com.yuhj.ontheway.widget.CustomListView
+                android:id="@+id/image_zhuanti_listView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dividerHeight="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" >
+            </com.yuhj.ontheway.widget.CustomListView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

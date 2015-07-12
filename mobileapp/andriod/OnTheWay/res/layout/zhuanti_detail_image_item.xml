@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#99CCFF"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_circleImageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/aaa" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/user_circleImageView"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/user_circleImageView"
+            android:text="泪落时君已末路"
+            android:textColor="#006699"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/publish_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/user_name"
+            android:layout_below="@+id/user_name"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/user_circleImageView"
+            android:text="2014-9-15"
+            android:textColor="#5c5c5c"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignTop="@+id/publish_date"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/badge_traveler_v2_42" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#aafcfcfc" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/gridview_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/aaa" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/gridview_imageview"
+            android:padding="5dp"
+            android:src="@drawable/icon_location_white_34" />
+
+        <TextView
+            android:id="@+id/zhuanti_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/gridview_imageview"
+            android:layout_marginBottom="7dp"
+            android:layout_toRightOf="@+id/imageView1"
+            android:text="北京昌平"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/zhuanti_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/zhuanti_address"
+            android:layout_alignLeft="@+id/imageView1"
+            android:layout_marginLeft="10dp"
+            android:text="TextView"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+    <com.etsy.android.grid.util.DynamicHeightTextView
+        android:id="@+id/text_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.2"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="人省份"
+        android:textColor="#5c5c5c" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#aafcfcfc" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_like_red_32" />
+
+        <TextView
+            android:id="@+id/zhuanti_likeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="TextView"
+            android:textColor="#FF6600" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_comment_pressed" />
+
+        <TextView
+            android:id="@+id/zhuanti_commentCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="TextView"
+            android:textColor="#FF6600" />
+    </LinearLayout>
+
+</LinearLayout>

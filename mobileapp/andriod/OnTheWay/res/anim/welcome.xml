@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android" >
+<!-- 给指定的空间添加透明效果 -->
+    <alpha
+        android:fromAlpha="0.0"
+        android:duration="4000"
+        android:toAlpha="2.5" />
+  <!--   <scale 
+        android:fromXScale="0.4"
+        android:toXScale="1.0"
+        android:fromYScale="0.4"
+        android:toYScale="1.0"
+        android:duration="5000"
+        android:pivotX="100"
+        android:pivotY="50"
+        />  -->
+       <!--  <translate 
+            android:fromXDelta="5%"
+            android:toXDelta="15%"
+            android:fromYDelta="5%"
+            android:toYDelta="15%"
+            /> -->
+     <!--   <rotate 
+           android:fromDegrees="10"
+           android:toDegrees="10"
+           android:pivotX="5"
+           android:pivotY="5"
+           /> -->
+
+</set>
