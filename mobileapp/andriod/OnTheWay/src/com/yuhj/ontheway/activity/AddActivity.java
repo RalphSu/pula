@@ -3,8 +3,9 @@ package com.yuhj.ontheway.activity;
 import com.yuhj.ontheway.R;
 import com.yuhj.ontheway.R.layout;
 import com.yuhj.ontheway.fragment.LoginFragment;
-import com.zdp.aseo.content.AseoZdpAseo;
-
+/*
+ *import com.zdp.aseo.content.AseoZdpAseo;
+ */
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -21,7 +22,7 @@ import android.widget.Button;
 /**
  * @name AddActivity
  * @Descripation 发布，上传<br>
- * @author 禹慧军
+ * @author 
  * @date 2014-10-24
  * @version 1.0
  */
@@ -43,8 +44,10 @@ public class AddActivity extends FragmentActivity implements OnClickListener {
 		take_photo.setOnClickListener(this);
 		select_picture.setOnClickListener(this);
 		publish_text.setOnClickListener(this);
-		AseoZdpAseo.initType(this, AseoZdpAseo.SCREEN_TYPE);
-	}
+		/*
+		 *AseoZdpAseo.initType(this, AseoZdpAseo.SCREEN_TYPE);
+		 */
+	}  
 
 	@Override
 	protected void onPause() {

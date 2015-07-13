@@ -11,7 +11,7 @@ import com.yuhj.ontheway.bean.JingXuanData;
 import com.yuhj.ontheway.bean.ZhuanTiData;
 import com.yuhj.ontheway.clients.ClientApi;
 import com.yuhj.ontheway.utils.LoadingAinm;
-import com.zdp.aseo.content.AseoZdpAseo;
+//import com.zdp.aseo.content.AseoZdpAseo;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -49,7 +49,7 @@ public class ZhuantiDetailTourActivity extends BaseActivity {
 		String title = getIntent().getStringExtra("name");
 		titletTextView = (TextView) findViewById(R.id.zhuanti_main_title);
 		titletTextView.setText(title);
-		AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
+		//AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
 		loadRelativeLayout = (RelativeLayout) findViewById(R.id.lodingRelativeLayout);
 		dataLinearLayout = (LinearLayout) findViewById(R.id.data);
 		new DownLoad().execute();

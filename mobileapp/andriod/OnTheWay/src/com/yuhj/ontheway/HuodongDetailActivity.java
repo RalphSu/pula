@@ -1,7 +1,7 @@
 package com.yuhj.ontheway;
 
 import com.yuhj.ontheway.activity.BaseActivity;
-import com.zdp.aseo.content.AseoZdpAseo;
+//import com.zdp.aseo.content.AseoZdpAseo;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -46,7 +46,7 @@ public class HuodongDetailActivity extends BaseActivity {
 				R.layout.activity_huodong_detail, null);
 		// 生成水平进度条
 		TextView title = (TextView) view.findViewById(R.id.huodong_main_title);
-		AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
+		//AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
 		// ~~~ 设置数据
 		title.setText(name);
 		rootViewLayout.addView(view);

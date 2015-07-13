@@ -8,7 +8,7 @@ import com.yuhj.ontheway.adapter.HuoDongAdapter;
 import com.yuhj.ontheway.bean.HuoDongData;
 import com.yuhj.ontheway.clients.ClientApi;
 import com.yuhj.ontheway.utils.LoadingAinm;
-import com.zdp.aseo.content.AseoZdpAseo;
+//import com.zdp.aseo.content.AseoZdpAseo;
 
 import android.content.Intent;
 import android.os.AsyncTask;

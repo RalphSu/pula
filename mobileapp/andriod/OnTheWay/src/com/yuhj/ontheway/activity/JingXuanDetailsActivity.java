@@ -11,8 +11,9 @@ import com.yuhj.ontheway.bean.JingxuanDetailData;
 import com.yuhj.ontheway.clients.ClientApi;
 import com.yuhj.ontheway.utils.ImageCache;
 import com.yuhj.ontheway.utils.LoadingAinm;
-import com.zdp.aseo.content.AseoZdpAseo;
-
+/*
+*import com.zdp.aseo.content.AseoZdpAseo;
+*/
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -89,7 +90,9 @@ public class JingXuanDetailsActivity extends BaseActivity {
 		new ImageCache(getApplicationContext(), lruCache, mainImage,
 				"http://img.117go.com/timg/p308/" + jingXuanData.getImage(),
 				"OnTheway", 800, 400);
-		AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
+		/*
+		 *AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
+		 */
 		mainText.setText(jingXuanData.getForeword());
 		listView.addHeaderView(headerView);
 		startId = intent.getStringExtra("id");

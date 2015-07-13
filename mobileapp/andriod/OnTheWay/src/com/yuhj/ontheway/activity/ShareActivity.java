@@ -5,7 +5,7 @@ import com.yuhj.ontheway.R;
 
 
 
-import com.zdp.aseo.content.AseoZdpAseo;
+//import com.zdp.aseo.content.AseoZdpAseo;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -47,7 +47,7 @@ public class ShareActivity extends BaseActivity implements OnClickListener{
 		initbutton();
 		buttonSetonclick();
 		
-		AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
+		//AseoZdpAseo.initType(this, AseoZdpAseo.INSERT_TYPE);
 		tecentplatform = ShareSDK.getPlatform(TencentWeibo.NAME);
 		sinaplatform = ShareSDK.getPlatform(SinaWeibo.NAME);
 		renrenplatform = ShareSDK.getPlatform(Renren.NAME);

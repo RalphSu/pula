@@ -1,7 +1,7 @@
 package com.yuhj.ontheway.activity;
 
 import com.yuhj.ontheway.R;
-import com.zdp.aseo.content.AseoZdpAseo;
+//import com.zdp.aseo.content.AseoZdpAseo;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -31,7 +31,7 @@ public class WelcomeActivity extends BaseActivity {
 		 * millisInFuture:从开始调用start()到倒计时完成并onFinish()方法被调用的毫秒数
 		 * countDownInterval:接收onTick(long)回调的间隔时间
 		 */
-        AseoZdpAseo.initType(this, AseoZdpAseo.SCREEN_TYPE);
+       // AseoZdpAseo.initType(this, AseoZdpAseo.SCREEN_TYPE);
         LinearLayout linearLayout =(LinearLayout) findViewById(R.id.welcome_image);
         Animation animation=AnimationUtils.loadAnimation(this,R.anim.welcome);
 		linearLayout.startAnimation(animation);

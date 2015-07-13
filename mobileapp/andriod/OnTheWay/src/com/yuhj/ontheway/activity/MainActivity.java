@@ -7,8 +7,9 @@ import com.yuhj.ontheway.fragment.HuodongFragment;
 import com.yuhj.ontheway.fragment.JingXuanFragment;
 import com.yuhj.ontheway.fragment.LoginFragment;
 import com.yuhj.ontheway.fragment.ZhuanTiFragment;
-import com.zdp.aseo.content.AseoZdpAseo;
-
+/*
+*import com.zdp.aseo.content.AseoZdpAseo;
+*/
 import android.R.anim;
 import android.os.Bundle;
 import android.app.Activity;
@@ -63,9 +64,9 @@ public class MainActivity extends FragmentActivity implements
 		initViews();
 		
 		/*
-		 * what's this used for?
+		 * AseoZdpAseo.initTimer(this);
 		 */
-		AseoZdpAseo.initTimer(this);
+		
 		
 		group = (RadioGroup) findViewById(R.id.main_tab_bar);
 		group.setOnCheckedChangeListener(this);
@@ -98,7 +99,7 @@ public class MainActivity extends FragmentActivity implements
 		loginFragment=new LoginFragment();
 		title = (TextView) findViewById(R.id.main_title);
 		imageView = (RadioButton) findViewById(R.id.main_add);
-		AseoZdpAseo.init(this, AseoZdpAseo.INSERT_TYPE);
+		//AseoZdpAseo.init(this, AseoZdpAseo.INSERT_TYPE);
 		imageView.setOnClickListener(new OnClickListener() {
 			
 			@Override
