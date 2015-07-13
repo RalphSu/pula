@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.yuhj.ontheway"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!--  -->
+
+    <include layout="@layout/loading" />
+
+    <LinearLayout
+        android:id="@+id/dataLinearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/title_bg" >
+
+            <TextView
+                android:id="@+id/zhuanti_main_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="TextView"
+                android:textColor="#99CCFF"
+                android:textSize="22sp" />
+        </RelativeLayout>
+
+        <com.etsy.android.grid.StaggeredGridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:item_margin="6dp"
+            app:column_count_landscape="3" >
+        </com.etsy.android.grid.StaggeredGridView>
+    </LinearLayout>
+
+</LinearLayout>

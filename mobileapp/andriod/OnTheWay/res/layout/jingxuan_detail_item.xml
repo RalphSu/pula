@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/jingxuan_detail_list_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="3dp"
+        android:scaleType="fitXY"
+         />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/jingxuan_detail_list_image"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/icon_location_white_34" />
+
+   
+
+    <TextView
+        android:id="@+id/jingxuna_detail_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/jingxuan_detail_list_image"
+        android:padding="5dp"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_marginBottom="2dp"
+        android:textColor="#4c4c4c"
+        android:text="TextView" />
+
+</RelativeLayout>

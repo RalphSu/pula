@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
@@ -135,6 +136,8 @@ public class TimeCourseController {
 
         courseDao.save(cc);
         
+        logDao.doLog("create", cc);
+        
         return ViewResult.JSON_SUCCESS;
     }
 
@@ -147,6 +150,8 @@ public class TimeCourseController {
         cc.setUpdator(sessionService.getActorId());
 
         courseDao.update(cc);
+        
+        logDao.doLog("update", cc);
 
         return ViewResult.JSON_SUCCESS;
     }
@@ -157,6 +162,7 @@ public class TimeCourseController {
     public String remove(
             @RequestParam(value = "objId", required = false) Long[] id) {
         courseDao.deleteById(id);
+        logDao.doLog("deleteTimeCourse", StringUtils.join(id));
         return ViewResult.JSON_SUCCESS;
     }
 
@@ -183,6 +189,22 @@ public class TimeCourseController {
         }
         return JsonResult.s(MAPPING_FULL.toMap(u));
     }
+
+//    @RequestMapping
+//    @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
+//    @Barrier()
+//    public ModelAndView find(
+//            @RequestParam(value = "no", required = false) String no,
+//
+//            @RequestParam(value = "t", required = false) String t,
+//
+//            @RequestParam(value = "prefix", required = false) String prefix) {
+//        ModelAndView m = new ModelAndView(ViewResult.JSON_LIST);
+//        MapList list = courseDao.loadByKeywords(no, t, prefix);
+//        logger.debug("list.size=" + list.size());
+//        m.addObject("list", list);
+//        return m;
+//    }
 
     @Transactional
     @RequestMapping

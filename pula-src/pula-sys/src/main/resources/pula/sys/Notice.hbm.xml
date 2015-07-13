@@ -3,7 +3,7 @@
                                    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
  <!-- pula.sys.domains.Course root -->
- <class name="pula.sys.domains.Notice" table="notice">
+ <class name="pula.sys.domains.Notice" table="time_course">
   <id column="id" name="id" type="long">
    <generator class="native"/>
   </id>
@@ -29,6 +29,5 @@
    name="creator" type="string"/>
   <property column="updator" generated="never" lazy="false"
    name="updator" type="string"/>
-  <property column="no" name="no" type="string"/>
  </class>
 </hibernate-mapping>
