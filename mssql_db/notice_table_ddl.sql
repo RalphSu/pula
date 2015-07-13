@@ -24,7 +24,9 @@ CREATE TABLE [dbo].[notice](
 	[updateTime] [datetime] NULL,
 	[comments] nvarchar(400) NULL,
 	[removed] [int] NULL,
-	[enabled] [int] NULL
+	[enabled] [int] NULL,
+	[creator] nvarchar(400) NULL,
+	[updator] nvarchar(400) NULL
 ) ON [PRIMARY]
 
 GO

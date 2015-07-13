@@ -4,9 +4,11 @@
 package pula.sys.daos.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import puerta.support.PageInfo;
@@ -22,13 +24,12 @@ import pula.sys.domains.TimeCourse;
  *
  */
 @Repository
-public class TimeCourseDaoImpl extends HibernateGenericDao<TimeCourse, Long>implements TimeCourseDao {
+public class TimeCourseDaoImpl extends HibernateGenericDao<TimeCourse, Long> implements TimeCourseDao {
 
     @Override
     public PaginationSupport<TimeCourse> search(CourseCondition condition, int pageIndex) {
         DetachedCriteria criteria = makeDetachedCriteria(condition);
-        return super.findPageByCriteria(criteria, new PageInfo(pageIndex),
-                Order.asc("no"));
+        return super.findPageByCriteria(criteria, new PageInfo(pageIndex), Order.asc("no"));
     }
 
     @Override
@@ -57,7 +58,7 @@ public class TimeCourseDaoImpl extends HibernateGenericDao<TimeCourse, Long>impl
         po.setEndTime(rt.getEndTime());
         po.setUpdateTime(rt.getUpdateTime());
         po.setDurationMinute(rt.getDurationMinute());
-        // more: 
+        // more:
         po.setBranchName(rt.getBranchName());
         po.setClassRoomName(rt.getClassRoomName());
         po.setCourseType(rt.getCourseType());
@@ -73,23 +74,23 @@ public class TimeCourseDaoImpl extends HibernateGenericDao<TimeCourse, Long>impl
 
     }
 
-//    @Override
-//    public MapList loadByKeywords(String no, String t, String prefix) {
-//        // TODO Auto-generated method stub
-//        return null;
-//    }
+    @Override
+    public Long getIdByName(String courseName) {
+        DetachedCriteria dc = DetachedCriteria.forClass(this.pojoClass, "uu");
+        dc.add(Restrictions.eq("name", courseName.trim()));
 
-//    @Override
-//    public MapList list(String categoryId) {
-//        // TODO Auto-generated method stub
-//        return null;
-//    }
-//
-//    @Override
-//    public MapList mapList4web(String type_no) {
-//        // TODO Auto-generated method stub
-//        return null;
-//    }
+        if (domainPo) {
+            dc.add(Restrictions.eq("removed", false));
+        }
 
+        List<TimeCourse> tcs = super.findByCriteria(dc);
+        if (tcs.size() == 0) {
+            return 0l;
+        } else if (tcs.size() > 0) {
+            return -1l;
+        } else {
+            return tcs.get(0).getId();
+        }
+    }
 
 }

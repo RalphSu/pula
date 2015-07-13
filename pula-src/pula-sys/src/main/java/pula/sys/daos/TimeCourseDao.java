@@ -25,6 +25,8 @@ public interface TimeCourseDao extends BaseDao<TimeCourse, Long> {
 //    MapList loadByKeywords(String no, String t, String prefix);
 
     Long getIdByNo(String mno);
+    
+    Long getIdByName(String courseName);
 
 //    MapList list(String categoryId);
 //

@@ -1,6 +1,7 @@
 package pula.sys.daos.impl;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -8,6 +9,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
 
@@ -278,5 +280,25 @@ public class StudentDaoImpl extends HibernateGenericDao<Student, Long>
 	public int getTotal(long actorId) {
 		String sql = "select points from Student where id=?";
 		return getInt(sql, actorId);
-	}
+    }
+
+    @Override
+    public Long getIdByName(String studentName) {
+        DetachedCriteria dc = DetachedCriteria.forClass(this.pojoClass, "uu");
+        dc.add(Restrictions.eq("name", studentName.trim()));
+
+        if (domainPo) {
+            dc.add(Restrictions.eq("removed", false));
+        }
+
+        List<Student> tcs = super.findByCriteria(dc);
+        if (tcs.size() == 0) {
+            return 0l;
+        } else if (tcs.size() > 0) {
+            return -1l;
+        } else {
+            return tcs.get(0).getId();
+        }
+    }
+
 }

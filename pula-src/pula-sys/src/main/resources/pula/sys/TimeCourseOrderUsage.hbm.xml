@@ -3,7 +3,7 @@
                                    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
  <!-- pula.sys.domains.Course root -->
- <class name="pula.sys.domains.TimeCourseOrder" table="time_course_order">
+ <class name="pula.sys.domains.TimeCourseOrderUsage" table="time_course_usage">
   <id column="id" name="id" type="long">
    <generator class="native"/>
   </id>
@@ -19,22 +19,16 @@
    name="createTime" type="date"/>
   <property column="updateTime" generated="never" lazy="false"
    name="updateTime" type="date"/>
-  <property column="courseId" generated="never" lazy="false"
-   name="courseId" type="long"/>
-  <property column="studentId" generated="never" lazy="false"
-   name="studentId" type="long"/>
-  <property column="buyType" generated="never" lazy="false"
-   name="buyType" type="int"/>
-  <property column="paied" generated="never" lazy="false" name="paied" type="int"/>
-  <property column="paiedCount" generated="never" lazy="false"
-   name="paiedCount" type="int"/>
+  <property column="courseNo" generated="never" lazy="false"
+   name="courseNo" type="string"/>
+  <property column="studentNo" generated="never" lazy="false"
+   name="studentNo" type="string"/>
   <property column="creator" generated="never" lazy="false"
    name="creator" type="string"/>
   <property column="updator" generated="never" lazy="false"
    name="updator" type="string"/>
-  <property column="remainCount" generated="never" lazy="false"
-   name="remainCount" type="int"/>
-  <property column="remainCost" generated="never" lazy="false"
-   name="remainCost" type="int"/>
+  <property column="usedCount" name="usedCount" type="int"/>
+  <property column="usedCost" name="usedCost" type="int"/>
+  <property column="orderNo" name="orderNo" type="string"/>
  </class>
 </hibernate-mapping>

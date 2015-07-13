@@ -16,9 +16,10 @@ import puerta.support.dao.LoggablePo;
 public class TimeCourseOrderUsage implements LoggablePo {
 
     private Long id;
-    private Long courseId;
+    private String courseNo;
+    private String orderNo;
     private String no;
-    private Long studentId;
+    private String studentNo;
     private int usedCount;
     private int usedCost;
     private Date createTime;
@@ -32,7 +33,7 @@ public class TimeCourseOrderUsage implements LoggablePo {
     @Override
     public String toLogString() {
         StringBuilder sb = new StringBuilder("【");
-        sb.append("id=").append(id).append("courseId=").append(courseId).append("studentId=").append(studentId)
+        sb.append("id=").append(id).append("courseId=").append(courseNo).append("orderId=").append(orderNo).append("studentId=").append(studentNo)
                 .append("usedCount=").append(usedCount).append("usedCost=").append(usedCost).append("comments=")
                 .append(comments).append("updateTime=").append(updateTime);
         sb.append("】");
@@ -47,12 +48,20 @@ public class TimeCourseOrderUsage implements LoggablePo {
         this.id = id;
     }
 
-    public Long getCourseId() {
-        return courseId;
+    public String getCourseNo() {
+        return courseNo;
     }
 
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
+    public void setCourseNo(String courseNo) {
+        this.courseNo = courseNo;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
     public String getNo() {
@@ -63,12 +72,12 @@ public class TimeCourseOrderUsage implements LoggablePo {
         this.no = no;
     }
 
-    public Long getStudentId() {
-        return studentId;
+    public String getStudentNo() {
+        return studentNo;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
     }
 
     public int getUsedCount() {

@@ -16,9 +16,12 @@ import puerta.support.dao.LoggablePo;
 public class TimeCourseOrder implements LoggablePo {
 
     private Long id;
-    private Long courseId;
+    private String courseNo;
     private String no;
-    private Long studentId;
+    private String studentNo;
+    /**
+     * 0 - by cost 1 - by count
+     */
     private int buyType;
     private int paied;
     private int paiedCount;
@@ -37,8 +40,8 @@ public class TimeCourseOrder implements LoggablePo {
     @Override
     public String toLogString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("TimeCourseOrder[").append("id=").append(id).append(",courseId=").append(courseId)
-                .append(",studentId=").append(studentId).append(",paied=").append(paied).append(",paiedCount=")
+        sb.append("TimeCourseOrder[").append("id=").append(id).append(",courseId=").append(courseNo)
+                .append(",studentId=").append(studentNo).append(",paied=").append(paied).append(",paiedCount=")
                 .append("remainCount=").append(remainCount).append(",remainCost=").append(remainCost)
                 .append(paiedCount).append("]");
         return sb.toString();
@@ -52,12 +55,20 @@ public class TimeCourseOrder implements LoggablePo {
         this.id = id;
     }
 
-    public Long getCourseId() {
-        return courseId;
+    public String getCourseNo() {
+        return courseNo;
     }
 
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
+    public void setCourseNo(String courseNo) {
+        this.courseNo = courseNo;
+    }
+
+    public String getStudentNo() {
+        return studentNo;
+    }
+
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
     }
 
     public String getNo() {
@@ -68,14 +79,9 @@ public class TimeCourseOrder implements LoggablePo {
         this.no = no;
     }
 
-    public Long getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
-    }
-
+    /**
+     * 0 - by cost 1 - by count
+     */
     public int getBuyType() {
         return buyType;
     }

@@ -43,4 +43,6 @@ public interface StudentDao extends BaseDao<Student, Long> {
 
 	int getTotal(long actorId);
 
+    Long getIdByName(String studentName);
+
 }

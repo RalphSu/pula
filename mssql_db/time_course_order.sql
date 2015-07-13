@@ -14,9 +14,9 @@ GO
 
 CREATE TABLE [pula_sys].[dbo].[time_course_order](
 	[id] [int] NOT NULL PRIMARY KEY IDENTITY,
-	[courseId] [int] NOT NULL,
+	[courseNo] nvarchar(40) NOT NULL,
 	[no] nvarchar(40) NULL,
-	[studentId] [int] NOT NULL,
+	[studentNo] nvarchar(40) NOT NULL,
 	[buyType] [int] NULL,
 	[paied] [int] NULL,
 	[paiedCount] [int] NULL,
@@ -26,7 +26,9 @@ CREATE TABLE [pula_sys].[dbo].[time_course_order](
 	[updateTime] [datetime] NULL,
 	[comments] nvarchar(400) NULL,
 	[removed] [int] NULL,
-	[enabled] [int] NULL
+	[enabled] [int] NULL,
+	[creator] nvarchar(400) NULL,
+	[updator] nvarchar(400) NULL
 ) ON [PRIMARY]
 
 
@@ -35,8 +37,9 @@ DROP TABLE [dbo].[time_course_usage]
 GO
 CREATE TABLE [dbo].[time_course_usage](
 	[id] [int] NOT NULL PRIMARY KEY IDENTITY,
-	[courseId] [int] NOT NULL,
-	[no] [varchar](40) NULL,
+	[courseNo] nvarchar(40) NOT NULL,
+	[orderNo] nvarchar(40) NOT NULL,
+	[no] [nvarchar](40) NULL,
 	[studentId] [int] NOT NULL,
 	[usedCount] [int] NULL,
 	[usedCost] [decimal](18, 0) NULL,
@@ -44,10 +47,10 @@ CREATE TABLE [dbo].[time_course_usage](
 	[updateTime] [datetime] NULL,
 	[comments] nvarchar(400) NULL,
 	[removed] [int] NULL,
-	[enabled] [int] NULL
+	[enabled] [int] NULL,
+	[creator] nvarchar(400) NULL,
+	[updator] nvarchar(400) NULL
 ) ON [PRIMARY]
 
 
 GO
-
-

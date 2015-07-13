@@ -5,9 +5,15 @@ package pula.sys.daos.impl;
 
 import java.util.Date;
 
+import org.apache.commons.lang.StringUtils;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import puerta.support.PageInfo;
 import puerta.support.PaginationSupport;
+import puerta.support.Pe;
 import puerta.system.base.HibernateGenericDao;
 import pula.sys.conditions.TimeCourseOrderCondition;
 import pula.sys.daos.TimeCourseOrderDao;
@@ -22,8 +28,25 @@ public class TimeCourseOrderDaoImpl extends HibernateGenericDao<TimeCourseOrder,
 
     @Override
     public PaginationSupport<TimeCourseOrder> search(TimeCourseOrderCondition condition, int pageIndex) {
-        // TODO Auto-generated method stub
-        return null;
+        DetachedCriteria criteria = makeSearchCriteria(condition);
+        return super.findPageByCriteria(criteria, new PageInfo(pageIndex), Order.asc("updateTime"));
+    }
+
+    public DetachedCriteria makeSearchCriteria(TimeCourseOrderCondition condition) {
+        DetachedCriteria dc = DetachedCriteria.forClass(this.pojoClass, "uu");
+        if (!StringUtils.isEmpty(condition.getStudentNo())) {
+            dc.add(Restrictions.like("studentNo", condition.getStudentNo()));
+        }
+
+        if (!StringUtils.isEmpty(condition.getCourseNo())) {
+            dc.add(Restrictions.like("courseNo", condition.getCourseNo()));
+        }
+
+        if (domainPo) {
+            dc.add(Restrictions.eq("removed", false));
+        }
+
+        return dc;
     }
 
     @Override
@@ -37,7 +60,30 @@ public class TimeCourseOrderDaoImpl extends HibernateGenericDao<TimeCourseOrder,
 
     @Override
     public TimeCourseOrder update(TimeCourseOrder cc) {
-        // TODO Auto-generated method stub
-        return null;
+        if (super.existsNo(cc.getNo(), cc.getId())) {
+            Pe.raise("订单编号已经存在:" + cc.getNo());
+        }
+
+        TimeCourseOrder existed = this.findById(cc.getId());
+        if (existed == null) {
+            Pe.raise("订单不存在！");
+        }
+
+        TimeCourseOrder n = existed;
+        n.setId(cc.getId());
+        n.setUpdateTime(new Date());
+        n.setCourseNo(cc.getCourseNo());
+        n.setStudentNo(cc.getStudentNo());
+        n.setPaied(cc.getPaied());
+        n.setPaiedCount(cc.getPaiedCount());
+        n.setRemainCost(cc.getRemainCost());
+        n.setRemainCount(cc.getRemainCount());
+        n.setBuyType(cc.getBuyType());
+        n.setNo(cc.getNo());
+        n.setUpdateTime(cc.getUpdateTime());
+        n.setUpdator(cc.getUpdator());
+        n.setComments(cc.getComments());
+        _update(n);
+        return n;
     }
 }
