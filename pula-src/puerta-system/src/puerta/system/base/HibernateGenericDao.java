@@ -265,6 +265,8 @@ public class HibernateGenericDao<T, ID extends Serializable> extends
 	}
 
 	public void _update(T transientInstance) {
+	    getHibernateTemplate().update(transientInstance);
+	    
 		if (loggable) {
 			String e = mls.t("update");
 			loggerDao.doLog(e, (LoggablePo) transientInstance);
