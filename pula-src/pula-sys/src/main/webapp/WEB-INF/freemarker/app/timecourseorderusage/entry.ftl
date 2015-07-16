@@ -7,10 +7,10 @@
 </style>
   <div class="top" id="__top"> </div>
 <div class="body">
-    <!-- condition -->
-    <div id="conditionDiv" class="h forList">
-	
-	 </div>
+   	<!--  search form -->
+	<div id="conditionDiv" class="h forList">
+		<#include "condition.ftl"/>
+	</div>
 
 
     <!-- listview -->
@@ -36,49 +36,29 @@
 	  </tr> <tr> 
 		<td >编号<span class="redStar">*</span></td>
 		<td ><input type="text" name="course.no" id="course.no" size="20" maxlength="40"/> </td>
+		<td >课程编号<span class="redStar">*</span></td>
+		<td ><input type="text" name="course.courseNo" id="course.courseNo" size="20" maxlength="40"/> </td>
+	  </tr>
 	  
-		<td >名称<span class="redStar">*</span></td>
-		<td ><input type="text" name="course.name" id="course.name" size="20" maxlength="40"/> </td>
-	  </tr> 
-
 	  <tr> 
-		<td >开始日期</td>
-		<td ><input type="text" name="course.startTimeText" id="course.startTimeText" size="12" maxlength="10" class="dateField"/>
+		<td >学生编号</td>
+		<td ><input type="text" name="course.studentNo" id="course.studentNo" size="20" maxlength="40"/>
 		</td>
-		<td >结束日期</td>
-		<td ><input type="text" name="course.endTimeText" id="course.endTimeText" size="12" maxlength="10" class="dateField"/></td>
-	  </tr><tr> 
-		<td >分部名字</td>
-		<td colspan="3"><input type="text" name="course.branchName" id="course.branchName" size="60" maxlength="40"/> </td>
-	  </tr><tr> 
-		<td >教室名字</td>
-		<td colspan="3"><input type="text" name="course.classRoomName" id="course.classRoomName" size="60" maxlength="40"/> </td>
+		<td >订单编号</td>
+		<td ><input type="text" name="course.orderNo" id="course.orderNo" size="20" maxlength="40"  /></td>
+	  </tr>
+	  
+	  <tr> 
+		<td >消费款</td>
+		<td colspan="1"><input type="text" name="course.usedCost" id="course.usedCost" size="20" maxlength="40"  class="numberEdit"/> </td>
+		<td >消费次数</td>
+		<td colspan="1"><input type="text" name="course.usedCount" id="course.usedCount" size="20" maxlength="40"  class="numberEdit"/> </td>
 	  </tr>
 	  <tr> 
-		<td >最大学员数量</td>
-		<td colspan="3"><input type="text" name="course.maxStudentNum" id="course.maxStudentNum" class="numberEdit" size="12" maxlength="10"/> </td>
-	  </tr>
-	  <tr> 
-		<td >开课时间</td>
-		<td colspan="1"><input type="text" name="course.startHour" id="course.startHour" size="12" class="numberEdit" maxlength="10"/>(点) </td>
-		<td colspan="2"><input type="text" name="course.startMinute" id="course.startMinute" size="12" class="numberEdit" maxlength="10"/>(分) </td>
-	  </tr>
-	  <tr> 
-		<td >开课天(周一到周日, 1-7)</td>
-		<td colspan="3"><input type="text" name="course.startWeekDay" id="course.startWeekDay" size="12" class="numberEdit" maxlength="10"/> </td>
-	  </tr>
-	  <tr> 
-		<td >课长(分钟)</td>
-		<td colspan="3"><input type="text" name="course.durationMinute" id="course.durationMinute" class="numberEdit" size="12" maxlength="10"/> </td>
-	  <tr> 
-		<td >价格</td>
-		<td colspan="3"><input type="text" name="course.price" id="course.price" size="12" class="numberEdit" maxlength="10"/> </td>
-	  </tr>
-	   <tr> 
 		<td >备注</td>
 		<td colspan="3"><input type="text" name="course.comments" id="course.comments" size="60" maxlength="80"/> </td>
 	  </tr> 
-	  <tr> 
+	  <tr>
 		<td colspan="4">
 		<input type="submit" value="<@b.text key="submitBtn"/>" id="submitBtn"/>
 		<input type="hidden" name="course.id" id="course.id"/>
@@ -95,7 +75,7 @@
 <#include "/calendar.ftl"/>
 <link rel="stylesheet" type="text/css" href="${base}/static/app/css/t-style.css"></link>
 <script type="text/javascript" src="${base}/static/library/puerta/t-table.js"></script> 
-<script type="text/javascript" src="${base}/static/app/javascript/time_course.js"></script>
+<script type="text/javascript" src="${base}/static/app/javascript/time_course_order_usage.js"></script>
 <script type="text/javascript" src="${base}/static/library/mootools/modules/mbox/mt.mbox.js"></script>
 <script type="text/javascript" src="${base}/static/library/puerta/t-simple-no.js"></script>
 <script type="text/javascript" src="${base}/static/library/puerta/t-selectorloader.js"></script>
@@ -110,7 +90,9 @@ var pageVars = {
 
 var lang = {
 	name:'名称',no:'编号',domain:'课程',expiredTime:'结束日期',publishTime:'开始日期',showInWeb:'显示在网站上',indexNo:'序号',
-	status:'状态', branchName: '分部', classRoomName: '教室'
+	status:'状态', branchName: '分部', classRoomName: '教室',
+	buyType: '购买类型', paied:'购买付款', paiedCount:'购买次数', courseNo:'课程编号', studentNo:'学生编号', remainCount:'剩余次数', remainCost:'剩余款',
+	updateTime:'最后更新', updator:'操作人',usedCost:'消费', usedCount:'消费次数'
 }
 
 
@@ -118,11 +100,6 @@ var lang = {
 		if(isEmpty($F("course.no"))){
 			alert("请填写编号");
 			$("course.no").focus();
-			return false; 
-		}
-		if(isEmpty($F("course.name"))){
-			alert("请填写名称");
-			$("course.name").focus();
 			return false; 
 		}
 

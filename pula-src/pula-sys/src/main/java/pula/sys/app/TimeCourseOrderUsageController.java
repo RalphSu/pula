@@ -64,7 +64,7 @@ public class TimeCourseOrderUsageController {
             m.put("creator", obj.getCreator());
             m.put("updator", obj.getUpdator());
             m.put("studentNo", obj.getStudentNo());
-            m.put("usedCot", obj.getUsedCost());
+            m.put("usedCost", obj.getUsedCost());
             m.put("usedCount", obj.getUsedCount());
 
             return m;

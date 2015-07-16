@@ -40,7 +40,7 @@ CREATE TABLE [dbo].[time_course_usage](
 	[courseNo] nvarchar(40) NOT NULL,
 	[orderNo] nvarchar(40) NOT NULL,
 	[no] [nvarchar](40) NULL,
-	[studentId] [int] NOT NULL,
+	[studentNo] nvarchar(40) NOT NULL,
 	[usedCount] [int] NULL,
 	[usedCost] [decimal](18, 0) NULL,
 	[createTime] [datetime] NULL,
