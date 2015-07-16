@@ -84,5 +84,4 @@ public class TimeCourseOrderUsageDaoImpl extends HibernateGenericDao<TimeCourseO
         _update(n);
         return n;
     }
-
 }
