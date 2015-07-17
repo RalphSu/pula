@@ -67,6 +67,8 @@ packages/
 # visual studio database projects
 *.dbmdl
 
+*.settings*
+
 #Test files
 *.testsettings
 
