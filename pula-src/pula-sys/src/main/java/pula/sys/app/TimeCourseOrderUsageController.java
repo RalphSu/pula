@@ -61,6 +61,7 @@ public class TimeCourseOrderUsageController {
             m.put("enabled", obj.isEnabled());
             m.put("comments", obj.getComments());
             m.put("courseNo", obj.getCourseNo());
+            m.put("orderNo", obj.getOrderNo());
             m.put("creator", obj.getCreator());
             m.put("updator", obj.getUpdator());
             m.put("studentNo", obj.getStudentNo());
