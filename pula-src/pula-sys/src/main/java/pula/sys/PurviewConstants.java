@@ -19,6 +19,8 @@ public class PurviewConstants {
 	public static final String BRANCH = "P_BRANCH";
 	/** 教师 **/
 	public static final String TEACHER = "P_TEACHER";
+	/** 教师 **/
+    public static final String IMAGE = "P_IMAGE";
 	/** 教室 **/
 	public static final String CLASSROOM = "P_CLASSROOM";
 	/** 课程 **/

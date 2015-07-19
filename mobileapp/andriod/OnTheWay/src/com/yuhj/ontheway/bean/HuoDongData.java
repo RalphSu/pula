@@ -14,14 +14,39 @@ public class HuoDongData {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getIamge() {
+	
+	
+	public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getContent() {
+        return content;
+    }
+    public void setContent(String content) {
+        this.content = content;
+    }
+    public String getIamge() {
 		return iamge;
 	}
 	public void setIamge(String iamge) {
 		this.iamge = iamge;
 	}
+	
+	public String getUpdateTime() {
+        return updateTime;
+    }
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    private String updateTime;
 	private String id;
 	private String name;
+	private String title;
+	private String content;
 	private String iamge;
 	private String urlS;
 	public String getUrlS() {

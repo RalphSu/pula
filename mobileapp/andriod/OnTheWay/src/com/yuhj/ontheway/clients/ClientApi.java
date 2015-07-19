@@ -9,23 +9,17 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.yuhj.ontheway.bean.Comment;
 import com.yuhj.ontheway.bean.HuoDongData;
 import com.yuhj.ontheway.bean.JingXuanData;
 import com.yuhj.ontheway.bean.JingxuanDetailData;
 import com.yuhj.ontheway.bean.UserInfo;
 import com.yuhj.ontheway.bean.ZhuanTiData;
-
-import android.R.integer;
-import android.provider.MediaStore.Video;
-import android.util.Log;
 
 /**
  * @name ClientApi
@@ -44,7 +38,8 @@ public class ClientApi {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static JSONObject ParseJson(final String path, final String encode) {
+	@SuppressWarnings("deprecation")
+    public static JSONObject ParseJson(final String path, final String encode) {
 		// TODO Auto-generated method stub
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpParams httpParams = httpClient.getParams();
@@ -346,36 +341,36 @@ public class ClientApi {
 			return list;
 
 		}
+    }
 
-		
-	}
-	
-	public static ArrayList<HuoDongData> getHuoDongList(){
-		String jingXuanDetailUrl = "http://app.117go.com/demo27/php/eventAction.php?submit=getEventList&startId=0&length=20&vc=wandoujia&vd=80f117eb4244b778&v=a5.0.6";
-		ArrayList<HuoDongData> list = new ArrayList<HuoDongData>();
-		JSONObject json = ParseJson(jingXuanDetailUrl, "utf-8");
-		if (json == null) {
-			return null;
-		} else {
+    public static ArrayList<HuoDongData> getHuoDongList() {
+        String jingXuanDetailUrl = "http://192.168.199.167:8080/app/notice/list";
+        ArrayList<HuoDongData> list = new ArrayList<HuoDongData>();
+        JSONObject json = ParseJson(jingXuanDetailUrl, "utf-8");
+        if (json == null) {
+            return null;
+        } else {
+            try {
+                JSONArray Data = json.getJSONArray("records");
+                for (int i = 0; i < Data.length(); i++) {
+                    HuoDongData huoDongData = new HuoDongData();
+                    JSONObject data = Data.getJSONObject(i);
+                    huoDongData.setId(data.getString("id"));
+                    huoDongData.setName(data.getString("no"));
+                    huoDongData.setTitle(data.getString("title"));
+                    huoDongData.setContent(data.getString("content"));
+                    huoDongData.setUpdateTime(data.getString("updateTime"));
+                    // FIXME: use real img path
+                    huoDongData.setIamge("http://192.168.199.167:8080/app/image/icon?fp=" + "logo.jpg" /* data.getString("imgPath") */ 
+                            + "&sub=notice");
+                    // huoDongData.setUrlS(data.getString("url"));
+                    list.add(huoDongData);
+                }
 
-			try {
-				JSONArray Data = json.getJSONArray("obj");
-				
-				
-				for (int i = 0; i < Data.length(); i++) {
-					HuoDongData huoDongData =new HuoDongData();
-					JSONObject data =Data.getJSONObject(i);
-					huoDongData.setId(data.getString("id"));
-					huoDongData.setName(data.getString("name"));
-					huoDongData.setIamge("http://img.117go.com/timg/p616/"+data.getString("coverpic"));
-					huoDongData.setUrlS(data.getString("url"));
-					list.add(huoDongData);
-				}
-					
-				}catch (Exception e) {
-					// TODO: handle exception
-				}
-		}
-		return list;
-	}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
 }
