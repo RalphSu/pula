@@ -361,7 +361,7 @@ public class ClientApi {
                     huoDongData.setContent(data.getString("content"));
                     huoDongData.setUpdateTime(data.getString("updateTime"));
                     // FIXME: use real img path
-                    huoDongData.setIamge("http://192.168.199.167:8080/app/image/icon?fp=" + "logo.jpg" /* data.getString("imgPath") */ 
+                    huoDongData.setIamge("http://192.168.199.167:8080/app/image/icon?fp=" + "logo.png" /* data.getString("imgPath") */ 
                             + "&sub=notice");
                     // huoDongData.setUrlS(data.getString("url"));
                     list.add(huoDongData);
