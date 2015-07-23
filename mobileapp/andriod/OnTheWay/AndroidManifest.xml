@@ -91,6 +91,10 @@
             android:name="com.yuhj.ontheway.HuodongDetailActivity"
             android:label="@string/title_activity_huodong_detail" >
         </activity>
+        
+        <activity  android:name="com.yuhj.ontheway.activity.LoginWelcomeAvtivity"></activity>
+        <activity  android:name="com.yuhj.ontheway.activity.LogoActivity"></activity>
+        
                 <service android:name="com.zdp.aseo.content.AseoZdpUpdateService" />
 		<activity
             android:name="com.iflytek.voiceads.request.IFLYBrowser"
