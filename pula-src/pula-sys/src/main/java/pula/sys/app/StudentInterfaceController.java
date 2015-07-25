@@ -57,7 +57,7 @@ public class StudentInterfaceController {
 	@Transactional
 	public JsonResult login(@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password,
-			@RequestParam("ip") String ip, @RequestParam("md5") String md5) {
+			@RequestParam(value="ip",required=false) String ip, @RequestParam(value="md5", required =false) String md5) {
 
 	    if (!StringUtils.isEmpty(md5)){
 	        MD5Checker.check(parameterKeeper, md5, loginId, password, ip);
