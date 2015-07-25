@@ -3,5 +3,5 @@
     android:id="@+id/welcome_image"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/index_logo"
+    android:background="@drawable/index_logo_img"
     android:orientation="vertical" />
