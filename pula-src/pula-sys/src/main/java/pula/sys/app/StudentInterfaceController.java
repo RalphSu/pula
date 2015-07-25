@@ -2,6 +2,7 @@ package pula.sys.app;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,7 +59,9 @@ public class StudentInterfaceController {
 			@RequestParam("password") String password,
 			@RequestParam("ip") String ip, @RequestParam("md5") String md5) {
 
-		MD5Checker.check(parameterKeeper, md5, loginId, password, ip);
+	    if (!StringUtils.isEmpty(md5)){
+	        MD5Checker.check(parameterKeeper, md5, loginId, password, ip);
+	    }
 
 		MapBean mb = studentDao.meta4login(loginId, password);
 		if (mb == null) {

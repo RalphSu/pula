@@ -120,8 +120,8 @@ public class NoticeController {
     @Barrier(PurviewConstants.COURSE)
     public String _create(@ObjectParam("course") Notice cli) {
         Notice cc = cli;
-        cc.setCreator(sessionService.getActorId());
-        cc.setUpdator(sessionService.getActorId());
+        cc.setCreator(sessionUserService.getUser().getName());
+        cc.setUpdator(sessionUserService.getUser().getName());
         cc.setEnabled(true);
 
         noticeDao.save(cc);
@@ -134,7 +134,7 @@ public class NoticeController {
     @Barrier(PurviewConstants.COURSE)
     public String _update(@ObjectParam("course") Notice cli) {
         Notice cc = cli;
-        cc.setUpdator(sessionService.getActorId());
+        cc.setUpdator(sessionUserService.getUser().getName());
 
         noticeDao.update(cc);
 
@@ -161,6 +161,33 @@ public class NoticeController {
 
         return JsonResult.s(m);
     }
+    
+    /**
+     * show the contents of a given notice in web page.
+     * @param id
+     * @return
+     */
+    @RequestMapping
+    public ModelAndView appshow(@RequestParam("id") Long id)
+    {
+        Notice u = noticeDao.findById(id);
+        
+        return new ModelAndView().addObject("notice", u);
+    }
+    
+    /**
+     * show the contents of a given notice in web page.
+     * @param id
+     * @return
+     */
+    @RequestMapping
+    public ModelAndView show(@RequestParam("id") Long id)
+    {
+        Notice u = noticeDao.findById(id);
+        
+        return new ModelAndView().addObject("notice", u);
+    }
+    
 
     @RequestMapping
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
