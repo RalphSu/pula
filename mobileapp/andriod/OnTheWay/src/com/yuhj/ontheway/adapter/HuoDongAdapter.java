@@ -2,11 +2,6 @@ package com.yuhj.ontheway.adapter;
 
 import java.util.ArrayList;
 
-import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.bean.HuoDongData;
-import com.yuhj.ontheway.bean.ZhuanTiData;
-import com.yuhj.ontheway.utils.ImageCache;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
@@ -16,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.bean.HuoDongData;
+import com.yuhj.ontheway.utils.ImageCache;
 
 /**
  * @name ZhuantiAdapter
@@ -61,14 +60,17 @@ public class HuoDongAdapter extends BaseAdapter {
 	public View getView(int position, View view, ViewGroup arg2) {
 		ViewHoleder viewHoleder =null;
 		if (view==null) {
-			viewHoleder =new ViewHoleder();
-			view = LayoutInflater.from(context).inflate(R.layout.zhuanti_item, null);
-			viewHoleder.imageView=(ImageView) view.findViewById(R.id.zhuanti_main_image);
+            viewHoleder = new ViewHoleder();
+            view = LayoutInflater.from(context).inflate(R.layout.huodong_item, null);
+            viewHoleder.imageView = (ImageView) view.findViewById(R.id.huodong_imageView);
+            viewHoleder.textView = (TextView) view.findViewById(R.id.huodong_item_title);
+
 			view.setTag(viewHoleder);
 		}else {
 			viewHoleder = (ViewHoleder) view.getTag();
 		}
-		HuoDongData huoDongData =data.get(position);
+        HuoDongData huoDongData = data.get(position);
+        viewHoleder.textView.setText(huoDongData.getTitle());
 		viewHoleder.imageView.setImageResource(R.drawable.defaultcovers);
 		viewHoleder.imageView.setTag(huoDongData.getIamge());
 		new ImageCache(context, lruCache, viewHoleder.imageView, huoDongData.getIamge(),"OnTheWay",800, 400);
@@ -78,6 +80,7 @@ public class HuoDongAdapter extends BaseAdapter {
 	
 	private class ViewHoleder{
 		public ImageView imageView;
+		public TextView textView;
 		
 	}
 

@@ -1,14 +1,8 @@
 package com.yuhj.ontheway;
 
-import com.yuhj.ontheway.activity.BaseActivity;
-//import com.zdp.aseo.content.AseoZdpAseo;
-
-import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebChromeClient;
@@ -17,6 +11,9 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.yuhj.ontheway.activity.BaseActivity;
+//import com.zdp.aseo.content.AseoZdpAseo;
 
 /**
  * @name HuodongDetailActivity
@@ -62,7 +59,6 @@ public class HuodongDetailActivity extends BaseActivity {
 		webView.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageFinished(WebView view, String url) {
-				// TODO Auto-generated method stub
 				super.onPageFinished(view, url);
 				// 页面下载完毕,却不代表页面渲染完毕显示出来
 				// WebChromeClient中progress==100时也是一样
@@ -73,7 +69,6 @@ public class HuodongDetailActivity extends BaseActivity {
 
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				// TODO Auto-generated method stub
 				// 自身加载新链接,不做外部跳转
 				view.loadUrl(url);
 				return true;

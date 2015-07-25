@@ -73,7 +73,8 @@ public class HuodongFragment extends Fragment {
                     public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                         Intent intent = new Intent(getActivity(), HuodongDetailActivity.class);
                         intent.putExtra("id", result.get(position).getId());
-                        intent.putExtra("name", result.get(position).getName());
+                        intent.putExtra("url", result.get(position).getUrlS());
+                        intent.putExtra("name", result.get(position).getTitle()); 
                         startActivity(intent);
                     }
                 });

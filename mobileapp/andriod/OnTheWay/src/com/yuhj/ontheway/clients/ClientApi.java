@@ -363,7 +363,7 @@ public class ClientApi {
                     // FIXME: use real img path
                     huoDongData.setIamge("http://192.168.199.167:8080/app/image/icon?fp=" + "logo.png" /* data.getString("imgPath") */ 
                             + "&sub=notice");
-                    // huoDongData.setUrlS(data.getString("url"));
+                    huoDongData.setUrlS("http://192.168.199.167:8080/app/notice/appshow?id=" + huoDongData.getId());
                     list.add(huoDongData);
                 }
 
