@@ -344,7 +344,7 @@ public class ClientApi {
     }
 
     public static ArrayList<HuoDongData> getHuoDongList() {
-        String jingXuanDetailUrl = "http://192.168.199.167:8080/app/notice/list";
+        String jingXuanDetailUrl = "http://121.40.151.183:8080/pula-sys/app/notice/list";
         ArrayList<HuoDongData> list = new ArrayList<HuoDongData>();
         JSONObject json = ParseJson(jingXuanDetailUrl, "utf-8");
         if (json == null) {
@@ -361,9 +361,9 @@ public class ClientApi {
                     huoDongData.setContent(data.getString("content"));
                     huoDongData.setUpdateTime(data.getString("updateTime"));
                     // FIXME: use real img path
-                    huoDongData.setIamge("http://192.168.199.167:8080/app/image/icon?fp=" + "logo.png" /* data.getString("imgPath") */ 
+                    huoDongData.setIamge("http://121.40.151.183:8080/pula-sys/app/image/icon?fp=" + "logo.png" /* data.getString("imgPath") */ 
                             + "&sub=notice");
-                    huoDongData.setUrlS("http://192.168.199.167:8080/app/notice/appshow?id=" + huoDongData.getId());
+                    huoDongData.setUrlS("http://121.40.151.183:8080/pula-sys/app/notice/appshow?id=" + huoDongData.getId());
                     list.add(huoDongData);
                 }
 
