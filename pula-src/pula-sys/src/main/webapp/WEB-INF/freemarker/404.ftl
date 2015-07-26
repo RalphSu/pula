@@ -6,7 +6,7 @@
   </tr>
   <tr> 
     <td colspan="2"><IMG SRC="${base}/static/laputa/images/icons/warning.gif" WIDTH="16" HEIGHT="16" BORDER="0" ALT="" align="absbottom">
-    ${exception.message?if_exists}</td>
+    玩脱了，你要的东西没找到。</td>
   </tr>
   <tr> 
    

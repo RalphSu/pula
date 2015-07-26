@@ -171,7 +171,10 @@ public class NoticeController {
     public ModelAndView appshow(@RequestParam("id") Long id)
     {
         Notice u = noticeDao.findById(id);
-        
+        if (u == null)
+        {
+            return new ModelAndView("404");
+        }
         return new ModelAndView().addObject("notice", u);
     }
     
@@ -185,6 +188,10 @@ public class NoticeController {
     {
         Notice u = noticeDao.findById(id);
         
+        if (u == null)
+        {
+            return new ModelAndView("404");
+        }
         return new ModelAndView().addObject("notice", u);
     }
     
