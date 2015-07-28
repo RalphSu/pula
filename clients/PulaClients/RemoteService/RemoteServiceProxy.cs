@@ -13,8 +13,8 @@ namespace RemoteService
 
         private static string GetURL(string u)
         {
-            return "http://localhost:8080/app/courseclientservice/"+u;
-            // return "http://121.40.151.183:8080/pula-sys/app/courseclientservice/" + u;
+            //return "http://localhost:8080/app/courseclientservice/"+u;
+            return "http://121.40.151.183:8080/pula-sys/app/courseclientservice/" + u;
         }
 
         public static JsonResult CheckLogin(string usr, string pwd)
