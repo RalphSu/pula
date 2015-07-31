@@ -1,18 +1,26 @@
 package puerta.system.po;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
 import puerta.system.vo.AppFieldVo;
 
 @WxlDomain
 public class AppField implements LoggablePo {
-
+    @JsonProperty
 	private String id;
+    @JsonProperty
 	private String no;
+    @JsonProperty
 	private String name;
+    @JsonProperty
 	private String path;
+    @JsonProperty
 	private boolean removed;
+    @JsonProperty
 	private int indexNo;
+    @JsonProperty
 	private String comments;
 
 	public String getComments() {

@@ -3,6 +3,7 @@ package pula.sys.domains;
 import java.util.Calendar;
 
 import org.apache.commons.lang.StringUtils;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.IWxlActor;
@@ -17,18 +18,30 @@ import puerta.system.po.SysRole;
 @WxlDomain("用户")
 public class SysUser implements LoggablePo, IWxlActor {
 
+    @JsonProperty
 	protected String id;
+    @JsonProperty
 	protected String password;
+    @JsonProperty
 	protected String name;
+    @JsonProperty
 	protected boolean enabled;
+    @JsonProperty
 	private boolean removed;
-	private Calendar createdTime, updatedTime;
+    @JsonProperty
+	private Calendar createdTime;
+    @JsonProperty
+    private Calendar updatedTime;
+    @JsonProperty
 	private String loginId;
+    @JsonProperty
 	private SysUserGroup belongsToGroup;
+    @JsonProperty
 	private SysRole role; // 从数据库查出对应的ID，根据固化的no
 	// private int role; // 系统角色是固化的，是根据账号的自身信息确定的。
-
+    @JsonProperty
 	private Salesman salesman; // 关联
+    @JsonProperty
 	private Branch branch;// 从属分支机构
 
 	public Branch getBranch() {

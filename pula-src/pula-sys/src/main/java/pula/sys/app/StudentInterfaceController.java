@@ -1,8 +1,13 @@
 package pula.sys.app;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +28,7 @@ import pula.sys.daos.CourseTaskResultWorkDao;
 import pula.sys.daos.StudentDao;
 import pula.sys.daos.StudentLogDao;
 import pula.sys.daos.StudentPointsDao;
+import pula.sys.domains.Student;
 import pula.sys.domains.StudentPoints;
 import pula.sys.helpers.CourseHelper;
 import pula.sys.helpers.StudentPointsHelper;
@@ -73,6 +79,21 @@ public class StudentInterfaceController {
 		return JsonResult.s(mb);
 
 	}
+
+    @ResponseBody
+    @RequestMapping
+    @Transactional
+    public JsonResult info(@RequestParam("loginId") String loginId,
+            @RequestParam(value = "ip", required = false) String ip,
+            @RequestParam(value = "md5", required = false) String md5) {
+
+        Long id = studentDao.getIdByNo(loginId);
+        if (id == null) {
+            return JsonResult.e("无效的账号或密码");
+        }
+        Student student = studentDao.findById(id);
+        return JsonResult.s(student);
+    }
 
 	@ResponseBody
 	@RequestMapping

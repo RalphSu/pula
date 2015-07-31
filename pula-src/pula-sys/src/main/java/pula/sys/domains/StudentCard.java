@@ -2,12 +2,18 @@ package pula.sys.domains;
 
 import java.util.Calendar;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 public class StudentCard {
 
+    @JsonProperty
 	private long id;
+    @JsonProperty
 	private Card card;
 	private Student student;
+	@JsonProperty
 	private boolean current;
+	@JsonProperty
 	private Calendar createdTime;
 
 	public Calendar getCreatedTime() {

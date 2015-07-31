@@ -3,6 +3,9 @@ package pula.sys.domains;
 import java.util.Calendar;
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
 import pula.sys.BaseHelper;
@@ -12,28 +15,55 @@ import pula.sys.intfs.RefIdSupport;
 @WxlDomain("学生")
 public class Student implements LoggablePo, RefIdSupport {
 
+    @JsonProperty
 	private long id;
-	private String no, name; // 编号，姓名
+    @JsonProperty
+	private String no;
+    @JsonProperty
+    private String name; // 编号，姓名
+    @JsonProperty
 	private String barcode; // 卡号，有时候和编号不一定一致
+    @JsonProperty
 	private int gender; // 学员性别
-
+    @JsonProperty
 	private Calendar birthday;
-
+    @JsonProperty
 	private boolean removed;
+    @JsonProperty
 	private boolean enabled; // 有效与否
-
-	private Calendar createdTime, updatedTime;
-	private SysUser creator, updater;
+    @JsonProperty
+	private Calendar createdTime;
+    @JsonProperty
+    private Calendar updatedTime;
+	private SysUser creator;
+    private SysUser updater;
 
 	// 登录到网站
-	private String loginId, password;
-
-	private String parentName, mobile, phone, email, parentCaption;
+    @JsonProperty
+	private String loginId;
+    @JsonProperty
+    private String password;
+    @JsonProperty
+	private String parentName;
+    @JsonProperty
+    private String mobile;
+    @JsonProperty
+    private String phone;
+    @JsonProperty
+    private String email;
+    @JsonProperty
+    private String parentCaption;
 	private Branch branch;
+    @JsonProperty
 	private String attachmentKey; // 组成ref-id
-	private String address, zip;
+    @JsonProperty
+	private String address;
+    @JsonProperty
+    private String zip;
+    @JsonProperty
 	private String comments;
 	private List<StudentCard> cards;
+    @JsonProperty
 	private int points;
 
 	public int getPoints() {
@@ -44,13 +74,15 @@ public class Student implements LoggablePo, RefIdSupport {
 		this.points = points;
 	}
 
-	public List<StudentCard> getCards() {
-		return cards;
-	}
+    @JsonIgnore
+    public List<StudentCard> getCards() {
+        return cards;
+    }
 
-	public void setCards(List<StudentCard> cards) {
-		this.cards = cards;
-	}
+    @JsonIgnore
+    public void setCards(List<StudentCard> cards) {
+        this.cards = cards;
+    }
 
 	public String getAddress() {
 		return address;
@@ -84,10 +116,12 @@ public class Student implements LoggablePo, RefIdSupport {
 		this.attachmentKey = attachmentKey;
 	}
 
+	@JsonIgnore
 	public Branch getBranch() {
 		return branch;
 	}
 
+	@JsonIgnore
 	public void setBranch(Branch branch) {
 		this.branch = branch;
 	}
@@ -179,19 +213,21 @@ public class Student implements LoggablePo, RefIdSupport {
 	public void setUpdatedTime(Calendar updatedTime) {
 		this.updatedTime = updatedTime;
 	}
-
+	@JsonIgnore
 	public SysUser getCreator() {
 		return creator;
 	}
-
+	@JsonIgnore
 	public void setCreator(SysUser creator) {
 		this.creator = creator;
 	}
 
+	@JsonIgnore
 	public SysUser getUpdater() {
 		return updater;
 	}
 
+	@JsonIgnore
 	public void setUpdater(SysUser updater) {
 		this.updater = updater;
 	}
