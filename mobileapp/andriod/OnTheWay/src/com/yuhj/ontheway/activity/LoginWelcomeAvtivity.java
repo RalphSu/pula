@@ -65,24 +65,23 @@ public class LoginWelcomeAvtivity extends Activity {
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
 						
-					/*	
-						if(state==StaticStrings.state_logout){
-							Intent intent_login=new Intent(MyActivity.this,LoginActivity.class);
-							startActivity(intent_login);
-						}else if(state==StaticStrings.state_login){
+			
 							if(position==0){
-								Intent intent_coupon=new Intent(MyActivity.this,List3Activity.class);
+								Intent intent_coupon=new Intent(LoginWelcomeAvtivity.this,MainActivity.class);
 								startActivity(intent_coupon);
 							}else if(position==1){
-								
+								Intent intent_coupon=new Intent(LoginWelcomeAvtivity.this,MainActivity.class);
+								startActivity(intent_coupon);
 							}else if(position==2){
-								Intent intent_mycollect=new Intent(MyActivity.this,MyCollectActivity.class);
+								Intent intent_mycollect=new Intent(LoginWelcomeAvtivity.this,MainActivity.class);
 								startActivity(intent_mycollect);
 							}else if(position==3){
+								Intent intent_mycollect=new Intent(LoginWelcomeAvtivity.this,MainActivity.class);
+								startActivity(intent_mycollect);
 							}
 						}
-						*/
-					}
+						
+					
 				});
 		
 	}
