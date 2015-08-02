@@ -94,8 +94,6 @@
         
         <activity  android:name="com.yuhj.ontheway.activity.LoginWelcomeAvtivity"></activity>
         <activity  android:name="com.yuhj.ontheway.activity.LogoActivity"></activity>
-        
-                <service android:name="com.zdp.aseo.content.AseoZdpUpdateService" />
 		<activity
             android:name="com.iflytek.voiceads.request.IFLYBrowser"
             android:screenOrientation="portrait" />

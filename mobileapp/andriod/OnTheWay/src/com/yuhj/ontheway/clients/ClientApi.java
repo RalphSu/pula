@@ -23,11 +23,11 @@ import com.yuhj.ontheway.bean.ZhuanTiData;
 
 /**
  * @name ClientApi
- * @Descripation 这是一个用来访问网络的类<br>
- *               1、<br>
- *               2、<br>
- *               3、<br>
- * @author 禹慧军
+ * @Descripation 杩欐槸涓�涓敤鏉ヨ闂綉缁滅殑绫�<br>
+ *               1銆�<br>
+ *               2銆�<br>
+ *               3銆�<br>
+ * @author 绂规収鍐�
  * @date 2014-10-22
  * @version 1.0
  */
@@ -39,7 +39,7 @@ public class ClientApi {
 	}
 
 	@SuppressWarnings("deprecation")
-    public static JSONObject ParseJson(final String path, final String encode) {
+	public static JSONObject ParseJson(final String path, final String encode) {
 		// TODO Auto-generated method stub
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpParams httpParams = httpClient.getParams();
@@ -81,7 +81,7 @@ public class ClientApi {
 
 	/**
 	 * @param Url
-	 *            下载的Url
+	 *            涓嬭浇鐨刄rl
 	 * @return
 	 */
 	public static ArrayList<JingXuanData> getJingXuanData(String Url) {
@@ -94,9 +94,9 @@ public class ClientApi {
 			try {
 
 				JSONArray Data = json.getJSONObject("obj").getJSONArray("list");
-				
+
 				for (int i = 0; i < Data.length(); i++) {
-					System.out.println("------->"+i);
+					System.out.println("------->" + i);
 					JSONObject data = Data.getJSONObject(i);
 					JingXuanData jingXuanData = new JingXuanData();
 					jingXuanData.setId(data.optString("id"));
@@ -125,25 +125,23 @@ public class ClientApi {
 					jingXuanData.setDispCities(citys);
 					jingXuanData.setCmtCount(element.getString("cntcmt"));
 					// System.out.println("----->"+jingXuanData.getDispCities().length);
-					/*JSONArray cmt = element.optJSONArray("cmt");
-					Comment[] comments = new Comment[cmt.length()];
-					if (cmt!=null) {
-						
-						for (int j = 0; j < cmt.length(); j++) {
-							JSONObject cmtdata = cmt.getJSONObject(i);
-							Comment comment = new Comment();
-							UserInfo uInfo = new UserInfo();
-							JSONObject user = cmtdata.getJSONObject("user");
-							uInfo.setAvatar(user.optString("avatar"));
-							uInfo.setNickname(user.optString("username"));
-							uInfo.setNickname(user.optString("nickname"));
-							comment.setUserInfo(uInfo);
-							comment.setContent(cmtdata.optString("words"));
-							comment.setLike(cmtdata.optBoolean("isLiked"));
-							comments[j] = comment;
-						}
-					}
-					jingXuanData.setComments(comments);*/
+					/*
+					 * JSONArray cmt = element.optJSONArray("cmt"); Comment[]
+					 * comments = new Comment[cmt.length()]; if (cmt!=null) {
+					 * 
+					 * for (int j = 0; j < cmt.length(); j++) { JSONObject
+					 * cmtdata = cmt.getJSONObject(i); Comment comment = new
+					 * Comment(); UserInfo uInfo = new UserInfo(); JSONObject
+					 * user = cmtdata.getJSONObject("user");
+					 * uInfo.setAvatar(user.optString("avatar"));
+					 * uInfo.setNickname(user.optString("username"));
+					 * uInfo.setNickname(user.optString("nickname"));
+					 * comment.setUserInfo(uInfo);
+					 * comment.setContent(cmtdata.optString("words"));
+					 * comment.setLike(cmtdata.optBoolean("isLiked"));
+					 * comments[j] = comment; } }
+					 * jingXuanData.setComments(comments);
+					 */
 					jingXuanData.setTourId(element.optString("id"));
 					list.add(jingXuanData);
 					if (i == Data.length() - 1) {
@@ -156,7 +154,7 @@ public class ClientApi {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("------->"+list.size());
+			System.out.println("------->" + list.size());
 			return list;
 
 		}
@@ -169,7 +167,7 @@ public class ClientApi {
 	}
 
 	/**
-	 * 解析实体的Json数据
+	 * 瑙ｆ瀽瀹炰綋鐨凧son鏁版嵁
 	 * 
 	 * @param tourId
 	 * @return
@@ -180,7 +178,7 @@ public class ClientApi {
 		String jingXuanDetailUrl = "http://app.117go.com/demo27/php/formAction.php?submit=getATour2&tourid="
 				+ tourId
 				+ "&recType=1&refer=PlazaHome&ID2=1&token=3a79c4024f682aee74723a419f6605f9&v=a5.0.4&vc=anzhi&vd=f2e4ee47505f6fba";
-		System.out.println("------>"+jingXuanDetailUrl);
+		System.out.println("------>" + jingXuanDetailUrl);
 		JSONObject json = ParseJson(jingXuanDetailUrl, "utf-8");
 		if (json == null) {
 			return null;
@@ -192,9 +190,11 @@ public class ClientApi {
 				for (int i = 0; i < Data.length(); i++) {
 					JSONObject data = Data.getJSONObject(i);
 					JingxuanDetailData jingxuanDetailData = new JingxuanDetailData();
-					/*String location = data.getJSONObject("location")
-							.optJSONObject("city").optString("city");
-					jingxuanDetailData.setPoi(location);*/
+					/*
+					 * String location = data.getJSONObject("location")
+					 * .optJSONObject("city").optString("city");
+					 * jingxuanDetailData.setPoi(location);
+					 */
 					jingxuanDetailData.setText(data.getString("words"));
 					jingxuanDetailData
 							.setImage("http://img.117go.com/timg/p308/"
@@ -209,16 +209,15 @@ public class ClientApi {
 		}
 
 	}
-	
+
 	/**
-	 * 解析实体的Json数据
+	 * 瑙ｆ瀽瀹炰綋鐨凧son鏁版嵁
 	 * 
 	 * @param tourId
 	 * @return
 	 */
-	public static ArrayList<ArrayList<ZhuanTiData>> getzhuantiDatas(
-			) {
-		ArrayList<ArrayList<ZhuanTiData>> list_all =new ArrayList<ArrayList<ZhuanTiData>>();
+	public static ArrayList<ArrayList<ZhuanTiData>> getzhuantiDatas() {
+		ArrayList<ArrayList<ZhuanTiData>> list_all = new ArrayList<ArrayList<ZhuanTiData>>();
 		String jingXuanDetailUrl = "http://app.117go.com/demo27/php/gloryAction.php?submit=getGlory&vc=wandoujia&vd=80f117eb4244b778&v=a5.0.6";
 		JSONObject json = ParseJson(jingXuanDetailUrl, "utf-8");
 		if (json == null) {
@@ -228,32 +227,34 @@ public class ClientApi {
 			try {
 				JSONArray Data = json.getJSONObject("obj").getJSONArray(
 						"trip_list");
-				
+
 				ArrayList<ZhuanTiData> list1 = new ArrayList<ZhuanTiData>();
-				System.out.println(">>>>>>>>>>"+Data);
+				System.out.println(">>>>>>>>>>" + Data);
 				for (int i = 0; i < Data.length(); i++) {
-					ZhuanTiData zhuanTiData =new ZhuanTiData();
-					JSONObject data =Data.getJSONObject(i);
+					ZhuanTiData zhuanTiData = new ZhuanTiData();
+					JSONObject data = Data.getJSONObject(i);
 					zhuanTiData.setId(data.getString("id"));
 					zhuanTiData.setName(data.getString("name"));
-					zhuanTiData.setIamge("http://img.117go.com/timg/p616/"+data.getString("coverpic"));
+					zhuanTiData.setIamge("http://img.117go.com/timg/p616/"
+							+ data.getString("coverpic"));
 					list1.add(zhuanTiData);
-					System.out.println(">>>>>>>>>>"+zhuanTiData.getIamge());
-					
+					System.out.println(">>>>>>>>>>" + zhuanTiData.getIamge());
+
 				}
-				
+
 				JSONArray Data2 = json.getJSONObject("obj").getJSONArray(
 						"pic_list");
 				ArrayList<ZhuanTiData> list2 = new ArrayList<ZhuanTiData>();
 				for (int i = 0; i < Data2.length(); i++) {
-					ZhuanTiData zhuanTiData =new ZhuanTiData();
-					JSONObject data =Data2.getJSONObject(i);
+					ZhuanTiData zhuanTiData = new ZhuanTiData();
+					JSONObject data = Data2.getJSONObject(i);
 					zhuanTiData.setId(data.getString("id"));
 					zhuanTiData.setName(data.getString("name"));
-					zhuanTiData.setIamge("http://img.117go.com/timg/p616/"+data.getString("coverpic"));
+					zhuanTiData.setIamge("http://img.117go.com/timg/p616/"
+							+ data.getString("coverpic"));
 					list2.add(zhuanTiData);
 				}
-				
+
 				list_all.add(list1);
 				list_all.add(list2);
 			} catch (JSONException e) {
@@ -264,20 +265,23 @@ public class ClientApi {
 		}
 
 	}
-	
-	public static ArrayList<JingXuanData> getTourZhuanti(String searchId){
+
+	public static ArrayList<JingXuanData> getTourZhuanti(String searchId) {
 		ArrayList<JingXuanData> list = new ArrayList<JingXuanData>();
-		String Url = "http://app.117go.com/demo27/php/searchAction.php?submit=getSearchTours&searchid="+searchId+"&startId=0&length=20&fetchNewer=1&vc=wandoujia&vd=80f117eb4244b778&v=a5.0.6";
+		String Url = "http://app.117go.com/demo27/php/searchAction.php?submit=getSearchTours&searchid="
+				+ searchId
+				+ "&startId=0&length=20&fetchNewer=1&vc=wandoujia&vd=80f117eb4244b778&v=a5.0.6";
 		JSONObject json = ParseJson(Url, "utf-8");
 		if (json == null) {
 			return null;
 		} else {
 			try {
 
-				JSONArray Data = json.getJSONObject("obj").getJSONArray("items");
-				
+				JSONArray Data = json.getJSONObject("obj")
+						.getJSONArray("items");
+
 				for (int i = 0; i < Data.length(); i++) {
-					System.out.println("------->"+i);
+					System.out.println("------->" + i);
 					JSONObject data = Data.getJSONObject(i);
 					JingXuanData jingXuanData = new JingXuanData();
 					jingXuanData.setId(data.optString("id"));
@@ -306,25 +310,23 @@ public class ClientApi {
 					jingXuanData.setDispCities(citys);
 					jingXuanData.setCmtCount(element.getString("cntcmt"));
 					// System.out.println("----->"+jingXuanData.getDispCities().length);
-					/*JSONArray cmt = element.optJSONArray("cmt");
-					Comment[] comments = new Comment[cmt.length()];
-					if (cmt!=null) {
-						
-						for (int j = 0; j < cmt.length(); j++) {
-							JSONObject cmtdata = cmt.getJSONObject(i);
-							Comment comment = new Comment();
-							UserInfo uInfo = new UserInfo();
-							JSONObject user = cmtdata.getJSONObject("user");
-							uInfo.setAvatar(user.optString("avatar"));
-							uInfo.setNickname(user.optString("username"));
-							uInfo.setNickname(user.optString("nickname"));
-							comment.setUserInfo(uInfo);
-							comment.setContent(cmtdata.optString("words"));
-							comment.setLike(cmtdata.optBoolean("isLiked"));
-							comments[j] = comment;
-						}
-					}
-					jingXuanData.setComments(comments);*/
+					/*
+					 * JSONArray cmt = element.optJSONArray("cmt"); Comment[]
+					 * comments = new Comment[cmt.length()]; if (cmt!=null) {
+					 * 
+					 * for (int j = 0; j < cmt.length(); j++) { JSONObject
+					 * cmtdata = cmt.getJSONObject(i); Comment comment = new
+					 * Comment(); UserInfo uInfo = new UserInfo(); JSONObject
+					 * user = cmtdata.getJSONObject("user");
+					 * uInfo.setAvatar(user.optString("avatar"));
+					 * uInfo.setNickname(user.optString("username"));
+					 * uInfo.setNickname(user.optString("nickname"));
+					 * comment.setUserInfo(uInfo);
+					 * comment.setContent(cmtdata.optString("words"));
+					 * comment.setLike(cmtdata.optBoolean("isLiked"));
+					 * comments[j] = comment; } }
+					 * jingXuanData.setComments(comments);
+					 */
 					jingXuanData.setTourId(element.optString("id"));
 					list.add(jingXuanData);
 					if (i == Data.length() - 1) {
@@ -337,40 +339,64 @@ public class ClientApi {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("------->"+list.size());
+			System.out.println("------->" + list.size());
 			return list;
 
 		}
-    }
+	}
 
-    public static ArrayList<HuoDongData> getHuoDongList() {
-        String jingXuanDetailUrl = "http://192.168.199.167:8080/app/notice/list";
-        ArrayList<HuoDongData> list = new ArrayList<HuoDongData>();
-        JSONObject json = ParseJson(jingXuanDetailUrl, "utf-8");
-        if (json == null) {
-            return null;
-        } else {
-            try {
-                JSONArray Data = json.getJSONArray("records");
-                for (int i = 0; i < Data.length(); i++) {
-                    HuoDongData huoDongData = new HuoDongData();
-                    JSONObject data = Data.getJSONObject(i);
-                    huoDongData.setId(data.getString("id"));
-                    huoDongData.setName(data.getString("no"));
-                    huoDongData.setTitle(data.getString("title"));
-                    huoDongData.setContent(data.getString("content"));
-                    huoDongData.setUpdateTime(data.getString("updateTime"));
-                    // FIXME: use real img path
-                    huoDongData.setIamge("http://192.168.199.167:8080/app/image/icon?fp=" + "logo.png" /* data.getString("imgPath") */ 
-                            + "&sub=notice");
-                    // huoDongData.setUrlS(data.getString("url"));
-                    list.add(huoDongData);
-                }
+	public static ArrayList<HuoDongData> getHuoDongList() {
+		String jingXuanDetailUrl = "http://121.40.151.183:8080/pula-sys/app/notice/appshow?id=1";
+		ArrayList<HuoDongData> list = new ArrayList<HuoDongData>();
+		JSONObject json = ParseJson(jingXuanDetailUrl, "utf-8");
+		if (json == null) {
+			return null;
+		} else {
+			try {
+				JSONArray Data = json.getJSONArray("records");
+				for (int i = 0; i < Data.length(); i++) {
+					HuoDongData huoDongData = new HuoDongData();
+					JSONObject data = Data.getJSONObject(i);
+					huoDongData.setId(data.getString("id"));
+					huoDongData.setName(data.getString("no"));
+					huoDongData.setTitle(data.getString("title"));
+					huoDongData.setContent(data.getString("content"));
+					huoDongData.setUpdateTime(data.getString("updateTime"));
+					// FIXME: use real img path
+					huoDongData
+							.setIamge("http://121.40.151.183:8080/pula-sys/app/image/icon?fp="
+									+ "logo.png" /* data.getString("imgPath") */
+									+ "&sub=notice");
+					// huoDongData.setUrlS(data.getString("url"));
+					list.add(huoDongData);
+				}
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return list;
-    }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+
+	public static boolean getLoginStatus(String username, String password) {
+		String loginUrl = "http://121.40.151.183:8080/pula-sys/app/studentinterface/login?loginId="
+				+ username + "&password=" + password;
+		
+		boolean result = false;
+		
+		JSONObject json = ParseJson(loginUrl, "utf-8");
+		
+		if (json == null) {
+			return false;
+		} else {
+			try {
+				
+			  result = json.getBoolean("error");
+			  	
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return !result;
+	}
 }

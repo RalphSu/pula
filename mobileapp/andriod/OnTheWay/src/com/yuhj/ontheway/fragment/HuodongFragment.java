@@ -79,7 +79,7 @@ public class HuodongFragment extends Fragment {
                 });
             } else {
                 loadRelativeLayout.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), "网络异常,请检查", 1).show();
+                Toast.makeText(HuodongFragment.this.getActivity(), "网络异常,请检查", 1).show();
             }
         }
 

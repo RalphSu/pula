@@ -98,5 +98,10 @@
     <string name="title_activity_zhuanti_detail">ZhuantiDetailActivity</string>
     <string name="title_activity_zhuanti_detail_image">ZhuantiDetailImageActivity</string>
     <string name="title_activity_huodong_detail">HuodongDetailActivity</string>
-
+    <string name="tx_3_title">你好，你已登录</string>
+    <string name="tx_3_introduce">欢 迎 来 到 普 拉 星 球</string>
+    <string name="nul" />
+    <string name="tx_name">用户名</string>
+    <string name="tx_3">账户设置</string>
+    <string name="tx_balance">余额</string>
 </resources>

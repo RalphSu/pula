@@ -599,10 +599,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int viewBehindRight=0x7f010005;
     }
     public static final class color {
+        public static final int Color_black=0x7f050004;
         public static final int black=0x7f050001;
         public static final int gray=0x7f050002;
         public static final int light_blue=0x7f050003;
-        public static final int main_tab_item_text_color=0x7f050004;
+        public static final int main_tab_item_text_color=0x7f050005;
         public static final int white=0x7f050000;
     }
     public static final class dimen {
@@ -618,18 +619,18 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class drawable {
         public static final int aaa=0x7f020000;
         public static final int abc_ic_go=0x7f020001;
-        public static final int badge_traveler_v2_42=0x7f020002;
-        public static final int bg_login=0x7f020003;
-        public static final int bg_mask=0x7f020004;
-        public static final int btn_team_add=0x7f020005;
-        public static final int defaultcovers=0x7f020006;
-        public static final int first_time_post_1=0x7f020007;
-        public static final int first_time_post_2=0x7f020008;
-        public static final int first_time_post_3=0x7f020009;
-        public static final int first_time_post_4=0x7f02000a;
-        public static final int ic_action_camera=0x7f02000b;
-        public static final int ic_action_edit=0x7f02000c;
-        public static final int ic_action_email=0x7f02000d;
+        public static final int arrow_normal=0x7f020002;
+        public static final int badge_traveler_v2_42=0x7f020003;
+        public static final int bg_login=0x7f020004;
+        public static final int bg_mask=0x7f020005;
+        public static final int btn_team_add=0x7f020006;
+        public static final int contents_add=0x7f020007;
+        public static final int defaultcovers=0x7f020008;
+        public static final int first_time_post_4=0x7f020009;
+        public static final int ic_action_camera=0x7f02000a;
+        public static final int ic_action_edit=0x7f02000b;
+        public static final int ic_action_email=0x7f02000c;
+        public static final int ic_action_favorite_off_normal=0x7f02000d;
         public static final int ic_action_person=0x7f02000e;
         public static final int ic_action_picture=0x7f02000f;
         public static final int ic_comment_normal=0x7f020010;
@@ -666,95 +667,115 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int icon_lock_white_34=0x7f02002f;
         public static final int icon_note_tzls=0x7f020030;
         public static final int icon_star_yellow_32=0x7f020031;
-        public static final int index_logo=0x7f020032;
+        public static final int index_logo_img=0x7f020032;
         public static final int item_comment_selector=0x7f020033;
         public static final int item_share_seletor=0x7f020034;
-        public static final int load_failed=0x7f020035;
-        public static final int load_succeed=0x7f020036;
-        public static final int loading=0x7f020037;
-        public static final int loading_0=0x7f020038;
-        public static final int loading_1=0x7f020039;
-        public static final int loading_2=0x7f02003a;
-        public static final int loading_3=0x7f02003b;
-        public static final int loading_4=0x7f02003c;
-        public static final int loading_5=0x7f02003d;
-        public static final int loading_6=0x7f02003e;
-        public static final int loading_7=0x7f02003f;
-        public static final int logo=0x7f020040;
-        public static final int logo_douban=0x7f020041;
-        public static final int logo_kaixin=0x7f020042;
-        public static final int logo_qq=0x7f020043;
-        public static final int logo_qzone=0x7f020044;
-        public static final int logo_renren=0x7f020045;
-        public static final int logo_sinaweibo=0x7f020046;
-        public static final int logo_tencentweibo=0x7f020047;
-        public static final int logo_wechat=0x7f020048;
-        public static final int logo_wechatmoments=0x7f020049;
-        public static final int main_tab_add_bg=0x7f02004a;
-        public static final int main_tab_check_bg=0x7f02004b;
-        public static final int main_tab_essay_bg=0x7f02004c;
-        public static final int main_tab_huodong_bg=0x7f02004d;
-        public static final int main_tab_image_bg=0x7f02004e;
-        public static final int main_tab_my_bg=0x7f02004f;
-        public static final int pull_icon_big=0x7f020050;
-        public static final int pullup_icon_big=0x7f020051;
-        public static final int refresh_failed=0x7f020052;
-        public static final int refresh_succeed=0x7f020053;
-        public static final int refreshing=0x7f020054;
-        public static final int sendmail_to_bg=0x7f020055;
-        public static final int share_vp_back=0x7f020056;
-        public static final int title_bg=0x7f020057;
-        public static final int v502_icon_login_qq=0x7f020058;
-        public static final int v502_icon_login_weibo=0x7f020059;
-        public static final int v502_icon_login_weixin=0x7f02005a;
+        public static final int list_selector=0x7f020035;
+        public static final int list_selector2=0x7f020036;
+        public static final int load_failed=0x7f020037;
+        public static final int load_succeed=0x7f020038;
+        public static final int loading=0x7f020039;
+        public static final int loading_0=0x7f02003a;
+        public static final int loading_1=0x7f02003b;
+        public static final int loading_2=0x7f02003c;
+        public static final int loading_3=0x7f02003d;
+        public static final int loading_4=0x7f02003e;
+        public static final int loading_5=0x7f02003f;
+        public static final int loading_6=0x7f020040;
+        public static final int loading_7=0x7f020041;
+        public static final int logo=0x7f020042;
+        public static final int logo_douban=0x7f020043;
+        public static final int logo_kaixin=0x7f020044;
+        public static final int logo_qq=0x7f020045;
+        public static final int logo_qzone=0x7f020046;
+        public static final int logo_renren=0x7f020047;
+        public static final int logo_sinaweibo=0x7f020048;
+        public static final int logo_tencentweibo=0x7f020049;
+        public static final int logo_wechat=0x7f02004a;
+        public static final int logo_wechatmoments=0x7f02004b;
+        public static final int main_tab_add_bg=0x7f02004c;
+        public static final int main_tab_check_bg=0x7f02004d;
+        public static final int main_tab_essay_bg=0x7f02004e;
+        public static final int main_tab_huodong_bg=0x7f02004f;
+        public static final int main_tab_image_bg=0x7f020050;
+        public static final int main_tab_my_bg=0x7f020051;
+        public static final int pula=0x7f020052;
+        public static final int pull_icon_big=0x7f020053;
+        public static final int pullup_icon_big=0x7f020054;
+        public static final int quit=0x7f020055;
+        public static final int refresh_failed=0x7f020056;
+        public static final int refresh_succeed=0x7f020057;
+        public static final int refreshing=0x7f020058;
+        public static final int seletor_list=0x7f020059;
+        public static final int sendmail_to_bg=0x7f02005a;
+        public static final int share_vp_back=0x7f02005b;
+        public static final int title_bg=0x7f02005c;
+        public static final int ump_base_icon_goods_amout=0x7f02005d;
+        public static final int ump_base_icon_goods_lable=0x7f02005e;
+        public static final int upomp_bypay_icon_jiantou=0x7f02005f;
+        public static final int upomp_bypay_info_select_1=0x7f020060;
+        public static final int v502_icon_login_qq=0x7f020061;
+        public static final int v502_icon_login_weibo=0x7f020062;
+        public static final int v502_icon_login_weixin=0x7f020063;
     }
     public static final class id {
         public static final int CommentCount=0x7f0a0010;
-        public static final int action_settings=0x7f0a005b;
+        public static final int action_settings=0x7f0a006c;
         public static final int both=0x7f0a0000;
-        public static final int button1=0x7f0a0046;
+        public static final int btn_back=0x7f0a0057;
+        public static final int btn_login=0x7f0a0054;
+        public static final int cb_auto=0x7f0a0053;
+        public static final int cb_mima=0x7f0a0052;
         public static final int data=0x7f0a001b;
         public static final int dataLinearlayout=0x7f0a001f;
         public static final int detail_main_title=0x7f0a000c;
+        public static final int et_mima=0x7f0a0051;
+        public static final int et_zh=0x7f0a004f;
         public static final int fill=0x7f0a0005;
         public static final int fullscreen=0x7f0a0003;
         public static final int gridview=0x7f0a0020;
-        public static final int gridview_imageview=0x7f0a0050;
-        public static final int head_view=0x7f0a0047;
-        public static final int hongdong_listview=0x7f0a0022;
-        public static final int huodongLinearlayout=0x7f0a0021;
+        public static final int gridview_imageview=0x7f0a0061;
+        public static final int head_view=0x7f0a0058;
+        public static final int hongdong_listview=0x7f0a0026;
+        public static final int huodongLinearlayout=0x7f0a0025;
         public static final int huodong_main_title=0x7f0a000a;
-        public static final int imageView1=0x7f0a0025;
-        public static final int imageView2=0x7f0a0030;
-        public static final int imageView3=0x7f0a0032;
-        public static final int imageView4=0x7f0a004f;
-        public static final int image_zhuanti_listView=0x7f0a0059;
-        public static final int jingxuanLinearlayout=0x7f0a0027;
-        public static final int jingxuan_detail_list_image=0x7f0a0024;
+        public static final int imageView1=0x7f0a0029;
+        public static final int imageView2=0x7f0a0034;
+        public static final int imageView3=0x7f0a0036;
+        public static final int imageView4=0x7f0a0060;
+        public static final int image_zhuanti_listView=0x7f0a006a;
+        public static final int img_1=0x7f0a0043;
+        public static final int img_2=0x7f0a0042;
+        public static final int img_btn=0x7f0a004d;
+        public static final int jingxuanLinearlayout=0x7f0a002b;
+        public static final int jingxuan_detail_list_image=0x7f0a0028;
         public static final int jingxuan_detail_listview=0x7f0a000d;
-        public static final int jingxuan_detail_main_image=0x7f0a0023;
+        public static final int jingxuan_detail_main_image=0x7f0a0027;
         public static final int jingxuan_detail_main_txt=0x7f0a000e;
-        public static final int jingxuan_favoriteCount=0x7f0a002f;
-        public static final int jingxuan_imageView=0x7f0a002a;
-        public static final int jingxuan_listview=0x7f0a0029;
-        public static final int jingxuan_txt_address=0x7f0a002c;
-        public static final int jingxuan_txt_eye=0x7f0a0031;
-        public static final int jingxuan_txt_picCount=0x7f0a0034;
-        public static final int jingxuan_txt_title=0x7f0a002e;
-        public static final int jingxuan_user_circleImageView=0x7f0a002d;
-        public static final int jingxuna_detail_content=0x7f0a0026;
+        public static final int jingxuan_favoriteCount=0x7f0a0033;
+        public static final int jingxuan_imageView=0x7f0a002e;
+        public static final int jingxuan_listview=0x7f0a002d;
+        public static final int jingxuan_txt_address=0x7f0a0030;
+        public static final int jingxuan_txt_eye=0x7f0a0035;
+        public static final int jingxuan_txt_picCount=0x7f0a0038;
+        public static final int jingxuan_txt_title=0x7f0a0032;
+        public static final int jingxuan_user_circleImageView=0x7f0a0031;
+        public static final int jingxuna_detail_content=0x7f0a002a;
         public static final int left=0x7f0a0001;
         public static final int likeCount=0x7f0a000f;
+        public static final int lin=0x7f0a0023;
         public static final int list=0x7f0a000b;
-        public static final int loading_icon=0x7f0a0040;
-        public static final int loadmore_view=0x7f0a003e;
-        public static final int loadstate_iv=0x7f0a0042;
-        public static final int loadstate_tv=0x7f0a0041;
-        public static final int location=0x7f0a002b;
-        public static final int lodding=0x7f0a0044;
-        public static final int lodiing_text=0x7f0a0045;
-        public static final int lodingRelativeLayout=0x7f0a0043;
-        public static final int lvxing_zhuanti_listView=0x7f0a0057;
+        public static final int list_3=0x7f0a0024;
+        public static final int ll=0x7f0a0022;
+        public static final int loading_icon=0x7f0a0047;
+        public static final int loadmore_view=0x7f0a0045;
+        public static final int loadstate_iv=0x7f0a0049;
+        public static final int loadstate_tv=0x7f0a0048;
+        public static final int location=0x7f0a002f;
+        public static final int lodding=0x7f0a004b;
+        public static final int lodiing_text=0x7f0a004c;
+        public static final int lodingRelativeLayout=0x7f0a004a;
+        public static final int lvxing_zhuanti_listView=0x7f0a0068;
         public static final int main_add=0x7f0a0017;
         public static final int main_framelayout=0x7f0a0013;
         public static final int main_tab_bar=0x7f0a0014;
@@ -764,43 +785,49 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int main_tab_item_zhuanti=0x7f0a0016;
         public static final int main_title=0x7f0a0012;
         public static final int margin=0x7f0a0004;
-        public static final int publish_date=0x7f0a004e;
+        public static final int pgBar=0x7f0a0055;
+        public static final int publish_date=0x7f0a005f;
         public static final int publish_text=0x7f0a0009;
-        public static final int pull_icon=0x7f0a0048;
-        public static final int pullup_icon=0x7f0a003f;
-        public static final int refresh_view=0x7f0a0028;
-        public static final int refreshing_icon=0x7f0a0049;
+        public static final int pull_icon=0x7f0a0059;
+        public static final int pullup_icon=0x7f0a0046;
+        public static final int refresh_view=0x7f0a002c;
+        public static final int refreshing_icon=0x7f0a005a;
         public static final int relativeLayout1=0x7f0a001c;
         public static final int right=0x7f0a0002;
         public static final int select_picture=0x7f0a0007;
         public static final int share=0x7f0a0011;
-        public static final int share_doban=0x7f0a003d;
-        public static final int share_kaixin=0x7f0a003c;
-        public static final int share_qq=0x7f0a0038;
-        public static final int share_qzone=0x7f0a0039;
-        public static final int share_renren=0x7f0a0037;
-        public static final int share_sina=0x7f0a0036;
-        public static final int share_tecent=0x7f0a0035;
-        public static final int share_wechat=0x7f0a003b;
-        public static final int share_wechatmoment=0x7f0a003a;
-        public static final int state_iv=0x7f0a004b;
-        public static final int state_tv=0x7f0a004a;
+        public static final int share_doban=0x7f0a0041;
+        public static final int share_kaixin=0x7f0a0040;
+        public static final int share_qq=0x7f0a003c;
+        public static final int share_qzone=0x7f0a003d;
+        public static final int share_renren=0x7f0a003b;
+        public static final int share_sina=0x7f0a003a;
+        public static final int share_tecent=0x7f0a0039;
+        public static final int share_wechat=0x7f0a003f;
+        public static final int share_wechatmoment=0x7f0a003e;
+        public static final int state_iv=0x7f0a005c;
+        public static final int state_tv=0x7f0a005b;
         public static final int stroke=0x7f0a0006;
         public static final int take_photo=0x7f0a0008;
-        public static final int textView1=0x7f0a0033;
-        public static final int text_content=0x7f0a0053;
+        public static final int textView1=0x7f0a0037;
+        public static final int text_content=0x7f0a0064;
         public static final int tour_zhuanti_listview=0x7f0a001e;
-        public static final int user_circleImageView=0x7f0a004c;
-        public static final int user_name=0x7f0a004d;
+        public static final int tv1=0x7f0a0056;
+        public static final int tv_mima=0x7f0a0050;
+        public static final int tv_zh=0x7f0a004e;
+        public static final int tx_3_title=0x7f0a0021;
+        public static final int tx_name=0x7f0a0044;
+        public static final int user_circleImageView=0x7f0a005d;
+        public static final int user_name=0x7f0a005e;
         public static final int welcome_image=0x7f0a001a;
-        public static final int zhuanti_address=0x7f0a0051;
-        public static final int zhuanti_commentCount=0x7f0a0055;
-        public static final int zhuanti_image_more=0x7f0a0058;
-        public static final int zhuanti_likeCount=0x7f0a0054;
-        public static final int zhuanti_main_image=0x7f0a005a;
+        public static final int zhuanti_address=0x7f0a0062;
+        public static final int zhuanti_commentCount=0x7f0a0066;
+        public static final int zhuanti_image_more=0x7f0a0069;
+        public static final int zhuanti_likeCount=0x7f0a0065;
+        public static final int zhuanti_main_image=0x7f0a006b;
         public static final int zhuanti_main_title=0x7f0a001d;
-        public static final int zhuanti_title=0x7f0a0052;
-        public static final int zhuanti_tour_more=0x7f0a0056;
+        public static final int zhuanti_title=0x7f0a0063;
+        public static final int zhuanti_tour_more=0x7f0a0067;
     }
     public static final class layout {
         public static final int activity_add=0x7f030000;
@@ -810,19 +837,23 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_welcome=0x7f030004;
         public static final int activity_zhuanti_detail=0x7f030005;
         public static final int activity_zhuanti_detail_image_activity=0x7f030006;
-        public static final int huodong_fragment=0x7f030007;
-        public static final int jing_xuan_details_header=0x7f030008;
-        public static final int jingxuan_detail_item=0x7f030009;
-        public static final int jingxuan_fragment=0x7f03000a;
-        public static final int jingxuan_item=0x7f03000b;
-        public static final int layout_share=0x7f03000c;
-        public static final int load_more=0x7f03000d;
-        public static final int loading=0x7f03000e;
-        public static final int login=0x7f03000f;
-        public static final int refresh_head=0x7f030010;
-        public static final int zhuanti_detail_image_item=0x7f030011;
-        public static final int zhuanti_fragment=0x7f030012;
-        public static final int zhuanti_item=0x7f030013;
+        public static final int frame_third=0x7f030007;
+        public static final int huodong_fragment=0x7f030008;
+        public static final int jing_xuan_details_header=0x7f030009;
+        public static final int jingxuan_detail_item=0x7f03000a;
+        public static final int jingxuan_fragment=0x7f03000b;
+        public static final int jingxuan_item=0x7f03000c;
+        public static final int layout_share=0x7f03000d;
+        public static final int list_3=0x7f03000e;
+        public static final int load_more=0x7f03000f;
+        public static final int loading=0x7f030010;
+        public static final int login=0x7f030011;
+        public static final int logo=0x7f030012;
+        public static final int refresh_head=0x7f030013;
+        public static final int welcome=0x7f030014;
+        public static final int zhuanti_detail_image_item=0x7f030015;
+        public static final int zhuanti_fragment=0x7f030016;
+        public static final int zhuanti_item=0x7f030017;
     }
     public static final class menu {
         public static final int add=0x7f090000;
@@ -905,6 +936,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int music_upload=0x7f07007d;
         public static final int neteasemicroblog=0x7f070026;
         public static final int not_yet_authorized=0x7f070072;
+        public static final int nul=0x7f0700a2;
         public static final int pinterest=0x7f07002e;
         public static final int pinterest_client_inavailable=0x7f070012;
         public static final int plz_choose_wechat=0x7f070059;
@@ -973,6 +1005,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int title_activity_zhuanti_detail_image=0x7f07009e;
         public static final int tumblr=0x7f070030;
         public static final int twitter=0x7f07001f;
+        public static final int tx_3=0x7f0700a4;
+        public static final int tx_3_introduce=0x7f0700a1;
+        public static final int tx_3_title=0x7f0700a0;
+        public static final int tx_balance=0x7f0700a5;
+        public static final int tx_name=0x7f0700a3;
         public static final int update=0x7f070076;
         public static final int use_login_button=0x7f07003f;
         public static final int video_upload=0x7f07007e;
@@ -1007,6 +1044,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             backward-compatibility can go here.
         
 
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
+
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
     
@@ -1021,9 +1067,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;
+        public static final int Stylewidthhight_mm=0x7f080006;
+        public static final int Stylewidthhight_mw=0x7f080005;
+        public static final int Stylewidthhight_wm=0x7f080004;
+        public static final int Stylewidthhight_ww=0x7f080003;
         public static final int main_tab_item=0x7f080002;
+        public static final int mytab=0x7f080007;
     }
     public static final class styleable {
         /** Attributes that can be used with a ButtonBarContainerTheme.
