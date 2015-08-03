@@ -41,13 +41,13 @@
             style="@style/main_tab_item"
             android:checked="true"
             android:drawableTop="@drawable/main_tab_huodong_bg"
-            android:text="精选" />
+            android:text="预约" />
 
         <RadioButton
             android:id="@+id/main_tab_item_zhuanti"
             style="@style/main_tab_item"
             android:drawableTop="@drawable/main_tab_image_bg"
-            android:text="专题" />
+            android:text="课程" />
 
       
 
@@ -68,7 +68,7 @@
             android:id="@+id/main_tab_item_article"
             style="@style/main_tab_item"
             android:drawableTop="@drawable/main_tab_essay_bg"
-            android:text="我的" />
+            android:text="我" />
     </RadioGroup>
 
 </LinearLayout>

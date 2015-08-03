@@ -2,6 +2,22 @@ package com.yuhj.ontheway.activity;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
+
 import com.yuhj.ontheway.R;
 import com.yuhj.ontheway.fragment.HuodongFragment;
 import com.yuhj.ontheway.fragment.JingXuanFragment;
@@ -10,28 +26,6 @@ import com.yuhj.ontheway.fragment.ZhuanTiFragment;
 /*
 *import com.zdp.aseo.content.AseoZdpAseo;
 */
-import android.R.anim;
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.RadioGroup.OnCheckedChangeListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * @name MainActivity
@@ -86,7 +80,7 @@ public class MainActivity extends FragmentActivity implements
 			FragmentTransaction transaction = manager.beginTransaction();
 			transaction.replace(R.id.main_framelayout, fragments.get(0));
 			transaction.commit();
-			title.setText("精选");
+			title.setText("预约");
 		}
 		
 	
@@ -145,13 +139,13 @@ public class MainActivity extends FragmentActivity implements
 			fragment = fragments.get(0);
 			transaction.replace(R.id.main_framelayout, fragment);
 			transaction.commit();
-			title.setText("精选");
+			title.setText("预约");
 			break;
 		case 1:
 			fragment = fragments.get(1);
 			transaction.replace(R.id.main_framelayout, fragment);
 			transaction.commit();
-			title.setText("专题");
+			title.setText("课程");
 			break;
 		case 2:
 			
