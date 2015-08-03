@@ -8,11 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -41,14 +37,14 @@ import com.yuhj.ontheway.fragment.ZhuanTiFragment;
 public class MainActivity extends FragmentActivity implements
 		OnCheckedChangeListener {
 	private TextView title;
-	private Animation loadAnimation;
+//	private Animation loadAnimation;
 	private JingXuanFragment jingXuanFragment;
 	private HuodongFragment huodongFragment;
 	private ZhuanTiFragment zhuanTiFragment;
 	private LoginFragment loginFragment;
 	private ArrayList<Fragment> fragments;
 	private RadioGroup group;
-	private RadioButton imageView;
+//	private RadioButton imageView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,21 +88,21 @@ public class MainActivity extends FragmentActivity implements
 		huodongFragment = new HuodongFragment();
 		loginFragment=new LoginFragment();
 		title = (TextView) findViewById(R.id.main_title);
-		imageView = (RadioButton) findViewById(R.id.main_add);
-		//AseoZdpAseo.init(this, AseoZdpAseo.INSERT_TYPE);
-		imageView.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				loadAnimation = AnimationUtils.loadAnimation(
-						getApplicationContext(), R.anim.btn_add);
-				imageView.startAnimation(loadAnimation);
-				startActivity(new Intent(MainActivity.this, AddActivity.class));
-				overridePendingTransition(android.R.anim.fade_in,
-						android.R.anim.fade_out);
-			}
-		});
+//		imageView = (RadioButton) findViewById(R.id.main_add);
+//		//AseoZdpAseo.init(this, AseoZdpAseo.INSERT_TYPE);
+//		imageView.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View arg0) {
+//				// TODO Auto-generated method stub
+//				loadAnimation = AnimationUtils.loadAnimation(
+//						getApplicationContext(), R.anim.btn_add);
+//				imageView.startAnimation(loadAnimation);
+//				startActivity(new Intent(MainActivity.this, AddActivity.class));
+//				overridePendingTransition(android.R.anim.fade_in,
+//						android.R.anim.fade_out);
+//			}
+//		});
 	}
 	
 	@Override
@@ -148,20 +144,20 @@ public class MainActivity extends FragmentActivity implements
 			title.setText("课程");
 			break;
 		case 2:
+		    fragment = fragments.get(2);
+		    transaction.replace(R.id.main_framelayout, fragment);
+		    transaction.commit();
+		    title.setText("活动");
 			
 			break;
 		case 3:
-			fragment = fragments.get(2);
-			transaction.replace(R.id.main_framelayout, fragment);
-			transaction.commit();
-			title.setText("活动");
-			break;
+		    fragment = fragments.get(3);
+		    transaction.replace(R.id.main_framelayout, fragment);
+		    transaction.commit();
+		    title.setText("登录");
+		    break;
 		case 4:
-			fragment = fragments.get(3);
-			transaction.replace(R.id.main_framelayout, fragment);
-			transaction.commit();
-			title.setText("登录");
-			break;
+		    break;
 
 		default:
 			break;
