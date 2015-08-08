@@ -1,6 +1,7 @@
 package com.yuhj.ontheway.activity;
 
 import com.yuhj.ontheway.R;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ public class LogoActivity extends Activity {
 	private ProgressBar progressBar;
 	private Button backButton;
 
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -37,5 +39,5 @@ public class LogoActivity extends Activity {
 		});
 
 	}
-
+	
 }
