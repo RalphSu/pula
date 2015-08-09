@@ -75,6 +75,7 @@ public class NoticeDaoImpl extends HibernateGenericDao<Notice, Long> implements 
         n.setImgPath(cc.getImgPath());
         n.setSuffix(cc.getSuffix());
         n.setNo(cc.getNo());
+        n.setUpdateTime(cc.getUpdateTime());
         n.setComment(cc.getComment());
         _update(n);;
         return n;

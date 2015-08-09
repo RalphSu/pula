@@ -103,7 +103,7 @@ public class StudentDaoImpl extends HibernateGenericDao<Student, Long>
 		po.setLoginId(rt.getLoginId());
 		po.setMobile(rt.getMobile());
 		po.setName(rt.getName());
-		po.setNo(rt.getNo());
+		// po.setNo(rt.getNo());
 		po.setParentCaption(rt.getParentCaption());
 		po.setParentName(rt.getParentName());
 		po.setAddress(rt.getAddress());

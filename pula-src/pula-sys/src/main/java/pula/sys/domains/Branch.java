@@ -2,9 +2,6 @@ package pula.sys.domains;
 
 import java.util.Calendar;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonProperty;
-
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
 
@@ -16,43 +13,19 @@ import puerta.support.dao.LoggablePo;
 @WxlDomain("分支机构")
 public class Branch implements LoggablePo {
 
-    @JsonProperty
 	private long id;
-    @JsonProperty
-	private String no;
-    @JsonProperty
-    private String name;
-    @JsonProperty
+	private String no, name;
 	private boolean removed;
-    @JsonProperty
 	private boolean enabled;
 	// 网页信息
-    @JsonProperty
 	private String address;
-    @JsonProperty
-	private String phone;
-    @JsonProperty
-    private String linkman;
-    @JsonProperty
-    private String email;
-    @JsonProperty
-    private String mobile;
-    @JsonProperty
-    private String fax;
-    @JsonProperty
+	private String phone, linkman, email, mobile, fax;
 	private String comments;
 
-    @JsonProperty
-	private boolean showInWeb;
-    @JsonProperty
-    private boolean headquarter;
-    @JsonProperty
-	private Calendar createdTime;
-    @JsonProperty
-    private Calendar updatedTime;
-	private SysUser creator;
-    private SysUser updater;
-    @JsonProperty
+	private boolean showInWeb, headquarter;
+
+	private Calendar createdTime, updatedTime;
+	private SysUser creator, updater;
 	private String prefix; //学员的前缀
 	
 
@@ -120,19 +93,18 @@ public class Branch implements LoggablePo {
 		this.updatedTime = updatedTime;
 	}
 
-	@JsonIgnore
 	public SysUser getCreator() {
 		return creator;
 	}
-	@JsonIgnore
+
 	public void setCreator(SysUser creator) {
 		this.creator = creator;
 	}
-	@JsonIgnore
+
 	public SysUser getUpdater() {
 		return updater;
 	}
-	@JsonIgnore
+
 	public void setUpdater(SysUser updater) {
 		this.updater = updater;
 	}

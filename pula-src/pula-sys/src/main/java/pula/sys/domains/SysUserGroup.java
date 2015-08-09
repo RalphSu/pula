@@ -1,7 +1,6 @@
 package pula.sys.domains;
 
 import org.apache.commons.lang.StringUtils;
-import org.codehaus.jackson.annotate.JsonProperty;
 
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
@@ -14,15 +13,10 @@ import puerta.support.dao.LoggablePo;
  */
 @WxlDomain("用户组")
 public class SysUserGroup implements LoggablePo {
-    @JsonProperty
 	private String id;
-    @JsonProperty
 	private String name;
-    @JsonProperty
 	private String no;
-    @JsonProperty
 	private boolean removed;
-    @JsonProperty
 	private boolean enabled;
 
 	public String getId() {

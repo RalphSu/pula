@@ -80,11 +80,15 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.yuhj.ontheway.activity.ZhuantiDetailTourActivity"
+            android:name="com.yuhj.ontheway.activity.CourseDetailTourActivity"
             android:label="@string/title_activity_zhuanti_detail" >
         </activity>
         <activity
-            android:name="com.yuhj.ontheway.activity.ZhuantiDetailImageActivity"
+            android:name="com.yuhj.ontheway.activity.CourseDetailH5Activity"
+            android:label="@string/title_activity_zhuanti_detail" >
+        </activity>
+        <activity
+            android:name="com.yuhj.ontheway.activity.CourseDetailImageActivity"
             android:label="@string/title_activity_zhuanti_detail_image" >
         </activity>
         <activity

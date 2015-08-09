@@ -173,6 +173,20 @@ public class TimeCourseController {
     }
 
     @RequestMapping
+    public ModelAndView appshow(@RequestParam("id") Long id) {
+        ModelAndView view = new ModelAndView();
+        TimeCourse u = courseDao.findById(id);
+        if (u == null) {
+            view.setViewName("error");
+            Exception e = new Exception(String.format("课程ID %d 没找到！", id));
+            view.addObject("exception", e);
+            return view;
+        }
+        view.addObject("course", u);
+        return view;
+    }
+
+    @RequestMapping
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
     @ResponseBody
     @Barrier()

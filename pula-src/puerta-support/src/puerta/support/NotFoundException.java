@@ -11,4 +11,11 @@ public class NotFoundException extends BasementException {
 	 */
 	private static final long serialVersionUID = -4227667638984698730L;
 
+	public NotFoundException() {
+    }
+	
+	
+	public NotFoundException(String msg) {
+	    super(msg);
+    }
 }

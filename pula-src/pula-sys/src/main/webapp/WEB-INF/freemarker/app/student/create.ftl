@@ -86,9 +86,6 @@ cursor:pointer;
 	</td>
 	</tr>
    <tr>
-   		<td>编号 <font color=red>*</font> </td>
-		<td ><input type="text" value="${no?if_exists}" name="student.no" id="student.no" maxlength="10" size="12" class="number"/></td>
-		
 	<td>生日</td>
 		<td ><input type="text" value="${birthday?if_exists}" name="student.birthdayText" id="student.birthdayText" maxlength="10" size="12" class="dateField"/></td>
 		
@@ -313,7 +310,6 @@ var lang = {
 		$('student.parentName').value = "${student.parentName!?js_string}";
 		$('student.parentCaption').value = "${student.parentCaption!?js_string}";
 		$('student.phone').value = "${student.phone!?js_string}";
-		$('student.no').value = "${student.no!?js_string}";
 		$('student.mobile').value = "${student.mobile!?js_string}";
 		$('student.address').value = "${student.address!?js_string}";
 		$('student.zip').value = "${student.zip!?js_string}";

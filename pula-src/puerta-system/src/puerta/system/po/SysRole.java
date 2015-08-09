@@ -7,8 +7,6 @@ package puerta.system.po;
 
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonProperty;
-
 /**
  * 角色 用於關聯權限等
  * 
@@ -16,15 +14,11 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * 
  */
 public class SysRole {
-    @JsonProperty
+
 	private String id;
-    @JsonProperty
 	private String no;
-    @JsonProperty
 	private boolean removed;
-    @JsonProperty
 	private String name;
-    @JsonProperty
 	private AppField appField;
 	private List<Purview> purviews; // 非po属性
 

@@ -15,10 +15,13 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.fragment.ZhuaiTiFragment;
 import com.yuhj.ontheway.fragment.HuodongFragment;
 import com.yuhj.ontheway.fragment.JingXuanFragment;
 import com.yuhj.ontheway.fragment.LoginFragment;
-import com.yuhj.ontheway.fragment.ZhuanTiFragment;
+/*
+*import com.zdp.aseo.content.AseoZdpAseo;
+*/
 /*
 *import com.zdp.aseo.content.AseoZdpAseo;
 */
@@ -40,7 +43,7 @@ public class MainActivity extends FragmentActivity implements
 //	private Animation loadAnimation;
 	private JingXuanFragment jingXuanFragment;
 	private HuodongFragment huodongFragment;
-	private ZhuanTiFragment zhuanTiFragment;
+	private ZhuaiTiFragment zhuanTiFragment;
 	private LoginFragment loginFragment;
 	private ArrayList<Fragment> fragments;
 	private RadioGroup group;
@@ -78,13 +81,12 @@ public class MainActivity extends FragmentActivity implements
 			transaction.commit();
 			title.setText("预约");
 		}
-		
 	
 	}
 
 	private void initViews() {
 		jingXuanFragment = new JingXuanFragment();
-		zhuanTiFragment = new ZhuanTiFragment();
+		zhuanTiFragment = new ZhuaiTiFragment();
 		huodongFragment = new HuodongFragment();
 		loginFragment=new LoginFragment();
 		title = (TextView) findViewById(R.id.main_title);
