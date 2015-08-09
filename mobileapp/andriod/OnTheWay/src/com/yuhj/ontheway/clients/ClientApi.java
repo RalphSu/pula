@@ -19,6 +19,7 @@ import com.yuhj.ontheway.bean.HuoDongData;
 import com.yuhj.ontheway.bean.JingXuanData;
 import com.yuhj.ontheway.bean.JingxuanDetailData;
 import com.yuhj.ontheway.bean.UserInfo;
+import com.yuhj.ontheway.bean.UserInfoData;
 import com.yuhj.ontheway.bean.ZhuanTiData;
 
 /**
@@ -396,5 +397,49 @@ public class ClientApi {
 			}
 		}
 		return !result;
+	}
+
+	public static UserInfoData getUserInfoData(String username, String password) {
+		String getInfoUrl = "http://121.40.151.183:8080/pula-sys/app/studentinterface/info?loginId="
+				+ username + "&password=" + password;
+
+		UserInfoData userInfo = new UserInfoData();
+		Boolean result = false;
+		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		JSONObject json = ParseJson(getInfoUrl, "utf-8");
+		if (json == null) {
+			System.out.println("json==null");
+			return null;
+		} else {
+			try {
+				System.out.println("json!=null");
+				result = json.getBoolean("error");
+				if (result == false) {
+					System.out.println("result != null");
+					JSONObject data = json.getJSONObject("data");
+
+					userInfo.setName(data.getString("name"));
+					userInfo.setAddress(data.optString("address"));
+					userInfo.setId(data.getInt("id"));
+					userInfo.setEnabled(data.getBoolean("enabled"));
+					userInfo.setNo(data.getString("no"));
+					userInfo.setParentName(data.optString("parentName"));
+					userInfo.setParentCaption(data.optString("parentCaption"));
+					userInfo.setGender(data.getInt("gender"));
+					userInfo.setPoints(data.getInt("points"));
+					userInfo.setMobile(data.optString("mobile"));
+					userInfo.setBirthday(data.optInt("brithday"));
+					userInfo.setPhone(data.optInt("phone"));
+					userInfo.setZip(data.optInt("zip"));
+
+				}
+				System.out.println("!!!!!!!!!!!!!!!!!");
+			}
+
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return userInfo;
 	}
 }

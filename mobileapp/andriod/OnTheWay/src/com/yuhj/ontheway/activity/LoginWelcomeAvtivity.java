@@ -67,7 +67,7 @@ public class LoginWelcomeAvtivity extends Activity {
 						
 			
 							if(position==0){
-								Intent intent_coupon=new Intent(LoginWelcomeAvtivity.this,MainActivity.class);
+								Intent intent_coupon=new Intent(LoginWelcomeAvtivity.this,UserInfoActivity.class);
 								startActivity(intent_coupon);
 							}else if(position==1){
 								Intent intent_coupon=new Intent(LoginWelcomeAvtivity.this,MainActivity.class);

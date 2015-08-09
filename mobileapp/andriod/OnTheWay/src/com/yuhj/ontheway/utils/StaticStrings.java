@@ -3,7 +3,7 @@ package com.yuhj.ontheway.utils;
 import com.yuhj.ontheway.R;
 
 public class StaticStrings {
-	public static String[] tx_name=new String[]{"基本信息","课程进度","积分管理","其他"};
+	public static String[] tx_name=new String[]{"基本信息","课程进度","我的预约","积分管理"};
 	public static Integer[] img=new Integer[]{R.drawable.ump_base_icon_goods_lable,R.drawable.ump_base_icon_goods_lable,
 				R.drawable.ump_base_icon_goods_lable,R.drawable.ump_base_icon_goods_lable};
 	public static Integer img2=R.drawable.ic_action_favorite_off_normal;
