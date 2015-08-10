@@ -2,26 +2,15 @@ package com.yuhj.ontheway.activity;
 
 import java.util.ArrayList;
 
-import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.R.id;
-import com.yuhj.ontheway.R.layout;
-import com.yuhj.ontheway.adapter.JingXuanDetailsAdapter;
-import com.yuhj.ontheway.bean.JingXuanData;
-import com.yuhj.ontheway.bean.JingxuanDetailData;
-import com.yuhj.ontheway.clients.ClientApi;
-import com.yuhj.ontheway.utils.ImageCache;
-import com.yuhj.ontheway.utils.LoadingAinm;
+import android.content.Intent;
+import android.graphics.Bitmap;
 /*
 *import com.zdp.aseo.content.AseoZdpAseo;
 */
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -32,6 +21,14 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.adapter.JingXuanDetailsAdapter;
+import com.yuhj.ontheway.bean.JingXuanData;
+import com.yuhj.ontheway.bean.JingxuanDetailData;
+import com.yuhj.ontheway.clients.ClientApi;
+import com.yuhj.ontheway.utils.ImageCache;
+import com.yuhj.ontheway.utils.LoadingAinm;
 
 /**
  * @name JingXuanDetailsActivity

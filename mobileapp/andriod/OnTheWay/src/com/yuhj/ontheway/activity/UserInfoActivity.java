@@ -1,17 +1,5 @@
 package com.yuhj.ontheway.activity;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.bean.UserInfoData;
-import com.yuhj.ontheway.clients.ClientApi;
-import com.yuhj.ontheway.fragment.LoginFragment;
-import com.yuhj.ontheway.utils.StaticStrings;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +9,11 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.bean.UserInfoData;
+import com.yuhj.ontheway.clients.ClientApi;
+import com.yuhj.ontheway.utils.StaticStrings;
 
 public class UserInfoActivity extends Activity {
 	private SharedPreferences preference;

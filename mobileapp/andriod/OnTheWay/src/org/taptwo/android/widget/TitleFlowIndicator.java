@@ -18,7 +18,6 @@ package org.taptwo.android.widget;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;

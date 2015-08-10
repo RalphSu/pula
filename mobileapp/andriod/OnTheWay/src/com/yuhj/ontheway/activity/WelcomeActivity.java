@@ -1,9 +1,5 @@
 package com.yuhj.ontheway.activity;
 
-import com.yuhj.ontheway.R;
-//import com.zdp.aseo.content.AseoZdpAseo;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -12,6 +8,9 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+
+import com.yuhj.ontheway.R;
+//import com.zdp.aseo.content.AseoZdpAseo;
 
 /**
  * @author yangyu

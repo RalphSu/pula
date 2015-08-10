@@ -1,7 +1,5 @@
 package com.yuhj.ontheway.activity;
 
-import com.yuhj.ontheway.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +8,8 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ProgressBar;
+
+import com.yuhj.ontheway.R;
 
 public class LogoActivity extends Activity {
 	private ProgressBar progressBar;

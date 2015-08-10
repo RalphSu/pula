@@ -1,6 +1,8 @@
 
 
 package com.etsy.android.grid;
+import java.util.Arrays;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Parcel;
@@ -10,8 +12,6 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.Arrays;
 
 import com.yuhj.ontheway.R;
 

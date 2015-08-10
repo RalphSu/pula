@@ -2,10 +2,10 @@ package com.yuhj.ontheway.widget;
 
 
 
-import com.yuhj.ontheway.widget.PullToRefreshLayout.OnRefreshListener;
-
 import android.os.Handler;
 import android.os.Message;
+
+import com.yuhj.ontheway.widget.PullToRefreshLayout.OnRefreshListener;
 
 
 public class ListViewRefreshListener implements OnRefreshListener

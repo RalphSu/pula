@@ -1,7 +1,6 @@
 package com.yuhj.ontheway.bean;
 
 import java.io.Serializable;
-import java.security.PublicKey;
 
 
 public class JingXuanData implements Serializable{

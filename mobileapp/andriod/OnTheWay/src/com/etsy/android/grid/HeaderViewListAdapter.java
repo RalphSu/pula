@@ -16,6 +16,8 @@
 
 package com.etsy.android.grid;
 
+import java.util.ArrayList;
+
 import android.database.DataSetObserver;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +26,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ListAdapter;
 import android.widget.WrapperListAdapter;
-
-import java.util.ArrayList;
 
 /**
  * ListAdapter used when a ListView has header views. This ListAdapter
