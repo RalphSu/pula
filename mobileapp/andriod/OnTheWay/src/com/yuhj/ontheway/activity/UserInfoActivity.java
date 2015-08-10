@@ -9,20 +9,44 @@ import org.json.JSONObject;
 import com.yuhj.ontheway.R;
 import com.yuhj.ontheway.bean.UserInfoData;
 import com.yuhj.ontheway.clients.ClientApi;
+import com.yuhj.ontheway.fragment.LoginFragment;
+import com.yuhj.ontheway.utils.StaticStrings;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class UserInfoActivity extends Activity {
+	private SharedPreferences preference;
+	private String userName;
+	private String passWord;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_info);
+		
+		preference=getSharedPreferences(StaticStrings.PREFS_SETTINGS, MODE_PRIVATE);
+		userName=preference.getString("USER_NAME", "");
+		passWord=preference.getString("PASSWORD", "");
+
+		Log.i("preference=",""+ userName);
+
+		Log.i("preference=",""+ passWord);
+		
+		if((userName == null )||(passWord == null))
+		{
+			Toast.makeText(UserInfoActivity.this,"请重新登录", Toast.LENGTH_LONG).show();
+			Intent main =new Intent(UserInfoActivity.this,MainActivity.class);
+			startActivity(main);
+		}
+		
 		new Thread(runnable).start();
 	}
 
@@ -52,7 +76,9 @@ public class UserInfoActivity extends Activity {
 		public void run() {
 
 			UserInfoData userInfo = new UserInfoData();
-			userInfo = ClientApi.getUserInfoData("JQ000011", "student");
+			
+
+			userInfo = ClientApi.getUserInfoData(userName, passWord);
 			Message msg = new Message();
 			Bundle data = new Bundle();
 

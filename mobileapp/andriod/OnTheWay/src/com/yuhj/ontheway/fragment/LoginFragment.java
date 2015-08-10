@@ -175,23 +175,7 @@ public class LoginFragment extends Fragment {
 
 	            super.onPostExecute(result);
 	            if (result == true) {
-	            /*	
-	                adapter.BindData(result);
-	                listView.setAdapter(adapter);
-	                adapter.notifyDataSetChanged();
-	                loadRelativeLayout.setVisibility(View.GONE);
-	                dataLinearLayout.setVisibility(View.VISIBLE);
-	                listView.setOnItemClickListener(new OnItemClickListener() {
-
-	                    @Override
-	                    public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-	                        Intent intent = new Intent(getActivity(), HuodongDetailActivity.class);
-	                        intent.putExtra("id", result.get(position).getId());
-	                        intent.putExtra("name", result.get(position).getName());
-	                        startActivity(intent);
-	                    }
-	                });
-	             */
+	    
 	            	//Toast.makeText(LoginFragment.this.getActivity(),"登录成功", Toast.LENGTH_SHORT).show();
 					//登录成功和记住密码框为选中状态才保存用户信息
 					if(rem_pw.isChecked())
@@ -206,8 +190,7 @@ public class LoginFragment extends Fragment {
 					}
 					
 					Intent intent = new Intent(LoginFragment.this.getActivity(),LoginWelcomeAvtivity.class);
-		       		  //Intent intent = new Intent();
-		       		  //intent.setActivity(LoginFragment.this.getActivity(),LogoActivity.class);
+
 					startActivity(intent);
 					
 	            } else {
