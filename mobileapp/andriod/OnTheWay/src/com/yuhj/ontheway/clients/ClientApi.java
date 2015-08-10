@@ -336,14 +336,14 @@ public class ClientApi {
 
 		UserInfoData userInfo = new UserInfoData();
 		Boolean result = false;
-		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		
 		JSONObject json = ParseJson(getInfoUrl, "utf-8");
 		if (json == null) {
-			System.out.println("json==null");
+	
 			return null;
 		} else {
 			try {
-				System.out.println("json!=null");
+			
 				result = json.getBoolean("error");
 				if (result == false) {
 					System.out.println("result != null");
@@ -363,8 +363,8 @@ public class ClientApi {
 					userInfo.setPhone(data.optInt("phone"));
 					userInfo.setZip(data.optInt("zip"));
 
-}
-				System.out.println("!!!!!!!!!!!!!!!!!");
+				}
+				
 			}
 
 			catch (Exception e) {
