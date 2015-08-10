@@ -30,7 +30,7 @@ import com.yuhj.ontheway.utils.LoadingAinm;
  * @date 2014-10-24
  * @version 1.0
  */
-public class ZhuaiTiFragment extends Fragment {
+public class CourseFragment extends Fragment {
     private ListView image_listview;
     private CourseAdapter image_adaAdapter;
     private RelativeLayout loadRelativeLayout;

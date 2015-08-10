@@ -2,24 +2,22 @@ package com.yuhj.ontheway.adapter;
 
 import java.util.ArrayList;
 
-import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.bean.JingXuanData;
-import com.yuhj.ontheway.bean.UserInfo;
-import com.yuhj.ontheway.utils.ImageCache;
-
-import de.hdodenhof.circleimageview.CircleImageView;
-import android.R.string;
 import android.content.Context;
-import android.content.pm.LabeledIntent;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
-import android.text.StaticLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.bean.JingXuanData;
+import com.yuhj.ontheway.bean.UserInfo;
+import com.yuhj.ontheway.utils.ImageCache;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class JingXuanAdapter extends BaseAdapter {
 	private Context context;

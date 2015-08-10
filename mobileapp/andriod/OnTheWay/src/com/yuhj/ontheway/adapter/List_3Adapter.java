@@ -3,9 +3,6 @@ package com.yuhj.ontheway.adapter;
 import java.util.HashMap;
 import java.util.List;
 
-import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.utils.StaticStrings;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.utils.StaticStrings;
 
 public class List_3Adapter extends BaseAdapter{
 	private List<HashMap<String,Object>> list;
@@ -43,7 +43,7 @@ public class List_3Adapter extends BaseAdapter{
 		ViewHolder holder;
 		if(convertView==null){
 			holder=new ViewHolder();
-			convertView=inflater.inflate(R.layout.list_3, null);
+			convertView=inflater.inflate(R.layout.list_user_page, null);
 			holder.img_1=(ImageView) convertView.findViewById(R.id.img_1);
 			holder.img_2=(ImageView) convertView.findViewById(R.id.img_2);
 			holder.tx_name=(TextView) convertView.findViewById(R.id.tx_name);
