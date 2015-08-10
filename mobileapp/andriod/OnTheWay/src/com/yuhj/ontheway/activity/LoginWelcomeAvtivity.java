@@ -4,11 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
-import com.yuhj.ontheway.utils.StaticStrings;
-import com.yuhj.ontheway.adapter.List_3Adapter;
-import com.yuhj.ontheway.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,11 +11,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+
+import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.adapter.List_3Adapter;
+import com.yuhj.ontheway.utils.StaticStrings;
 
 public class LoginWelcomeAvtivity extends Activity {
 	private ListView list_3;
@@ -31,7 +26,6 @@ public class LoginWelcomeAvtivity extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.frame_third);
 		list_3=(ListView) findViewById(R.id.list_3);
@@ -59,30 +53,25 @@ public class LoginWelcomeAvtivity extends Activity {
 		Log.i("preference=",""+ pwd);
 		
 		//list的點擊事件
-				list_3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        list_3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						
-			
-							if(position==0){
-								Intent intent_coupon=new Intent(LoginWelcomeAvtivity.this,UserInfoActivity.class);
-								startActivity(intent_coupon);
-							}else if(position==1){
-								Intent intent_coupon=new Intent(LoginWelcomeAvtivity.this,MainActivity.class);
-								startActivity(intent_coupon);
-							}else if(position==2){
-								Intent intent_mycollect=new Intent(LoginWelcomeAvtivity.this,MainActivity.class);
-								startActivity(intent_mycollect);
-							}else if(position==3){
-								Intent intent_mycollect=new Intent(LoginWelcomeAvtivity.this,MainActivity.class);
-								startActivity(intent_mycollect);
-							}
-						}
-						
-					
-				});
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    Intent intent_coupon = new Intent(LoginWelcomeAvtivity.this, UserInfoActivity.class);
+                    startActivity(intent_coupon);
+                } else if (position == 1) {
+                    Intent intent_coupon = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);
+                    startActivity(intent_coupon);
+                } else if (position == 2) {
+                    Intent intent_mycollect = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);
+                    startActivity(intent_mycollect);
+                } else if (position == 3) {
+                    Intent intent_mycollect = new Intent(LoginWelcomeAvtivity.this, MainActivity.class);
+                    startActivity(intent_mycollect);
+                }
+            }
+        });
 		
 	}
 

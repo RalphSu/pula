@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="200dp"
+  xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
-        android:id="@+id/zhuanti_main_image"
+        android:id="@+id/course_imageView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="75dp"
         android:scaleType="fitXY"
-        android:src="@drawable/aaa" />
+        tools:ignore="ContentDescription"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/course_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/course_imageView"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="日客则地区->加德满都"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+        
+    <TextView
+        android:id="@+id/course_branchName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/course_imageView"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="zhengda"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+    
+    <TextView
+        android:id="@+id/course_classroomname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/course_branchName"
+        android:layout_marginLeft="5dp"
+        android:layout_alignBottom="@+id/course_imageView"
+        android:layout_marginBottom="5dp"
+        android:textSize="15sp"
+        android:text="classroomname"
+        android:textColor="#ffffff"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+</RelativeLayout>

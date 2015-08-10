@@ -1,33 +1,33 @@
 package puerta.system.po;
 
 import org.apache.commons.lang.StringUtils;
-import org.codehaus.jackson.annotate.JsonProperty;
 
 public class Purview {
-    @JsonProperty
+
 	private Module module;
-    @JsonProperty
+
 	private String id;
-    @JsonProperty
+
 	private String name;
-    @JsonProperty
+
 	private boolean menuItem = false;
-    @JsonProperty
+
 	private boolean visible = true, removed = false;
-    @JsonProperty
+
 	private String no;
+
 	private Purview parentPurview;
-    @JsonProperty
+
 	private int indexNo;
-    @JsonProperty
+
 	private int level;
-    @JsonProperty
+
 	private String treePath;
-    @JsonProperty
+
 	private String defaultURL;
-    @JsonProperty
+
 	private boolean leaf;
-    @JsonProperty
+
 	private AppField appField;
 
 	public AppField getAppField() {

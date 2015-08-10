@@ -15,12 +15,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.yuhj.ontheway.bean.CourseData;
 import com.yuhj.ontheway.bean.HuoDongData;
 import com.yuhj.ontheway.bean.JingXuanData;
 import com.yuhj.ontheway.bean.JingxuanDetailData;
 import com.yuhj.ontheway.bean.UserInfo;
 import com.yuhj.ontheway.bean.UserInfoData;
-import com.yuhj.ontheway.bean.ZhuanTiData;
 
 /**
  * @name ClientApi
@@ -40,7 +40,7 @@ public class ClientApi {
 	}
 
 	@SuppressWarnings("deprecation")
-	public static JSONObject ParseJson(final String path, final String encode) {
+    public static JSONObject ParseJson(final String path, final String encode) {
 		// TODO Auto-generated method stub
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpParams httpParams = httpClient.getParams();
@@ -95,9 +95,9 @@ public class ClientApi {
 			try {
 
 				JSONArray Data = json.getJSONObject("obj").getJSONArray("list");
-
+				
 				for (int i = 0; i < Data.length(); i++) {
-					System.out.println("------->" + i);
+					System.out.println("------->"+i);
 					JSONObject data = Data.getJSONObject(i);
 					JingXuanData jingXuanData = new JingXuanData();
 					jingXuanData.setId(data.optString("id"));
@@ -155,7 +155,7 @@ public class ClientApi {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("------->" + list.size());
+			System.out.println("------->"+list.size());
 			return list;
 
 		}
@@ -179,7 +179,7 @@ public class ClientApi {
 		String jingXuanDetailUrl = "http://app.117go.com/demo27/php/formAction.php?submit=getATour2&tourid="
 				+ tourId
 				+ "&recType=1&refer=PlazaHome&ID2=1&token=3a79c4024f682aee74723a419f6605f9&v=a5.0.4&vc=anzhi&vd=f2e4ee47505f6fba";
-		System.out.println("------>" + jingXuanDetailUrl);
+		System.out.println("------>"+jingXuanDetailUrl);
 		JSONObject json = ParseJson(jingXuanDetailUrl, "utf-8");
 		if (json == null) {
 			return null;
@@ -210,140 +210,71 @@ public class ClientApi {
 		}
 
 	}
-
+	
 	/**
 	 * 瑙ｆ瀽瀹炰綋鐨凧son鏁版嵁
 	 * 
 	 * @param tourId
 	 * @return
 	 */
-	public static ArrayList<ArrayList<ZhuanTiData>> getzhuantiDatas() {
-		ArrayList<ArrayList<ZhuanTiData>> list_all = new ArrayList<ArrayList<ZhuanTiData>>();
-		String jingXuanDetailUrl = "http://app.117go.com/demo27/php/gloryAction.php?submit=getGlory&vc=wandoujia&vd=80f117eb4244b778&v=a5.0.6";
-		JSONObject json = ParseJson(jingXuanDetailUrl, "utf-8");
-		if (json == null) {
-			return null;
-		} else {
-
-			try {
-				JSONArray Data = json.getJSONObject("obj").getJSONArray(
-						"trip_list");
-
-				ArrayList<ZhuanTiData> list1 = new ArrayList<ZhuanTiData>();
-				System.out.println(">>>>>>>>>>" + Data);
+    public static ArrayList<CourseData> getCourseDatas() {
+		String courseDetailUrl = "http://121.40.151.183:8080/pula-sys/app/timecourse/list";
+		JSONObject json = ParseJson(courseDetailUrl, "utf-8");
+		ArrayList<CourseData> result = new ArrayList<CourseData>();
+        if (json == null) {
+            return null;
+        } else {
+            try {
+				JSONArray Data = json.getJSONArray("records");
+				
 				for (int i = 0; i < Data.length(); i++) {
-					ZhuanTiData zhuanTiData = new ZhuanTiData();
-					JSONObject data = Data.getJSONObject(i);
-					zhuanTiData.setId(data.getString("id"));
-					zhuanTiData.setName(data.getString("name"));
-					zhuanTiData.setIamge("http://img.117go.com/timg/p616/"
-							+ data.getString("coverpic"));
-					list1.add(zhuanTiData);
-					System.out.println(">>>>>>>>>>" + zhuanTiData.getIamge());
-
+				    JSONObject data = Data.getJSONObject(i);
+                    CourseData courseData = convertToCourse(data);
+					result.add(courseData);
 				}
-
-				JSONArray Data2 = json.getJSONObject("obj").getJSONArray(
-						"pic_list");
-				ArrayList<ZhuanTiData> list2 = new ArrayList<ZhuanTiData>();
-				for (int i = 0; i < Data2.length(); i++) {
-					ZhuanTiData zhuanTiData = new ZhuanTiData();
-					JSONObject data = Data2.getJSONObject(i);
-					zhuanTiData.setId(data.getString("id"));
-					zhuanTiData.setName(data.getString("name"));
-					zhuanTiData.setIamge("http://img.117go.com/timg/p616/"
-							+ data.getString("coverpic"));
-					list2.add(zhuanTiData);
-				}
-
-				list_all.add(list1);
-				list_all.add(list2);
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return list_all;
+			return result;
 		}
-
 	}
 
-	public static ArrayList<JingXuanData> getTourZhuanti(String searchId) {
-		ArrayList<JingXuanData> list = new ArrayList<JingXuanData>();
-		String Url = "http://app.117go.com/demo27/php/searchAction.php?submit=getSearchTours&searchid="
-				+ searchId
-				+ "&startId=0&length=20&fetchNewer=1&vc=wandoujia&vd=80f117eb4244b778&v=a5.0.6";
-		JSONObject json = ParseJson(Url, "utf-8");
-		if (json == null) {
-			return null;
-		} else {
-			try {
-
-				JSONArray Data = json.getJSONObject("obj")
-						.getJSONArray("items");
-
-				for (int i = 0; i < Data.length(); i++) {
-					System.out.println("------->" + i);
-					JSONObject data = Data.getJSONObject(i);
-					JingXuanData jingXuanData = new JingXuanData();
-					jingXuanData.setId(data.optString("id"));
-					JSONObject element = data.getJSONObject("tour");
-					jingXuanData.setTitle(element.optString("title"));
-					jingXuanData.setPubdate(element.optString("startdate"));
-					jingXuanData.setPictureCount(element.optString("cntP"));
-					jingXuanData.setImage(element.optString("coverpic"));
-					jingXuanData.setViewCount(element.optString("pcolor"));
-					jingXuanData.setFavoriteCount(element.getString("likeCnt"));
-					jingXuanData.setViewCount(element.optString("viewCnt"));
-					jingXuanData.setForeword(element.optString("foreword"));
-					UserInfo userInfo = new UserInfo();
-					JSONObject owner = element.optJSONObject("owner");
-					userInfo.setUsername(owner.optString("username"));
-					userInfo.setNickname(owner.optString("nickname"));
-					userInfo.setUserId(owner.optString("userid"));
-					userInfo.setAvatar(owner.getString("avatar"));
-					jingXuanData.setUserInfo(userInfo);
-					JSONArray dispcitys = element.getJSONArray("dispCities");
-					String[] citys = new String[dispcitys.length()];
-					for (int j = 0; j < dispcitys.length(); j++) {
-
-						citys[j] = dispcitys.optString(j);
-					}
-					jingXuanData.setDispCities(citys);
-					jingXuanData.setCmtCount(element.getString("cntcmt"));
-					// System.out.println("----->"+jingXuanData.getDispCities().length);
-					/*
-					 * JSONArray cmt = element.optJSONArray("cmt"); Comment[]
-					 * comments = new Comment[cmt.length()]; if (cmt!=null) {
-					 * 
-					 * for (int j = 0; j < cmt.length(); j++) { JSONObject
-					 * cmtdata = cmt.getJSONObject(i); Comment comment = new
-					 * Comment(); UserInfo uInfo = new UserInfo(); JSONObject
-					 * user = cmtdata.getJSONObject("user");
-					 * uInfo.setAvatar(user.optString("avatar"));
-					 * uInfo.setNickname(user.optString("username"));
-					 * uInfo.setNickname(user.optString("nickname"));
-					 * comment.setUserInfo(uInfo);
-					 * comment.setContent(cmtdata.optString("words"));
-					 * comment.setLike(cmtdata.optBoolean("isLiked"));
-					 * comments[j] = comment; } }
-					 * jingXuanData.setComments(comments);
-					 */
-					jingXuanData.setTourId(element.optString("id"));
-					list.add(jingXuanData);
-					if (i == Data.length() - 1) {
-						startId = jingXuanData.getId();
-					}
-
-				}
-
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("------->" + list.size());
-			return list;
-
-		}
+    private static CourseData convertToCourse(JSONObject data) throws JSONException {
+        CourseData courseData = new CourseData();
+        courseData.setId(data.getString("id"));
+        courseData.setNo(data.getString("no"));
+        courseData.setName(data.getString("name"));
+        courseData.setBranchName(data.getString("branchName"));
+        courseData.setClassRoomName(data.getString("classRoomName"));
+        courseData.setDurationMinute(data.getInt("durationMinute"));
+        courseData.setEndTime(data.getString("endTime"));
+        courseData.setStartTime(data.getString("startTime"));
+        courseData.setMaxStudentNum(data.getInt("maxStudentNum"));
+        courseData.setPrice(data.getInt("price"));
+        courseData.setStartHour(data.getInt("startHour"));
+        courseData.setStartMinute(data.getInt("startMinute"));
+        // TODO : use correct data
+        courseData.setImage("http://121.40.151.183:8080/pula-sys/app/image/icon?fp=" + "logo.png" /* data.getString("imgPath") */ 
+                + "&sub=notice");
+        return courseData;
+    }
+	
+    public static ArrayList<CourseData> getCouseDetailData(String searchId) {
+        ArrayList<CourseData> list = new ArrayList<CourseData>();
+        String Url = "http://121.40.151.183:8080/pula-sys/app/timecourse/get?id=" + searchId;
+        JSONObject json = ParseJson(Url, "utf-8");
+        if (json == null) {
+            return null;
+        } else {
+            try {
+                JSONObject data = json.getJSONObject("data");
+                CourseData courseData = convertToCourse(data);
+                list.add(courseData);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return list;
+        }
     }
 
     public static ArrayList<HuoDongData> getHuoDongList() {
@@ -394,7 +325,7 @@ public class ClientApi {
 			  	
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+}
 		}
 		return !result;
 	}
@@ -405,14 +336,14 @@ public class ClientApi {
 
 		UserInfoData userInfo = new UserInfoData();
 		Boolean result = false;
-		
+		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 		JSONObject json = ParseJson(getInfoUrl, "utf-8");
 		if (json == null) {
-	
+			System.out.println("json==null");
 			return null;
 		} else {
 			try {
-			
+				System.out.println("json!=null");
 				result = json.getBoolean("error");
 				if (result == false) {
 					System.out.println("result != null");
@@ -432,8 +363,8 @@ public class ClientApi {
 					userInfo.setPhone(data.optInt("phone"));
 					userInfo.setZip(data.optInt("zip"));
 
-				}
-				
+}
+				System.out.println("!!!!!!!!!!!!!!!!!");
 			}
 
 			catch (Exception e) {

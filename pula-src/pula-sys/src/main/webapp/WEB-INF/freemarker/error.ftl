@@ -5,8 +5,7 @@
     <td colspan="2"><FONT COLOR="#FF0000">错误</FONT></td>
   </tr>
   <tr> 
-    <td colspan="2"><IMG SRC="${base}/static/laputa/images/icons/warning.gif" WIDTH="16" HEIGHT="16" BORDER="0" ALT="" align="absbottom">
-    ${exception.message?if_exists}</td>
+    <td colspan="2"><IMG SRC="${base}/static/laputa/images/icons/warning.gif" WIDTH="16" HEIGHT="16" BORDER="0" ALT="" align="absbottom">${exception.message?if_exists}</td>
   </tr>
   <tr> 
    
