@@ -36,7 +36,7 @@ import com.yuhj.ontheway.widget.PullToRefreshLayout.OnRefreshListener;
  * @date 2014-10-23
  * @version 1.0
  */
-public class JingXuanFragment extends Fragment implements OnRefreshListener {
+public class BookingFragment extends Fragment implements OnRefreshListener {
 	private ListView listView;
 	private JingXuanAdapter adapter;
 	private PullToRefreshLayout pullToLoadManager;

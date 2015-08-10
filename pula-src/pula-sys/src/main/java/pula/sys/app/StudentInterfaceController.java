@@ -161,6 +161,27 @@ public class StudentInterfaceController {
 		return JsonResult.s(MapBean.map("data", courses).add("hits", hits));
 
 	}
+	
+	   @ResponseBody
+	    @RequestMapping
+	    @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
+	    public JsonResult timeCourses(@RequestParam("type") int type,
+	            @RequestParam("actorId") Long actorId,
+	            @RequestParam("ip") String ip, @RequestParam("md5") String md5) {
+
+	        MD5Checker.check(parameterKeeper, md5, type, actorId, ip);
+
+	        String type_no = CourseHelper.getNoFromFront(type);
+
+	        // no,id,name ,comments
+	        MapList courses = courseDao.mapList4web(type_no);
+
+	        // id ,gamePlayed,courseId
+	        MapList hits = courseTaskResultStudentDao.list4hits(actorId, type_no);
+
+	        return JsonResult.s(MapBean.map("data", courses).add("hits", hits));
+
+	    }
 
 	@ResponseBody
 	@RequestMapping
