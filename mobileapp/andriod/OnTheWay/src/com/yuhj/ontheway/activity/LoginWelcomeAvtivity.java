@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
+import com.yuhj.ontheway.utils.StaticStrings;
+import com.yuhj.ontheway.adapter.List_3Adapter;
+import com.yuhj.ontheway.R;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,11 +16,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-
-import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.adapter.List_3Adapter;
-import com.yuhj.ontheway.utils.StaticStrings;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class LoginWelcomeAvtivity extends Activity {
 	private ListView list_3;
@@ -27,7 +32,7 @@ public class LoginWelcomeAvtivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.frame_third);
+		setContentView(R.layout.frame_user_page);
 		list_3=(ListView) findViewById(R.id.list_3);
 		
 		dataList=new ArrayList<HashMap<String,Object>>();

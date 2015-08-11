@@ -43,7 +43,7 @@ public class List_3Adapter extends BaseAdapter{
 		ViewHolder holder;
 		if(convertView==null){
 			holder=new ViewHolder();
-			convertView=inflater.inflate(R.layout.list_3, null);
+			convertView=inflater.inflate(R.layout.list_user_page, null);
 			holder.img_1=(ImageView) convertView.findViewById(R.id.img_1);
 			holder.img_2=(ImageView) convertView.findViewById(R.id.img_2);
 			holder.tx_name=(TextView) convertView.findViewById(R.id.tx_name);
@@ -54,7 +54,7 @@ public class List_3Adapter extends BaseAdapter{
 		//传值
 		holder.img_1.setBackgroundResource(StaticStrings.img[position]);
 		holder.tx_name.setText(StaticStrings.tx_name[position]);
-		holder.img_2.setBackgroundResource(R.drawable.arrow_normal);
+		holder.img_2.setBackgroundResource(R.drawable.upomp_bypay_icon_jiantou);
 		return convertView;
 	}
 	public class ViewHolder{
