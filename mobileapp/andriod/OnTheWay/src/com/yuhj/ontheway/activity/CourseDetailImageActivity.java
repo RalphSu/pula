@@ -2,7 +2,6 @@ package com.yuhj.ontheway.activity;
 
 import java.util.ArrayList;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;

@@ -1,15 +1,6 @@
 package com.yuhj.ontheway.fragment;
 
 
-import java.util.ArrayList;
-
-import com.yuhj.ontheway.HuodongDetailActivity;
-import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.bean.HuoDongData;
-import com.yuhj.ontheway.clients.ClientApi;
-import com.yuhj.ontheway.activity.LoginWelcomeAvtivity;
-import com.yuhj.ontheway.activity.LogoActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,25 +10,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -45,6 +19,10 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.activity.LoginWelcomeAvtivity;
+import com.yuhj.ontheway.clients.ClientApi;
 
 public class LoginFragment extends Fragment {
     private EditText userName, password;

@@ -1,19 +1,8 @@
 package com.yuhj.ontheway.fragment;
 
 import java.util.ArrayList;
-import java.util.Collection;
-
-import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.activity.JingXuanDetailsActivity;
-import com.yuhj.ontheway.adapter.JingXuanAdapter;
-import com.yuhj.ontheway.bean.JingXuanData;
-import com.yuhj.ontheway.clients.ClientApi;
-import com.yuhj.ontheway.utils.LoadingAinm;
-import com.yuhj.ontheway.widget.PullToRefreshLayout;
-import com.yuhj.ontheway.widget.PullToRefreshLayout.OnRefreshListener;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,8 +15,16 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.activity.JingXuanDetailsActivity;
+import com.yuhj.ontheway.adapter.JingXuanAdapter;
+import com.yuhj.ontheway.bean.JingXuanData;
+import com.yuhj.ontheway.clients.ClientApi;
+import com.yuhj.ontheway.utils.LoadingAinm;
+import com.yuhj.ontheway.widget.PullToRefreshLayout;
+import com.yuhj.ontheway.widget.PullToRefreshLayout.OnRefreshListener;
 
 /**
  * @name JingXuanFragment
@@ -39,7 +36,7 @@ import android.widget.Toast;
  * @date 2014-10-23
  * @version 1.0
  */
-public class JingXuanFragment extends Fragment implements OnRefreshListener {
+public class BookingFragment extends Fragment implements OnRefreshListener {
 	private ListView listView;
 	private JingXuanAdapter adapter;
 	private PullToRefreshLayout pullToLoadManager;

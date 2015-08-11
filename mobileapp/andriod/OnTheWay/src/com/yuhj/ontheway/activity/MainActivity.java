@@ -15,10 +15,13 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.fragment.BookingFragment;
+import com.yuhj.ontheway.fragment.CourseFragment;
 import com.yuhj.ontheway.fragment.HuodongFragment;
-import com.yuhj.ontheway.fragment.JingXuanFragment;
 import com.yuhj.ontheway.fragment.LoginFragment;
-import com.yuhj.ontheway.fragment.ZhuanTiFragment;
+/*
+*import com.zdp.aseo.content.AseoZdpAseo;
+*/
 /*
 *import com.zdp.aseo.content.AseoZdpAseo;
 */
@@ -37,77 +40,57 @@ import com.yuhj.ontheway.fragment.ZhuanTiFragment;
 public class MainActivity extends FragmentActivity implements
 		OnCheckedChangeListener {
 	private TextView title;
-//	private Animation loadAnimation;
-	private JingXuanFragment jingXuanFragment;
+	private BookingFragment bookingFragment;
 	private HuodongFragment huodongFragment;
-	private ZhuanTiFragment zhuanTiFragment;
+	private CourseFragment courseFragment;
 	private LoginFragment loginFragment;
 	private ArrayList<Fragment> fragments;
 	private RadioGroup group;
-//	private RadioButton imageView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
-		initViews();
-		
-		/*
-		 * AseoZdpAseo.initTimer(this);
-		 */
-		
-		
-		group = (RadioGroup) findViewById(R.id.main_tab_bar);
-		group.setOnCheckedChangeListener(this);
-		fragments = new ArrayList<Fragment>();
-		fragments.add(jingXuanFragment);
-		fragments.add(zhuanTiFragment);
-		fragments.add(huodongFragment);
-		fragments.add(loginFragment);
-		if (getIntent().getIntExtra("FragmentType",0)==3) {
-			FragmentManager manager = getSupportFragmentManager();
-			FragmentTransaction transaction = manager.beginTransaction();
-			transaction.replace(R.id.main_framelayout,fragments.get(3));
-			transaction.commit();
-			title.setText("登录");
-		}else {
-			FragmentManager manager = getSupportFragmentManager();
+        initViews();
+
+        /*
+         * AseoZdpAseo.initTimer(this);
+         */
+
+        group = (RadioGroup) findViewById(R.id.main_tab_bar);
+        group.setOnCheckedChangeListener(this);
+        fragments = new ArrayList<Fragment>();
+        fragments.add(bookingFragment);
+        fragments.add(courseFragment);
+        fragments.add(huodongFragment);
+        fragments.add(loginFragment);
+        if (getIntent().getIntExtra("FragmentType", 0) == 3) {
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.main_framelayout, fragments.get(3));
+            transaction.commit();
+            title.setText("登录");
+        } else {
+            FragmentManager manager = getSupportFragmentManager();
 			FragmentTransaction transaction = manager.beginTransaction();
 			transaction.replace(R.id.main_framelayout, fragments.get(0));
 			transaction.commit();
 			title.setText("预约");
-		}
-		
-	
-	}
+        }
 
-	private void initViews() {
-		jingXuanFragment = new JingXuanFragment();
-		zhuanTiFragment = new ZhuanTiFragment();
-		huodongFragment = new HuodongFragment();
-		loginFragment=new LoginFragment();
-		title = (TextView) findViewById(R.id.main_title);
-//		imageView = (RadioButton) findViewById(R.id.main_add);
-//		//AseoZdpAseo.init(this, AseoZdpAseo.INSERT_TYPE);
-//		imageView.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View arg0) {
-//				// TODO Auto-generated method stub
-//				loadAnimation = AnimationUtils.loadAnimation(
-//						getApplicationContext(), R.anim.btn_add);
-//				imageView.startAnimation(loadAnimation);
-//				startActivity(new Intent(MainActivity.this, AddActivity.class));
-//				overridePendingTransition(android.R.anim.fade_in,
-//						android.R.anim.fade_out);
-//			}
-//		});
-	}
-	
-	@Override
-	public void onBackPressed() 
-	{
+    }
+
+    private void initViews() {
+        bookingFragment = new BookingFragment();
+        courseFragment = new CourseFragment();
+        huodongFragment = new HuodongFragment();
+        loginFragment = new LoginFragment();
+        title = (TextView) findViewById(R.id.main_title);
+    }
+
+    @Override
+    public void onBackPressed() {
 		Intent intent = new Intent(Intent.ACTION_MAIN);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.addCategory(Intent.CATEGORY_HOME);

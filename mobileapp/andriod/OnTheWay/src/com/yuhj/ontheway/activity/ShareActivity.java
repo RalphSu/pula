@@ -1,30 +1,23 @@
 package com.yuhj.ontheway.activity;
 import java.util.HashMap;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.yuhj.ontheway.R;
-
-
-
 //import com.zdp.aseo.content.AseoZdpAseo;
-
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
+
 import cn.sharesdk.renren.Renren;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qzone.QZone;
-import cn.sharesdk.tencent.qzone.QZoneWebShareAdapter;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
-import cn.sharesdk.wechat.moments.WechatMoments;
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 public class ShareActivity extends BaseActivity implements OnClickListener{
 	private ImageView Sharekaixin,Shareqq,Shareqzone,

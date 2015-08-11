@@ -21,4 +21,5 @@ public interface TimeCourseOrderDao extends BaseDao<TimeCourseOrder, Long> {
 
     TimeCourseOrder update(TimeCourseOrder cc);
 
+    
 }

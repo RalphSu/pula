@@ -18,8 +18,6 @@ package org.taptwo.android.widget;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import com.yuhj.ontheway.R;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -38,6 +36,8 @@ import android.widget.AbsListView;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Scroller;
+
+import com.yuhj.ontheway.R;
 
 /**
  * A horizontally scrollable {@link ViewGroup} with items populated from an

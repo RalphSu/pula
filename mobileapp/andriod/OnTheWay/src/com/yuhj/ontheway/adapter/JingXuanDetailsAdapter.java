@@ -2,11 +2,6 @@ package com.yuhj.ontheway.adapter;
 
 import java.util.ArrayList;
 
-import com.yuhj.ontheway.R;
-import com.yuhj.ontheway.bean.JingxuanDetailData;
-import com.yuhj.ontheway.utils.ImageCache;
-
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
@@ -16,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.yuhj.ontheway.R;
+import com.yuhj.ontheway.bean.JingxuanDetailData;
+import com.yuhj.ontheway.utils.ImageCache;
 
 /**
  * @name JingXuanDetailsAdapter
