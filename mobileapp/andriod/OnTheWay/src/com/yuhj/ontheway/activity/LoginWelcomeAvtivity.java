@@ -27,6 +27,7 @@ public class LoginWelcomeAvtivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.frame_user_page); 
 		list_3=(ListView) findViewById(R.id.list_3);
 		

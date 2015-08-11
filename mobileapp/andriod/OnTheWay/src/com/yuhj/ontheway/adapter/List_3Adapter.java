@@ -54,7 +54,7 @@ public class List_3Adapter extends BaseAdapter{
 		//传值
 		holder.img_1.setBackgroundResource(StaticStrings.img[position]);
 		holder.tx_name.setText(StaticStrings.tx_name[position]);
-		holder.img_2.setBackgroundResource(R.drawable.arrow_normal);
+		holder.img_2.setBackgroundResource(R.drawable.upomp_bypay_icon_jiantou);
 		return convertView;
 	}
 	public class ViewHolder{
