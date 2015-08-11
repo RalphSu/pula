@@ -68,6 +68,12 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
+	<groupId>org.glassfish.jersey.core</groupId>
+	<artifactId>jersey-client</artifactId>
+	<version>2.20</version>
+</dependency>
+		
+		<dependency>
 			<groupId>org.puerta</groupId>
 			<artifactId>puerta-support</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

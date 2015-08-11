@@ -5,10 +5,12 @@
   <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
   <classpathentry kind="output" path="target/classes"/>
   <classpathentry kind="var" path="M2_REPO/javax/transaction/jta/1.1/jta-1.1.jar" sourcepath="M2_REPO/javax/transaction/jta/1.1/jta-1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/javax/ws/rs/javax.ws.rs-api/2.0.1/javax.ws.rs-api-2.0.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/javax/annotation/javax.annotation-api/1.2/javax.annotation-api-1.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.4/servlet-api-2.4.jar" sourcepath="M2_REPO/javax/servlet/servlet-api/2.4/servlet-api-2.4-sources.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-  <classpathentry kind="src" path="/puerta-system"/>
-  <classpathentry kind="src" path="/puerta-support"/>
+  <classpathentry kind="var" path="M2_REPO/com/pula/puerta-system/0.0.1-SNAPSHOT/puerta-system-0.0.1-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/puerta/puerta-support/0.0.1-SNAPSHOT/puerta-support-0.0.1-SNAPSHOT.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar" sourcepath="M2_REPO/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1/commons-logging-1.1.jar" sourcepath="M2_REPO/commons-logging/commons-logging/1.1/commons-logging-1.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-codec/commons-codec/1.10/commons-codec-1.10.jar" sourcepath="M2_REPO/commons-codec/commons-codec/1.10/commons-codec-1.10-sources.jar"/>
@@ -69,5 +71,15 @@
   <classpathentry kind="var" path="M2_REPO/xalan/xalan/2.6.0/xalan-2.6.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/ibm/icu/icu4j/3.4.4/icu4j-3.4.4.jar" sourcepath="M2_REPO/com/ibm/icu/icu4j/3.4.4/icu4j-3.4.4-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/net/sourceforge/jexcelapi/jxl/2.6/jxl-2.6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/glassfish/jersey/core/jersey-client/2.20/jersey-client-2.20.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/glassfish/jersey/core/jersey-common/2.20/jersey-common-2.20.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/glassfish/jersey/bundles/repackaged/jersey-guava/2.20/jersey-guava-2.20.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/glassfish/hk2/hk2-api/2.4.0-b27/hk2-api-2.4.0-b27.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/glassfish/hk2/hk2-utils/2.4.0-b27/hk2-utils-2.4.0-b27.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/glassfish/hk2/external/aopalliance-repackaged/2.4.0-b27/aopalliance-repackaged-2.4.0-b27.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/glassfish/hk2/external/javax.inject/2.4.0-b27/javax.inject-2.4.0-b27.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/glassfish/hk2/hk2-locator/2.4.0-b27/hk2-locator-2.4.0-b27.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/glassfish/hk2/osgi-resource-locator/1.0.1/osgi-resource-locator-1.0.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/junit/junit/4.8.1/junit-4.8.1.jar" sourcepath="M2_REPO/junit/junit/4.8.1/junit-4.8.1-sources.jar"/>
 </classpath>

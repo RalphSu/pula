@@ -2,10 +2,7 @@
 <projectDescription>
   <name>pula-sys</name>
   <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects>
-    <project>puerta-system</project>
-    <project>puerta-support</project>
-  </projects>
+  <projects/>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
