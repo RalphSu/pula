@@ -1,30 +1,44 @@
 <?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC
-	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<!-- pula.sys.domains.Audition root -->
-	<class name="pula.sys.domains.Audition" table="audition">
-		<id name="id" type="long" column="id">
-			<generator class="native"/>
-		</id>
-		<many-to-one name="owner" column="owner" class="pula.sys.domains.SysUser"/>
-		<many-to-one name="branch" column="branch" class="pula.sys.domains.Branch"/>
-		<property name="closed" column="closed" type="boolean"/>
-		<property name="plan5" column="plan5" type="string" length="40"/>
-		<property name="plan4" column="plan4" type="string" length="40"/>
-		<property name="plan3" column="plan3" type="string" length="40"/>
-		<property name="plan2" column="plan2" type="string" length="40"/>
-		<property name="plan1" column="plan1" type="string" length="40"/>
-		<property name="phone" column="phone" type="string" length="40"/>
-		<property name="comments" column="comments" type="string" length="200"/>
-		<property name="createdTime" column="createdTime" type="calendar"/>
-		<property name="parent" column="parent" type="string" length="40"/>
-		<many-to-one name="result" column="result" class="pula.sys.domains.SysCategory"/>
-		<property name="age" column="age" type="string" length="10"/>
-		<property name="content" column="content" type="string" length="80"/>
-		<property name="student" column="student" type="string" length="40"/>
-		<property name="removed" column="removed" type="boolean"/>
-		<property name="updatedTime" column="updatedTime" type="calendar"/>
-	</class>
+ <!-- pula.sys.domains.Audition root -->
+ <class name="pula.sys.domains.Audition" table="audition">
+  <id column="id" name="id" type="long">
+   <generator class="native"/>
+  </id>
+  <many-to-one class="pula.sys.domains.SysUser" column="owner" name="owner"/>
+  <many-to-one class="pula.sys.domains.Branch" column="branch" name="branch"/>
+  <property column="closed" generated="never" lazy="false" name="closed" type="boolean"/>
+  <property column="plan5" generated="never" lazy="false" length="40"
+   name="plan5" type="string"/>
+  <property column="plan4" generated="never" lazy="false" length="40"
+   name="plan4" type="string"/>
+  <property column="plan3" generated="never" lazy="false" length="40"
+   name="plan3" type="string"/>
+  <property column="plan2" generated="never" lazy="false" length="40"
+   name="plan2" type="string"/>
+  <property column="plan1" generated="never" lazy="false" length="40"
+   name="plan1" type="string"/>
+  <property column="phone" generated="never" lazy="false" length="40"
+   name="phone" type="string"/>
+  <property column="comments" generated="never" lazy="false"
+   length="200" name="comments" type="string"/>
+  <property column="createdTime" generated="never" lazy="false"
+   name="createdTime" type="calendar"/>
+  <property column="parent" generated="never" lazy="false" length="40"
+   name="parent" type="string"/>
+  <many-to-one class="pula.sys.domains.SysCategory" column="result" name="result"/>
+  <property column="age" generated="never" lazy="false" length="10"
+   name="age" type="string"/>
+  <property column="content" generated="never" lazy="false" length="80"
+   name="content" type="string"/>
+  <property column="student" generated="never" lazy="false" length="40"
+   name="student" type="string"/>
+  <property column="removed" generated="never" lazy="false"
+   name="removed" type="boolean"/>
+  <property column="updatedTime" generated="never" lazy="false"
+   name="updatedTime" type="calendar"/>
+  <property column="studentNo" name="studentNo" type="string"/>
+ </class>
 </hibernate-mapping>

@@ -6,6 +6,8 @@ public class AuditionCondition {
 	private String keywords;
 	private long branchId;
 	private String salesmanNo;
+	private String studentNo;
+	private String studentName;
 	private String resultId;
 	private int closedStatus;
 	private long id;
@@ -73,5 +75,21 @@ public class AuditionCondition {
 	public void setClosedStatus(int closedStatus) {
 		this.closedStatus = closedStatus;
 	}
+
+    public String getStudentNo() {
+        return studentNo;
+    }
+
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
 
 }

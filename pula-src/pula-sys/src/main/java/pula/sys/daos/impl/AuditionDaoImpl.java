@@ -122,6 +122,14 @@ public class AuditionDaoImpl extends HibernateGenericDao<Audition, Long>
 			HibernateTool.eq(dc, "sm.no", condition.getSalesmanNo());
 		}
 
+        if (!StringUtils.isEmpty(condition.getStudentNo())) {
+            HibernateTool.eq(dc, "studentNo", condition.getStudentNo());
+        }
+
+        if (!StringUtils.isEmpty(condition.getStudentName())) {
+            HibernateTool.eq(dc, "student", condition.getStudentName());
+        }
+
 		dc.add(Restrictions.eq("removed", false));
 
 		return dc;

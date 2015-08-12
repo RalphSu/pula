@@ -9,6 +9,7 @@ public class Audition {
 
 	protected long id;
 	protected String student, age, phone, parent, content, comments;
+	protected String studentNo;// null-able
 	protected String plan1, plan2, plan3, plan4, plan5;
 	protected SysCategory result;
 	protected boolean removed, closed;
@@ -167,5 +168,13 @@ public class Audition {
 	public void setBranch(Branch branch) {
 		this.branch = branch;
 	}
+
+    public String getStudentNo() {
+        return studentNo;
+    }
+
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
+    }
 
 }
