@@ -76,3 +76,5 @@ packages/
 *.war
 *.jar
 *.rar
+
+mobileapp
