@@ -247,13 +247,14 @@ public class StudentController {
 		// 学生编号生成
 		// 从自己的位置生成
 		// 找到自己的计数器
-		int counter = 1;
-		synchronized (BhzqConstants.STUDENT_SYNC) {
-			counter = counterDao.inc(String.valueOf(branchId),
-					BhzqConstants.COUNTER_STUDENT);
-		}
+        if (StringUtils.isEmpty(cc.getNo())) {
+            int counter = 1;
+            synchronized (BhzqConstants.STUDENT_SYNC) {
+                counter = counterDao.inc(String.valueOf(branchId), BhzqConstants.COUNTER_STUDENT);
+            }
 
-		cc.setNo(StudentHelper.makeNo(branchNo, counter));
+            cc.setNo(StudentHelper.makeNo(branchNo, counter));
+        }
 		cc.setBranch(Branch.create(branchId));
 
 		Long cardId = prepareData(cli, jsonAttachment, cc);

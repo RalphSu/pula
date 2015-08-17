@@ -1,13 +1,8 @@
 package pula.sys.app;
 
-import java.io.IOException;
-
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -93,6 +88,26 @@ public class StudentInterfaceController {
         }
         Student student = studentDao.findById(id);
         return JsonResult.s(student);
+    }
+    
+    @ResponseBody
+    @RequestMapping
+    @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
+    public JsonResult timeCourses(@RequestParam("type") int type, @RequestParam("actorId") Long actorId,
+            @RequestParam("ip") String ip, @RequestParam("md5") String md5) {
+
+        MD5Checker.check(parameterKeeper, md5, type, actorId, ip);
+
+        String type_no = CourseHelper.getNoFromFront(type);
+
+        // no,id,name ,comments
+        MapList courses = courseDao.mapList4web(type_no);
+
+        // id ,gamePlayed,courseId
+        MapList hits = courseTaskResultStudentDao.list4hits(actorId, type_no);
+
+        return JsonResult.s(MapBean.map("data", courses).add("hits", hits));
+
     }
 
 	@ResponseBody
