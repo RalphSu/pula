@@ -23,6 +23,8 @@ import pula.sys.daos.CourseTaskResultWorkDao;
 import pula.sys.daos.StudentDao;
 import pula.sys.daos.StudentLogDao;
 import pula.sys.daos.StudentPointsDao;
+import pula.sys.daos.TimeCourseDao;
+import pula.sys.daos.TimeCourseOrderDao;
 import pula.sys.domains.Student;
 import pula.sys.domains.StudentPoints;
 import pula.sys.helpers.CourseHelper;
@@ -49,6 +51,11 @@ public class StudentInterfaceController {
 	CourseTaskResultStudentDao courseTaskResultStudentDao;
 	@Resource
 	StudentPointsService studentPointsService;
+
+    @Resource
+    private TimeCourseOrderDao orderDao;
+    @Resource
+    private TimeCourseDao timeCourseDao;
 
 	@Resource
 	CourseTaskResultWorkDao courseTaskResultWorkDao;
@@ -197,6 +204,7 @@ public class StudentInterfaceController {
 		return JsonResult.s(MapBean.map("data", courses).add("hits", hits));
 
 	}
+	
 
 	@ResponseBody
 	@RequestMapping

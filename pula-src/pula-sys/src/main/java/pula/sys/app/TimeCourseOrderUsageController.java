@@ -118,20 +118,6 @@ public class TimeCourseOrderUsageController {
             condition = new TimeCourseOrderUsageCondition();
         }
 
-        // setup search condition
-//        if (condition.getCourseId() == 0 && !StringUtils.isEmpty(condition.getCourseName())) {
-//            Long cid = courseDao.getIdByName(condition.getCourseName());
-//            if (cid != null) {
-//                condition.setCourseId(cid);
-//            }
-//        }
-//        if (condition.getStudentId() > 0 && !StringUtils.isEmpty(condition.getStudentName())) {
-//            Long sid = studentDao.getIdByName(condition.getStudentName());
-//            if (sid != null) {
-//                condition.setStudentId(sid);
-//            }
-//        }
-
         PaginationSupport<TimeCourseOrderUsage> results = usageDao.search(condition, pageIndex);
         return YuiResult.create(results, MAPPING);
     }

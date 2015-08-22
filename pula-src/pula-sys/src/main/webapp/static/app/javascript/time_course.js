@@ -7,36 +7,17 @@ var PPage = new Class({
 	
 		init : function(){
 			this.initBase({focusField:'course.no'});
-			this.initToolBar({add:true,remove:true,condition:false});
+			this.initToolBar({add:true,remove:true,condition:true});
 			this.initSaveForm();
-			// this.initSearchForm();
+			this.initSearchForm();
 			this.initViewTable();
 			this.initHistory();
-
 			
-			// this.showCondition();
+			this.showCondition();
 			
-
 			loadCalCss('.dateField');
 
 			var $this = this;
-
-			
-//			var obj = new TSelectLoader( {'leader':'ccategoryId','fireChangeAfterLoad':true,
-//					'uri':pageVars.base+'/app/syscategory/underById',
-//					'params':function(v){
-//						return "id="+v;
-//					}}
-//			);
-//
-//			var obj = new TSelectLoader( {'leader':'categoryId','fireChangeAfterLoad':true,
-//					'uri':pageVars.base+'/app/syscategory/underById',
-//					'params':function(v){
-//						return "id="+v;
-//					},'defaultValue' : function(){
-//						return pageVars.subCategoryId;
-//					}}
-//			);
 
 			this.reload();
 
