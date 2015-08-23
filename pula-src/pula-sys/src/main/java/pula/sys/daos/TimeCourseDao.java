@@ -3,6 +3,8 @@
  */
 package pula.sys.daos;
 
+import java.util.List;
+
 import puerta.support.PaginationSupport;
 import puerta.support.dao.BaseDao;
 import pula.sys.conditions.CourseCondition;
@@ -17,6 +19,8 @@ public interface TimeCourseDao extends BaseDao<TimeCourse, Long> {
 
     PaginationSupport<TimeCourse> search(CourseCondition condition,
             int pageIndex);
+    
+    List<TimeCourse> search(List<String> nos);
 
     TimeCourse save(TimeCourse cc);
 

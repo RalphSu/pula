@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class PaginationSupport<T> {
 
-	public final static int PAGESIZE = 40;
+	public final static int PAGESIZE = 100;
 
 	protected int pageSize = PAGESIZE;
 

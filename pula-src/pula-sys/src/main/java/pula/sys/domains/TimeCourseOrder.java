@@ -5,6 +5,8 @@ package pula.sys.domains;
 
 import java.util.Date;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
 
@@ -14,27 +16,40 @@ import puerta.support.dao.LoggablePo;
  */
 @WxlDomain("消次课订单")
 public class TimeCourseOrder implements LoggablePo {
-
+    @JsonProperty
     private Long id;
+    @JsonProperty
     private String courseNo;
+    @JsonProperty
     private String no;
+    @JsonProperty
     private String studentNo;
     /**
      * 0 - by cost 1 - by count
      */
+    @JsonProperty
     private int buyType;
+    @JsonProperty
     private int paied;
+    @JsonProperty
     private int paiedCount;
-
+    @JsonProperty
     private int remainCount;
+    @JsonProperty
     private int remainCost;
-
+    @JsonProperty
     private Date createTime;
+    @JsonProperty
     private Date updateTime;
+    @JsonProperty
     private String comments;
+    @JsonProperty
     private boolean removed;
+    @JsonProperty
     private boolean enabled;
+    @JsonProperty
     private String creator;
+    @JsonProperty
     private String updator;
 
     @Override

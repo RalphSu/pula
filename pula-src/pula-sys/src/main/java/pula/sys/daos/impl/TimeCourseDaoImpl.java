@@ -93,4 +93,12 @@ public class TimeCourseDaoImpl extends HibernateGenericDao<TimeCourse, Long> imp
         }
     }
 
+    @Override
+    public List<TimeCourse> search(List<String> nos) {
+        PaginationSupport<TimeCourse> result = new PaginationSupport<TimeCourse>();
+        DetachedCriteria dc = DetachedCriteria.forClass(this.pojoClass, "uu");
+        dc.add(Restrictions.in("no", nos));
+        return super.findByCriteria(dc);
+    }
+
 }

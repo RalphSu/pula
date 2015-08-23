@@ -2,26 +2,51 @@ package pula.sys.domains;
 
 import java.util.Calendar;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
 
 @WxlDomain("课程")
 public class Course implements LoggablePo {
 
+    @JsonProperty
 	private long id;
-	private String no, name;
+    @JsonProperty
+	private String no;
+    @JsonProperty
+    private String name;
 	// 失效时间，上线时间（publishTime）
-	private Calendar expiredTime, createdTime, publishTime, updatedTime;
-	private boolean removed, enabled;
+    @JsonProperty
+	private Calendar expiredTime;
+    @JsonProperty
+    private Calendar createdTime;
+    @JsonProperty
+    private Calendar publishTime;
+    @JsonProperty
+    private Calendar updatedTime;
+    @JsonProperty
+	private boolean removed;
+    @JsonProperty
+    private boolean enabled;
+    @JsonProperty
 	private boolean showInWeb;
-
-	private SysCategory category, subCategory; // 课程类别
+    @JsonIgnore
+	private SysCategory category;
+    @JsonIgnore
+    private SysCategory subCategory; // 课程类别
+    @JsonProperty
 	private int indexNo; // 排序序号，从小到大
-
+    @JsonProperty
 	private String comments; // 备注,显示在网页上
-	private SysUser creator, updater;
+    @JsonIgnore
+	private SysUser creator;
+    @JsonIgnore
+    private SysUser updater;
+    @JsonProperty
 	private String key; // 播放key
-
+    @JsonProperty
 	private int minutes; // 课程长度
 
 	public SysCategory getSubCategory() {

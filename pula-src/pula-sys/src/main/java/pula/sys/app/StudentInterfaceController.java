@@ -1,5 +1,10 @@
 package pula.sys.app;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
@@ -17,6 +22,8 @@ import puerta.system.vo.JsonResult;
 import puerta.system.vo.MapBean;
 import puerta.system.vo.MapList;
 import pula.sys.BhzqConstants;
+import pula.sys.conditions.TimeCourseOrderCondition;
+import pula.sys.conditions.TimeCourseOrderUsageCondition;
 import pula.sys.daos.CourseDao;
 import pula.sys.daos.CourseTaskResultStudentDao;
 import pula.sys.daos.CourseTaskResultWorkDao;
@@ -25,8 +32,13 @@ import pula.sys.daos.StudentLogDao;
 import pula.sys.daos.StudentPointsDao;
 import pula.sys.daos.TimeCourseDao;
 import pula.sys.daos.TimeCourseOrderDao;
+import pula.sys.daos.TimeCourseUsageDao;
 import pula.sys.domains.Student;
+import pula.sys.domains.StudentCourse;
 import pula.sys.domains.StudentPoints;
+import pula.sys.domains.TimeCourse;
+import pula.sys.domains.TimeCourseOrder;
+import pula.sys.domains.TimeCourseOrderUsage;
 import pula.sys.helpers.CourseHelper;
 import pula.sys.helpers.StudentPointsHelper;
 import pula.sys.miscs.MD5Checker;
@@ -53,9 +65,11 @@ public class StudentInterfaceController {
 	StudentPointsService studentPointsService;
 
     @Resource
-    private TimeCourseOrderDao orderDao;
+    private TimeCourseOrderDao timeCourseOrderDao;
     @Resource
     private TimeCourseDao timeCourseDao;
+    @Resource
+    private TimeCourseUsageDao timeCourseUsageDao; 
 
 	@Resource
 	CourseTaskResultWorkDao courseTaskResultWorkDao;
@@ -116,6 +130,110 @@ public class StudentInterfaceController {
         return JsonResult.s(MapBean.map("data", courses).add("hits", hits));
 
     }
+    
+    @ResponseBody
+    @RequestMapping
+    @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
+    public JsonResult listTimeCourses(@RequestParam("studentNo") String studentNo) {
+
+//        MD5Checker.check(parameterKeeper, md5, type, actorId, ip);
+
+        Student student = studentDao.findByNo(studentNo);
+        if (student == null){
+            return JsonResult.e("no student found!");
+        }
+
+        // course no -> student course
+        Map<String, StudentCourse> result = new HashMap<String, StudentCourse>();
+
+        // from orders
+        getOrderCourses(studentNo, result);
+        
+        // from detail order usage
+        getOrderUsageCourses(studentNo, result);
+
+        return JsonResult.s(new ArrayList<StudentCourse>(result.values()));
+    }
+
+    private void getOrderUsageCourses(String studentNo, Map<String, StudentCourse> result) {
+        TimeCourseOrderUsageCondition usageCondition = new TimeCourseOrderUsageCondition();
+        usageCondition.setStudentNo(studentNo);
+        PaginationSupport<TimeCourseOrderUsage> usages = timeCourseUsageDao.search(usageCondition, 0);
+        List<String> nos = new ArrayList<String>();
+        for (int i = 0; i < usages.getItems().size(); i++) {
+            String course = usages.getItems().get(i).getCourseNo();
+            if (!StringUtils.isEmpty(course)) {
+                nos.add(course);
+            }
+        }
+        if (nos.size() > 0) {
+            Map<String, TimeCourse> courses = new HashMap<String, TimeCourse>();
+            List<TimeCourse> usageCourses = timeCourseDao.search(nos);
+            for (int i = 0; i < usageCourses.size(); i++) {
+                courses.put(usageCourses.get(i).getNo(), usageCourses.get(i));
+            }
+            for (TimeCourseOrderUsage usage : usages.getItems()) {
+                if (StringUtils.isEmpty(usage.getCourseNo())) {
+                    continue;
+                }
+
+                // get or add
+                StudentCourse sc = null;
+                if (result.containsKey(usage.getCourseNo())) {
+                    sc = result.get(usage.getCourseNo());
+                } else {
+                    sc = new StudentCourse();
+                    sc.setCourse(courses.get(usage.getCourseNo()));
+                    result.put(usage.getCourseNo(), sc);
+                }
+
+                sc.addOrderUsage(usage);
+                if (sc.getSourceType() < 0) {
+                    sc.setSourceType(1);
+                }
+            }
+        }
+    }
+
+    private void getOrderCourses(String studentNo, Map<String, StudentCourse> result) {
+        TimeCourseOrderCondition condition = new TimeCourseOrderCondition();
+        condition.setStudentNo(studentNo);
+        PaginationSupport<TimeCourseOrder> orders = timeCourseOrderDao.search(condition, 0);
+        List<String> nos = new ArrayList<String>();
+        for (int i = 0; i < orders.getItems().size(); i++) {
+            String course = orders.getItems().get(i).getCourseNo();
+            if (!StringUtils.isEmpty(course)) {
+                nos.add(course);
+            }
+        }
+        if (nos.size() > 0) {
+            Map<String, TimeCourse> courses = new HashMap<String, TimeCourse>();
+            List<TimeCourse> orderCourses = timeCourseDao.search(nos);
+            for (int i = 0; i < orderCourses.size(); i++) {
+                courses.put(orderCourses.get(i).getNo(), orderCourses.get(i));
+            }
+            for (TimeCourseOrder order : orders.getItems()) {
+                if (StringUtils.isEmpty(order.getCourseNo())) {
+                    continue;
+                }
+
+                // get or add
+                StudentCourse sc = null;
+                if (result.containsKey(order.getCourseNo())) {
+                    sc = result.get(order.getCourseNo());
+                } else {
+                    sc = new StudentCourse();
+                    sc.setCourse(courses.get(order.getCourseNo()));
+                    result.put(order.getCourseNo(), sc);
+                }
+
+                sc.addOrder(order);
+                sc.setSourceType(0);
+            }
+        }
+    }
+    
+    
 
 	@ResponseBody
 	@RequestMapping

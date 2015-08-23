@@ -5,6 +5,9 @@ package pula.sys.domains;
 
 import java.util.Date;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
 
@@ -17,7 +20,9 @@ import puerta.support.dao.LoggablePo;
 @WxlDomain("消次课")
 public class TimeCourse implements LoggablePo {
 
+    @JsonProperty
     private String no;
+
     public String getNo() {
         return no;
     }
@@ -25,27 +30,46 @@ public class TimeCourse implements LoggablePo {
     public void setNo(String no) {
         this.no = no;
     }
-
-    private Long id;
-    private int courseType;
-    private String name;
-    private String branchName;
-    private String classRoomName;
-    private double price;
-    private int maxStudentNum;
-    private Date startTime;
-    private Date endTime;
-    private int startHour;
-    private int startMinute;
-    private int startWeekDay;
-    private int durationMinute;
-    private Date createTime;
-    private Date updateTime;
-    private String comments;
-    private boolean removed;
-    private boolean enabled = true;
     
+    @JsonProperty
+    private Long id;
+    @JsonProperty
+    private int courseType;
+    @JsonProperty
+    private String name;
+    @JsonProperty
+    private String branchName;
+    @JsonProperty
+    private String classRoomName;
+    @JsonProperty
+    private double price;
+    @JsonProperty
+    private int maxStudentNum;
+    @JsonProperty
+    private Date startTime;
+    @JsonProperty
+    private Date endTime;
+    @JsonProperty
+    private int startHour;
+    @JsonProperty
+    private int startMinute;
+    @JsonProperty
+    private int startWeekDay;
+    @JsonProperty
+    private int durationMinute;
+    @JsonProperty
+    private Date createTime;
+    @JsonProperty
+    private Date updateTime;
+    @JsonProperty
+    private String comments;
+    @JsonProperty
+    private boolean removed;
+    @JsonProperty
+    private boolean enabled = true;
+    @JsonProperty
     private String creator;
+    @JsonProperty
     private String updator;
     
     public TimeCourse()
@@ -79,7 +103,7 @@ public class TimeCourse implements LoggablePo {
         this.updator = other.updator;
     }
     
-
+    @JsonIgnore
     @Override
     public String toLogString() {
         StringBuilder sb = new StringBuilder();
