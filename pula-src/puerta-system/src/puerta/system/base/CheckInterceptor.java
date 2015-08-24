@@ -57,9 +57,10 @@ public class CheckInterceptor extends HandlerInterceptorAdapter {
 	public static final String SETUP_SETUP = "/setup/setup";
 	public static final String SETUP_REGISTER = "/setup/register";
 	public static final String SETUP_REGISTER2 = "/setup/_register";
+	public static final String AUDITON_LIST = "/audition/list";
 	public static final String[] IGNORE = new String[] { NOT_LOGIN, FORBIDDEN,
 			MY_ENTRY, MY_LOGIN, SETUP_BEGIN, SETUP_SETUP, SETUP_REGISTER,
-			SETUP_REGISTER2 };
+			SETUP_REGISTER2, AUDITON_LIST };
 
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
