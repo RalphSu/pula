@@ -40,5 +40,6 @@
   <property column="usedGongfangCount" name="usedGongFangCount" type="int"/>
   <property column="huodongCount" name="huodongCount" type="int"/>
   <property column="usedHuodongCount" name="usedHuodongCount" type="int"/>
+  <property column="orderStatus" name="orderStatus" type="int"/>
  </class>
 </hibernate-mapping>

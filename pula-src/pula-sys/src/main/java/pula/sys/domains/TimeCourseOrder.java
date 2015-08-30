@@ -60,6 +60,14 @@ public class TimeCourseOrder implements LoggablePo {
     private int huodongCount;
     @JsonProperty
     private int usedHuodongCount;
+    
+    /**
+     * 订单状态
+     * 0 - 已提交
+     * 1 - 已支付
+     */
+    @JsonProperty
+    private int orderStatus;
 
     @Override
     public String toLogString() {
@@ -69,6 +77,14 @@ public class TimeCourseOrder implements LoggablePo {
                 .append("remainCount=").append(usedCount).append(",remainCost=").append(usedCost)
                 .append(paiedCount).append("]");
         return sb.toString();
+    }
+
+    public int getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(int orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public Long getId() {

@@ -177,19 +177,21 @@ public class StudentInterfaceController {
                     continue;
                 }
 
-                // get or add
-                StudentCourse sc = null;
-                if (result.containsKey(usage.getCourseNo())) {
-                    sc = result.get(usage.getCourseNo());
-                } else {
-                    sc = new StudentCourse();
-                    sc.setCourse(courses.get(usage.getCourseNo()));
-                    result.put(usage.getCourseNo(), sc);
-                }
+                if (courses.containsKey(usage.getCourseNo())) {
+                    // get or add
+                    StudentCourse sc = null;
+                    if (result.containsKey(usage.getCourseNo())) {
+                        sc = result.get(usage.getCourseNo());
+                    } else {
+                        sc = new StudentCourse();
+                        sc.setCourse(courses.get(usage.getCourseNo()));
+                        result.put(usage.getCourseNo(), sc);
+                    }
 
-                sc.addOrderUsage(usage);
-                if (sc.getSourceType() < 0) {
-                    sc.setSourceType(1);
+                    sc.addOrderUsage(usage);
+                    if (sc.getSourceType() < 0) {
+                        sc.setSourceType(1);
+                    }
                 }
             }
         }
@@ -217,18 +219,19 @@ public class StudentInterfaceController {
                     continue;
                 }
 
-                // get or add
-                StudentCourse sc = null;
-                if (result.containsKey(order.getCourseNo())) {
-                    sc = result.get(order.getCourseNo());
-                } else {
-                    sc = new StudentCourse();
-                    sc.setCourse(courses.get(order.getCourseNo()));
-                    result.put(order.getCourseNo(), sc);
+                if (courses.containsKey(order.getCourseNo())) {
+                    // get or add
+                    StudentCourse sc = null;
+                    if (result.containsKey(order.getCourseNo())) {
+                        sc = result.get(order.getCourseNo());
+                    } else {
+                        sc = new StudentCourse();
+                        sc.setCourse(courses.get(order.getCourseNo()));
+                        result.put(order.getCourseNo(), sc);
+                    }
+                    sc.addOrder(order);
+                    sc.setSourceType(0);
                 }
-
-                sc.addOrder(order);
-                sc.setSourceType(0);
             }
         }
     }

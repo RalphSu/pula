@@ -80,6 +80,7 @@ public class TimeCourseOrderDaoImpl extends HibernateGenericDao<TimeCourseOrder,
         n.setUsedCost(cc.getUsedCost());
         n.setUsedCount(cc.getUsedCount());
         n.setBuyType(cc.getBuyType());
+        n.setOrderStatus(cc.getOrderStatus());
         n.setNo(cc.getNo());
         n.setUpdator(cc.getUpdator());
         n.setComments(cc.getComments());

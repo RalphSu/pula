@@ -51,7 +51,8 @@
 	  <tr> 
 		<td >购买付款</td>
 		<td colspan="1"><input type="text" name="course.paied" id="course.paied" size="20" maxlength="40"  class="numberEdit"/> </td>
-		
+		<td >是否已付款(0-未付/1-已付)</td>
+		<td ><input type="text" name="course.orderStatus" id="course.orderStatus" size="20" maxlength="40" class="numberEdit" /></td>
 	  </tr>
 	  <tr>
 		  <td >课程次数</td>
