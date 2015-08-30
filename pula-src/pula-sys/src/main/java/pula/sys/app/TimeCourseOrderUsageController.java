@@ -24,6 +24,7 @@ import puerta.support.Pe;
 import puerta.support.ViewResult;
 import puerta.support.annotation.Barrier;
 import puerta.support.annotation.ObjectParam;
+import puerta.support.utils.MD5;
 import puerta.support.utils.WxlSugar;
 import puerta.system.dao.LoggerDao;
 import puerta.system.keeper.ParameterKeeper;
@@ -43,10 +44,6 @@ import pula.sys.domains.TimeCourseOrder;
 import pula.sys.domains.TimeCourseOrderUsage;
 import pula.sys.services.SessionUserService;
 
-/**
- * @author Liangfei
- *
- */
 @Controller
 public class TimeCourseOrderUsageController {
 
@@ -114,7 +111,7 @@ public class TimeCourseOrderUsageController {
     }
 
     @RequestMapping
-    @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
+    @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED)
     @ResponseBody
     @Barrier(PurviewConstants.COURSE)
     public YuiResult list(@ObjectParam("condition") TimeCourseOrderUsageCondition condition,
@@ -137,6 +134,14 @@ public class TimeCourseOrderUsageController {
     @Transactional(isolation = Isolation.READ_COMMITTED)
     @Barrier(PurviewConstants.COURSE)
     public String _create(@ObjectParam("course") TimeCourseOrderUsage cli) {
+        if (cli.getUsedCount() == 0 && cli.getUsedGongfangCount() == 0 && cli.getUsedHuodongCount() == 0) {
+            return ViewResult.JSON_SUCCESS;
+        }
+        
+        if (StringUtils.isEmpty(cli.getNo())) {
+            cli.setNo(MD5.GetMD5String("timecourseusage@" + System.currentTimeMillis()));
+        }
+
         // pre - check
         preCheckExisting(cli);
 
@@ -156,6 +161,23 @@ public class TimeCourseOrderUsageController {
 
         return ViewResult.JSON_SUCCESS;
     }
+    
+    @RequestMapping
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Barrier(PurviewConstants.COURSE)
+    @ResponseBody
+    public JsonResult apicreate(@ObjectParam("course") TimeCourseOrderUsage cli) {
+        try {
+            String string = _create(cli);
+            if (ViewResult.JSON_SUCCESS.equalsIgnoreCase(string)) {
+                return JsonResult.create("消费成功" + cli.getNo(), null);
+            } else {
+                return JsonResult.e("消费失败" + cli.getNo(), null);
+            }
+        } catch (Exception e) {
+            return JsonResult.e(e.getMessage(), null);
+        }
+    }
 
     private TimeCourseOrder orderCheck(TimeCourseOrderUsage cli) {
         String orderNo  = cli.getOrderNo();
@@ -165,7 +187,7 @@ public class TimeCourseOrderUsageController {
             TimeCourseOrderCondition condition = new TimeCourseOrderCondition();
             condition.setStudentNo(cli.getStudentNo());
             List<TimeCourseOrder> orders = orderDao.search(condition, 0).getItems();
-            if (orders.size() > 1) {
+            if (orders.size() > 0) {
                 order = orders.get(0);// update order
             }
         } else {
@@ -176,6 +198,8 @@ public class TimeCourseOrderUsageController {
             Pe.raise(MessageFormat.format("找不到用户的订单，请确认用户有支付的订单存在: {0}!", orderNo));
         }
         orderNo = order.getNo();
+        cli.setOrderNo(orderNo);
+        cli.setCourseNo(order.getCourseNo());
         order.setUpdator(sessionService.get().getName());
 
         return order;
@@ -290,11 +314,24 @@ public class TimeCourseOrderUsageController {
         }
     }
 
-    @Transactional
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     @RequestMapping
     @Barrier(PurviewConstants.COURSE)
     public String remove(@RequestParam(value = "objId", required = false) Long[] id) {
-        orderDao.deleteById(id);
+        for (Long i : id) {
+            TimeCourseOrderUsage tbd = usageDao.findById(i);
+            if (tbd != null) {
+                TimeCourseOrder order = orderDao.findByNo(tbd.getOrderNo());
+                if (order != null) {
+                    order.setUsedCount(order.getUsedCount() + tbd.getUsedCount());
+                    order.setUsedGongFangCount(order.getUsedGongFangCount() + tbd.getUsedGongfangCount());
+                    order.setUsedHuodongCount(order.getUsedHuodongCount() + tbd.getUsedHuodongCount());
+                    order.setUpdator(sessionService.get().getName());
+                    orderDao.update(order);
+                }
+                usageDao.deleteById(i);
+            }
+        }
         return ViewResult.JSON_SUCCESS;
     }
 

@@ -19,6 +19,8 @@ namespace SendCard
         public FrmSetup()
         {
             InitializeComponent();
+
+            serviceEndpointTb.Text = RemoteServiceProxy.ServiceUrl;
         }
 
         private void FrmSetup_Load(object sender, EventArgs e)
@@ -43,6 +45,8 @@ namespace SendCard
                     return;
                 }
             }
+
+            RemoteServiceProxy.ServiceUrl = serviceEndpointTb.Text;
 
             string uid = TbUsername.Text.Trim();
             string pwd = TbPassword.Text.Trim();

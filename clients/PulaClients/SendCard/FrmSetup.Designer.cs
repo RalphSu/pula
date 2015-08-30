@@ -36,6 +36,8 @@
             this.TbPassword = new System.Windows.Forms.TextBox();
             this.BtnOK = new System.Windows.Forms.Button();
             this.CbCom = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.serviceEndpointTb = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -51,7 +53,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 69);
+            this.label2.Location = new System.Drawing.Point(16, 108);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 15);
@@ -61,7 +63,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 106);
+            this.label3.Location = new System.Drawing.Point(16, 145);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 15);
@@ -70,7 +72,7 @@
             // 
             // TbUsername
             // 
-            this.TbUsername.Location = new System.Drawing.Point(107, 66);
+            this.TbUsername.Location = new System.Drawing.Point(117, 105);
             this.TbUsername.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TbUsername.Name = "TbUsername";
             this.TbUsername.Size = new System.Drawing.Size(232, 25);
@@ -78,7 +80,7 @@
             // 
             // TbPassword
             // 
-            this.TbPassword.Location = new System.Drawing.Point(107, 106);
+            this.TbPassword.Location = new System.Drawing.Point(117, 145);
             this.TbPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TbPassword.Name = "TbPassword";
             this.TbPassword.PasswordChar = '*';
@@ -87,7 +89,7 @@
             // 
             // BtnOK
             // 
-            this.BtnOK.Location = new System.Drawing.Point(107, 149);
+            this.BtnOK.Location = new System.Drawing.Point(117, 188);
             this.BtnOK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnOK.Name = "BtnOK";
             this.BtnOK.Size = new System.Drawing.Size(100, 27);
@@ -109,17 +111,35 @@
             "COM6",
             "COM7",
             "COM8"});
-            this.CbCom.Location = new System.Drawing.Point(107, 20);
+            this.CbCom.Location = new System.Drawing.Point(117, 20);
             this.CbCom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CbCom.Name = "CbCom";
             this.CbCom.Size = new System.Drawing.Size(160, 23);
             this.CbCom.TabIndex = 7;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(14, 63);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 15);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "服务器地址：";
+            // 
+            // serviceEndpointTb
+            // 
+            this.serviceEndpointTb.Location = new System.Drawing.Point(117, 60);
+            this.serviceEndpointTb.Name = "serviceEndpointTb";
+            this.serviceEndpointTb.Size = new System.Drawing.Size(353, 25);
+            this.serviceEndpointTb.TabIndex = 9;
+            // 
             // FrmSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 189);
+            this.ClientSize = new System.Drawing.Size(517, 259);
+            this.Controls.Add(this.serviceEndpointTb);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.CbCom);
             this.Controls.Add(this.BtnOK);
             this.Controls.Add(this.TbPassword);
@@ -150,5 +170,7 @@
         private System.Windows.Forms.TextBox TbPassword;
         private System.Windows.Forms.Button BtnOK;
         private System.Windows.Forms.ComboBox CbCom;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox serviceEndpointTb;
     }
 }

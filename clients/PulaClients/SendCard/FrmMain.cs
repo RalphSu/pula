@@ -49,6 +49,8 @@ namespace SendCard
             BtnInitCard.Enabled = opened;
             BtnRead.Enabled = opened;
             BtnWrite.Enabled = opened;
+
+            addUsageBtn.Enabled = opened;
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -234,7 +236,6 @@ namespace SendCard
 
         private void BtnRead_Click(object sender, EventArgs e)
         {
-
             ResetLabel();
             string cardid = reader.GetCard();
 
@@ -281,6 +282,65 @@ namespace SendCard
             }
         }
 
-       
+        private void TbCardId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addUsageBtn_Click(object sender, EventArgs e)
+        {
+            this.usageStatusLb.Text = "";
+            int courseCout = courseUsageBtn.Checked ? 1 : 0;
+            int gongfangCount = gongfangUsageBtn.Checked ? 1 : 0;
+            int huodongCount = huodongUsageBtn.Checked ? 1 : 0;
+
+            string cardid = reader.GetCard();
+            if (!string.IsNullOrEmpty(cardid))
+            {
+                reader.Buzz(1);
+                TssCardRfid.Text = cardid;
+                TbCardId.Text = cardid;
+            }
+            else
+            {
+                //未读到卡
+                this.usageStatusLb.Text = "没读到卡信息";
+                return;
+            }
+
+            CardMeta rm = null;
+            try
+            {
+                reader.PrepareCheck(cardid);
+                rm = reader.ReadMeta();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            string msg = "";
+            try
+            {
+                var result = RemoteServiceProxy.AddTimeCourseUsage(courseCout, gongfangCount, huodongCount,
+                    cardid, rm.no, rm.name, config.Username, config.Password);
+                if (result.error)
+                {
+                    msg = "Error: " + result.message;
+                }
+                else
+                {
+                    msg = "成功: " + result.message;
+                }
+            }
+            catch (Exception ex)
+            {
+                msg = ex.Message;
+            }
+            this.usageStatusLb.Text = msg;
+        }
+
+
     }
 }

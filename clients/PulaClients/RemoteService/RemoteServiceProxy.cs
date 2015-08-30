@@ -10,11 +10,16 @@ namespace RemoteService
 {
     public class RemoteServiceProxy
     {
+        public static string ServiceUrl = "http://121.40.151.183:8080/pula-sys/app/";
 
-        private static string GetURL(string u)
+        private static string GetCourseClientUrl(string u)
         {
-            //return "http://localhost:8080/app/courseclientservice/"+u;
-            return "http://121.40.151.183:8080/pula-sys/app/courseclientservice/" + u;
+            return ServiceUrl + "courseclientservice/" + u;
+        }
+
+        private static string GetUsageUrl(string action)
+        {
+            return ServiceUrl + "timecourseorderusage/" + action;
         }
 
         public static JsonResult CheckLogin(string usr, string pwd)
@@ -24,7 +29,7 @@ namespace RemoteService
                 var param_dict = new ParamValueBuilder();
                 param_dict.Add("username", usr);
                 param_dict.Add("password", pwd);
-                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetURL("checkLogin"), param_dict.Build(), null, null, Encoding.UTF8, null));
+                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetCourseClientUrl("checkLogin"), param_dict.Build(), null, null, Encoding.UTF8, null));
 
                 //JsonResult sr = JSON.parse<JsonResult>(json);
                 JsonResult m = JsonConvert.DeserializeObject<JsonResult>(json);
@@ -43,7 +48,7 @@ namespace RemoteService
                 var param_dict = new ParamValueBuilder();
                 param_dict.Add("code", code);
                 param_dict.Add("comments", comments);
-                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetURL("requestActive"), param_dict.Build(), null, null, Encoding.UTF8, null));
+                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetCourseClientUrl("requestActive"), param_dict.Build(), null, null, Encoding.UTF8, null));
 
                 //JsonResult sr = JSON.parse<JsonResult>(json);
                 JsonResult m = JsonConvert.DeserializeObject<JsonResult>(json);
@@ -62,7 +67,7 @@ namespace RemoteService
             {
                 var param_dict = new ParamValueBuilder();
                 param_dict.Add("code", code);
-                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetURL("syncActive"), param_dict.Build(), null, null, Encoding.UTF8, null));
+                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetCourseClientUrl("syncActive"), param_dict.Build(), null, null, Encoding.UTF8, null));
 
                 //JsonResult sr = JSON.parse<JsonResult>(json);
                 JsonResult m = JsonConvert.DeserializeObject<JsonResult>(json);
@@ -80,7 +85,7 @@ namespace RemoteService
             {
                 var param_dict = new ParamValueBuilder();
                 param_dict.Add("code", code); param_dict.Add("activeCode", active_code);
-                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetURL("syncCourse"), param_dict.Build(), null, null, Encoding.UTF8, null));
+                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetCourseClientUrl("syncCourse"), param_dict.Build(), null, null, Encoding.UTF8, null));
 
                 //JsonResult sr = JSON.parse<JsonResult>(json);
                 JsonResultList m = JsonConvert.DeserializeObject<JsonResultList>(json);
@@ -136,7 +141,7 @@ namespace RemoteService
                 param_dict.Add("rfid", cardid);
                 param_dict.Add("username", usr);
                 param_dict.Add("password", pwd);
-                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetURL("getInfo"), param_dict.Build(), null, null, Encoding.UTF8, null));
+                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetCourseClientUrl("getInfo"), param_dict.Build(), null, null, Encoding.UTF8, null));
 
                 //JsonResult sr = JSON.parse<JsonResult>(json);
                 JsonResult m = JsonConvert.DeserializeObject<JsonResult>(json);
@@ -156,7 +161,7 @@ namespace RemoteService
                 var param_dict = new ParamValueBuilder();
                 param_dict.Add("id", ctrs_id);
                 param_dict.Add("studentId", studentId);
-                string json = ReadResponseAsString(HttpWebResponseUtility.UploadFile(GetURL("reportWork"),fp,param_dict.Build()));
+                string json = ReadResponseAsString(HttpWebResponseUtility.UploadFile(GetCourseClientUrl("reportWork"),fp,param_dict.Build()));
 
                 //JsonResult sr = JSON.parse<JsonResult>(json);
                 JsonResult m = JsonConvert.DeserializeObject<JsonResult>(json);
@@ -178,7 +183,7 @@ namespace RemoteService
                 var param_dict = BuildCourseTaskParams(ct);
 
                 param_dict.Add("code", code); param_dict.Add("activeCode", active_code);
-                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetURL("report"), param_dict.Build(), null, null, Encoding.UTF8, null));
+                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(GetCourseClientUrl("report"), param_dict.Build(), null, null, Encoding.UTF8, null));
 
                 //JsonResult sr = JSON.parse<JsonResult>(json);
                 JsonResultList m = JsonConvert.DeserializeObject<JsonResultList>(json);
@@ -273,5 +278,67 @@ namespace RemoteService
             return RemoteServiceProxy.UploadWork(w.FilePath,w.CourseTaskResultId.ToString(), w.ResultStudentId.ToString());
             
         }
+
+        ////course.courseNo:001
+////course.studentNo:2200001
+////course.orderNo:
+////course.usedCount:0
+////course.usedGongfangCount:1
+////course.usedHuodongCount:1
+////course.comments:
+////course.id:
+        /// <summary>
+        /// course.no:usage004
+        /// </summary>
+        /// <param name="courseCout"></param>
+        /// <param name="gongfangCount"></param>
+        /// <param name="huodongCount"></param>
+        /// <param name="studentNo"></param>
+        /// <returns></returns>
+        public static JsonResult AddTimeCourseUsage(int courseCout, int gongfangCount, int huodongCount,
+            string cardId, string clientCardNo, string clientCardStudentName,
+            string username,
+            string password)
+        {
+            string createUsage = GetCourseClientUrl("addStudentUsage");
+            var paramBuilder = BuildCourseUsageParams(courseCout, gongfangCount, 
+                huodongCount, cardId, clientCardNo, clientCardStudentName,
+                username, password);
+
+            try
+            {
+                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(createUsage,
+                    paramBuilder.Build(), null, null, Encoding.UTF8, null));
+
+                var m = JsonConvert.DeserializeObject<JsonResult>(json);
+                return m;
+            }
+            catch (Exception ex)
+            {
+                return JsonResult.Create(ex);
+            }
+        }
+
+        private static ParamValueBuilder BuildCourseUsageParams(int courseCout, int gongfangCount, int huodongCount,
+            string cardId, string clientCardNo, string clientCardStudentName,
+            string username,
+            string password)
+        {
+            var paramDict = new ParamValueBuilder("course");
+            // paramDict.Add("studentNo", studentNo);
+            paramDict.Add("usedCount", "" + courseCout);
+            paramDict.Add("usedGongfangCount", ""+ gongfangCount);
+            paramDict.Add("usedHuodongCount", "" + huodongCount);
+            paramDict.ResetPrefix();
+            // 增加卡的验证信息
+            paramDict.Add("cardId", cardId);
+            paramDict.Add("clientCardNo", clientCardNo);
+            paramDict.Add("clientCardStudentName", clientCardStudentName);
+            paramDict.Add("username", username);
+            paramDict.Add("password", password);
+            return paramDict;
+        }
+
+
     }
 }

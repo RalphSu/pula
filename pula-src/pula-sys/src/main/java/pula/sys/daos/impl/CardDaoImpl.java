@@ -130,8 +130,14 @@ public class CardDaoImpl extends HibernateGenericDao<Card, Long> implements
 
 	@Override
 	public void takeBy(String buildRefId, String comments, Long cardId) {
+	    // 释放之前绑定的卡
+	    String readSql = " update Card set status = 1, refId = '' where refId=? and status=? and enabled=? and removed=? "
+	            + " and id != ? ";
+	    updateBatch(readSql, buildRefId, Card.STATUS_USED, true, false, cardId);
+	    
 		String sql = "update Card set refId=? ,comments=?, status=? where id=?";
 		updateBatch(sql, buildRefId, comments, Card.STATUS_USED, cardId);
 	}
+	
 
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
@@ -35,6 +36,7 @@ import puerta.system.vo.JsonResult;
 import puerta.system.vo.MapBean;
 import puerta.system.vo.MapList;
 import pula.sys.BhzqConstants;
+import pula.sys.PurviewConstants;
 import pula.sys.daos.CardDao;
 import pula.sys.daos.CourseClientDao;
 import pula.sys.daos.CourseDao;
@@ -60,11 +62,11 @@ import pula.sys.domains.FileAttachment;
 import pula.sys.domains.Student;
 import pula.sys.domains.SysUser;
 import pula.sys.domains.Teacher;
+import pula.sys.domains.TimeCourseOrderUsage;
 import pula.sys.services.SessionUserService;
 import pula.sys.vo.ReportBean;
 
 @Controller
-@Barrier(ignore = true)
 public class CourseClientServiceController {
 
 	private static final Logger logger = Logger
@@ -110,6 +112,7 @@ public class CourseClientServiceController {
 	@ResponseBody
 	@Transactional
 	@RequestMapping
+	@Barrier(ignore = true)
 	public JsonResult requestActive(
 			@RequestParam("code") String code,
 			@RequestParam(value = "comments", required = false) String comments,
@@ -138,6 +141,7 @@ public class CourseClientServiceController {
 	@ResponseBody
 	@Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
 	@RequestMapping
+	@Barrier(ignore = true)
 	public JsonResult syncActive(@RequestParam("code") String code) {
 
 		MapBean requestInfo = courseClientDao.hasRequest(code);
@@ -173,6 +177,7 @@ public class CourseClientServiceController {
 	@ResponseBody
 	@Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
 	@RequestMapping
+	@Barrier(ignore = true)
 	public JsonResult syncCourse(@RequestParam("code") String code,
 			@RequestParam("activeCode") String activeCode) {
 		Long classroomId = courseClientDao.getClassroomId(code, activeCode);
@@ -196,6 +201,7 @@ public class CourseClientServiceController {
 	@ResponseBody
 	@Transactional()
 	@RequestMapping
+	@Barrier(ignore = true)
 	public JsonResult report(@RequestParam("code") String code,
 			@RequestParam("activeCode") String activeCode,
 			@ObjectParam("bean") ReportBean bean) {
@@ -394,6 +400,7 @@ public class CourseClientServiceController {
 	@ResponseBody
 	@Transactional()
 	@RequestMapping
+	@Barrier(ignore = true)
 	public JsonResult reportWork(@RequestParam("file") MultipartFile file,
 			@RequestParam("id") long id,
 			@RequestParam("studentId") long studentId) {
@@ -476,6 +483,7 @@ public class CourseClientServiceController {
 	@ResponseBody
 	@Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
 	@RequestMapping
+	@Barrier(ignore = true)
 	public JsonResult checkLogin(@RequestParam("username") String username,
 			@RequestParam("password") String password) {
 
@@ -492,6 +500,7 @@ public class CourseClientServiceController {
 	@ResponseBody
 	@Transactional()
 	@RequestMapping
+	@Barrier(ignore = true)
 	public JsonResult getInfo(@RequestParam("rfid") String rfid,
 			@RequestParam("username") String username,
 			@RequestParam("password") String password) {
@@ -527,44 +536,41 @@ public class CourseClientServiceController {
 		loggerDao.doLog("写卡", logInfo, su);
 
 		return JsonResult.s(mb);
-
-		// 信息返回
-
-		//
-		// MapBean mb = studentDao.meta4Card(studentNo,
-		// usrMap.asLong("branchId"));
-		// if (mb == null) {
-		// return JsonResult.e("无效的学员编号:" + studentNo);
-		// }
-		//
-		// return JsonResult.s(mb);
 	}
-	// 写卡
-	// @ResponseBody
-	// @Transactional()
-	// @RequestMapping
-	// public JsonResult writeStudent(@RequestParam("no") String studentNo,
-	// @RequestParam("rfid") String rfid,
-	// @RequestParam("user") String username,
-	// @RequestParam("password") String password) {
-	//
-	// MapBean usrMap = sysUserDao.meta4Log(username, password);
-	//
-	// MapBean mb = studentDao.meta4Card(studentNo, usrMap.asLong("branchId"));
-	// if (mb == null) {
-	// return JsonResult.e("无效的学员编号:" + studentNo);
-	// }
-	//
-	// Long cardId = cardDao.getIdByRfid(rfid);
-	//
-	// if (cardId == null) {
-	// return JsonResult.e("卡无法识别,并未在系统内登记");
-	// }
-	//
-	// //使用了卡
-	// studentCardDao.saveIfNeed(Student.create(mb.asLong("id")), cardId,
-	// false);
-	//
-	// return JsonResult.s(mb);
-	// }
+	
+	// FIXME use service instead of controller dependency
+	@Resource
+	private TimeCourseOrderUsageController usageController;
+	
+	@RequestMapping
+	@Transactional(isolation = Isolation.READ_COMMITTED)
+	@Barrier(PurviewConstants.COURSE)
+	@ResponseBody
+	public JsonResult addStudentUsage(@ObjectParam("course") TimeCourseOrderUsage cli,
+	        @RequestParam("cardId") String cardMacId,
+            @RequestParam("clientCardNo") String clientCardNo,
+            @RequestParam("clientCardStudentName") String clientCardStudentName,
+	        @RequestParam("username") String username,
+	        @RequestParam("password") String password,
+	        HttpServletResponse res) {
+
+        MapBean usrMap = sysUserDao.meta4Login(username, password);
+        if (usrMap == null) {
+            return JsonResult.e("登录身份无效!");
+        }
+        
+        SysUser user = sysUserDao.findByLoginId(username);
+        if (sessionService.get() == null) {
+            sessionUserService.buildSession(false, res, user);
+        }
+        // 根据卡rfid 去加载学生或老师信息
+        MapBean mb = studentCardDao.meta(cardMacId, usrMap.asLong("branchId"));
+        if (mb == null) {
+            return JsonResult.e("查无发卡记录,请检查该卡是否发放；或教师是否从属于该校");
+        }
+        mb.add("type", 1); // 学生
+        
+        cli.setStudentNo(mb.get("no").toString());
+        return usageController.apicreate(cli);
+    }
 }
