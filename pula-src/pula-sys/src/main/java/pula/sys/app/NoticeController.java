@@ -32,8 +32,10 @@ import puerta.system.vo.YuiResultMapper;
 import pula.sys.PurviewConstants;
 import pula.sys.conditions.NoticeCondition;
 import pula.sys.daos.NoticeDao;
+import pula.sys.daos.TimeCourseDao;
 import pula.sys.domains.Course;
 import pula.sys.domains.Notice;
+import pula.sys.domains.TimeCourse;
 import pula.sys.services.SessionUserService;
 
 /**
@@ -61,6 +63,10 @@ public class NoticeController {
             m.put("imgPath", obj.getImgPath());
             m.put("suffix", obj.getSuffix());
             m.put("comment", obj.getComment());
+            m.put("noticeCount", obj.getNoticeCount());
+            m.put("noticeCourseNo", obj.getNoticeCourseNo());
+            m.put("noticePrice", obj.getNoticePrice());
+            m.put("noticeCourseName", obj.getNoticeCourseName());
             return m;
         }
     };
@@ -120,8 +126,8 @@ public class NoticeController {
     @Barrier(PurviewConstants.COURSE)
     public String _create(@ObjectParam("course") Notice cli) {
         Notice cc = cli;
-        cc.setCreator(sessionUserService.getUser().getName());
-        cc.setUpdator(sessionUserService.getUser().getName());
+        cc.setCreator(sessionService.get().getName());
+        cc.setUpdator(sessionService.get().getName());
         cc.setEnabled(true);
 
         noticeDao.save(cc);
@@ -134,7 +140,7 @@ public class NoticeController {
     @Barrier(PurviewConstants.COURSE)
     public String _update(@ObjectParam("course") Notice cli) {
         Notice cc = cli;
-        cc.setUpdator(sessionUserService.getUser().getName());
+        cc.setUpdator(sessionService.get().getName());
 
         noticeDao.update(cc);
 
@@ -161,18 +167,42 @@ public class NoticeController {
 
         return JsonResult.s(m);
     }
-    
+
+    @Resource
+    private TimeCourseDao courseDao;
+
     /**
      * show the contents of a given notice in web page.
      * @param id
      * @return
      */
     @RequestMapping
-    public ModelAndView appshow(@RequestParam("id") Long id)
-    {
-        Notice u = noticeDao.findById(id);
+    public ModelAndView appshow(@RequestParam(value = "id", required = false) Long id,
+            @RequestParam(value = "no", required = false) String no) {
+        Notice u = null;
+        if (id != null) {
+            u = noticeDao.findById(id);
+        } else if (!StringUtils.isAlpha(no)) {
+            u = noticeDao.findByNo(no);
+        }
         
-        return new ModelAndView().addObject("notice", u);
+        ModelAndView view = new ModelAndView();
+        if (u == null) {
+            view.setViewName("error");
+            Exception e = new Exception(String.format("找不到指定的通知:！" + id + no));
+            view.addObject("exception", e);
+            return view;
+        }
+
+        if (!StringUtils.isEmpty(u.getNoticeCourseNo())) {
+            u.setNoticeCourseName("..."); // default name placement
+            TimeCourse tc = courseDao.findByNo(u.getNoticeCourseNo());
+            if (tc != null) {
+                u.setNoticeCourseName(tc.getName());
+            }
+        }
+
+        return view.addObject("notice", u);
     }
     
     /**

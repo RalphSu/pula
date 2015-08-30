@@ -29,6 +29,9 @@
    name="creator" type="string"/>
   <property column="updator" generated="never" lazy="false"
    name="updator" type="string"/>
-  <property column="no" name="no" type="string"/>
+  <property column="no" generated="never" lazy="false" name="no" type="string"/>
+  <property column="noticePrice" name="noticePrice" type="int"/>
+  <property column="noticeCount" name="noticeCount" type="int"/>
+  <property column="noticeCourseNo" name="noticeCourseNo" type="string"/>
  </class>
 </hibernate-mapping>

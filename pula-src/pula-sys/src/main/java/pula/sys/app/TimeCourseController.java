@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
@@ -172,12 +173,19 @@ public class TimeCourseController {
     }
 
     @RequestMapping
-    public ModelAndView appshow(@RequestParam("id") Long id) {
+    public ModelAndView appshow(@RequestParam(value = "id", required = false) Long id,
+            @RequestParam(value = "no", required = false) String no) {
         ModelAndView view = new ModelAndView();
-        TimeCourse u = courseDao.findById(id);
+
+        TimeCourse u = null;
+        if (id != null) {
+            u = courseDao.findById(id);
+        } else if (!StringUtils.isEmpty(no)) {
+            u = courseDao.findByNo(no);
+        }
         if (u == null) {
             view.setViewName("error");
-            Exception e = new Exception(String.format("课程ID %d 没找到！", id));
+            Exception e = new Exception(String.format("课程没找到！: " + id + no));
             view.addObject("exception", e);
             return view;
         }

@@ -52,6 +52,25 @@
 		
 		</td>
 	  </tr>
+	  
+	  <tr> 
+		<td >价格</td>
+		<td colspan="1">
+		<input type="text"  name="course.noticePrice" id="course.noticePrice" size="12" class="numberEdit" ></textarea>
+		</td>
+		<td >课数</td>
+		<td colspan="1">
+		<input type="text"  name="course.noticeCount" id="course.noticeCount" size="12" class="numberEdit" ></textarea>
+		</td>
+	  </tr>
+	  
+	  <tr> 
+		<td >课程编号（可选）</td>
+		<td colspan="1">
+		<input type="text"  name="course.noticeCourseNo" id="course.noticeCourseNo" size="20" ></textarea>
+		</td>
+	  </tr>
+	  
 	   <tr> 
 		<td >备注</td>
 		<td colspan="3"><input type="text" name="course.comment" id="course.comment" size="60" maxlength="80"/> </td>

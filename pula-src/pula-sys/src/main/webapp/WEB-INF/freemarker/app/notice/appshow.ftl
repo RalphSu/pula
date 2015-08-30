@@ -7,6 +7,14 @@
 			<h3 class="panel-title">${notice.title}</h3>
 		</div>
 		<div class="panel-body">${notice.content}</div>
+		<br/>
+		<div class="panel-body">活动特惠价格：${notice.noticePrice}</div>
+		<br/>
+		<div class="panel-body">活动特惠次数：${notice.noticeCount}</div>
+		<br/>
+		<#if notice.noticeCourseNo != "" >
+			<a href="../timecourse/appshow?no=${notice.noticeCourseNo}">${notice.noticeCourseName}</a>
+		</#if>
 	</div>
 
 <br/>

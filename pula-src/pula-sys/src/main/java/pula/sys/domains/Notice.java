@@ -5,6 +5,7 @@ package pula.sys.domains;
 
 import java.util.Date;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -18,6 +19,7 @@ import puerta.support.dao.LoggablePo;
 @WxlDomain("活动通知")
 public class Notice implements LoggablePo {
 
+    @JsonIgnore
     private static final ObjectMapper om = new ObjectMapper();
 
     @Override
@@ -57,8 +59,19 @@ public class Notice implements LoggablePo {
     @JsonProperty
     private boolean enabled;
 
+    @JsonProperty
     private String creator;
+    @JsonProperty
     private String updator;
+    
+    @JsonProperty
+    private int noticePrice;
+    @JsonProperty
+    private int noticeCount;
+    @JsonProperty
+    private String noticeCourseNo = "";
+    @JsonProperty
+    private String noticeCourseName = "";
 
     public String getCreator() {
         return creator;
@@ -170,6 +183,38 @@ public class Notice implements LoggablePo {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public int getNoticePrice() {
+        return noticePrice;
+    }
+
+    public void setNoticePrice(int noticePrice) {
+        this.noticePrice = noticePrice;
+    }
+
+    public int getNoticeCount() {
+        return noticeCount;
+    }
+
+    public void setNoticeCount(int noticeCount) {
+        this.noticeCount = noticeCount;
+    }
+
+    public String getNoticeCourseNo() {
+        return noticeCourseNo;
+    }
+
+    public void setNoticeCourseNo(String noticeCourseNo) {
+        this.noticeCourseNo = noticeCourseNo;
+    }
+
+    public String getNoticeCourseName() {
+        return noticeCourseName;
+    }
+
+    public void setNoticeCourseName(String noticeCourseName) {
+        this.noticeCourseName = noticeCourseName;
     }
 
 }
