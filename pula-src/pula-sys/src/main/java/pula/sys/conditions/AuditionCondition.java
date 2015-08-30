@@ -11,6 +11,8 @@ public class AuditionCondition {
 	private String resultId;
 	private int closedStatus;
 	private long id;
+	
+	private String phone;
 
 	public long getId() {
 		return id;
@@ -90,6 +92,14 @@ public class AuditionCondition {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }

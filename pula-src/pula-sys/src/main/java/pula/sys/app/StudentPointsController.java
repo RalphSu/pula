@@ -153,18 +153,6 @@ public class StudentPointsController {
 		return YuiResult.create(results, MAPPING);
 	}
 
-	// @ResponseBody
-	// @Transactional
-	// @RequestMapping
-	// public JsonResult _create(
-	// @RequestParam(value = "studentId") String loginId,
-	// @RequestParam(value = "comments") String comments,
-	// @RequestParam("points") int points) {
-	// studentPointsService.saveBonus(loginId, points, comments,
-	// SysUser.create(sessionService.getActorId()));
-	// return JsonResult.s();
-	// }
-
 	@ResponseBody
 	@Transactional
 	@RequestMapping

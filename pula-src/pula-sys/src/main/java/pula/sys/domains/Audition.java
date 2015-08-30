@@ -16,6 +16,36 @@ public class Audition {
 	protected Calendar createdTime, updatedTime;
 	protected SysUser owner;
 	protected Branch branch;
+	
+	protected String branchNo;
+	
+	public Audition()
+	{
+	}
+	
+	public Audition(Audition o)
+	{
+	    this.id = o.id;
+	    this.student = o.student;
+	    this.age = o.age;
+	    this.phone = o.phone;
+	    this.parent = o.parent;
+	    this.content = o.content;
+	    this.comments = o.comments;
+	    this.plan1 = o.plan1;
+	    this.plan2 = o.plan2;
+	    this.plan3 = o.plan3;
+	    this.plan4 = o.plan4;
+	    this.plan5 = o.plan5;
+	    this.result = o.result;
+	    this.removed = o.removed;
+	    this.closed = o.closed;
+	    this.createdTime = o.createdTime;
+	    this.updatedTime = o.updatedTime;
+	    this.owner = o.owner;
+	    this.branch = o.branch;
+	    this.branchNo = o.branchNo;
+	}
 
 	public long getId() {
 		return id;
@@ -175,6 +205,14 @@ public class Audition {
 
     public void setStudentNo(String studentNo) {
         this.studentNo = studentNo;
+    }
+
+    public String getBranchNo() {
+        return branchNo;
+    }
+
+    public void setBranchNo(String branchNo) {
+        this.branchNo = branchNo;
     }
 
 }

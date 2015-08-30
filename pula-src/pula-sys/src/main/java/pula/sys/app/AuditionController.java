@@ -1,15 +1,18 @@
 package pula.sys.app;
 
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,6 +41,8 @@ import pula.sys.domains.Branch;
 import pula.sys.domains.SysCategory;
 import pula.sys.forms.AuditionForm;
 import pula.sys.services.SessionUserService;
+import pula.sys.util.SmsUtil;
+import pula.sys.util.SmsUtil.SendResult;
 
 @Controller
 public class AuditionController {
@@ -90,6 +95,7 @@ public class AuditionController {
 			} else {
 				m.put("resultName", "尚未结束");
 			}
+            m.put("branchNo", obj.getBranch().getNo());
 			m.put("ownerName", obj.getOwner().getName());
 			m.put("branchName", obj.getBranch().getName());
 			m.put("createdTime",obj.getCreatedTime());
@@ -211,7 +217,7 @@ public class AuditionController {
 				.addObject("statusList", statusList);
 	}
 
-	@RequestMapping
+	@RequestMapping(method=RequestMethod.POST)
 	@Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
 	@ResponseBody
 	@Barrier(PurviewConstants.AUDITION)
@@ -224,5 +230,73 @@ public class AuditionController {
 		PaginationSupport<Audition> results = null;
 		results = auditionDao.search(condition, pageIndex);
 		return YuiResult.create(results, MAPPING_LIST);
-	}
+    }
+
+    @RequestMapping
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @ResponseBody
+    @Barrier(ignore = true)
+    public JsonResult create(@ObjectParam("audition") Audition audition) {
+        if (StringUtils.isEmpty(audition.getPhone())) {
+            return JsonResult.e("电话是必填的！");
+        }
+
+        Branch b = branchDao.findByNo(audition.getBranchNo());
+        if (b == null) {
+            return JsonResult.e("未找到指定的分支结构: " + audition.getBranchNo());
+        }
+        audition.setBranch(b);
+        audition.setBranchNo(b.getNo());
+        Long id = auditionDao._save(audition);
+        return JsonResult.create(MessageFormat.format("预订已提交，Id:{0}", id), null);
+    }
+
+    @RequestMapping(method=RequestMethod.POST)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @ResponseBody
+    @Barrier(ignore = true)
+    public JsonResult update(@ObjectParam("audition") Audition audition) {
+        Audition existAudition = auditionDao.findById(audition.getId());
+        if (existAudition == null) {
+            return JsonResult.e(MessageFormat.format("找不到已有的预约Id:{0}！", audition.getId()));
+        }
+        existAudition = new Audition(existAudition);
+
+        try {
+            Branch b = branchDao.findByNo(audition.getBranchNo());
+            if (b == null) {
+                return JsonResult.e("未找到指定的分支结构: " + audition.getBranchNo());
+            }
+            audition.setBranch(b);
+            auditionDao.update(audition, sessionUserService.getActorId());
+            // SMS when changed the time
+            Audition newAudition = auditionDao.findById(audition.getId());
+            if (!existAudition.getResult().getName().equals("尚未结束") && newAudition.getResult().getName().equals("成功")
+                    || (!existAudition.getPlan1().equals(newAudition.getPlan1()))) {
+                // 从尚未结束变成成功，或者时间变化，发个短信
+                SendResult result = SmsUtil.SendBookingMessage(audition);
+                if (result.succeed) {
+                    logger.info("发送短信成功!");
+                } else {
+                    logger.error("发送短信失败! :: " + result.message);
+                }
+            }
+            return JsonResult.create("预约已更新!", null);
+        } catch (Exception e) {
+            return JsonResult.e("预约修改为成功，报错了！", e);
+        }
+    }
+
+    @RequestMapping(method=RequestMethod.POST)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @ResponseBody
+    @Barrier(ignore = true)
+    public JsonResult cancel(@RequestParam("auditionid") Long id) {
+        if (id != null) {
+            auditionDao.deleteById(id);
+            return JsonResult.create("预约已取消!", null);
+        }
+        return JsonResult.create("没找到给定的预约，取消操作无效!", null);
+    }
+
 }

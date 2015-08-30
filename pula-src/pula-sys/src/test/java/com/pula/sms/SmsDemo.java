@@ -1,13 +1,17 @@
 package com.pula.sms;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.junit.Test;
 
 import pula.sys.util.HttpClientHelper;
@@ -70,7 +74,7 @@ public class SmsDemo {
         /**
          * 目标手机号码，多个以“,”分隔，一次性调用最多100个号码，示例：139********,138********
          */
-        para.put("mob", "15921938585,15821155653");
+        para.put("mob", "15821155653");
         /**
          * 微米账号的接口UID
          */
@@ -103,28 +107,42 @@ public class SmsDemo {
          * 【微米】您的验证码是：610912，3分钟内有效。如非您本人操作，可忽略本消息。
          */
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        para.put("p1", "李子田");
-        para.put("p2", format.format(new Date()));
-        para.put("p3", "文峰广场四楼");
-        para.put("p4", "15921938585");
-        para.put("p5", "Yuki");
+        para.put("p1", encode("李子田"));
+        para.put("p2", encode(format.format(new Date())));
+        para.put("p3", encode("文峰广场四楼"));
+        para.put("p4", encode("1582115563"));
+        para.put("p5", encode("Yuki"));
         try {
 //            HttpClient client = new HttpClient();
 //            HttpMethod method = new GetMethod("http://api.weimi.cc/2/sms/send.html");
 //            client.executeMethod(method);
             
+            HttpClient client = new HttpClient();
+            HttpMethod get = new GetMethod("http://api.weimi.cc/2/sms/send.html");
+            HttpMethodParams paras = new HttpMethodParams();
+            for (Entry<String, String> e : para.entrySet()) {
+                paras.setParameter(e.getKey(), e.getValue());
+            }
+            get.setParams(paras);
+
+            int retCode = client.executeMethod(get);
+            System.out.println("return code : " + retCode);
+            String resp = get.getResponseBodyAsString();
+            System.out.println(resp);
+            
             System.out.println(HttpClientHelper.convertStreamToString(
                     HttpClientHelper.get("http://api.weimi.cc/2/sms/send.html",
                             para), "UTF-8"));
-//            System.out.println(HttpClientHelper.convertStreamToString(
-//                    HttpClientHelper.get("http://api.weimi.cc/2/sms/send.html",
-//                            para), "UTF-8"));
-//            System.out.println(HttpClientHelper.convertStreamToString(
-//                    HttpClientHelper.post(
-//                            "http://api.weimi.cc/2/sms/send.html", para),
-//                    "UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private static String encode(String s) {
+        try {
+            return URLEncoder.encode(s, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            return s;
         }
     }
 
