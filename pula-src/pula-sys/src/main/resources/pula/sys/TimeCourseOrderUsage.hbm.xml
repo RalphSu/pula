@@ -27,8 +27,13 @@
    name="creator" type="string"/>
   <property column="updator" generated="never" lazy="false"
    name="updator" type="string"/>
-  <property column="usedCount" name="usedCount" type="int"/>
-  <property column="usedCost" name="usedCost" type="int"/>
-  <property column="orderNo" name="orderNo" type="string"/>
+  <property column="usedCount" generated="never" lazy="false"
+   name="usedCount" type="int"/>
+  <property column="usedCost" generated="never" lazy="false"
+   name="usedCost" type="int"/>
+  <property column="orderNo" generated="never" lazy="false"
+   name="orderNo" type="string"/>
+  <property column="usedGongfangCount" name="usedGongfangCount" type="int"/>
+  <property column="usedHuodongCount" name="usedHuodongCount" type="int"/>
  </class>
 </hibernate-mapping>

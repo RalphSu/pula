@@ -41,25 +41,36 @@
 	  </tr>
 	  
 	  <tr> 
-		<td >学生编号</td>
+		<td >学生编号<span class="redStar">*</span></td>
 		<td ><input type="text" name="course.studentNo" id="course.studentNo" size="20" maxlength="40"/>
 		</td>
-		<td >购买类型(0/1)</td>
-		<td ><input type="text" name="course.buyType" id="course.buyType" size="20" maxlength="10"  class="numberEdit" /></td>
+		<!-- <td >购买类型(0/1)</td>
+		<td ><input type="text" name="course.buyType" id="course.buyType" size="20" maxlength="10"  class="numberEdit" /></td> -->
 	  </tr>
 	  
 	  <tr> 
 		<td >购买付款</td>
 		<td colspan="1"><input type="text" name="course.paied" id="course.paied" size="20" maxlength="40"  class="numberEdit"/> </td>
-		<td >购买次数</td>
-		<td colspan="1"><input type="text" name="course.paiedCount" id="course.paiedCount" size="20" maxlength="40"  class="numberEdit"/> </td>
+		
+	  </tr>
+	  <tr>
+		  <td >课程次数</td>
+		  <td colspan="1"><input type="text" name="course.paiedCount" id="course.paiedCount" size="20" maxlength="40" class="numberEdit"/> </td>
+		  <td >课程已使用次数</td>
+		  <td colspan="1"><input type="text" name="course.usedCount" id="course.usedCount" size="20" maxlength="40" class="numberEdit"/> </td>
 	  </tr>
 	  
 	  <tr> 
-		<td >剩余款</td>
-		<td colspan="1"><input type="text" name="course.remainCost" id="course.remainCost" size="20" maxlength="40"  class="numberEdit"/> </td>
-		<td >剩余次数</td>
-		<td colspan="1"><input type="text" name="course.remainCount" id="course.remainCount" size="20" maxlength="40"  class="numberEdit"/> </td>
+		<td >工坊次数</td>
+		<td colspan="1"><input type="text" name="course.gongfangCount" id="course.gongfangCount" size="20" maxlength="40" class="numberEdit"/> </td>
+		<td >已使用工坊次数</td>
+		<td colspan="1"><input type="text" name="course.usedGongFangCount" id="course.usedGongFangCount" size="20" maxlength="40" class="numberEdit"/> </td>
+	  </tr>
+	  <tr> 
+		<td >活动次数</td>
+		<td colspan="1"><input type="text" name="course.huodongCount" id="course.huodongCount" size="20" maxlength="40" class="numberEdit"/> </td>
+		<td >已使用活动次数</td>
+		<td colspan="1"><input type="text" name="course.usedHuodongCount" id="course.usedHuodongCount" size="20" maxlength="40" class="numberEdit"/> </td>
 	  </tr>
 	  
 	  <tr> 
@@ -99,7 +110,7 @@ var pageVars = {
 var lang = {
 	name:'名称',no:'编号',domain:'课程',expiredTime:'结束日期',publishTime:'开始日期',showInWeb:'显示在网站上',indexNo:'序号',
 	status:'状态', branchName: '分部', classRoomName: '教室',
-	buyType: '购买类型', paied:'购买付款', paiedCount:'购买次数', courseNo:'课程编号', studentNo:'学生编号', remainCount:'剩余次数', remainCost:'剩余款',
+	buyType: '购买类型', paied:'购买付款', paiedCount:'购买次数', courseNo:'课程编号', studentNo:'学生编号', usedCount:'已使用次数', remainCost:'剩余款',
 	updateTime:'最后更新', updator:'操作人'
 }
 

@@ -45,6 +45,10 @@ public class TimeCourseOrderUsage implements LoggablePo {
     private String creator;
     @JsonProperty
     private String updator;
+    @JsonProperty
+    private int usedGongfangCount;
+    @JsonProperty
+    private int usedHuodongCount;
 
     @Override
     public String toLogString() {
@@ -166,6 +170,22 @@ public class TimeCourseOrderUsage implements LoggablePo {
 
     public void setUpdator(String updator) {
         this.updator = updator;
+    }
+
+    public int getUsedGongfangCount() {
+        return usedGongfangCount;
+    }
+
+    public void setUsedGongfangCount(int usedGongfangCount) {
+        this.usedGongfangCount = usedGongfangCount;
+    }
+
+    public int getUsedHuodongCount() {
+        return usedHuodongCount;
+    }
+
+    public void setUsedHuodongCount(int usedHuodongCount) {
+        this.usedHuodongCount = usedHuodongCount;
     }
 
 }

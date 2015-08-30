@@ -72,6 +72,9 @@ public class TimeCourse implements LoggablePo {
     @JsonProperty
     private String updator;
     
+    @JsonProperty
+    private String applicableAges;
+    
     public TimeCourse()
     {
         
@@ -98,6 +101,7 @@ public class TimeCourse implements LoggablePo {
         this.updateTime = other.updateTime;
         this.comments = other.comments;
         this.removed = other.removed;
+        this.applicableAges = other.applicableAges;
         this.enabled = other.enabled;
         this.creator = other.creator;
         this.updator = other.updator;
@@ -269,6 +273,14 @@ public class TimeCourse implements LoggablePo {
 
     public void setUpdator(String updator) {
         this.updator = updator;
+    }
+
+    public String getApplicableAges() {
+        return applicableAges;
+    }
+
+    public void setApplicableAges(String applicableAges) {
+        this.applicableAges = applicableAges;
     }
 
 }

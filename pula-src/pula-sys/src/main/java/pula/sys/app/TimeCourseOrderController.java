@@ -3,10 +3,12 @@
  */
 package pula.sys.app;
 
+import java.text.MessageFormat;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
@@ -63,8 +65,12 @@ public class TimeCourseOrderController {
             m.put("studentNo", obj.getStudentNo());
             m.put("paied", obj.getPaied());
             m.put("paiedCount", obj.getPaiedCount());
-            m.put("remainCost", obj.getRemainCost());
-            m.put("remainCount", obj.getRemainCount());
+            m.put("usedCost", obj.getUsedCost());
+            m.put("usedCount", obj.getUsedCount());
+            m.put("gongfangCount", obj.getGongfangCount());
+            m.put("usedGongFangCount", obj.getUsedGongFangCount());
+            m.put("huodongCount", obj.getHuodongCount());
+            m.put("usedHuodongCount", obj.getUsedHuodongCount());
 
             return m;
         }
@@ -128,12 +134,13 @@ public class TimeCourseOrderController {
     @Transactional
     @Barrier(PurviewConstants.COURSE)
     public String _create(@ObjectParam("course") TimeCourseOrder cli) {
+        if (StringUtils.isEmpty(cli.getStudentNo()) || studentDao.findByNo(cli.getStudentNo()) == null) {
+            Pe.raise(MessageFormat.format("找不到学生编号{0}", cli.getStudentNo()));
+        }
 
         TimeCourseOrder cc = cli;
-        cc.setCreator(sessionService.getActorId());
-        cc.setUpdator(sessionService.getActorId());
-        cc.setRemainCost(cc.getPaied());
-        cc.setRemainCount(cc.getPaiedCount());
+        cc.setCreator(sessionService.get().getName());
+        cc.setUpdator(sessionService.get().getName());
         cc.setEnabled(true);
 
         orderDao.save(cc);
@@ -145,9 +152,12 @@ public class TimeCourseOrderController {
     @Transactional()
     @Barrier(PurviewConstants.COURSE)
     public String _update(@ObjectParam("course") TimeCourseOrder cli) {
+        if (StringUtils.isEmpty(cli.getStudentNo()) || studentDao.findByNo(cli.getStudentNo()) == null) {
+            Pe.raise(MessageFormat.format("找不到学生编号{0}", cli.getStudentNo()));
+        }
 
         TimeCourseOrder cc = cli;
-        cc.setUpdator(sessionService.getActorId());
+        cc.setUpdator(sessionService.get().getName());
 
         orderDao.update(cc);
 

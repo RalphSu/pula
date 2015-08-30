@@ -64,16 +64,15 @@ public class TimeCourseController {
             m.put("durationMinute", obj.getDurationMinute());
             m.put("price", obj.getPrice());
             m.put("maxStudentNum", obj.getMaxStudentNum());
-
+            m.put("applicableAges", obj.getApplicableAges());
+            m.put("comments", obj.getComments());
             return m;
         }
     };
     private static final YuiResultMapper<TimeCourse> MAPPING_FULL = new YuiResultMapper<TimeCourse>() {
         @Override
         public Map<String, Object> toMap(TimeCourse obj) {
-
             Map<String, Object> m = MAPPING.toMap(obj);
-            m.put("comments", obj.getComments());
             return m;
         }
     };
@@ -129,8 +128,8 @@ public class TimeCourseController {
     public String _create(@ObjectParam("course") TimeCourseForm cli) {
 
         TimeCourse cc = cli.toCourse();
-        cc.setCreator(sessionService.getActorId());
-        cc.setUpdator(sessionService.getActorId());
+        cc.setCreator(sessionService.get().getName());
+        cc.setUpdator(sessionService.get().getName());
         cc.setEnabled(true);
 
         courseDao.save(cc);
@@ -144,7 +143,7 @@ public class TimeCourseController {
     public String _update(@ObjectParam("course") TimeCourseForm cli) {
 
         TimeCourse cc = cli.toCourse();
-        cc.setUpdator(sessionService.getActorId());
+        cc.setUpdator(sessionService.get().getName());
 
         courseDao.update(cc);
 

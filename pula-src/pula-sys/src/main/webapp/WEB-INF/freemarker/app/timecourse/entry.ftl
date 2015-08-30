@@ -53,7 +53,7 @@
 		<td >教室名字</td>
 		<td colspan="3"><input type="text" name="course.classRoomName" id="course.classRoomName" size="60" maxlength="40"/> </td>
 	  </tr>
-	  <tr> 
+	  <!--  <tr> 
 		<td >最大学员数量</td>
 		<td colspan="3"><input type="text" name="course.maxStudentNum" id="course.maxStudentNum" class="numberEdit" size="12" maxlength="10"/> </td>
 	  </tr>
@@ -62,13 +62,19 @@
 		<td colspan="1"><input type="text" name="course.startHour" id="course.startHour" size="12" class="numberEdit" maxlength="10"/>(点) </td>
 		<td colspan="2"><input type="text" name="course.startMinute" id="course.startMinute" size="12" class="numberEdit" maxlength="10"/>(分) </td>
 	  </tr>
+	   
 	  <tr> 
 		<td >开课天(周一到周日, 1-7)</td>
 		<td colspan="3"><input type="text" name="course.startWeekDay" id="course.startWeekDay" size="12" class="numberEdit" maxlength="10"/> </td>
 	  </tr>
+	  -->
+	  <tr> 
+		<td >适用年龄</td>
+		<td colspan="3"><input type="text" name="course.applicableAges" id="course.applicableAges" size="12" maxlength="10"/> </td>
+	  <tr> 
 	  <tr> 
 		<td >课长(分钟)</td>
-		<td colspan="3"><input type="text" name="course.durationMinute" id="course.durationMinute" class="numberEdit" size="12" maxlength="10"/> </td>
+		<td colspan="3"><input type="text" name="course.durationMinute" id="course.durationMinute" class="numberEdit" size="12" value="0" maxlength="10"/> </td>
 	  <tr> 
 		<td >价格</td>
 		<td colspan="3"><input type="text" name="course.price" id="course.price" size="12" class="numberEdit" maxlength="10"/> </td>

@@ -66,6 +66,7 @@ public class TimeCourseDaoImpl extends HibernateGenericDao<TimeCourse, Long> imp
         po.setMaxStudentNum(rt.getMaxStudentNum());
         po.setPrice(rt.getPrice());
         po.setStartHour(rt.getStartHour());
+        po.setApplicableAges(rt.getApplicableAges());
         po.setStartMinute(rt.getStartMinute());
         po.setStartWeekDay(rt.getStartWeekDay());
 

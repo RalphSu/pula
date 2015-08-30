@@ -7,6 +7,8 @@
 			<h3 class="panel-title">${course.name}</h3>
 		</div>
 		<div class="panel-body">${course.branchName}</div>
+		<div class="panel-body">适用年龄：${course.applicableAges}</div>
+		<div class="panel-body">${course.comments}</div>
 	</div>
 
 <br/>

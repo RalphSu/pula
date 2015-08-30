@@ -29,7 +29,7 @@ public class TimeCourseOrderDaoImpl extends HibernateGenericDao<TimeCourseOrder,
     @Override
     public PaginationSupport<TimeCourseOrder> search(TimeCourseOrderCondition condition, int pageIndex) {
         DetachedCriteria criteria = makeSearchCriteria(condition);
-        return super.findPageByCriteria(criteria, new PageInfo(pageIndex), Order.asc("updateTime"));
+        return super.findPageByCriteria(criteria, new PageInfo(pageIndex), Order.desc("updateTime"));
     }
 
     public DetachedCriteria makeSearchCriteria(TimeCourseOrderCondition condition) {
@@ -54,6 +54,7 @@ public class TimeCourseOrderDaoImpl extends HibernateGenericDao<TimeCourseOrder,
         cc.setCreateTime(new Date());
         cc.setUpdateTime(new Date());
         cc.setEnabled(true);
+        cc.setBuyType(1); // 只支持buytype=1，次课
         _save(cc);
         return cc;
     }
@@ -76,13 +77,18 @@ public class TimeCourseOrderDaoImpl extends HibernateGenericDao<TimeCourseOrder,
         n.setStudentNo(cc.getStudentNo());
         n.setPaied(cc.getPaied());
         n.setPaiedCount(cc.getPaiedCount());
-        n.setRemainCost(cc.getRemainCost());
-        n.setRemainCount(cc.getRemainCount());
+        n.setUsedCost(cc.getUsedCost());
+        n.setUsedCount(cc.getUsedCount());
         n.setBuyType(cc.getBuyType());
         n.setNo(cc.getNo());
-        n.setUpdateTime(cc.getUpdateTime());
         n.setUpdator(cc.getUpdator());
         n.setComments(cc.getComments());
+
+        n.setGongfangCount(cc.getGongfangCount());
+        n.setUsedGongFangCount(cc.getUsedGongFangCount());
+        n.setHuodongCount(cc.getHuodongCount());
+        n.setUsedHuodongCount(cc.getUsedHuodongCount());
+
         _update(n);
         return n;
     }

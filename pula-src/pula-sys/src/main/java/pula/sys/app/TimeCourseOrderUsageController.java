@@ -4,10 +4,12 @@
 package pula.sys.app;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
@@ -31,6 +33,7 @@ import puerta.system.vo.YuiResult;
 import puerta.system.vo.YuiResultMapper;
 import pula.sys.PurviewConstants;
 import pula.sys.conditions.CourseCondition;
+import pula.sys.conditions.TimeCourseOrderCondition;
 import pula.sys.conditions.TimeCourseOrderUsageCondition;
 import pula.sys.daos.StudentDao;
 import pula.sys.daos.TimeCourseDao;
@@ -67,6 +70,8 @@ public class TimeCourseOrderUsageController {
             m.put("studentNo", obj.getStudentNo());
             m.put("usedCost", obj.getUsedCost());
             m.put("usedCount", obj.getUsedCount());
+            m.put("usedGongfangCount", obj.getUsedGongfangCount());
+            m.put("usedHuodongCount", obj.getUsedHuodongCount());
 
             return m;
         }
@@ -129,7 +134,7 @@ public class TimeCourseOrderUsageController {
     }
 
     @RequestMapping
-    @Transactional
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     @Barrier(PurviewConstants.COURSE)
     public String _create(@ObjectParam("course") TimeCourseOrderUsage cli) {
         // pre - check
@@ -137,11 +142,12 @@ public class TimeCourseOrderUsageController {
 
         // cost check
         TimeCourseOrder order = orderCheck(cli);
-
+        usageCreateCountCheck(cli, order.getNo(), order);
+        
         // update usage
         TimeCourseOrderUsage cc = cli;
-        cc.setCreator(sessionService.getActorId());
-        cc.setUpdator(sessionService.getActorId());
+        cc.setCreator(sessionService.get().getName());
+        cc.setUpdator(sessionService.get().getName());
         cc.setEnabled(true);
         usageDao.save(cc);
 
@@ -153,31 +159,56 @@ public class TimeCourseOrderUsageController {
 
     private TimeCourseOrder orderCheck(TimeCourseOrderUsage cli) {
         String orderNo  = cli.getOrderNo();
-        TimeCourseOrder order = orderDao.findByNo(orderNo);
-        order.setUpdator(sessionService.getActorId());
-        int remainCost = order.getRemainCost();
-        int remainCount = order.getRemainCount();
-        if (order.getBuyType() == 0) {
-            remainCost = remainCost - cli.getUsedCost();
-            if (remainCost < 0) {
-                Pe.raise(MessageFormat.format("订单号{0}余额已经不足，剩余{1}，需扣费用{1}！", orderNo, order.getRemainCost(),
-                        cli.getUsedCost()));
+        
+        TimeCourseOrder order = null;
+        if (StringUtils.isEmpty(orderNo)) {
+            TimeCourseOrderCondition condition = new TimeCourseOrderCondition();
+            condition.setStudentNo(cli.getStudentNo());
+            List<TimeCourseOrder> orders = orderDao.search(condition, 0).getItems();
+            if (orders.size() > 1) {
+                order = orders.get(0);// update order
             }
-            order.setRemainCost(remainCost);
         } else {
-            remainCount = remainCount - cli.getUsedCount();
-            if (remainCount < 0) {
-                Pe.raise(MessageFormat.format("订单号{0}剩余上课次数已经不足，剩余次数{1}，需扣次数{1}！", orderNo, order.getRemainCount(),
-                        cli.getUsedCount()));
-            }
-            order.setRemainCount(remainCount);
+            order = orderDao.findByNo(orderNo);
         }
+        // order 必须存在
+        if (order == null) {
+            Pe.raise(MessageFormat.format("找不到用户的订单，请确认用户有支付的订单存在: {0}!", orderNo));
+        }
+        orderNo = order.getNo();
+        order.setUpdator(sessionService.get().getName());
+
         return order;
+    }
+
+    private void usageCreateCountCheck(TimeCourseOrderUsage cli, String orderNo, TimeCourseOrder order) {
+        int usedCount = cli.getUsedCount();
+        if (order.getUsedCount() + usedCount > order.getPaiedCount()) {
+            Pe.raise(MessageFormat.format("订单号{0}剩余上课次数已经不足，买了次数{1}，已使用次数{1}，本次需扣除次数{2}！", orderNo,
+                    order.getPaiedCount(), order.getUsedCount(), usedCount));
+
+        }
+        order.setUsedCount(order.getUsedCost() + usedCount);
+
+        int usedGongfangCount = cli.getUsedGongfangCount();
+        if (order.getUsedGongFangCount() + usedGongfangCount > order.getGongfangCount()) {
+            Pe.raise(MessageFormat.format("订单号{0}剩余工坊上课次数已经不足，买了次数{1}，已使用次数{1}，本次需扣除次数{2}！", orderNo,
+                    order.getGongfangCount(), order.getUsedGongFangCount(), usedGongfangCount));
+
+        }
+        order.setUsedGongFangCount(order.getUsedGongFangCount() + usedGongfangCount);
+
+        int usedHuodongCount = cli.getUsedHuodongCount();
+        if (order.getUsedHuodongCount() + usedHuodongCount > order.getHuodongCount()) {
+            Pe.raise(MessageFormat.format("订单号{0}剩余活动上课次数已经不足，买了次数{1}，已使用次数{1}，本次需扣除次数{2}！", orderNo,
+                    order.getHuodongCount(), order.getUsedHuodongCount(), usedHuodongCount));
+        }
+        order.setUsedHuodongCount(order.getUsedHuodongCount() + usedHuodongCount);
     }
 
     private void preCheckExisting(TimeCourseOrderUsage cli) {
         String courseNo = cli.getCourseNo();
-        if (courseNo == null || courseDao.findByNo(courseNo) == null) {
+        if (!StringUtils.isEmpty(courseNo) && courseDao.findByNo(courseNo) == null) {
             Pe.raise(MessageFormat.format("课程{0}不存在！请填写正确的课程id！", courseNo));
         }
 
@@ -186,13 +217,13 @@ public class TimeCourseOrderUsageController {
             Pe.raise(MessageFormat.format("学生{0}不存在！请填写正确的学生id！", studentNo));
         }
         String orderNo = cli.getOrderNo();
-        if (orderNo == null || orderDao.findByNo(orderNo) == null) {
+        if (!StringUtils.isEmpty(orderNo) &&  orderDao.findByNo(orderNo) == null) {
             Pe.raise(MessageFormat.format("订单号{0}不存在！请填写正确的订单号！", orderNo));
         }
     }
 
     @RequestMapping
-    @Transactional()
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     @Barrier(PurviewConstants.COURSE)
     public String _update(@ObjectParam("course") TimeCourseOrderUsage cli) {
         TimeCourseOrderUsage existing = usageDao.findById(cli.getId());
@@ -203,36 +234,60 @@ public class TimeCourseOrderUsageController {
         // pre-check
         preCheckExisting(cli);
         
-        // order-check
-        TimeCourseOrder order = orderDao.findByNo(cli.getOrderNo());
-        order.setUpdator(sessionService.getActorId());
-        
-        if (order.getBuyType() == 0) {
-            int deltaCost = cli.getUsedCost() - existing.getUsedCost();
-            int newCost = order.getRemainCost() - deltaCost;
-            if (newCost < 0) {
-                Pe.raise(MessageFormat.format("订单号{0}余额已经不足，剩余{1}，需扣费用{1}！", order.getId(), order.getRemainCost(),
-                        deltaCost));
-            }
-            order.setRemainCost(newCost);
-        } else {
-            int deltaCount = cli.getUsedCount() - existing.getUsedCount();
-            int newCount = order.getRemainCount() - deltaCount;
-            if (newCount < 0) {
-                Pe.raise(MessageFormat.format("订单号{0}剩余上课次数已经不足，剩余次数{1}，需扣次数{1}！", order.getId(), order.getRemainCount(),
-                        deltaCount));
-            }
-            order.setRemainCount(newCount);
+        if (StringUtils.isEmpty(cli.getOrderNo())) {
+            Pe.raise("更新时必须要有订单号！");
         }
+        // order-check
+        TimeCourseOrder order = orderCheck(cli);
+        usageUpdateCountCheck(cli, existing, order);
 
         TimeCourseOrderUsage cc = cli;
-        cc.setUpdator(sessionService.getActorId());
+        cc.setUpdator(sessionService.get().getName());
         usageDao.update(cc);
 
         // update order
         orderDao.update(order);
 
         return ViewResult.JSON_SUCCESS;
+    }
+
+    private void usageUpdateCountCheck(TimeCourseOrderUsage cli, TimeCourseOrderUsage existing, TimeCourseOrder order) {
+        {
+            int deltaCount = cli.getUsedCount() - existing.getUsedCount();
+            int newUsedCount = order.getUsedCount() + deltaCount;
+            if (newUsedCount > order.getPaiedCount()) {
+                Pe.raise(MessageFormat.format("订单号{0}剩余上课次数已经不足，购买次数{1}，更新前已使用次数{2},本次尝试新设置消费次数{3}！", 
+                        order.getNo(), 
+                        order.getPaiedCount(),
+                        order.getUsedCount(),
+                        deltaCount));
+            }
+            order.setUsedCount(newUsedCount);
+        }
+        {   
+            int deltaGongfangCount = cli.getUsedGongfangCount() - existing.getUsedGongfangCount();
+            int newUsedGongfangCount = order.getUsedGongFangCount() + deltaGongfangCount;
+            if (newUsedGongfangCount > order.getGongfangCount()) {
+                Pe.raise(MessageFormat.format("订单号{0}剩余''工坊''上课次数已经不足，购买次数{1}，更新前已使用次数{2},本次尝试新设置消费次数{3}！", 
+                        order.getNo(), 
+                        order.getGongfangCount(),
+                        order.getUsedGongFangCount(),
+                        deltaGongfangCount));
+            }
+            order.setUsedGongFangCount(newUsedGongfangCount);
+        }
+        {   
+            int deltaHuodongCount = cli.getUsedHuodongCount() - existing.getUsedHuodongCount();
+            int newUsedHuodongCount = order.getUsedHuodongCount() + deltaHuodongCount;
+            if (newUsedHuodongCount > order.getHuodongCount()) {
+                Pe.raise(MessageFormat.format("订单号{0}剩余''活动''上课次数已经不足，购买次数{1}，更新前已使用次数{2},本次尝试新设置消费次数{3}！", 
+                        order.getNo(), 
+                        order.getHuodongCount(),
+                        order.getUsedHuodongCount(),
+                        deltaHuodongCount));
+            }
+            order.setUsedHuodongCount(newUsedHuodongCount);
+        }
     }
 
     @Transactional

@@ -49,10 +49,17 @@
 	  </tr>
 	  
 	  <tr> 
-		<td >消费款</td>
-		<td colspan="1"><input type="text" name="course.usedCost" id="course.usedCost" size="20" maxlength="40"  class="numberEdit"/> </td>
-		<td >消费次数</td>
-		<td colspan="1"><input type="text" name="course.usedCount" id="course.usedCount" size="20" maxlength="40"  class="numberEdit"/> </td>
+		<td >消费课程次数</td>
+		<td colspan="1"><input type="text" name="course.usedCount" id="course.usedCount" size="20" maxlength="40" class="numberEdit"/> </td>
+	  </tr>
+	  
+	  <tr> 
+		<td >消费工坊次数</td>
+		<td colspan="1"><input type="text" name="course.usedGongfangCount" id="course.usedGongfangCount" size="20" maxlength="40" class="numberEdit"/> </td>
+	  </tr>
+	  <tr>
+		<td >消费活动次数</td>
+		<td colspan="1"><input type="text" name="course.usedHuodongCount" id="course.usedHuodongCount" size="20" maxlength="40" class="numberEdit"/> </td>
 	  </tr>
 	  <tr> 
 		<td >备注</td>

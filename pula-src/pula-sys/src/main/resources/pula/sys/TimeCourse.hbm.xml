@@ -23,17 +23,29 @@
    name="updateTime" type="date"/>
   <property column="durationMinute" generated="never" lazy="false"
    name="durationMinute" type="int"/>
-  <property column="courseType" name="courseType" type="int"/>
-  <property column="branchName" name="branchName" type="string"/>
-  <property column="classRoomName" name="classRoomName" type="string"/>
-  <property column="price" name="price" type="double"/>
-  <property column="maxStudentNum" name="maxStudentNum" type="int"/>
-  <property column="startTime" name="startTime" type="date"/>
-  <property column="endTime" name="endTime" type="date"/>
-  <property column="startHour" name="startHour" type="int"/>
-  <property column="startMinute" name="startMinute" type="int"/>
-  <property column="startWeekDay" name="startWeekDay" type="int"/>
-  <property column="creator" name="creator" type="string"/>
-  <property column="updator" name="updator" type="string"/>
+  <property column="courseType" generated="never" lazy="false"
+   name="courseType" type="int"/>
+  <property column="branchName" generated="never" lazy="false"
+   name="branchName" type="string"/>
+  <property column="classRoomName" generated="never" lazy="false"
+   name="classRoomName" type="string"/>
+  <property column="price" generated="never" lazy="false" name="price" type="double"/>
+  <property column="maxStudentNum" generated="never" lazy="false"
+   name="maxStudentNum" type="int"/>
+  <property column="startTime" generated="never" lazy="false"
+   name="startTime" type="date"/>
+  <property column="endTime" generated="never" lazy="false"
+   name="endTime" type="date"/>
+  <property column="startHour" generated="never" lazy="false"
+   name="startHour" type="int"/>
+  <property column="startMinute" generated="never" lazy="false"
+   name="startMinute" type="int"/>
+  <property column="startWeekDay" generated="never" lazy="false"
+   name="startWeekDay" type="int"/>
+  <property column="creator" generated="never" lazy="false"
+   name="creator" type="string"/>
+  <property column="updator" generated="never" lazy="false"
+   name="updator" type="string"/>
+  <property column="applicableAges" name="applicableAges" type="string"/>
  </class>
 </hibernate-mapping>

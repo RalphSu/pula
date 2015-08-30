@@ -33,8 +33,12 @@
   <property column="updator" generated="never" lazy="false"
    name="updator" type="string"/>
   <property column="remainCount" generated="never" lazy="false"
-   name="remainCount" type="int"/>
+   name="usedCount" type="int"/>
   <property column="remainCost" generated="never" lazy="false"
-   name="remainCost" type="int"/>
+   name="usedCost" type="int"/>
+  <property column="gongfangCount" name="gongfangCount" type="int"/>
+  <property column="usedGongfangCount" name="usedGongFangCount" type="int"/>
+  <property column="huodongCount" name="huodongCount" type="int"/>
+  <property column="usedHuodongCount" name="usedHuodongCount" type="int"/>
  </class>
 </hibernate-mapping>

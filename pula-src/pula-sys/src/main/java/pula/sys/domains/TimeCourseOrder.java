@@ -28,15 +28,15 @@ public class TimeCourseOrder implements LoggablePo {
      * 0 - by cost 1 - by count
      */
     @JsonProperty
-    private int buyType;
+    private int buyType = 1;
     @JsonProperty
     private int paied;
     @JsonProperty
     private int paiedCount;
     @JsonProperty
-    private int remainCount;
+    private int usedCount;
     @JsonProperty
-    private int remainCost;
+    private int usedCost;
     @JsonProperty
     private Date createTime;
     @JsonProperty
@@ -52,12 +52,21 @@ public class TimeCourseOrder implements LoggablePo {
     @JsonProperty
     private String updator;
 
+    @JsonProperty
+    private int gongfangCount;
+    @JsonProperty
+    private int usedGongFangCount;
+    @JsonProperty
+    private int huodongCount;
+    @JsonProperty
+    private int usedHuodongCount;
+
     @Override
     public String toLogString() {
         StringBuilder sb = new StringBuilder();
         sb.append("TimeCourseOrder[").append("id=").append(id).append(",courseId=").append(courseNo)
                 .append(",studentId=").append(studentNo).append(",paied=").append(paied).append(",paiedCount=")
-                .append("remainCount=").append(remainCount).append(",remainCost=").append(remainCost)
+                .append("remainCount=").append(usedCount).append(",remainCost=").append(usedCost)
                 .append(paiedCount).append("]");
         return sb.toString();
     }
@@ -177,20 +186,52 @@ public class TimeCourseOrder implements LoggablePo {
         this.updator = updator;
     }
 
-    public int getRemainCount() {
-        return remainCount;
+    public int getGongfangCount() {
+        return gongfangCount;
     }
 
-    public void setRemainCount(int remainCount) {
-        this.remainCount = remainCount;
+    public void setGongfangCount(int gongfangCount) {
+        this.gongfangCount = gongfangCount;
     }
 
-    public int getRemainCost() {
-        return remainCost;
+    public int getUsedGongFangCount() {
+        return usedGongFangCount;
     }
 
-    public void setRemainCost(int remainCost) {
-        this.remainCost = remainCost;
+    public void setUsedGongFangCount(int usedGongFangCount) {
+        this.usedGongFangCount = usedGongFangCount;
+    }
+
+    public int getHuodongCount() {
+        return huodongCount;
+    }
+
+    public void setHuodongCount(int huodongCount) {
+        this.huodongCount = huodongCount;
+    }
+
+    public int getUsedHuodongCount() {
+        return usedHuodongCount;
+    }
+
+    public void setUsedHuodongCount(int usedHuodongCount) {
+        this.usedHuodongCount = usedHuodongCount;
+    }
+
+    public int getUsedCount() {
+        return usedCount;
+    }
+
+    public void setUsedCount(int usedCount) {
+        this.usedCount = usedCount;
+    }
+
+    public int getUsedCost() {
+        return usedCost;
+    }
+
+    public void setUsedCost(int usedCost) {
+        this.usedCost = usedCost;
     }
 
 }
