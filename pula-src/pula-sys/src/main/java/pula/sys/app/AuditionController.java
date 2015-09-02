@@ -217,7 +217,7 @@ public class AuditionController {
 				.addObject("statusList", statusList);
 	}
 
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(method={RequestMethod.POST, RequestMethod.GET})
 	@Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
 	@ResponseBody
 	@Barrier(PurviewConstants.AUDITION)
@@ -243,7 +243,13 @@ public class AuditionController {
 
         Branch b = branchDao.findByNo(audition.getBranchNo());
         if (b == null) {
-            return JsonResult.e("未找到指定的分支结构: " + audition.getBranchNo());
+            List<Branch> branches = branchDao.findByProperty("name", audition.getBranchName());
+            if (branches.isEmpty()) {
+                return JsonResult.e("未找到指定的分支结构: no : " + audition.getBranchNo() + " name : "
+                        + audition.getBranchName());
+            } else {
+                b = branches.get(0);
+            }
         }
         audition.setBranch(b);
         audition.setBranchNo(b.getNo());
@@ -251,7 +257,7 @@ public class AuditionController {
         return JsonResult.create(MessageFormat.format("预订已提交，Id:{0}", id), null);
     }
 
-    @RequestMapping(method=RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @Transactional(isolation = Isolation.READ_COMMITTED)
     @ResponseBody
     @Barrier(ignore = true)
@@ -265,7 +271,13 @@ public class AuditionController {
         try {
             Branch b = branchDao.findByNo(audition.getBranchNo());
             if (b == null) {
-                return JsonResult.e("未找到指定的分支结构: " + audition.getBranchNo());
+                List<Branch> branches = branchDao.findByProperty("name", audition.getBranchName());
+                if (branches.isEmpty()) {
+                    return JsonResult.e("未找到指定的分支结构: no : " + audition.getBranchNo() + " name : "
+                            + audition.getBranchName());
+                } else {
+                    b = branches.get(0);
+                }
             }
             audition.setBranch(b);
             auditionDao.update(audition, sessionUserService.getActorId());
@@ -287,14 +299,21 @@ public class AuditionController {
         }
     }
 
-    @RequestMapping(method=RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @Transactional(isolation = Isolation.READ_COMMITTED)
     @ResponseBody
     @Barrier(ignore = true)
-    public JsonResult cancel(@RequestParam("auditionid") Long id) {
+    public JsonResult cancel(@RequestParam(value = "auditionid", required = false) Long id,
+            @RequestParam(value = "auditionid", required = false) String no) {
         if (id != null) {
             auditionDao.deleteById(id);
             return JsonResult.create("预约已取消!", null);
+        } else if (!StringUtils.isEmpty(no)) {
+            Audition a = auditionDao.findByNo(no);
+            if (a != null) {
+                auditionDao.deleteById(id);
+                return JsonResult.create("预约已取消!", null);
+            }
         }
         return JsonResult.create("没找到给定的预约，取消操作无效!", null);
     }
