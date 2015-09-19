@@ -44,10 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HttpWebResponseUtility.cs" />
+    <Compile Include="JsonOrderResult.cs" />
     <Compile Include="JsonResult.cs" />
     <Compile Include="CourseTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemoteServiceProxy.cs" />
+    <Compile Include="TimeCourseOrder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />

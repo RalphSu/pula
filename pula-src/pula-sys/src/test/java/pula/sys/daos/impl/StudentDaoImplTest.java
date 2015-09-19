@@ -19,16 +19,17 @@ import pula.sys.daos.StudentDao;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath*:/root-context.xml","classpath*:/servlet-context.xml"}) 
+@ContextConfiguration(locations = { "classpath*:/root-context.xml", "classpath*:/servlet-context.xml" })
 public class StudentDaoImplTest {
 
     @Resource
     StudentDao studentDao;
-    
+
     @Test
     public void testLogin() {
         Assert.notNull(studentDao);
         MapBean mb = studentDao.meta4login("JQ00010", "123456");
         Assert.notNull(mb);
     }
+
 }

@@ -42,6 +42,7 @@
             this.BtnInitCard = new System.Windows.Forms.Button();
             this.TbCardId = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.usageStatusLb = new System.Windows.Forms.Label();
             this.addUsageBtn = new System.Windows.Forms.Button();
             this.huodongUsageBtn = new System.Windows.Forms.CheckBox();
@@ -93,10 +94,10 @@
             this.TssComPort,
             this.toolStripStatusLabel1,
             this.TssCardRfid});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 425);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 472);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(938, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(940, 25);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
@@ -172,17 +173,30 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.usageStatusLb);
             this.groupBox1.Controls.Add(this.addUsageBtn);
             this.groupBox1.Controls.Add(this.huodongUsageBtn);
             this.groupBox1.Controls.Add(this.gongfangUsageBtn);
             this.groupBox1.Controls.Add(this.courseUsageBtn);
-            this.groupBox1.Location = new System.Drawing.Point(420, 67);
+            this.groupBox1.Location = new System.Drawing.Point(420, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(493, 193);
+            this.groupBox1.Size = new System.Drawing.Size(499, 438);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "上课登记";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.Location = new System.Drawing.Point(201, 99);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(147, 34);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "查看剩余课数";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // usageStatusLb
             // 
@@ -246,7 +260,7 @@
             this.groupBox2.Controls.Add(this.LblNo);
             this.groupBox2.Location = new System.Drawing.Point(28, 67);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(362, 330);
+            this.groupBox2.Size = new System.Drawing.Size(368, 383);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "卡片管理";
@@ -255,7 +269,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(938, 450);
+            this.ClientSize = new System.Drawing.Size(940, 497);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.BtnSetup);
@@ -302,6 +316,7 @@
         private System.Windows.Forms.CheckBox courseUsageBtn;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label usageStatusLb;
+        private System.Windows.Forms.Button button1;
     }
 }
 

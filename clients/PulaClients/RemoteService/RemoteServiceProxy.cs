@@ -340,5 +340,24 @@ namespace RemoteService
         }
 
 
+
+        public static JsonOrderResult<TimeCourseOrder> GetUserCount(string studentNo)
+        {
+            string listOrderUrl = ServiceUrl + string.Format("/timecourseorder/list?condition.studentNo={0}", studentNo);
+
+            try
+            {
+                string json = ReadResponseAsString(HttpWebResponseUtility.CreatePostHttpResponse(listOrderUrl,
+                    new List<ParamValue>(), null, null, Encoding.UTF8, null));
+
+                var m = JsonConvert.DeserializeObject<JsonOrderResult<TimeCourseOrder>>(json);
+
+                return m;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

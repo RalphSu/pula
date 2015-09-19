@@ -289,38 +289,13 @@ namespace SendCard
 
         private void addUsageBtn_Click(object sender, EventArgs e)
         {
-            this.usageStatusLb.Text = "";
-            int courseCout = courseUsageBtn.Checked ? 1 : 0;
-            int gongfangCount = gongfangUsageBtn.Checked ? 1 : 0;
-            int huodongCount = huodongUsageBtn.Checked ? 1 : 0;
-
-            string cardid = reader.GetCard();
-            if (!string.IsNullOrEmpty(cardid))
-            {
-                reader.Buzz(1);
-                TssCardRfid.Text = cardid;
-                TbCardId.Text = cardid;
-            }
-            else
-            {
-                //未读到卡
-                this.usageStatusLb.Text = "没读到卡信息";
-                return;
-            }
-
-            CardMeta rm = null;
-            try
-            {
-                reader.PrepareCheck(cardid);
-                rm = reader.ReadMeta();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
-
-            string msg = "";
+            string msg;
+            int courseCout;
+            int gongfangCount;
+            int huodongCount;
+            string cardid;
+            CardMeta rm;
+            if (ReadCard(out courseCout, out gongfangCount, out huodongCount, out cardid, out rm)) return;
             try
             {
                 var result = RemoteServiceProxy.AddTimeCourseUsage(courseCout, gongfangCount, huodongCount,
@@ -332,6 +307,95 @@ namespace SendCard
                 else
                 {
                     msg = "成功: " + result.message;
+                }
+            }
+            catch (Exception ex)
+            {
+                msg = ex.Message;
+            }
+            this.usageStatusLb.Text = msg;
+        }
+
+        private bool ReadCard(out int courseCout, out int gongfangCount, out int huodongCount, out string cardid,
+            out CardMeta rm)
+        {
+            rm = null;
+            this.usageStatusLb.Text = "";
+            courseCout = courseUsageBtn.Checked ? 1 : 0;
+            gongfangCount = gongfangUsageBtn.Checked ? 1 : 0;
+            huodongCount = huodongUsageBtn.Checked ? 1 : 0;
+
+            cardid = reader.GetCard();
+            if (!string.IsNullOrEmpty(cardid))
+            {
+                reader.Buzz(1);
+                TssCardRfid.Text = cardid;
+                TbCardId.Text = cardid;
+            }
+            else
+            {
+                //未读到卡
+                this.usageStatusLb.Text = "没读到卡信息";
+                return true;
+            }
+
+            rm = null;
+            try
+            {
+                reader.PrepareCheck(cardid);
+                rm = reader.ReadMeta();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return true;
+            }
+
+            string msg = "";
+            return false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string msg;
+            int courseCout;
+            int gongfangCount;
+            int huodongCount;
+            string cardid;
+            CardMeta rm;
+            if (ReadCard(out courseCout, out gongfangCount, out huodongCount, out cardid, out rm)) return;
+
+            try
+            {
+                var result = RemoteServiceProxy.GetUserCount(rm.no);
+                if (result == null || result.records == null || result.records.Count == 0)
+                {
+                    msg = "Error: " + "没找到用户的订单，请登录系统页面查看！";
+                }
+                else
+                {
+                    var sb = new StringBuilder();
+                    sb.Append("用户：").Append(rm.name).Append("用户编号：").Append(rm.no).AppendLine();
+                    foreach (var timeCourseOrder in result.records)
+                    {
+                        sb.Append("\t订单号：").Append(timeCourseOrder.no).AppendLine();
+                        sb.Append("课程次数：")
+                            .Append(timeCourseOrder.paiedCont)
+                            .Append(" 已使用次数：")
+                            .Append(timeCourseOrder.usedCount)
+                            .AppendLine();
+                        sb.Append("\t工坊课次数：")
+                            .Append(timeCourseOrder.paiedCont)
+                            .Append(" 已使用次数：")
+                            .Append(timeCourseOrder.usedCount)
+                            .AppendLine();
+                        sb.Append("\t活动次数：")
+                            .Append(timeCourseOrder.paiedCont)
+                            .Append(" 已使用次数：")
+                            .Append(timeCourseOrder.usedCount)
+                            .AppendLine();
+                    }
+                    msg = sb.ToString();
                 }
             }
             catch (Exception ex)
