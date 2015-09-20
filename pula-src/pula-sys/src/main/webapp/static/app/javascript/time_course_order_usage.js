@@ -48,13 +48,14 @@ var PPage = new Class({
 				columns: [
 					{label:TTable.checkAll,width:24,key:'id',formatter:TTable.formatCheckbox},
 					{label:lang.no,width:150,key:'no'},
-					{label:lang.usedCost,width:200,key:'usedCost'},
 					{label:lang.usedCount,width:200,key:'usedCount'},
+					{label:lang.usedGongfangCount,width:200,key:'usedGongfangCount'},
+					{label:lang.usedHuodongCount,width:200,key:'usedHuodongCount'},
 					{label:lang.courseNo,width:150,key:'courseNo'},
 					{label:lang.orderNo,width:150,key:'orderNo'},
 					{label:lang.studentNo,width:200,key:'studentNo'},
 					{label:lang.updateTime,width:150, key:'updateTime'},
-					{label:lang.updator,width:150, key:'updator'},
+					// {label:lang.updator,width:150, key:'updator'},
 				]
 			};
 

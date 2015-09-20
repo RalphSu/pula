@@ -36,10 +36,16 @@
    name="usedCount" type="int"/>
   <property column="remainCost" generated="never" lazy="false"
    name="usedCost" type="int"/>
-  <property column="gongfangCount" name="gongfangCount" type="int"/>
-  <property column="usedGongfangCount" name="usedGongFangCount" type="int"/>
-  <property column="huodongCount" name="huodongCount" type="int"/>
-  <property column="usedHuodongCount" name="usedHuodongCount" type="int"/>
-  <property column="orderStatus" name="orderStatus" type="int"/>
+  <property column="gongfangCount" generated="never" lazy="false"
+   name="gongfangCount" type="int"/>
+  <property column="usedGongfangCount" generated="never" lazy="false"
+   name="usedGongFangCount" type="int"/>
+  <property column="huodongCount" generated="never" lazy="false"
+   name="huodongCount" type="int"/>
+  <property column="usedHuodongCount" generated="never" lazy="false"
+   name="usedHuodongCount" type="int"/>
+  <property column="orderStatus" generated="never" lazy="false"
+   name="orderStatus" type="int"/>
+  <property column="courseTime" name="courseTime" type="string"/>
  </class>
 </hibernate-mapping>

@@ -70,6 +70,10 @@ public class TimeCourseOrderUsageDaoImpl extends HibernateGenericDao<TimeCourseO
             Pe.raise("订单不存在！");
         }
 
+        if (existed.getOrderNo().equals(cc.getOrderNo())) {
+            Pe.raise(String.format("订单号不能修改: 原订单号：%s，新订单号：%s", existed.getOrderNo(), cc.getOrderNo()));
+        }
+
         TimeCourseOrderUsage n = existed;
         n.setId(cc.getId());
         n.setUpdateTime(new Date());

@@ -61,6 +61,11 @@ public class TimeCourseOrder implements LoggablePo {
     @JsonProperty
     private int usedHuodongCount;
     
+    @JsonProperty
+    private String courseTime;
+//    @JsonProperty
+//    private String effectTime;
+    
     /**
      * 订单状态
      * 0 - 已提交
@@ -248,6 +253,14 @@ public class TimeCourseOrder implements LoggablePo {
 
     public void setUsedCost(int usedCost) {
         this.usedCost = usedCost;
+    }
+
+    public String getCourseTime() {
+        return courseTime;
+    }
+
+    public void setCourseTime(String courseTime) {
+        this.courseTime = courseTime;
     }
 
 }

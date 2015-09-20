@@ -33,18 +33,18 @@
             <td colspan="4"><div class="l">请填写下列信息 <span id="pageMode" style="color:blue"></span></div>
               <div class="r">
               <div class="backToList " id="backToList"><A href="javascript:pes.backToList()">返回至列表</A></div></td>
-	  </tr> <tr> 
-		<td >编号<span class="redStar">*</span></td>
-		<td ><input type="text" name="course.no" id="course.no" size="20" maxlength="40"/> </td>
+	  </tr>
+	  <tr> 
+		<!-- <td >编号</span></td>
+		<td ><input type="text" name="course.no" id="course.no" size="20" maxlength="40" disabled /> </td> -->
 		<td >课程编号<span class="redStar">*</span></td>
 		<td ><input type="text" name="course.courseNo" id="course.courseNo" size="20" maxlength="40"/> </td>
-	  </tr>
-	  
-	  <tr> 
-		<td >学生编号</td>
-		<td ><input type="text" name="course.studentNo" id="course.studentNo" size="20" maxlength="40"/>
-		</td>
-		<td >订单编号</td>
+	  <!-- </tr>
+	  <tr>  -->
+	<!-- 	<td >学生编号</td>
+		<td ><input type="text" name="course.studentNo" id="course.studentNo" size="20" maxlength="40" disabled/>
+		</td> -->
+		<td >订单编号 <span class="redStar">*</span></td>
 		<td ><input type="text" name="course.orderNo" id="course.orderNo" size="20" maxlength="40"  /></td>
 	  </tr>
 	  
@@ -100,6 +100,7 @@ var lang = {
 	status:'状态', branchName: '分部', classRoomName: '教室',
 	buyType: '购买类型', paied:'购买付款', paiedCount:'购买次数', courseNo:'课程编号', studentNo:'学生编号', remainCount:'剩余次数', remainCost:'剩余款',
 	updateTime:'最后更新', updator:'操作人',usedCost:'消费', usedCount:'消费次数', orderNo:'订单编号', 
+	usedGongfangCount: '已用工坊次数', usedHuodongCount: '已用活动次数'
 }
 
 

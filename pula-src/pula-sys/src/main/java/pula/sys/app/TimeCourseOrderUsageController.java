@@ -154,6 +154,7 @@ public class TimeCourseOrderUsageController {
         cc.setCreator(sessionService.get().getName());
         cc.setUpdator(sessionService.get().getName());
         cc.setEnabled(true);
+        
         usageDao.save(cc);
 
         // update order
@@ -237,12 +238,16 @@ public class TimeCourseOrderUsageController {
         }
 
         String studentNo = cli.getStudentNo();
-        if (studentNo == null || studentDao.findByNo(studentNo) == null) {
-            Pe.raise(MessageFormat.format("学生{0}不存在！请填写正确的学生id！", studentNo));
-        }
+//        if (studentNo == null || studentDao.findByNo(studentNo) == null) {
+//            Pe.raise(MessageFormat.format("学生{0}不存在！请填写正确的学生id！", studentNo));
+//        }
         String orderNo = cli.getOrderNo();
         if (!StringUtils.isEmpty(orderNo) &&  orderDao.findByNo(orderNo) == null) {
             Pe.raise(MessageFormat.format("订单号{0}不存在！请填写正确的订单号！", orderNo));
+        }
+        else if (StringUtils.isEmpty(studentNo)) {
+            TimeCourseOrder order = orderDao.findByNo(orderNo);
+            cli.setStudentNo(order.getStudentNo());
         }
     }
 

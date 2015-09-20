@@ -72,6 +72,7 @@ public class TimeCourseOrderController {
             m.put("huodongCount", obj.getHuodongCount());
             m.put("usedHuodongCount", obj.getUsedHuodongCount());
             m.put("orderStatus", obj.getOrderStatus());
+            m.put("courseTime", obj.getCourseTime());
             return m;
         }
     };

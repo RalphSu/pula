@@ -34,7 +34,7 @@
               <div class="r">
               <div class="backToList " id="backToList"><A href="javascript:pes.backToList()">返回至列表</A></div></td>
 	  </tr> <tr> 
-		<td >编号<span class="redStar">*</span></td>
+		<td >订单编号<span class="redStar">*</span></td>
 		<td ><input type="text" name="course.no" id="course.no" size="20" maxlength="40"/> </td>
 		<td >课程编号<span class="redStar">*</span></td>
 		<td ><input type="text" name="course.courseNo" id="course.courseNo" size="20" maxlength="40"/> </td>
@@ -49,11 +49,19 @@
 	  </tr>
 	  
 	  <tr> 
-		<td >购买付款</td>
+		<td >支付金额</td>
 		<td colspan="1"><input type="text" name="course.paied" id="course.paied" size="20" maxlength="40"  class="numberEdit"/> </td>
 		<td >是否已付款(0-未付/1-已付)</td>
 		<td ><input type="text" name="course.orderStatus" id="course.orderStatus" size="20" maxlength="40" class="numberEdit" /></td>
 	  </tr>
+	  
+	  <tr> 
+		<td >上课时间</td>
+		<td colspan="1"><input type="text" name="course.courseTime" id="course.courseTime" size="20" maxlength="40" /> </td>
+		<!-- <td >课程有效时间到</td>
+		<td ><input type="text" name="course.effectTime" id="course.effectTime" size="20" maxlength="40" /></td> -->
+	  </tr>
+	  
 	  <tr>
 		  <td >课程次数</td>
 		  <td colspan="1"><input type="text" name="course.paiedCount" id="course.paiedCount" size="20" maxlength="40" class="numberEdit"/> </td>
