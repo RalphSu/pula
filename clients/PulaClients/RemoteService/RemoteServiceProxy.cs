@@ -297,12 +297,14 @@ namespace RemoteService
         /// <returns></returns>
         public static JsonResult AddTimeCourseUsage(int courseCout, int gongfangCount, int huodongCount,
             string cardId, string clientCardNo, string clientCardStudentName,
+            string orderNo,
             string username,
             string password)
         {
             string createUsage = GetCourseClientUrl("addStudentUsage");
             var paramBuilder = BuildCourseUsageParams(courseCout, gongfangCount, 
                 huodongCount, cardId, clientCardNo, clientCardStudentName,
+                orderNo,
                 username, password);
 
             try
@@ -319,16 +321,14 @@ namespace RemoteService
             }
         }
 
-        private static ParamValueBuilder BuildCourseUsageParams(int courseCout, int gongfangCount, int huodongCount,
-            string cardId, string clientCardNo, string clientCardStudentName,
-            string username,
-            string password)
+        private static ParamValueBuilder BuildCourseUsageParams(int courseCout, int gongfangCount, int huodongCount, string cardId, string clientCardNo, string clientCardStudentName, string orderNo, string username, string password)
         {
             var paramDict = new ParamValueBuilder("course");
             // paramDict.Add("studentNo", studentNo);
             paramDict.Add("usedCount", "" + courseCout);
             paramDict.Add("usedGongfangCount", ""+ gongfangCount);
             paramDict.Add("usedHuodongCount", "" + huodongCount);
+            paramDict.Add("orderNo", orderNo);
             paramDict.ResetPrefix();
             // 增加卡的验证信息
             paramDict.Add("cardId", cardId);
@@ -341,7 +341,7 @@ namespace RemoteService
 
 
 
-        public static JsonOrderResult<TimeCourseOrder> GetUserCount(string studentNo)
+        public static JsonOrderResult<TimeCourseOrder> GetUserCourseOrders(string studentNo)
         {
             string listOrderUrl = ServiceUrl + string.Format("/timecourseorder/list?condition.studentNo={0}", studentNo);
 

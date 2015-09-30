@@ -24,6 +24,15 @@ namespace SendCard
             InitializeComponent();
             opened = false;
             config = new CardConfig(Application.StartupPath + "\\config.ini");
+
+            coursesGridView.Columns.Clear();
+            DataGridViewCheckBoxColumn selectColumn = new DataGridViewCheckBoxColumn(false);
+            selectColumn.HeaderText = "选择";
+            coursesGridView.Columns.Add(selectColumn);
+            DataGridViewTextBoxColumn commentColumn = new DataGridViewTextBoxColumn();
+            commentColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            commentColumn.HeaderText = "订单详情";
+            coursesGridView.Columns.Add(commentColumn);
         }
 
         private void BtnSetup_Click(object sender, EventArgs e)
@@ -289,17 +298,60 @@ namespace SendCard
 
         private void addUsageBtn_Click(object sender, EventArgs e)
         {
+            #region 判断用户选择是否满足要求
+            int courseCout = courseUsageBtn.Checked ? 1 : 0;
+            int gongfangCount = gongfangUsageBtn.Checked ? 1 : 0;
+            int huodongCount = huodongUsageBtn.Checked ? 1 : 0;
+            if (courseCout == 0 && gongfangCount == 0 && huodongCount == 0)
+            {
+                MessageBox.Show("请选择消费类型然后消费!");
+                return;
+            }
+
+            DataGridViewRow selectedRow = null;
+            foreach (DataGridViewRow row in coursesGridView.Rows)
+            {
+                if (row.Cells[0].Selected)
+                {
+                    if (selectedRow != null)
+                    {
+                        MessageBox.Show("只能选择一个订单!");
+                        return;
+                    }
+                    selectedRow = row;
+                }
+            }
+
+            if (selectedRow == null)
+            {
+                MessageBox.Show("请选择一个订单然后消费!");
+                return;
+            }
+            #endregion
+
+            TimeCourseOrder order = (TimeCourseOrder)selectedRow.Tag;
+
+            string orderNo = order.no;
             string msg;
-            int courseCout;
-            int gongfangCount;
-            int huodongCount;
             string cardid;
             CardMeta rm;
-            if (ReadCard(out courseCout, out gongfangCount, out huodongCount, out cardid, out rm)) return;
+            if (ReadCard(out courseCout, out gongfangCount, out huodongCount, out cardid, out rm))
+            {
+                return;
+            }
+
+            if (rm.no != order.studentNo)
+            {
+                MessageBox.Show("订单用户和当前卡用户不匹配，请先点击查看 剩余课程 按钮!");
+                return;
+            }
+
             try
             {
                 var result = RemoteServiceProxy.AddTimeCourseUsage(courseCout, gongfangCount, huodongCount,
-                    cardid, rm.no, rm.name, config.Username, config.Password);
+                    cardid, rm.no, rm.name, 
+                    orderNo,
+                    config.Username, config.Password);
                 if (result.error)
                 {
                     msg = "Error: " + result.message;
@@ -355,19 +407,26 @@ namespace SendCard
             return false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ListCoursesButton_Click(object sender, EventArgs e)
         {
+            // rows cleared
+            coursesGridView.Rows.Clear();
+            baseInfoLB.Text = "";
+
             string msg;
             int courseCout;
             int gongfangCount;
             int huodongCount;
             string cardid;
             CardMeta rm;
-            if (ReadCard(out courseCout, out gongfangCount, out huodongCount, out cardid, out rm)) return;
+            if (ReadCard(out courseCout, out gongfangCount, out huodongCount, out cardid, out rm))
+            {
+                return;
+            }
 
             try
             {
-                var result = RemoteServiceProxy.GetUserCount(rm.no);
+                var result = RemoteServiceProxy.GetUserCourseOrders(rm.no);
                 if (result == null || result.records == null || result.records.Count == 0)
                 {
                     msg = "Error: " + "没找到用户的订单，请登录系统页面查看！";
@@ -376,24 +435,35 @@ namespace SendCard
                 {
                     var sb = new StringBuilder();
                     sb.Append("用户：").Append(rm.name).Append("用户编号：").Append(rm.no).AppendLine();
+                    baseInfoLB.Text = sb.ToString();
                     foreach (var timeCourseOrder in result.records)
                     {
-                        sb.Append("\t订单号：").Append(timeCourseOrder.no).AppendLine();
+                        sb = new StringBuilder();
+                        sb.Append("订单号：").Append(timeCourseOrder.no).AppendLine();
                         sb.Append("课程次数：")
-                            .Append(timeCourseOrder.paiedCont)
+                            .Append(timeCourseOrder.paiedCount)
                             .Append(" 已使用次数：")
                             .Append(timeCourseOrder.usedCount)
                             .AppendLine();
-                        sb.Append("\t工坊课次数：")
-                            .Append(timeCourseOrder.paiedCont)
+                        sb.Append("工坊课次数：")
+                            .Append(timeCourseOrder.gongfangCount)
                             .Append(" 已使用次数：")
-                            .Append(timeCourseOrder.usedCount)
+                            .Append(timeCourseOrder.usedGongFangCount)
                             .AppendLine();
-                        sb.Append("\t活动次数：")
-                            .Append(timeCourseOrder.paiedCont)
+                        sb.Append("活动次数：")
+                            .Append(timeCourseOrder.huodongCount)
                             .Append(" 已使用次数：")
-                            .Append(timeCourseOrder.usedCount)
+                            .Append(timeCourseOrder.usedHuodongCount)
                             .AppendLine();
+
+                        var row = new DataGridViewRow();
+                        row.CreateCells(coursesGridView);
+                        row.Cells[1].Value = sb.ToString();
+                        row.Height = 35;
+                        row.Cells[1].ToolTipText = sb.ToString();
+                        row.Tag = timeCourseOrder;
+
+                        coursesGridView.Rows.Add(row);
                     }
                     msg = sb.ToString();
                 }

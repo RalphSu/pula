@@ -16,7 +16,7 @@ namespace RemoteService
         public string comments;
         public int paied;
 
-        public int paiedCont;
+        public int paiedCount;
         public int usedCount;
 
         public int huodongCount;
@@ -24,6 +24,9 @@ namespace RemoteService
 
         public int gongfangCount;
         public int usedGongFangCount;
+
+        public int specialCourseCount;
+        public int usedSpecialCourseCount;
 
     }
 }
