@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- pula.sys.domains.Course root -->
+ <class name="pula.sys.domains.TimeCourseWork" table="time_course_work">
+  <id column="id" name="id" type="long">
+   <generator class="native"/>
+  </id>
+  <property column="courseNo" name="courseNo" type="string"/>
+  <property column="courseName" name="courseName" type="string"/>
+  <property column="studentNo" name="studentNo" type="string"/>
+  <property column="imagePath" name="imagePath" type="string"/>
+  <property column="workEffectDate" name="workEffectDate" type="date"/>
+  <property column="comments" name="comments" type="string"/>
+  <property column="rate" name="rate" type="int"/>
+  <property column="createTime" name="createTime" type="date"/>
+  <property column="updateTime" name="updateTime" type="date"/>
+  <property column="enabled" name="enabled" type="boolean"/>
+  <property column="no" name="no" type="string"/>
+ </class>
+</hibernate-mapping>

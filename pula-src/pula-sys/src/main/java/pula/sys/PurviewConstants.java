@@ -135,4 +135,7 @@ public class PurviewConstants {
 	public static final String GIFT_CONSUME = "P_GIFT_CONSUME";
 	public static final String GIFT_IMPORT = "";
 	public static final String MATERIAL_IMPORT = "";
+	
+	/** 次课课程 **/
+    public static final String COURSE_WORK = "P_COURSE_WORK";
 }
