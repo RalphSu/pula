@@ -33,7 +33,11 @@
    name="usedCost" type="int"/>
   <property column="orderNo" generated="never" lazy="false"
    name="orderNo" type="string"/>
-  <property column="usedGongfangCount" name="usedGongfangCount" type="int"/>
-  <property column="usedHuodongCount" name="usedHuodongCount" type="int"/>
+  <property column="usedGongfangCount" generated="never" lazy="false"
+   name="usedGongfangCount" type="int"/>
+  <property column="usedHuodongCount" generated="never" lazy="false"
+   name="usedHuodongCount" type="int"/>
+  <property column="usedSpecialCourseCount"
+   name="usedSpecialCourseCount" type="int"/>
  </class>
 </hibernate-mapping>

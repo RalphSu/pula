@@ -81,6 +81,12 @@
 		<td >已使用活动次数</td>
 		<td colspan="1"><input type="text" name="course.usedHuodongCount" id="course.usedHuodongCount" size="20" maxlength="40" class="numberEdit"/> </td>
 	  </tr>
+	  <tr> 
+		<td >特殊课程次数</td>
+		<td colspan="1"><input type="text" name="course.specialCourseCount" id="course.specialCourseCount" size="20" maxlength="40" class="numberEdit"/> </td>
+		<td >已使用特殊课程次数</td>
+		<td colspan="1"><input type="text" name="course.usedSpecialCourseCount" id="course.usedSpecialCourseCount" size="20" maxlength="40" class="numberEdit"/> </td>
+	  </tr>
 	  
 	  <tr> 
 		<td >备注</td>

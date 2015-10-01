@@ -302,7 +302,8 @@ namespace SendCard
             int courseCout = courseUsageBtn.Checked ? 1 : 0;
             int gongfangCount = gongfangUsageBtn.Checked ? 1 : 0;
             int huodongCount = huodongUsageBtn.Checked ? 1 : 0;
-            if (courseCout == 0 && gongfangCount == 0 && huodongCount == 0)
+            int specialCourseCount = specialCourseCB.Checked ? 1 : 0;
+            if (courseCout == 0 && gongfangCount == 0 && huodongCount == 0 && specialCourseCount == 0)
             {
                 MessageBox.Show("请选择消费类型然后消费!");
                 return;
@@ -311,7 +312,8 @@ namespace SendCard
             DataGridViewRow selectedRow = null;
             foreach (DataGridViewRow row in coursesGridView.Rows)
             {
-                if (row.Cells[0].Selected)
+                DataGridViewCheckBoxCell selectCell = row.Cells[0] as DataGridViewCheckBoxCell;
+                if (selectCell != null && selectCell.Value != null && (bool)selectCell.Value)
                 {
                     if (selectedRow != null)
                     {
@@ -335,7 +337,7 @@ namespace SendCard
             string msg;
             string cardid;
             CardMeta rm;
-            if (ReadCard(out courseCout, out gongfangCount, out huodongCount, out cardid, out rm))
+            if (ReadCard(out cardid, out rm))
             {
                 return;
             }
@@ -349,6 +351,7 @@ namespace SendCard
             try
             {
                 var result = RemoteServiceProxy.AddTimeCourseUsage(courseCout, gongfangCount, huodongCount,
+                    specialCourseCount,
                     cardid, rm.no, rm.name, 
                     orderNo,
                     config.Username, config.Password);
@@ -368,14 +371,10 @@ namespace SendCard
             this.usageStatusLb.Text = msg;
         }
 
-        private bool ReadCard(out int courseCout, out int gongfangCount, out int huodongCount, out string cardid,
-            out CardMeta rm)
+        private bool ReadCard(out string cardid, out CardMeta rm)
         {
             rm = null;
             this.usageStatusLb.Text = "";
-            courseCout = courseUsageBtn.Checked ? 1 : 0;
-            gongfangCount = gongfangUsageBtn.Checked ? 1 : 0;
-            huodongCount = huodongUsageBtn.Checked ? 1 : 0;
 
             cardid = reader.GetCard();
             if (!string.IsNullOrEmpty(cardid))
@@ -414,12 +413,9 @@ namespace SendCard
             baseInfoLB.Text = "";
 
             string msg;
-            int courseCout;
-            int gongfangCount;
-            int huodongCount;
             string cardid;
             CardMeta rm;
-            if (ReadCard(out courseCout, out gongfangCount, out huodongCount, out cardid, out rm))
+            if (ReadCard(out cardid, out rm))
             {
                 return;
             }
@@ -442,22 +438,29 @@ namespace SendCard
                         sb.Append("订单号：").Append(timeCourseOrder.no).AppendLine();
                         sb.Append("课程次数：")
                             .Append(timeCourseOrder.paiedCount)
-                            .Append(" 已使用次数：")
+                            .Append(" 已使用：")
                             .Append(timeCourseOrder.usedCount)
                             .AppendLine();
                         sb.Append("工坊课次数：")
                             .Append(timeCourseOrder.gongfangCount)
-                            .Append(" 已使用次数：")
+                            .Append(" 已使用：")
                             .Append(timeCourseOrder.usedGongFangCount)
                             .AppendLine();
                         sb.Append("活动次数：")
                             .Append(timeCourseOrder.huodongCount)
-                            .Append(" 已使用次数：")
+                            .Append(" 已使用：")
                             .Append(timeCourseOrder.usedHuodongCount)
+                            .AppendLine();
+                        sb.Append("特殊课程次数：")
+                            .Append(timeCourseOrder.specialCourseCount)
+                            .Append("已使用：").Append(timeCourseOrder.usedSpecialCourseCount)
                             .AppendLine();
 
                         var row = new DataGridViewRow();
                         row.CreateCells(coursesGridView);
+                        ((DataGridViewCheckBoxCell) row.Cells[0]).TrueValue = true;
+                        ((DataGridViewCheckBoxCell) row.Cells[0]).FalseValue = false;
+
                         row.Cells[1].Value = sb.ToString();
                         row.Height = 35;
                         row.Cells[1].ToolTipText = sb.ToString();
