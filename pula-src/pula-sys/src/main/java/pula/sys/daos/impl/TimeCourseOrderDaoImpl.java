@@ -90,6 +90,8 @@ public class TimeCourseOrderDaoImpl extends HibernateGenericDao<TimeCourseOrder,
         n.setUsedGongFangCount(cc.getUsedGongFangCount());
         n.setHuodongCount(cc.getHuodongCount());
         n.setUsedHuodongCount(cc.getUsedHuodongCount());
+        n.setSpecialCourseCount(cc.getSpecialCourseCount());
+        n.setUsedSpecialCourseCount(cc.getUsedSpecialCourseCount());
 
         _update(n);
         return n;

@@ -293,16 +293,21 @@ namespace RemoteService
         /// <param name="courseCout"></param>
         /// <param name="gongfangCount"></param>
         /// <param name="huodongCount"></param>
-        /// <param name="studentNo"></param>
+        /// <param name="specialCourseCount"></param>
+        /// <param name="cardId"></param>
+        /// <param name="clientCardNo"></param>
+        /// <param name="clientCardStudentName"></param>
+        /// <param name="orderNo"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
         /// <returns></returns>
-        public static JsonResult AddTimeCourseUsage(int courseCout, int gongfangCount, int huodongCount,
-            string cardId, string clientCardNo, string clientCardStudentName,
-            string username,
-            string password)
+        public static JsonResult AddTimeCourseUsage(int courseCout, int gongfangCount, int huodongCount, int specialCourseCount, string cardId, string clientCardNo, string clientCardStudentName, string orderNo, string username, string password)
         {
             string createUsage = GetCourseClientUrl("addStudentUsage");
-            var paramBuilder = BuildCourseUsageParams(courseCout, gongfangCount, 
-                huodongCount, cardId, clientCardNo, clientCardStudentName,
+            var paramBuilder = BuildCourseUsageParams(courseCout, gongfangCount,
+                huodongCount, specialCourseCount,
+                cardId, clientCardNo, clientCardStudentName,
+                orderNo,
                 username, password);
 
             try
@@ -319,16 +324,15 @@ namespace RemoteService
             }
         }
 
-        private static ParamValueBuilder BuildCourseUsageParams(int courseCout, int gongfangCount, int huodongCount,
-            string cardId, string clientCardNo, string clientCardStudentName,
-            string username,
-            string password)
+        private static ParamValueBuilder BuildCourseUsageParams(int courseCout, int gongfangCount, int huodongCount, int specialCourseCount, string cardId, string clientCardNo, string clientCardStudentName, string orderNo, string username, string password)
         {
             var paramDict = new ParamValueBuilder("course");
             // paramDict.Add("studentNo", studentNo);
             paramDict.Add("usedCount", "" + courseCout);
             paramDict.Add("usedGongfangCount", ""+ gongfangCount);
             paramDict.Add("usedHuodongCount", "" + huodongCount);
+            paramDict.Add("orderNo", orderNo);
+            paramDict.Add("usedSpecialCourseCount", "" + specialCourseCount);
             paramDict.ResetPrefix();
             // 增加卡的验证信息
             paramDict.Add("cardId", cardId);
@@ -341,7 +345,7 @@ namespace RemoteService
 
 
 
-        public static JsonOrderResult<TimeCourseOrder> GetUserCount(string studentNo)
+        public static JsonOrderResult<TimeCourseOrder> GetUserCourseOrders(string studentNo)
         {
             string listOrderUrl = ServiceUrl + string.Format("/timecourseorder/list?condition.studentNo={0}", studentNo);
 

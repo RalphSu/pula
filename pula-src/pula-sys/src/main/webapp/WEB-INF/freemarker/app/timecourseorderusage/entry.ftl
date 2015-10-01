@@ -35,12 +35,14 @@
               <div class="backToList " id="backToList"><A href="javascript:pes.backToList()">返回至列表</A></div></td>
 	  </tr>
 	  <tr> 
-		<!-- <td >编号</span></td>
-		<td ><input type="text" name="course.no" id="course.no" size="20" maxlength="40" disabled /> </td> -->
+		<td >编号</span></td>
+		<td ><input type="text" name="course.no" id="course.no" size="20" maxlength="40" disabled /> </td>
+	  </tr>
+	  <tr>
 		<td >课程编号<span class="redStar">*</span></td>
 		<td ><input type="text" name="course.courseNo" id="course.courseNo" size="20" maxlength="40"/> </td>
-	  <!-- </tr>
-	  <tr>  -->
+	  </tr>
+	  <tr>
 	<!-- 	<td >学生编号</td>
 		<td ><input type="text" name="course.studentNo" id="course.studentNo" size="20" maxlength="40" disabled/>
 		</td> -->
@@ -60,6 +62,10 @@
 	  <tr>
 		<td >消费活动次数</td>
 		<td colspan="1"><input type="text" name="course.usedHuodongCount" id="course.usedHuodongCount" size="20" maxlength="40" class="numberEdit"/> </td>
+	  </tr>
+	  <tr> 
+		<td >特殊课程次数</td>
+		<td colspan="1"><input type="text" name="course.usedSpecialCourseCount" id="course.usedSpecialCourseCount" size="20" maxlength="40" class="numberEdit"/> </td>
 	  </tr>
 	  <tr> 
 		<td >备注</td>
@@ -105,11 +111,11 @@ var lang = {
 
 
 	function check(){
-		if(isEmpty($F("course.no"))){
+		/* if(isEmpty($F("course.no"))){
 			alert("请填写编号");
 			$("course.no").focus();
 			return false; 
-		}
+		} */
 
 		var b = true;
 		var eel = null ;

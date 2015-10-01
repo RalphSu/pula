@@ -60,6 +60,10 @@ public class TimeCourseOrder implements LoggablePo {
     private int huodongCount;
     @JsonProperty
     private int usedHuodongCount;
+    @JsonProperty
+    private int specialCourseCount;
+    @JsonProperty
+    private int usedSpecialCourseCount;
     
     @JsonProperty
     private String courseTime;
@@ -261,6 +265,22 @@ public class TimeCourseOrder implements LoggablePo {
 
     public void setCourseTime(String courseTime) {
         this.courseTime = courseTime;
+    }
+
+    public int getSpecialCourseCount() {
+        return specialCourseCount;
+    }
+
+    public void setSpecialCourseCount(int specialCourseCount) {
+        this.specialCourseCount = specialCourseCount;
+    }
+
+    public int getUsedSpecialCourseCount() {
+        return usedSpecialCourseCount;
+    }
+
+    public void setUsedSpecialCourseCount(int usedSpecialCourseCount) {
+        this.usedSpecialCourseCount = usedSpecialCourseCount;
     }
 
 }

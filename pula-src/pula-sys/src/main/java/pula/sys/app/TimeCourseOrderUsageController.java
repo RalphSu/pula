@@ -70,6 +70,7 @@ public class TimeCourseOrderUsageController {
             m.put("usedGongfangCount", obj.getUsedGongfangCount());
             m.put("usedHuodongCount", obj.getUsedHuodongCount());
 
+            m.put("usedSpecialCourseCount", obj.getUsedSpecialCourseCount());
             return m;
         }
     };
@@ -213,7 +214,7 @@ public class TimeCourseOrderUsageController {
                     order.getPaiedCount(), order.getUsedCount(), usedCount));
 
         }
-        order.setUsedCount(order.getUsedCost() + usedCount);
+        order.setUsedCount(order.getUsedCount() + usedCount);
 
         int usedGongfangCount = cli.getUsedGongfangCount();
         if (order.getUsedGongFangCount() + usedGongfangCount > order.getGongfangCount()) {
@@ -229,6 +230,14 @@ public class TimeCourseOrderUsageController {
                     order.getHuodongCount(), order.getUsedHuodongCount(), usedHuodongCount));
         }
         order.setUsedHuodongCount(order.getUsedHuodongCount() + usedHuodongCount);
+        
+        int currentUsedSpecialCourseCount = cli.getUsedSpecialCourseCount();
+        if (order.getUsedSpecialCourseCount() + currentUsedSpecialCourseCount > order.getSpecialCourseCount())
+        {
+            Pe.raise(MessageFormat.format("订单号{0}剩余特殊课程上课次数已经不足，买了次数{1}，已使用次数{1}，本次需扣除次数{2}！", orderNo,
+                    order.getSpecialCourseCount(), order.getUsedSpecialCourseCount(), currentUsedSpecialCourseCount));
+        }
+        order.setUsedSpecialCourseCount(order.getUsedSpecialCourseCount() +currentUsedSpecialCourseCount);
     }
 
     private void preCheckExisting(TimeCourseOrderUsage cli) {
@@ -316,6 +325,19 @@ public class TimeCourseOrderUsageController {
                         deltaHuodongCount));
             }
             order.setUsedHuodongCount(newUsedHuodongCount);
+        }
+        {
+            int deltaSpecialCourseCount = cli.getUsedSpecialCourseCount() - existing.getUsedSpecialCourseCount();
+            int newSpecialCourseCount = order.getUsedSpecialCourseCount() + deltaSpecialCourseCount;
+            if (newSpecialCourseCount > order.getSpecialCourseCount())
+            {
+                Pe.raise(MessageFormat.format("订单号{0}剩余''特殊课程''上课次数已经不足，购买次数{1}，更新前已使用次数{2},本次尝试新设置消费次数{3}！", 
+                        order.getNo(), 
+                        order.getSpecialCourseCount(),
+                        order.getUsedSpecialCourseCount(),
+                        deltaSpecialCourseCount));
+            }
+            order.setUsedSpecialCourseCount(newSpecialCourseCount);
         }
     }
 

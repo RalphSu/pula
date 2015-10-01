@@ -47,5 +47,8 @@
   <property column="orderStatus" generated="never" lazy="false"
    name="orderStatus" type="int"/>
   <property column="courseTime" name="courseTime" type="string"/>
+  <property column="usedSpecialCourseCount"
+   name="usedSpecialCourseCount" type="int"/>
+  <property column="specialCourseCount" name="specialCourseCount" type="int"/>
  </class>
 </hibernate-mapping>
