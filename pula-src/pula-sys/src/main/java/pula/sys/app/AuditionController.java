@@ -217,10 +217,10 @@ public class AuditionController {
 				.addObject("statusList", statusList);
 	}
 
-	@RequestMapping(method={RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping
 	@Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
 	@ResponseBody
-	@Barrier(PurviewConstants.AUDITION)
+//	@Barrier(PurviewConstants.AUDITION)
 	public YuiResult list(
 			@ObjectParam("condition") AuditionCondition condition,
 			@RequestParam(value = "pageIndex", required = false, defaultValue = "0") int pageIndex) {
