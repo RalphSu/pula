@@ -304,7 +304,7 @@ public class AuditionController {
     @ResponseBody
     @Barrier(ignore = true)
     public JsonResult cancel(@RequestParam(value = "auditionid", required = false) Long id,
-            @RequestParam(value = "auditionid", required = false) String no) {
+            @RequestParam(value = "auditionno", required = false) String no) {
         if (id != null) {
             auditionDao.deleteById(id);
             return JsonResult.create("预约已取消!", null);
