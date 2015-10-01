@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 
 import puerta.support.PageInfo;
 import puerta.support.PaginationSupport;
@@ -22,6 +23,7 @@ import pula.sys.domains.TimeCourseWork;
  * @author Liangfei
  *
  */
+@Repository
 public class TimeCourseWorkDaoImpl extends HibernateGenericDao<TimeCourseWork, Long> implements TimeCourseWorkDao {
 
     @Override

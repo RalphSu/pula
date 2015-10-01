@@ -4,19 +4,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import puerta.support.PaginationSupport;
 import puerta.support.annotation.Barrier;
+import puerta.support.utils.MD5;
 import puerta.system.keeper.ParameterKeeper;
 import puerta.system.vo.JsonResult;
 import puerta.system.vo.MapBean;
@@ -40,13 +45,18 @@ import pula.sys.domains.TimeCourse;
 import pula.sys.domains.TimeCourseOrder;
 import pula.sys.domains.TimeCourseOrderUsage;
 import pula.sys.helpers.CourseHelper;
+import pula.sys.helpers.StudentHelper;
 import pula.sys.helpers.StudentPointsHelper;
 import pula.sys.miscs.MD5Checker;
 import pula.sys.services.StudentPointsService;
+import pula.sys.util.SmsUtil;
+import pula.sys.util.SmsUtil.SendResult;
 
 @Controller
 @Barrier(ignore = true)
 public class StudentInterfaceController {
+    
+    private static final Logger logger = LoggerFactory.getLogger(StudentInterfaceController.class);
 
 	@Resource
 	ParameterKeeper parameterKeeper;
@@ -259,26 +269,91 @@ public class StudentInterfaceController {
 	}
 
 	@ResponseBody
-	@RequestMapping
+	@RequestMapping(method={RequestMethod.POST})
 	@Transactional
-	public JsonResult updatePassword(@RequestParam("actorId") Long actorId,
+	public JsonResult updatePassword(@RequestParam(value = "studentNo") String studentNo,
 			@RequestParam("oldPassword") String oldPassword,
 			@RequestParam("newPassword") String newPassword,
-			@RequestParam("ip") String ip, @RequestParam("md5") String md5) {
+			@RequestParam("ip") String ip, 
+			@RequestParam("md5") String md5) {
+	    Student student = studentDao.findByNo(studentNo);
+	    if (student == null) {
+            return JsonResult.e("找不到对应的注册用户!");
+        }
 
-		MD5Checker.check(parameterKeeper, md5, actorId, oldPassword,
-				newPassword, ip);
+        Long branchId = studentDao.updatePassword(student.getId(), oldPassword, newPassword);
 
-		Long branchId = studentDao.updatePassword(actorId, oldPassword,
-				newPassword);
-
-		studentLogDao.save(actorId, branchId, ip, "修改密码");
+		studentLogDao.save(student.getId(), branchId, ip, "修改密码");
 
 		return JsonResult.s();
 
 	}
 
-	@ResponseBody
+    @ResponseBody
+    @RequestMapping(method={RequestMethod.POST})
+    @Transactional
+    public JsonResult resetPassword(@RequestParam(value = "studentNo", required = false) String studentNo,
+            @RequestParam("mobile") String mobile, 
+            @RequestParam(value = "ip", required = false) String ip,
+            @RequestParam(value = "md5", required = false) String md5) {
+        // validate user input
+        Student student = studentDao.findByNo(studentNo);
+        if (student == null) {
+            List<Student> students = studentDao.findByProperty("mobile", mobile);
+            if (students.size() > 1) {
+                return JsonResult.e("此手机对应多个用户，请提供学生号码！");
+            }
+            if (students.size() > 0) {
+                student = students.get(0);
+            }
+        }
+
+        if (student == null) {
+            return JsonResult.e("找不到对应的注册用户!");
+        }
+
+        if (!student.getMobile().equals(mobile)) {
+            return JsonResult.e("给定的学生号和给定的手机号不一致，请提供正确的手机号码和学生号！");
+        }
+
+        String newPassword = makeNewPassword(student);
+        student.setPassword(StudentHelper.makePassword(newPassword));
+        studentDao.update(student, true);
+        // bad log password....
+        logger.info(String.format("学生 编号%s, 用户名 %s, 密码重置为 %s",student.getNo(), student.getName(), newPassword));
+
+        studentLogDao.save(student.getId(), student.getBranch().getId(), ip, "重置密码");
+        // SMS send
+        SendSMS(student.getName(), mobile, newPassword);
+
+        return JsonResult.s();
+    }
+
+	private void SendSMS(String name, String mobile, String newPassword) {
+	    SendResult result = SmsUtil.sendResetPassword(name, mobile, newPassword);
+	    if (result.succeed) {
+            logger.info(String.format("发送短信成功: %s: %s !", name, mobile));
+        } else {
+            logger.error(String.format("发送短信失败! %s: %s: %s !", name, mobile, result.message));
+        }
+    }
+
+	// Reset password algorithm
+    private String makeNewPassword(Student student) {
+        Random r = new Random(System.currentTimeMillis());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            sb.append(r.nextInt());
+        }
+        String md5 = MD5.GetMD5String(sb.toString());
+        if (md5.length() > 6) {
+            return md5.substring(0, 6);
+        } else {
+            return String.format("%a6s", md5);
+        }
+    }
+
+    @ResponseBody
 	@RequestMapping
 	@Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
 	public JsonResult getPointsLog(@RequestParam("pageIndex") int pageIndex,

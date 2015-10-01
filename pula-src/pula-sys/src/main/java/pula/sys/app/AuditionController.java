@@ -286,7 +286,7 @@ public class AuditionController {
             if (!existAudition.getResult().getName().equals("尚未结束") && newAudition.getResult().getName().equals("成功")
                     || (!existAudition.getPlan1().equals(newAudition.getPlan1()))) {
                 // 从尚未结束变成成功，或者时间变化，发个短信
-                SendResult result = SmsUtil.SendBookingMessage(audition);
+                SendResult result = SmsUtil.sendBookingMessage(audition);
                 if (result.succeed) {
                     logger.info("发送短信成功!");
                 } else {

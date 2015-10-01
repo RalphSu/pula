@@ -8,7 +8,6 @@
    <generator class="native"/>
   </id>
   <property column="courseNo" name="courseNo" type="string"/>
-  <property column="courseName" name="courseName" type="string"/>
   <property column="studentNo" name="studentNo" type="string"/>
   <property column="imagePath" name="imagePath" type="string"/>
   <property column="workEffectDate" name="workEffectDate" type="date"/>

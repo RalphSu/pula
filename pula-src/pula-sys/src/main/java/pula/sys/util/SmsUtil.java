@@ -33,7 +33,7 @@ public class SmsUtil {
     /**
      * 短信接口二，触发类模板短信接口，可以设置动态参数变量。适合：验证码、订单短信等。
      */
-    public static SendResult SendBookingMessage(Audition audition) {
+    public static SendResult sendBookingMessage(Audition audition) {
         Map<String, String> para = new HashMap<String, String>();
         /**
          * 目标手机号码，多个以“,”分隔，一次性调用最多100个号码，示例：139********,138********
@@ -94,17 +94,36 @@ public class SmsUtil {
         para.put("p4", mobile);
         para.put("p5", contactor);
 
+        return _send(para);
+    }
+
+    /**
+     * Send reset password notification
+     * 
+     * @param name
+     * @param mobile
+     * @param newPassword
+     * @return
+     */
+    public static SendResult sendResetPassword(String name, String mobile, String newPassword) {
+        Map<String, String> para = new HashMap<String, String>();
+        para.put("mob", mobile);
+        para.put("uid", "vvOcK30SPG2x");
+        para.put("pas", "86vq37m2");
+        para.put("type", "json");
+        para.put("cid", "o4Z5IC4xj4X2");
+        para.put("p1", name);
+        para.put("p2", newPassword);
+        para.put("p3", "5");
+
+        return _send(para);
+    }
+
+    private static SendResult _send(Map<String, String> para) {
         try {
-//            HttpClient client = new HttpClient();
-//            HttpMethod get = new GetMethod("http://api.weimi.cc/2/sms/send.html");
-//            HttpMethodParams paras = new HttpMethodParams();
-//            for(Entry<String,String> e : para.entrySet()) {
-//                paras.setParameter(e.getKey(), e.getValue());
-//            }
-//            get.setParams(paras);
-//            client.executeMethod(get);
             String respBody = HttpClientHelper.convertStreamToString(
                     HttpClientHelper.get("http://api.weimi.cc/2/sms/send.html", para), "UTF-8");
+            logger.info(respBody);
             if (respBody.contains("短信接口调用成功")) {
                 return new SendResult(true, respBody);
             } else {
@@ -115,5 +134,4 @@ public class SmsUtil {
             return new SendResult(false, e.getMessage());
         }
     }
-
 }
