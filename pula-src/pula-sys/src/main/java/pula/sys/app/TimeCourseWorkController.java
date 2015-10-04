@@ -332,8 +332,9 @@ public class TimeCourseWorkController {
     }
     
     @RequestMapping
+    @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
     @ResponseBody
-    @Barrier(check = false, value = { PurviewConstants.COURSE_WORK })
+    @Barrier(ignore = true)
     public AttachmentFile icon(
             @RequestParam(value = "fp", required = false) String fp,
             @RequestParam(value = "id", required = false) Long id,
@@ -353,8 +354,29 @@ public class TimeCourseWorkController {
     }
 
     @RequestMapping
-    public JsonResult appshowListCourseWork(String courseNo, boolean starOnly) {
-        return null;
+    public ModelAndView appshow(
+            @RequestParam(value = "id", required = false) Long id,
+            @RequestParam(value = "no", required = false) String no) {
+        
+        TimeCourseWork u = null;
+        if (id != null) {
+            u = workDao.findById(id);
+        } else if (!StringUtils.isEmpty(no)) {
+            u = workDao.findByNo(no);
+        }
+
+        if (u == null) {
+            return new ModelAndView("error");
+        }
+        
+        ModelAndView view = new ModelAndView();
+        
+        List<FileAttachment> attachments = fileAttachmentDao.loadByRefId(u.toRefId(), FileAttachment.TYPE_STUENDT_TIME_COURSE_WORK);
+        if (attachments != null && attachments.size() > 0) {
+            view.addObject("af", attachments.get(0));
+        }
+        view.addObject("work", u);
+        return view;
     }
 
     @Transactional

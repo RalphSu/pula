@@ -274,8 +274,7 @@ public class StudentInterfaceController {
 	public JsonResult updatePassword(@RequestParam(value = "studentNo") String studentNo,
 			@RequestParam("oldPassword") String oldPassword,
 			@RequestParam("newPassword") String newPassword,
-			@RequestParam("ip") String ip, 
-			@RequestParam("md5") String md5) {
+			@RequestParam(value = "ip", required = false) String ip) {
 	    Student student = studentDao.findByNo(studentNo);
 	    if (student == null) {
             return JsonResult.e("找不到对应的注册用户!");
@@ -283,7 +282,7 @@ public class StudentInterfaceController {
 
         Long branchId = studentDao.updatePassword(student.getId(), oldPassword, newPassword);
 
-		studentLogDao.save(student.getId(), branchId, ip, "修改密码");
+		studentLogDao.save(student.getId(), branchId, "", "修改密码");
 
 		return JsonResult.s();
 
