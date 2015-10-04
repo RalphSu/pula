@@ -47,7 +47,7 @@ public class TimeCourseForm extends TimeCourse {
         }
     }
 
-    private Date getDate(String dateText) {
+    public static Date getDate(String dateText) {
         if (StringUtils.isEmpty(dateText)) {
             return null;
         }

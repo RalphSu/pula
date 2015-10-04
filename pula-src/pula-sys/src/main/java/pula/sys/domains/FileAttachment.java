@@ -8,6 +8,7 @@ public class FileAttachment {
 	public static final int TYPE_STUDENT_ICON = 10;
 	public static final int TYPE_STUDENT_ETC = 12;
 	public static final int TYPE_STUENDT_WORK = 13;
+	public static final int TYPE_STUENDT_TIME_COURSE_WORK = 14;
 	
 	
 	public static final int TYPE_TEACHER_ICON = 20;

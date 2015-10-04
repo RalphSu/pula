@@ -16,6 +16,10 @@
   <property column="createTime" name="createTime" type="date"/>
   <property column="updateTime" name="updateTime" type="date"/>
   <property column="enabled" name="enabled" type="boolean"/>
+  <property column="removed" name="removed" type="boolean"/>
   <property column="no" name="no" type="string"/>
+  <property column="branchNo" name="branchNo" type="string"/>
+  <property column="updator" name="updator" type="string"/>
+  <property column="attachmentKey" name="attachmentKey" type="string"/>
  </class>
 </hibernate-mapping>

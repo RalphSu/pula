@@ -14,6 +14,8 @@ import org.springframework.stereotype.Repository;
 import puerta.support.PageInfo;
 import puerta.support.PaginationSupport;
 import puerta.support.Pe;
+import puerta.support.utils.MD5;
+import puerta.support.utils.RandomTool;
 import puerta.system.base.HibernateGenericDao;
 import pula.sys.conditions.TimeCourseWorkCondition;
 import pula.sys.daos.TimeCourseWorkDao;
@@ -55,8 +57,13 @@ public class TimeCourseWorkDaoImpl extends HibernateGenericDao<TimeCourseWork, L
 
     @Override
     public TimeCourseWork save(TimeCourseWork cc) {
+        if (StringUtils.isEmpty(cc.getNo())) {
+            cc.setNo(MD5.GetMD5String("" + System.currentTimeMillis()));
+        }
+
         cc.setCreateTime(new Date());
         cc.setUpdateTime(new Date());
+        cc.setAttachmentKey(RandomTool.getRandomString(10));
         cc.setEnabled(true);
         _save(cc);
         return cc;
@@ -70,7 +77,7 @@ public class TimeCourseWorkDaoImpl extends HibernateGenericDao<TimeCourseWork, L
 
         TimeCourseWork existed = this.findById(cc.getId());
         if (existed == null) {
-            Pe.raise("订单课程作业编号！");
+            Pe.raise(String.format("订单课程作业编号不存在: %d ！", cc.getId()));
         }
 
         existed.setUpdateTime(new Date());
@@ -80,6 +87,8 @@ public class TimeCourseWorkDaoImpl extends HibernateGenericDao<TimeCourseWork, L
         existed.setRate(cc.getRate());
         existed.setStudentNo(cc.getStudentNo());
         existed.setWorkEffectDate(cc.getWorkEffectDate());
+        existed.setBranchNo(cc.getBranchNo());
+        existed.setUpdator(cc.getUpdator());
 
         _update(existed);
         return existed;

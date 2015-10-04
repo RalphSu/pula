@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
@@ -24,9 +23,7 @@ import puerta.support.Pe;
 import puerta.support.ViewResult;
 import puerta.support.annotation.Barrier;
 import puerta.support.annotation.ObjectParam;
-import puerta.support.utils.FileHelper;
 import puerta.support.utils.JacksonUtil;
-import puerta.support.utils.WxlSugar;
 import puerta.support.vo.SelectOptionList;
 import puerta.system.keeper.ParameterKeeper;
 import puerta.system.service.SessionService;
@@ -55,6 +52,7 @@ import pula.sys.forms.FileAttachmentForm;
 import pula.sys.forms.StudentForm;
 import pula.sys.helpers.StudentHelper;
 import pula.sys.services.SessionUserService;
+import pula.sys.util.FileUtil;
 
 @Controller
 public class StudentController {
@@ -261,7 +259,8 @@ public class StudentController {
 
 		List<FileAttachmentForm> attachmentForms = cli.getAttachmentForms();
 
-		List<FileAttachment> attachments = processFile(attachmentForms);
+		List<FileAttachment> attachments = FileUtil.processFile(parameterKeeper
+                .getFilePath(BhzqConstants.FILE_STUDENT_DIR), parameterKeeper, attachmentForms);
 
 		// 然后生成真实对象
 		cc.setCreator(SysUser.create(sessionUserService.getActorId()));
@@ -279,51 +278,6 @@ public class StudentController {
 		}
 
 		return ViewResult.JSON_SUCCESS;
-	}
-
-	private List<FileAttachment> processFile(
-			List<FileAttachmentForm> attachmentForms) {
-		List<FileAttachment> attachments = WxlSugar.newArrayList();
-
-		String filePath = parameterKeeper
-				.getFilePath(BhzqConstants.FILE_STUDENT_DIR);
-
-        FileHelper.mkdir(filePath);
-		
-		String srcPath = parameterKeeper
-				.getFilePath(BhzqConstants.FILE_UPLOAD_DIR);
-
-		if (attachmentForms != null) {
-
-			// 文件要复制！
-			for (FileAttachmentForm a : attachmentForms) {
-
-				if (StringUtils.isEmpty(a.getFileId())) {
-					continue;
-				}
-				FileAttachment fa = new FileAttachment();
-				fa.setExtName(FilenameUtils.getExtension(a.getFileName()));
-				fa.setName(a.getFileName());
-				fa.setType(a.getType());
-				fa.setFileId(a.getFileId());
-
-				if (a.getId() == 0) {
-
-					// build
-
-					String dest = filePath + File.separatorChar + a.getFileId();
-					File f = new File(srcPath + File.separatorChar
-							+ a.getFileId());
-					f.renameTo(new File(dest));
-
-				} else {
-					fa.setId(a.getId());
-				}
-				attachments.add(fa);
-
-			}
-		}
-		return attachments;
 	}
 
 	private Long prepareData(StudentForm cli, String jsonAttachment, Student cc) {
@@ -367,7 +321,8 @@ public class StudentController {
 
 		List<FileAttachmentForm> attachmentForms = cli.getAttachmentForms();
 
-		List<FileAttachment> attachments = processFile(attachmentForms);
+		List<FileAttachment> attachments = FileUtil.processFile(parameterKeeper
+                .getFilePath(BhzqConstants.FILE_STUDENT_DIR), parameterKeeper, attachmentForms);
 
 		// 然后生成真实对象
 		cc.setUpdater(SysUser.create(sessionUserService.getActorId()));

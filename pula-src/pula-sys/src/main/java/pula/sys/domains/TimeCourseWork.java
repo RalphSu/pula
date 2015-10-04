@@ -9,6 +9,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
+import pula.sys.intfs.RefIdSupport;
 
 /**
  * @author Liangfei
@@ -16,7 +17,7 @@ import puerta.support.dao.LoggablePo;
  */
 
 @WxlDomain("次课作品")
-public class TimeCourseWork implements LoggablePo {
+public class TimeCourseWork implements LoggablePo, RefIdSupport {
 
     @JsonProperty
     private long id;
@@ -32,6 +33,8 @@ public class TimeCourseWork implements LoggablePo {
     private Date workEffectDate;
     @JsonProperty
     private String comments;
+    @JsonProperty
+    private String branchNo;
     /**
      * 0 - normal 1 - start
      */
@@ -44,6 +47,32 @@ public class TimeCourseWork implements LoggablePo {
     private Date updateTime;
     @JsonProperty
     private boolean enabled;
+    
+    @JsonProperty
+    private boolean removed;
+    
+    @JsonProperty
+    private String updator;
+    @JsonProperty
+    private String attachmentKey;
+
+    public TimeCourseWork() {
+    }
+    
+    public TimeCourseWork(TimeCourseWork other) {
+        this.id = other.id;
+        this.no = other.no;
+        this.courseNo = other.courseNo;
+        this.studentNo = other.studentNo;
+        this.imagePath = other.imagePath;
+        this.workEffectDate = other.workEffectDate;
+        this.comments = other.comments;
+        this.rate = other.rate;
+        this.enabled = other.enabled;
+        this.createTime = other.createTime;
+        this.updateTime = other.updateTime;
+        this.removed = other.removed;
+    }
 
     public long getId() {
         return id;
@@ -133,12 +162,54 @@ public class TimeCourseWork implements LoggablePo {
         this.enabled = enabled;
     }
 
+    public boolean isRemoved() {
+        return removed;
+    }
+
+    public void setRemoved(boolean removed) {
+        this.removed = removed;
+    }
+
+    public String getBranchNo() {
+        return branchNo;
+    }
+
+    public void setBranchNo(String branchNo) {
+        this.branchNo = branchNo;
+    }
+
+    public String getUpdator() {
+        return updator;
+    }
+
+    public void setUpdator(String updator) {
+        this.updator = updator;
+    }
+
+    public String getAttachmentKey() {
+        return attachmentKey;
+    }
+
+    public void setAttachmentKey(String attachmentKey) {
+        this.attachmentKey = attachmentKey;
+    }
+
     @Override
     public String toLogString() {
         StringBuilder sb = new StringBuilder();
         sb.append("TimeCourseWork: ").append("  courseNo:").append(courseNo).append(" studentNo:").append(studentNo)
                 .append("   imagePath:").append(imagePath).append("    comments:").append(comments);
         return sb.toString();
+    }
+
+    @Override
+    public String toRefId() {
+        return CourseTaskResultWork.buildRefId(id, attachmentKey);
+    }
+
+    @Override
+    public int getTypeRange() {
+        return FileAttachment.TYPE_STUENDT_TIME_COURSE_WORK;
     }
 
 }
