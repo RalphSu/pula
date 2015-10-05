@@ -68,6 +68,7 @@ list页面，把三个次数的消费情况都显示出来 -done
 5. 密码修改 - done
 6. 预订的页面API - done
 7. 支付的服务端
+8. PlayCourseClient
 #####################
 
 

@@ -1,6 +1,6 @@
-﻿namespace CourseClient
+﻿namespace Play
 {
-    partial class FrmCourse
+    partial class CoursePlayForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCourse));
             this.swf = new AxShockwaveFlashObjects.AxShockwaveFlash();
-            this.timerEncypt = new System.Windows.Forms.Timer(this.components);
             this.btnStart = new System.Windows.Forms.Button();
-            this.timerClose = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.swf)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,46 +40,31 @@
             this.swf.Location = new System.Drawing.Point(0, 0);
             this.swf.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.swf.Name = "swf";
-            this.swf.Size = new System.Drawing.Size(623, 433);
-            this.swf.TabIndex = 1;
-            this.swf.OnProgress += new AxShockwaveFlashObjects._IShockwaveFlashEvents_OnProgressEventHandler(this.swf_OnProgress);
-            this.swf.FlashCall += new AxShockwaveFlashObjects._IShockwaveFlashEvents_FlashCallEventHandler(this.swf_FlashCall);
-            // 
-            // timerEncypt
-            // 
-            this.timerEncypt.Tick += new System.EventHandler(this.timerEncypt_Tick);
+            this.swf.Size = new System.Drawing.Size(1110, 654);
+            this.swf.TabIndex = 2;
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(396, 69);
+            this.btnStart.Location = new System.Drawing.Point(505, 314);
             this.btnStart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(100, 27);
-            this.btnStart.TabIndex = 2;
+            this.btnStart.TabIndex = 3;
             this.btnStart.Text = "btnStart";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Visible = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // timerClose
-            // 
-            this.timerClose.Tick += new System.EventHandler(this.timerClose_Tick);
-            // 
-            // FrmCourse
+            // CoursePlayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 433);
+            this.ClientSize = new System.Drawing.Size(1110, 654);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.swf);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "FrmCourse";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmCourse";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FrmCourse_Load);
+            this.Name = "CoursePlayForm";
+            this.Text = "课件播放";
             ((System.ComponentModel.ISupportInitialize)(this.swf)).EndInit();
             this.ResumeLayout(false);
 
@@ -92,8 +73,6 @@
         #endregion
 
         private AxShockwaveFlashObjects.AxShockwaveFlash swf;
-        private System.Windows.Forms.Timer timerEncypt;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Timer timerClose;
     }
 }

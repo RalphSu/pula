@@ -57,7 +57,7 @@ public class TeacherInterfaceController {
 			@RequestParam("password") String password,
 			@RequestParam("ip") String ip, @RequestParam("md5") String md5) {
 
-		MD5Checker.check(parameterKeeper, md5, loginId, password, ip);
+		// MD5Checker.check(parameterKeeper, md5, loginId, password, ip);
 
 		MapBean mb = teacherDao.meta4login(loginId, password);
 		if (mb == null) {

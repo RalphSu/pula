@@ -103,7 +103,7 @@ namespace RemoteService
       
 
 
-        private static string ReadResponseAsString(HttpWebResponse resp)
+        public static string ReadResponseAsString(HttpWebResponse resp)
         {
             StreamReader responseReader = null;
             string responseData = "";

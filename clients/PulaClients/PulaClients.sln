@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseClient", "CourseClien
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLLiteTest", "SQLLiteTest\SQLLiteTest.csproj", "{F37106D4-2E9E-4ABB-A091-5E171822629E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Play", "Play\Play.csproj", "{90846CE4-7289-45E8-8D0E-DBFC81C7D803}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,16 @@ Global
 		{F37106D4-2E9E-4ABB-A091-5E171822629E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F37106D4-2E9E-4ABB-A091-5E171822629E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F37106D4-2E9E-4ABB-A091-5E171822629E}.Release|x86.ActiveCfg = Release|Any CPU
+		{90846CE4-7289-45E8-8D0E-DBFC81C7D803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90846CE4-7289-45E8-8D0E-DBFC81C7D803}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90846CE4-7289-45E8-8D0E-DBFC81C7D803}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{90846CE4-7289-45E8-8D0E-DBFC81C7D803}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{90846CE4-7289-45E8-8D0E-DBFC81C7D803}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{90846CE4-7289-45E8-8D0E-DBFC81C7D803}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90846CE4-7289-45E8-8D0E-DBFC81C7D803}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90846CE4-7289-45E8-8D0E-DBFC81C7D803}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{90846CE4-7289-45E8-8D0E-DBFC81C7D803}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{90846CE4-7289-45E8-8D0E-DBFC81C7D803}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
