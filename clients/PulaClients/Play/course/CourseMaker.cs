@@ -9,7 +9,7 @@ namespace Play
 {
     public class CourseMaker
     {
-        private const int BlockCount = 1024*1024;
+        public const int BlockCount = 1024*1024;
         private readonly string[] sourceFileNames;
         private readonly PlayConfig playConfig;
 
@@ -53,6 +53,8 @@ namespace Play
                                     end = true;
                                 }
                             }
+
+                            bw.Flush();
                         }
                     }
 
@@ -68,6 +70,7 @@ namespace Play
                 }
             }
         }
+
 
         public string GetResult()
         {

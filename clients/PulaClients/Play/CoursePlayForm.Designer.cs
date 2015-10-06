@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.swf = new AxShockwaveFlashObjects.AxShockwaveFlash();
             this.btnStart = new System.Windows.Forms.Button();
+            this.timerPlay = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.swf)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +47,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(505, 314);
+            this.btnStart.Location = new System.Drawing.Point(508, 430);
             this.btnStart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(100, 27);
@@ -64,7 +66,9 @@
             this.Controls.Add(this.swf);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CoursePlayForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "课件播放";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.swf)).EndInit();
             this.ResumeLayout(false);
 
@@ -74,5 +78,6 @@
 
         private AxShockwaveFlashObjects.AxShockwaveFlash swf;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Timer timerPlay;
     }
 }

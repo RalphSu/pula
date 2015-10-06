@@ -44,8 +44,9 @@ namespace Play
                 return;
             }
             DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-            var playForm = new CoursePlayForm((FileInfo)row.Tag);
+            var playForm = new CoursePlayForm((FileInfo)row.Tag, playConfig);
             playForm.ShowDialog();
+            playForm.finish();
         }
 
         private void localCourseBtn_Click(object sender, EventArgs e)
