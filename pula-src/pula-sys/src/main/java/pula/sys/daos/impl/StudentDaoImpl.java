@@ -234,6 +234,8 @@ public class StudentDaoImpl extends HibernateGenericDao<Student, Long>
 		String sentPwd = StudentHelper.makePassword(password);
 		if (StringUtils.equals(pwd, sentPwd)) {
 			mb.remove("password");
+		}else {
+		    return null;
 		}
 		return mb;
 	}
