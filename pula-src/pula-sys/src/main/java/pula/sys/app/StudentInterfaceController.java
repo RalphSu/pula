@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import puerta.support.PaginationSupport;
 import puerta.support.annotation.Barrier;
 import puerta.support.utils.MD5;
+import puerta.system.base.HibernateGenericDao;
 import puerta.system.keeper.ParameterKeeper;
 import puerta.system.vo.JsonResult;
 import puerta.system.vo.MapBean;
@@ -288,6 +289,7 @@ public class StudentInterfaceController {
 
 	}
 
+    @SuppressWarnings("unchecked")
     @ResponseBody
     @RequestMapping(method={RequestMethod.POST})
     @Transactional
@@ -298,7 +300,8 @@ public class StudentInterfaceController {
         // validate user input
         Student student = studentDao.findByNo(studentNo);
         if (student == null) {
-            List<Student> students = studentDao.findByProperty("mobile", mobile);
+            List<Student> students = ((HibernateGenericDao<Student, Long>)studentDao).findByProperty(new String[] {"enabled", "removed", "mobile"}, 
+                    new Object[] { true, false, mobile});
             if (students.size() > 1) {
                 return JsonResult.e("此手机对应多个用户，请提供学生号码！");
             }
