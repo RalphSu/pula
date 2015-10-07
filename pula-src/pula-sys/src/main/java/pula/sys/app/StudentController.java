@@ -264,6 +264,7 @@ public class StudentController {
 
 		// 然后生成真实对象
 		cc.setCreator(SysUser.create(sessionUserService.getActorId()));
+		cc.setPassword(StudentHelper.makePassword(cc.getPassword()));// password must be md5 in database
 		cc.setBarcode(cli.getCardNo());
 		Student ef = studentDao.save(cc);
 
@@ -488,6 +489,7 @@ public class StudentController {
 
 		// 然后生成真实对象
 		cc.setCreator(SysUser.create(sessionUserService.getActorId()));
+		cc.setPassword(StudentHelper.makePassword(cc.getPassword()));// password must be md5 in database
 		// cc.setBarcode(cli.getCardNo());
 		Student ef = studentDao.save(cc);
 
