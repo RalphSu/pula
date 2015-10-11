@@ -35,7 +35,7 @@ var PPage = new Class({
 				}else{
 					var data = this.dt.rows[i] ;
 					//this.showData(data);
-					this.navigateHistory("id", ''+data.id);
+					this.updatePage(data.id);
 				}
 			}
 			var cfgs = {
@@ -67,49 +67,21 @@ var PPage = new Class({
 			this.dt.draw();
 			
 		},
-		
-		
 
 		showData:function (d){
-
-			$('addForm').reset();
-			if(d==null){
-				this.vars.action='_create';
-				this.updateMode();
-			}else{
-
-				PA.ajax.gf('get','id='+d.id,function(ed){
-					if(ed.error){
-						alert(ed.message);
-						return false;
-					}
-					var data =ed.data; 
-
-					var data =ed.data; 
-					for( var k in data ) {
-						if($('course.'+k)){
-							$('course.'+k).value = PA.utils.defaultStr(data[k]);
-						}
-					}
-
-					if( data.startTime) {
-						$('course.startTimeText').value =  data.startTime;// new Date( ).format('yyyy-MM-dd');
-					}
-					if( data.endTime) {
-						$('course.endTimeText').value = data.endTime; // ).format('yyyy-MM-dd');
-					}
-
-					this.showInput(true);
-					this.vars.action='_update';
-					pageVars.id  = d.id;
-					this.updateMode();
-					
-				}.bind(this));
-			}
-
-			
-		}
+		},
 		
+		createPage : function(b){
+	        var url = encodeURIComponent('../timecourse/create');
+	        centerWindow('../my/window?u=' + url,1100, 480);
+		},
+		updatePage : function(id ){
+			var url = encodeURIComponent('../timecourse/update?id='+id);
+			centerWindow('../my/window?u=' + url,1100, 480);
+		},view : function(id ){
+			var url = encodeURIComponent('../timecourse/view?id='+id);
+			centerWindow('../my/window?u=' + url,1100, 480);
+		},
 		
 });
 

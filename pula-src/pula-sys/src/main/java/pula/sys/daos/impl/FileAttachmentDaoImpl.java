@@ -86,9 +86,11 @@ public class FileAttachmentDaoImpl extends
 				&& typeRange <= FileAttachment.TYPE_STUENDT_WORK) {
 			rangeBegin = FileAttachment.TYPE_STUENDT_WORK;
 			rangeEnd = FileAttachment.TYPE_STUENDT_WORK;
-        } else if (typeRange == FileAttachment.TYPE_STUENDT_TIME_COURSE_WORK) {
-            rangeBegin = FileAttachment.TYPE_STUENDT_TIME_COURSE_WORK;
-            rangeEnd = FileAttachment.TYPE_STUENDT_TIME_COURSE_WORK;
+        } else if (typeRange == FileAttachment.TYPE_STUENDT_TIME_COURSE_WORK
+                || typeRange == FileAttachment.TYPE_TIME_COURSE_ICON
+                || typeRange == FileAttachment.TYPE_NOTICE_ICON) {
+            rangeBegin = typeRange;
+            rangeEnd = typeRange;
         }
 
 		return new int[] { rangeBegin, rangeEnd };

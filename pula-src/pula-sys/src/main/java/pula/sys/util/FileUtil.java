@@ -1,7 +1,9 @@
 package pula.sys.util;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
@@ -10,8 +12,10 @@ import puerta.support.utils.FileHelper;
 import puerta.support.utils.WxlSugar;
 import puerta.system.keeper.ParameterKeeper;
 import pula.sys.BhzqConstants;
+import pula.sys.daos.FileAttachmentDao;
 import pula.sys.domains.FileAttachment;
 import pula.sys.forms.FileAttachmentForm;
+import pula.sys.intfs.RefIdSupport;
 
 /**
  * Uploaded file processor
@@ -67,6 +71,22 @@ public class FileUtil {
             }
         }
         return attachments;
+    }
+
+    public static void addIconToJson(FileAttachmentDao fileAttachmentDao, RefIdSupport u, Map<String, Object> m) {
+        List<FileAttachment> attachments = fileAttachmentDao.loadByRefId(u.toRefId(), u.getTypeRange());
+        for (FileAttachment fileAttachment : attachments) {
+            Map<String, Object> icon = new HashMap<String, Object>();
+            icon.put("refId", fileAttachment.getRefId());
+            icon.put("fileId", fileAttachment.getFileId());
+            icon.put("name", fileAttachment.getName());
+            icon.put("extName", fileAttachment.getExtName());
+            icon.put("id", fileAttachment.getId());
+            icon.put("typeId", fileAttachment.getType());
+    
+            m.put("icon", icon);
+            break;
+        }
     }
 
 }

@@ -33,5 +33,6 @@
   <property column="noticePrice" name="noticePrice" type="int"/>
   <property column="noticeCount" name="noticeCount" type="int"/>
   <property column="noticeCourseNo" name="noticeCourseNo" type="string"/>
+  <property column="attachmentKey" name="attachmentKey" type="string"/>
  </class>
 </hibernate-mapping>

@@ -21,6 +21,11 @@ public class TimeCourseForm extends TimeCourse {
 
     private String startTimeText;
     private String endTimeText;
+    
+
+    // the given picture
+    private FileAttachmentForm attachmentForms;
+
 
     public TimeCourse toCourse() {
         TimeCourse tc = new TimeCourse(this);
@@ -45,6 +50,14 @@ public class TimeCourseForm extends TimeCourse {
             logger.error("parse integer failed!", e);
             return 0;
         }
+    }
+
+    public FileAttachmentForm getAttachmentForms() {
+        return attachmentForms;
+    }
+
+    public void setAttachmentForms(FileAttachmentForm attachmentForms) {
+        this.attachmentForms = attachmentForms;
     }
 
     public static Date getDate(String dateText) {

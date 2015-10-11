@@ -66,6 +66,8 @@ public class BhzqConstants {
 	public static final String FILE_TEACHER_DIR = "P_FILE_TEACHER_DIR";
 	public static final String FILE_STUDENT_DIR = "P_FILE_STUDENT_DIR";
 	public static final String FILE_STUDENT_WORK_DIR = "P_FILE_STUDENT_WORK_DIR";
+	public static final String FILE_NOTICE_ICON_DIR = "P_NOTICE_ICON_DIR";
+	public static final String FILE_TIMECOURSE_ICON_DIR = "P_TIMECOURSE_ICON_DIR";
 	public static final String FILE_UPLOAD_DIR = "P_FILE_UPLOAD_DIR";
 	public static final String SC_COURSE_CATEGORY = "SC_COURSE_CATEGORY";
 	public static final String SC_MATERIAL_TYPE = "SC_MATERIAL_TYPE";

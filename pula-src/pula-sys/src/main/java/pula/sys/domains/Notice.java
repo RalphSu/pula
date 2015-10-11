@@ -11,13 +11,14 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
+import pula.sys.intfs.RefIdSupport;
 
 /**
  * @author Liangfei
  *
  */
 @WxlDomain("活动通知")
-public class Notice implements LoggablePo {
+public class Notice implements LoggablePo, RefIdSupport {
 
     @JsonIgnore
     private static final ObjectMapper om = new ObjectMapper();
@@ -54,6 +55,7 @@ public class Notice implements LoggablePo {
     private Date updateTime;
     @JsonProperty
     private String comment;
+
     @JsonProperty
     private boolean removed;
     @JsonProperty
@@ -72,6 +74,33 @@ public class Notice implements LoggablePo {
     private String noticeCourseNo = "";
     @JsonProperty
     private String noticeCourseName = "";
+    @JsonProperty
+    private String attachmentKey = "";
+    
+    public Notice() {
+    }
+    
+    public Notice(Notice n) {
+        this.id = n.id;
+        this.no = n.no;
+        this.title = n.title;
+        this.formattedTitle = n.formattedTitle;
+        this.content = n.content;
+        this.imgPath = n.imgPath;
+        this.suffix = n.suffix;
+        this.createTime = n.createTime;
+        this.updateTime = n.updateTime;
+        this.comment = n.comment;
+        this.removed = n.removed;
+        this.enabled = n.enabled;
+        this.creator = n.creator;
+        this.updator = n.updator;
+        this.noticePrice = n.noticePrice;
+        this.noticeCount = n.noticeCount;
+        this.noticeCourseNo = n.noticeCourseNo;
+        this.noticeCourseName = n.noticeCourseName;
+        this.attachmentKey = n.attachmentKey;
+    }
 
     public String getCreator() {
         return creator;
@@ -215,6 +244,24 @@ public class Notice implements LoggablePo {
 
     public void setNoticeCourseName(String noticeCourseName) {
         this.noticeCourseName = noticeCourseName;
+    }
+
+    public String getAttachmentKey() {
+        return attachmentKey;
+    }
+
+    public void setAttachmentKey(String attachmentKey) {
+        this.attachmentKey = attachmentKey;
+    }
+
+    @Override
+    public String toRefId() {
+        return CourseTaskResultWork.buildRefId(id, attachmentKey);
+    }
+
+    @Override
+    public int getTypeRange() {
+        return FileAttachment.TYPE_NOTICE_ICON;
     }
 
 }

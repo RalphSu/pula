@@ -10,6 +10,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
+import pula.sys.intfs.RefIdSupport;
 
 /**
  * 消次课模型
@@ -18,7 +19,7 @@ import puerta.support.dao.LoggablePo;
  *
  */
 @WxlDomain("消次课")
-public class TimeCourse implements LoggablePo {
+public class TimeCourse implements LoggablePo, RefIdSupport {
 
     @JsonProperty
     private String no;
@@ -30,7 +31,7 @@ public class TimeCourse implements LoggablePo {
     public void setNo(String no) {
         this.no = no;
     }
-    
+
     @JsonProperty
     private Long id;
     @JsonProperty
@@ -71,18 +72,19 @@ public class TimeCourse implements LoggablePo {
     private String creator;
     @JsonProperty
     private String updator;
-    
+
     @JsonProperty
     private String applicableAges;
-    
-    public TimeCourse()
-    {
-        
+
+    @JsonProperty
+    private String attachmentKey = "";
+
+    public TimeCourse() {
+
     }
-    
+
     // copy constructor
-    public TimeCourse(TimeCourse other)
-    {
+    public TimeCourse(TimeCourse other) {
         this.id = other.id;
         this.no = other.no;
         this.courseType = other.courseType;
@@ -106,7 +108,7 @@ public class TimeCourse implements LoggablePo {
         this.creator = other.creator;
         this.updator = other.updator;
     }
-    
+
     @JsonIgnore
     @Override
     public String toLogString() {
@@ -281,6 +283,24 @@ public class TimeCourse implements LoggablePo {
 
     public void setApplicableAges(String applicableAges) {
         this.applicableAges = applicableAges;
+    }
+
+    public String getAttachmentKey() {
+        return attachmentKey;
+    }
+
+    public void setAttachmentKey(String attachmentKey) {
+        this.attachmentKey = attachmentKey;
+    }
+
+    @Override
+    public String toRefId() {
+        return CourseTaskResultWork.buildRefId(id, attachmentKey);
+    }
+
+    @Override
+    public int getTypeRange() {
+        return FileAttachment.TYPE_TIME_COURSE_ICON;
     }
 
 }

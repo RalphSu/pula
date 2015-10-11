@@ -5,7 +5,6 @@ package pula.sys.app;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -136,21 +135,9 @@ public class TimeCourseWorkController {
         result.getRecords().clear();
         for (TimeCourseWork u : works.getItems()) {
             Map<String, Object> m = MAPPING.toMap(u);
-            List<FileAttachment> attachments = fileAttachmentDao.loadByRefId(u.toRefId(), FileAttachment.TYPE_STUENDT_TIME_COURSE_WORK);
+            
+            FileUtil.addIconToJson(fileAttachmentDao, u, m);
 
-            for (FileAttachment fileAttachment : attachments) {
-                Map<String, Object> icon = new HashMap<String, Object>();
-                icon.put("refId", fileAttachment.getRefId());
-                icon.put("fileId", fileAttachment.getFileId());
-                icon.put("name", fileAttachment.getName());
-                icon.put("extName", fileAttachment.getExtName());
-                icon.put("id", fileAttachment.getId());
-                icon.put("typeId", fileAttachment.getType());
-
-                m.put("icon", icon);
-                break;
-            }
-            //
             result.getRecords().add(m);
         }
 
@@ -314,23 +301,11 @@ public class TimeCourseWorkController {
         }
 
         Map<String, Object> m = MAPPING.toMap(u);
-        List<FileAttachment> attachments = fileAttachmentDao.loadByRefId(u.toRefId(), FileAttachment.TYPE_STUENDT_TIME_COURSE_WORK);
-        for (FileAttachment fileAttachment : attachments) {
-            Map<String, Object> icon = new HashMap<String, Object>();
-            icon.put("refId", fileAttachment.getRefId());
-            icon.put("fileId", fileAttachment.getFileId());
-            icon.put("name", fileAttachment.getName());
-            icon.put("extName", fileAttachment.getExtName());
-            icon.put("id", fileAttachment.getId());
-            icon.put("typeId", fileAttachment.getType());
-
-            m.put("icon", icon);
-            break;
-        }
+        FileUtil.addIconToJson(fileAttachmentDao, u, m);
 
         return JsonResult.s(m);
     }
-    
+
     @RequestMapping
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
     @ResponseBody

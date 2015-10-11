@@ -3,9 +3,13 @@
  */
 package pula.sys.app;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -17,11 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import puerta.support.AttachmentFile;
 import puerta.support.PaginationSupport;
 import puerta.support.Pe;
 import puerta.support.ViewResult;
 import puerta.support.annotation.Barrier;
 import puerta.support.annotation.ObjectParam;
+import puerta.support.utils.JacksonUtil;
+import puerta.support.utils.MD5;
 import puerta.support.utils.WxlSugar;
 import puerta.system.dao.LoggerDao;
 import puerta.system.keeper.ParameterKeeper;
@@ -29,14 +36,20 @@ import puerta.system.service.SessionService;
 import puerta.system.vo.JsonResult;
 import puerta.system.vo.YuiResult;
 import puerta.system.vo.YuiResultMapper;
+import pula.sys.BhzqConstants;
 import pula.sys.PurviewConstants;
 import pula.sys.conditions.NoticeCondition;
+import pula.sys.daos.FileAttachmentDao;
 import pula.sys.daos.NoticeDao;
 import pula.sys.daos.TimeCourseDao;
 import pula.sys.domains.Course;
+import pula.sys.domains.FileAttachment;
 import pula.sys.domains.Notice;
 import pula.sys.domains.TimeCourse;
+import pula.sys.forms.FileAttachmentForm;
+import pula.sys.forms.NoticeForm;
 import pula.sys.services.SessionUserService;
+import pula.sys.util.FileUtil;
 
 /**
  * @author Liangfei
@@ -46,7 +59,6 @@ import pula.sys.services.SessionUserService;
 @Controller
 public class NoticeController {
 
-    @SuppressWarnings("unused")
     private static final Logger logger = Logger.getLogger(Course.class);
     private static final YuiResultMapper<Notice> MAPPING = new YuiResultMapper<Notice>() {
         @Override
@@ -67,14 +79,6 @@ public class NoticeController {
             m.put("noticeCourseNo", obj.getNoticeCourseNo());
             m.put("noticePrice", obj.getNoticePrice());
             m.put("noticeCourseName", obj.getNoticeCourseName());
-            return m;
-        }
-    };
-    private static final YuiResultMapper<Notice> MAPPING_FULL = new YuiResultMapper<Notice>() {
-        @Override
-        public Map<String, Object> toMap(Notice obj) { 
-
-            Map<String, Object> m = MAPPING.toMap(obj);
             return m;
         }
     };
@@ -112,40 +116,170 @@ public class NoticeController {
         }
         PaginationSupport<Notice> results = null;
         results = noticeDao.search(condition, pageIndex);
-        return YuiResult.create(results, MAPPING);
+
+        YuiResult result = YuiResult.create(results, MAPPING);
+        result.getRecords().clear();
+        for (Notice u : results.getItems()) {
+            Map<String, Object> m = MAPPING.toMap(u);
+
+            FileUtil.addIconToJson(fileAttachmentDao, u, m);
+
+            result.getRecords().add(m);
+        }
+
+        return result;
     }
 
     @RequestMapping
     @Barrier(PurviewConstants.COURSE)
-    public String create() {
-        return null;
+    public ModelAndView create() {
+        return new ModelAndView().addObject("updateMode", false);
     }
-
+    
     @RequestMapping
     @Transactional
-    @Barrier(PurviewConstants.COURSE)
-    public String _create(@ObjectParam("course") Notice cli) {
-        Notice cc = cli;
-        cc.setCreator(sessionService.get().getName());
-        cc.setUpdator(sessionService.get().getName());
-        cc.setEnabled(true);
+    @Barrier(PurviewConstants.COURSE_WORK)
+    public String _create(@ObjectParam("notice") NoticeForm cli,
+            @RequestParam("jsonAttachment") String jsonAttachment) {
 
-        noticeDao.save(cc);
+        Notice notice = cli.toNotice();
+        if (StringUtils.isEmpty(notice.getNo())) {
+            notice.setNo(MD5.GetMD5String("notice@" + System.currentTimeMillis()));
+        }
+        
+        // attachment
+        prepareData(cli, jsonAttachment);
+
+        String filePath = parameterKeeper.getFilePath(BhzqConstants.FILE_NOTICE_ICON_DIR);
+        List<FileAttachment> attachments = FileUtil.processFile(filePath, parameterKeeper, Arrays.asList(cli.getAttachmentForms()));
+        for (FileAttachment fileAttachment : attachments) {
+            fileAttachment.setType(FileAttachment.TYPE_NOTICE_ICON);
+        }
+
+        // save work
+        notice.setUpdator(sessionService.get().getName());
+        Notice savedNotice = noticeDao.save(notice);
+        // save attachment
+        fileAttachmentDao.save(savedNotice, attachments, false);
 
         return ViewResult.JSON_SUCCESS;
     }
-
+    
     @RequestMapping
-    @Transactional()
-    @Barrier(PurviewConstants.COURSE)
-    public String _update(@ObjectParam("course") Notice cli) {
-        Notice cc = cli;
-        cc.setUpdator(sessionService.get().getName());
+    @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
+    @ResponseBody
+    @Barrier(ignore = true)
+    public AttachmentFile icon(
+            @RequestParam(value = "fp", required = false) String fp,
+            @RequestParam(value = "id", required = false) Long id,
+            HttpServletResponse res) {
 
-        noticeDao.update(cc);
+        String srcPath = null;
+        if (id == null || id == 0) {
+            srcPath = parameterKeeper
+                    .getFilePath(BhzqConstants.FILE_UPLOAD_DIR);
+        } else {
+            srcPath = parameterKeeper
+                    .getFilePath(BhzqConstants.FILE_NOTICE_ICON_DIR);
+        }
+        String fullPath = srcPath + File.separatorChar + fp;
+
+        return AttachmentFile.forShow(new File(fullPath));
+    }
+    
+    @Resource
+    private FileAttachmentDao fileAttachmentDao;
+    
+    @RequestMapping
+    @Transactional
+    @Barrier(PurviewConstants.COURSE_WORK)
+    public ModelAndView update(@RequestParam("id") Long id) {
+        Notice notice = noticeDao.findById(id);
+        if (notice == null) {
+            return new ModelAndView("error");
+        }
+
+        List<FileAttachment> attachments = fileAttachmentDao.loadByRefId(notice.toRefId(), notice.getTypeRange());
+
+        FileAttachment icon = null;
+        for (FileAttachment a : attachments) {
+            if (!a.isRemoved() && a.getType() == FileAttachment.TYPE_NOTICE_ICON) {
+                icon = a;
+                break;
+            }
+        }
+
+        return new ModelAndView().addObject("notice", notice)
+                .addObject("updateMode", true)
+                .addObject("icon", icon)
+                .addObject("attachments", attachments);
+    }
+    
+    @RequestMapping
+    @Transactional
+    @Barrier(PurviewConstants.COURSE_WORK)
+    public String _update(@ObjectParam("notice") NoticeForm cli, @RequestParam("jsonAttachment") String jsonAttachment) {
+        
+        Notice notice = cli.toNotice();
+        
+        // attachment
+        prepareData(cli, jsonAttachment);
+
+        String filePath = parameterKeeper.getFilePath(BhzqConstants.FILE_NOTICE_ICON_DIR);
+        List<FileAttachment> attachments = FileUtil.processFile(filePath, parameterKeeper, Arrays.asList(cli.getAttachmentForms()));
+        for (FileAttachment fileAttachment : attachments) {
+            fileAttachment.setType(FileAttachment.TYPE_NOTICE_ICON);
+        }
+
+        // save work
+        notice.setUpdator(sessionService.get().getName());
+        Notice savedNotice = noticeDao.update(notice);
+        // save attachment 
+        fileAttachmentDao.save(savedNotice, attachments, true);
 
         return ViewResult.JSON_SUCCESS;
     }
+    
+
+    private void prepareData(NoticeForm cli, String jsonAttachment) {
+        List<FileAttachmentForm> items = null;
+        try {
+            items = JacksonUtil.getList(jsonAttachment, FileAttachmentForm.class);
+        } catch (Exception e) {
+            logger.error("jsonAttachment=" + jsonAttachment);
+            Pe.raise(e.getMessage());
+        }
+        if (items != null && items.size() > 0) {
+            cli.setAttachmentForms(items.get(0));
+        }
+    }
+
+
+//    @RequestMapping
+//    @Transactional
+//    @Barrier(PurviewConstants.COURSE)
+//    public String _create(@ObjectParam("course") Notice cli) {
+//        Notice cc = cli;
+//        cc.setCreator(sessionService.get().getName());
+//        cc.setUpdator(sessionService.get().getName());
+//        cc.setEnabled(true);
+//
+//        noticeDao.save(cc);
+//
+//        return ViewResult.JSON_SUCCESS;
+//    }
+
+//    @RequestMapping
+//    @Transactional()
+//    @Barrier(PurviewConstants.COURSE)
+//    public String _update(@ObjectParam("course") Notice cli) {
+//        Notice cc = cli;
+//        cc.setUpdator(sessionService.get().getName());
+//
+//        noticeDao.update(cc);
+//
+//        return ViewResult.JSON_SUCCESS;
+//    }
 
     @Transactional
     @RequestMapping
@@ -163,8 +297,8 @@ public class NoticeController {
     public JsonResult get(@RequestParam("id") Long id) {
         Notice u = noticeDao.findById(id);
 
-        Map<String, Object> m = MAPPING_FULL.toMap(u);
-
+        Map<String, Object> m = MAPPING.toMap(u);
+        FileUtil.addIconToJson(fileAttachmentDao, u, m);
         return JsonResult.s(m);
     }
 
@@ -228,7 +362,9 @@ public class NoticeController {
         if (u == null) {
             Pe.raise("找不到指定的编号:" + no);
         }
-        return JsonResult.s(MAPPING_FULL.toMap(u));
+        Map<String, Object> m = MAPPING.toMap(u);
+        FileUtil.addIconToJson(fileAttachmentDao, u, m);
+        return JsonResult.s();
     }
 
     @Transactional

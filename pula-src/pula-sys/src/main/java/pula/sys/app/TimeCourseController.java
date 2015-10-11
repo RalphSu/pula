@@ -3,9 +3,13 @@
  */
 package pula.sys.app;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -17,11 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import puerta.support.AttachmentFile;
 import puerta.support.PaginationSupport;
 import puerta.support.Pe;
 import puerta.support.ViewResult;
 import puerta.support.annotation.Barrier;
 import puerta.support.annotation.ObjectParam;
+import puerta.support.utils.JacksonUtil;
+import puerta.support.utils.MD5;
 import puerta.support.utils.WxlSugar;
 import puerta.system.dao.LoggerDao;
 import puerta.system.keeper.ParameterKeeper;
@@ -29,13 +36,18 @@ import puerta.system.service.SessionService;
 import puerta.system.vo.JsonResult;
 import puerta.system.vo.YuiResult;
 import puerta.system.vo.YuiResultMapper;
+import pula.sys.BhzqConstants;
 import pula.sys.PurviewConstants;
 import pula.sys.conditions.CourseCondition;
+import pula.sys.daos.FileAttachmentDao;
 import pula.sys.daos.TimeCourseDao;
 import pula.sys.domains.Course;
+import pula.sys.domains.FileAttachment;
 import pula.sys.domains.TimeCourse;
+import pula.sys.forms.FileAttachmentForm;
 import pula.sys.forms.TimeCourseForm;
 import pula.sys.services.SessionUserService;
+import pula.sys.util.FileUtil;
 
 /**
  * @author Liangfei
@@ -44,7 +56,6 @@ import pula.sys.services.SessionUserService;
 @Controller
 public class TimeCourseController {
     
-    @SuppressWarnings("unused")
     private static final Logger logger = Logger.getLogger(Course.class);
     private static final YuiResultMapper<TimeCourse> MAPPING = new YuiResultMapper<TimeCourse>() {
         @Override
@@ -113,43 +124,174 @@ public class TimeCourseController {
         }
         PaginationSupport<TimeCourse> results = null;
         results = courseDao.search(condition, pageIndex);
-        return YuiResult.create(results, MAPPING);
+        
+        YuiResult result = YuiResult.create(results, MAPPING);
+        result.getRecords().clear();
+        for (TimeCourse u : results.getItems()) {
+            Map<String, Object> m = MAPPING.toMap(u);
+
+            FileUtil.addIconToJson(fileAttachmentDao, u, m);
+
+            result.getRecords().add(m);
+        }
+
+        return result;
     }
 
     
     @RequestMapping
     @Barrier(PurviewConstants.COURSE)
-    public String create() {
-        return null;
+    public ModelAndView create() {
+        return new ModelAndView().addObject("updateMode", false);
     }
+
 
     @RequestMapping
     @Transactional
     @Barrier(PurviewConstants.COURSE)
-    public String _create(@ObjectParam("course") TimeCourseForm cli) {
+    public String _create(@ObjectParam("course") TimeCourseForm cli,
+            @RequestParam("jsonAttachment") String jsonAttachment) {
 
-        TimeCourse cc = cli.toCourse();
-        cc.setCreator(sessionService.get().getName());
-        cc.setUpdator(sessionService.get().getName());
-        cc.setEnabled(true);
-
-        courseDao.save(cc);
+        TimeCourse course = cli.toCourse();
+        if (StringUtils.isEmpty(course.getNo())) {
+            course.setNo(MD5.GetMD5String("tc@" + System.currentTimeMillis()));
+        }
         
+        // attachment
+        prepareData(cli, jsonAttachment);
+
+        String filePath = parameterKeeper.getFilePath(BhzqConstants.FILE_TIMECOURSE_ICON_DIR);
+        List<FileAttachment> attachments = FileUtil.processFile(filePath, parameterKeeper, Arrays.asList(cli.getAttachmentForms()));
+        for (FileAttachment fileAttachment : attachments) {
+            fileAttachment.setType(FileAttachment.TYPE_TIME_COURSE_ICON);
+        }
+
+        // save work
+        course.setUpdator(sessionService.get().getName());
+        TimeCourse savedCourse = courseDao.save(course);
+        // save attachment
+        fileAttachmentDao.save(savedCourse, attachments, false);
+
         return ViewResult.JSON_SUCCESS;
     }
-
+    
     @RequestMapping
-    @Transactional()
+    @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
+    @ResponseBody
+    @Barrier(ignore = true)
+    public AttachmentFile icon(
+            @RequestParam(value = "fp", required = false) String fp,
+            @RequestParam(value = "id", required = false) Long id,
+            HttpServletResponse res) {
+
+        String srcPath = null;
+        if (id == null || id == 0) {
+            srcPath = parameterKeeper
+                    .getFilePath(BhzqConstants.FILE_UPLOAD_DIR);
+        } else {
+            srcPath = parameterKeeper
+                    .getFilePath(BhzqConstants.FILE_TIMECOURSE_ICON_DIR);
+        }
+        String fullPath = srcPath + File.separatorChar + fp;
+
+        return AttachmentFile.forShow(new File(fullPath));
+    }
+    
+    @Resource
+    private FileAttachmentDao fileAttachmentDao;
+    
+    @RequestMapping
+    @Transactional
     @Barrier(PurviewConstants.COURSE)
-    public String _update(@ObjectParam("course") TimeCourseForm cli) {
+    public ModelAndView update(@RequestParam("id") Long id) {
+        TimeCourse course = courseDao.findById(id);
+        if (course == null) {
+            return new ModelAndView("error");
+        }
 
-        TimeCourse cc = cli.toCourse();
-        cc.setUpdator(sessionService.get().getName());
+        List<FileAttachment> attachments = fileAttachmentDao.loadByRefId(course.toRefId(), course.getTypeRange());
 
-        courseDao.update(cc);
+        FileAttachment icon = null;
+        for (FileAttachment a : attachments) {
+            if (!a.isRemoved() && a.getType() == FileAttachment.TYPE_TIME_COURSE_ICON) {
+                icon = a;
+                break;
+            }
+        }
+
+        return new ModelAndView().addObject("course", course)
+                .addObject("updateMode", true)
+                .addObject("icon", icon)
+                .addObject("attachments", attachments);
+    }
+    
+    @RequestMapping
+    @Transactional
+    @Barrier(PurviewConstants.COURSE)
+    public String _update(@ObjectParam("course") TimeCourseForm cli, @RequestParam("jsonAttachment") String jsonAttachment) {
+        
+        TimeCourse course = cli.toCourse();
+        
+        // attachment
+        prepareData(cli, jsonAttachment);
+
+        String filePath = parameterKeeper.getFilePath(BhzqConstants.FILE_TIMECOURSE_ICON_DIR);
+        List<FileAttachment> attachments = FileUtil.processFile(filePath, parameterKeeper, Arrays.asList(cli.getAttachmentForms()));
+        for (FileAttachment fileAttachment : attachments) {
+            fileAttachment.setType(FileAttachment.TYPE_TIME_COURSE_ICON);
+        }
+
+        // save work
+        course.setUpdator(sessionService.get().getName());
+        TimeCourse savedCourse = courseDao.update(course);
+        // save attachment 
+        fileAttachmentDao.save(savedCourse, attachments, true);
 
         return ViewResult.JSON_SUCCESS;
     }
+
+    private void prepareData(TimeCourseForm cli, String jsonAttachment) {
+        List<FileAttachmentForm> items = null;
+        try {
+            items = JacksonUtil.getList(jsonAttachment, FileAttachmentForm.class);
+        } catch (Exception e) {
+            logger.error("jsonAttachment=" + jsonAttachment);
+            Pe.raise(e.getMessage());
+        }
+        if (items != null && items.size() > 0) {
+            cli.setAttachmentForms(items.get(0));
+        }
+    }
+
+    
+    
+//    @RequestMapping
+//    @Transactional
+//    @Barrier(PurviewConstants.COURSE)
+//    public String _create(@ObjectParam("course") TimeCourseForm cli) {
+//
+//        TimeCourse cc = cli.toCourse();
+//        cc.setCreator(sessionService.get().getName());
+//        cc.setUpdator(sessionService.get().getName());
+//        cc.setEnabled(true);
+//
+//        courseDao.save(cc);
+//        
+//        return ViewResult.JSON_SUCCESS;
+//    }
+//
+//    @RequestMapping
+//    @Transactional()
+//    @Barrier(PurviewConstants.COURSE)
+//    public String _update(@ObjectParam("course") TimeCourseForm cli) {
+//
+//        TimeCourse cc = cli.toCourse();
+//        cc.setUpdator(sessionService.get().getName());
+//
+//        courseDao.update(cc);
+//
+//        return ViewResult.JSON_SUCCESS;
+//    }
 
     @Transactional
     @RequestMapping
@@ -168,7 +310,7 @@ public class TimeCourseController {
         TimeCourse u = courseDao.findById(id);
 
         Map<String, Object> m = MAPPING_FULL.toMap(u);
-
+        FileUtil.addIconToJson(fileAttachmentDao, u, m);
         return JsonResult.s(m);
     }
 
@@ -202,7 +344,9 @@ public class TimeCourseController {
         if (u == null) {
             Pe.raise("找不到指定的编号:" + no);
         }
-        return JsonResult.s(MAPPING_FULL.toMap(u));
+        Map<String, Object> m = MAPPING_FULL.toMap(u);
+        FileUtil.addIconToJson(fileAttachmentDao, u, m);
+        return JsonResult.s(m);
     }
 
     @Transactional

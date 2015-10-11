@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import puerta.support.PageInfo;
 import puerta.support.PaginationSupport;
 import puerta.support.Pe;
+import puerta.support.utils.RandomTool;
 import puerta.system.base.HibernateGenericDao;
 import pula.sys.conditions.NoticeCondition;
 import pula.sys.daos.NoticeDao;
@@ -51,6 +52,7 @@ public class NoticeDaoImpl extends HibernateGenericDao<Notice, Long> implements 
         cc.setCreateTime(new Date());
         cc.setUpdateTime(new Date());
         cc.setEnabled(true);
+        cc.setAttachmentKey("Notice:"+RandomTool.getRandomString(10));
         _save(cc);
         return cc;
     }

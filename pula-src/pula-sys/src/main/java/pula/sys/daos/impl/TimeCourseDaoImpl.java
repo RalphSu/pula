@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import puerta.support.PageInfo;
 import puerta.support.PaginationSupport;
 import puerta.support.Pe;
+import puerta.support.utils.RandomTool;
 import puerta.system.base.HibernateGenericDao;
 import pula.sys.conditions.CourseCondition;
 import pula.sys.daos.TimeCourseDao;
@@ -39,6 +40,7 @@ public class TimeCourseDaoImpl extends HibernateGenericDao<TimeCourse, Long> imp
         }
         rt.setCreateTime(new Date());
         rt.setEnabled(true);
+        rt.setAttachmentKey("TC:"+RandomTool.getRandomString(10));
         _save(rt);
         return rt;
     }

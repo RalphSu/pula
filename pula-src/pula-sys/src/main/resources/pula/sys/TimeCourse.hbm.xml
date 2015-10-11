@@ -46,6 +46,9 @@
    name="creator" type="string"/>
   <property column="updator" generated="never" lazy="false"
    name="updator" type="string"/>
-  <property column="applicableAges" name="applicableAges" type="string"/>
+  <property column="applicableAges" generated="never" lazy="false"
+   name="applicableAges" type="string"/>
+  <property column="attachmentKey" generated="never" lazy="false"
+   name="attachmentKey" type="string"/>
  </class>
 </hibernate-mapping>
