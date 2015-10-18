@@ -8,7 +8,6 @@ import puerta.support.dao.BaseDao;
 import pula.sys.conditions.TimeCourseOrderCondition;
 import pula.sys.domains.TimeCourseOrder;
 
-
 /**
  * @author Liangfei
  *
@@ -20,6 +19,4 @@ public interface TimeCourseOrderDao extends BaseDao<TimeCourseOrder, Long> {
     TimeCourseOrder save(TimeCourseOrder cc);
 
     TimeCourseOrder update(TimeCourseOrder cc);
-
-    
 }

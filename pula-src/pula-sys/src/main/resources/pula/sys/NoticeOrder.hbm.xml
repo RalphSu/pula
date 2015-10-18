@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- pula.sys.domains.Course root -->
+ <class name="pula.sys.domains.NoticeOrder" table="notice_order">
+  <id column="id" name="id" type="long">
+   <generator class="native"/>
+  </id>
+  <property column="comments" generated="never" lazy="false"
+   length="200" name="comments" type="string"/>
+  <property column="removed" generated="never" lazy="false"
+   name="removed" type="boolean"/>
+  <property column="enabled" generated="never" lazy="false"
+   name="enabled" type="boolean"/>
+  <property column="createTime" generated="never" lazy="false"
+   name="createTime" type="date"/>
+  <property column="updateTime" generated="never" lazy="false"
+   name="updateTime" type="date"/>
+  <property column="no" generated="never" lazy="false" name="no" type="string"/>
+  <property column="noticePrice" generated="never" lazy="false"
+   name="noticePrice" type="int"/>
+  <property column="noticeId" generated="never" lazy="false"
+   name="noticeId" type="long"/>
+  <property column="noticeNo" name="noticeNo" type="string"/>
+  <property column="noticeName" name="noticeName" type="string"/>
+  <property column="count" name="count" type="int"/>
+  <property column="studentNo" name="studentNo" type="string"/>
+  <property column="studentId" name="studentId" type="long"/>
+  <property column="orderPayStatus" name="orderPayStatus" type="int"/>
+  <property column="paied" name="paied" type="double"/>
+  <property column="prepayId" name="prepayId" type="long"/>
+  <property column="accessToken" name="accessToken" type="string"/>
+  <property column="wxOrderId" name="wxOrderId" type="string"/>
+  <property column="wxOrderDetail" name="wxOrderDetail" type="string"/>
+ </class>
+</hibernate-mapping>
