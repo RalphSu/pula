@@ -211,7 +211,7 @@ public class TimeCourseOrderUsageController {
     private void usageCreateCountCheck(TimeCourseOrderUsage cli, String orderNo, TimeCourseOrder order) {
         int usedCount = cli.getUsedCount();
         if (order.getUsedCount() + usedCount > order.getPaiedCount()) {
-            Pe.raise(MessageFormat.format("订单号{0}剩余上课次数已经不足，买了次数{1}，已使用次数{1}，本次需扣除次数{2}！", orderNo,
+            Pe.raise(MessageFormat.format("订单号{0}剩余上课次数已经不足，买了次数{1}，已使用次数{2}，本次需扣除次数{3}！", orderNo,
                     order.getPaiedCount(), order.getUsedCount(), usedCount));
 
         }
@@ -219,7 +219,7 @@ public class TimeCourseOrderUsageController {
 
         int usedGongfangCount = cli.getUsedGongfangCount();
         if (order.getUsedGongFangCount() + usedGongfangCount > order.getGongfangCount()) {
-            Pe.raise(MessageFormat.format("订单号{0}剩余工坊上课次数已经不足，买了次数{1}，已使用次数{1}，本次需扣除次数{2}！", orderNo,
+            Pe.raise(MessageFormat.format("订单号{0}剩余工坊上课次数已经不足，买了次数{1}，已使用次数{2}，本次需扣除次数{3}！", orderNo,
                     order.getGongfangCount(), order.getUsedGongFangCount(), usedGongfangCount));
 
         }
@@ -227,7 +227,7 @@ public class TimeCourseOrderUsageController {
 
         int usedHuodongCount = cli.getUsedHuodongCount();
         if (order.getUsedHuodongCount() + usedHuodongCount > order.getHuodongCount()) {
-            Pe.raise(MessageFormat.format("订单号{0}剩余活动上课次数已经不足，买了次数{1}，已使用次数{1}，本次需扣除次数{2}！", orderNo,
+            Pe.raise(MessageFormat.format("订单号{0}剩余活动上课次数已经不足，买了次数{1}，已使用次数{2}，本次需扣除次数{3}！", orderNo,
                     order.getHuodongCount(), order.getUsedHuodongCount(), usedHuodongCount));
         }
         order.setUsedHuodongCount(order.getUsedHuodongCount() + usedHuodongCount);
@@ -235,7 +235,7 @@ public class TimeCourseOrderUsageController {
         int currentUsedSpecialCourseCount = cli.getUsedSpecialCourseCount();
         if (order.getUsedSpecialCourseCount() + currentUsedSpecialCourseCount > order.getSpecialCourseCount())
         {
-            Pe.raise(MessageFormat.format("订单号{0}剩余特殊课程上课次数已经不足，买了次数{1}，已使用次数{1}，本次需扣除次数{2}！", orderNo,
+            Pe.raise(MessageFormat.format("订单号{0}剩余特殊课程上课次数已经不足，买了次数{1}，已使用次数{2}，本次需扣除次数{3}！", orderNo,
                     order.getSpecialCourseCount(), order.getUsedSpecialCourseCount(), currentUsedSpecialCourseCount));
         }
         order.setUsedSpecialCourseCount(order.getUsedSpecialCourseCount() +currentUsedSpecialCourseCount);

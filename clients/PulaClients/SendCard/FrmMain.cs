@@ -300,10 +300,10 @@ namespace SendCard
         private void addUsageBtn_Click(object sender, EventArgs e)
         {
             #region 判断用户选择是否满足要求
-            int courseCout = courseUsageBtn.Checked ? 1 : 0;
-            int gongfangCount = gongfangUsageBtn.Checked ? 1 : 0;
-            int huodongCount = huodongUsageBtn.Checked ? 1 : 0;
-            int specialCourseCount = specialCourseCB.Checked ? 1 : 0;
+            int courseCout = courseRB.Checked ? 1 : 0;
+            int gongfangCount = gongfangRB.Checked ? 1 : 0;
+            int huodongCount = huodongUsageRB.Checked ? 1 : 0;
+            int specialCourseCount = specialCourseRB.Checked ? 1 : 0;
             if (courseCout == 0 && gongfangCount == 0 && huodongCount == 0 && specialCourseCount == 0)
             {
                 MessageBox.Show("请选择消费类型然后消费!");
@@ -413,7 +413,7 @@ namespace SendCard
             coursesGridView.Rows.Clear();
             baseInfoLB.Text = "";
 
-            string msg;
+            StringBuilder msg = new StringBuilder();
             string cardid;
             CardMeta rm;
             if (ReadCard(out cardid, out rm))
@@ -426,7 +426,7 @@ namespace SendCard
                 var result = RemoteServiceProxy.GetUserCourseOrders(rm.no);
                 if (result == null || result.records == null || result.records.Count == 0)
                 {
-                    msg = "Error: " + "没找到用户的订单，请登录系统页面查看！";
+                    msg.Append("Error: " + "没找到用户的订单，请登录系统页面查看！");
                 }
                 else
                 {
@@ -437,27 +437,27 @@ namespace SendCard
                     {
                         sb = new StringBuilder();
                         sb.Append("订单号：").Append(timeCourseOrder.no).AppendLine();
-                        sb.Append("课程次数：")
+                        sb.Append("系统课程次数：")
                             .Append(timeCourseOrder.paiedCount)
                             .Append(" 已使用：")
                             .Append(timeCourseOrder.usedCount)
                             .Append("次；")
                             .AppendLine();
-                        sb.Append("工坊课次数：")
+                        sb.Append("工坊课程次数：")
                             .Append(timeCourseOrder.gongfangCount)
                             .Append(" 已使用：")
                             .Append(timeCourseOrder.usedGongFangCount)
+                            .Append("次；")
+                            .AppendLine();
+                        sb.Append("特殊课程次数：")
+                            .Append(timeCourseOrder.specialCourseCount)
+                            .Append(" 已使用：").Append(timeCourseOrder.usedSpecialCourseCount)
                             .Append("次；")
                             .AppendLine();
                         sb.Append("活动次数：")
                             .Append(timeCourseOrder.huodongCount)
                             .Append(" 已使用：")
                             .Append(timeCourseOrder.usedHuodongCount)
-                            .Append("次；")
-                            .AppendLine();
-                        sb.Append("特殊课程次数：")
-                            .Append(timeCourseOrder.specialCourseCount)
-                            .Append(" 已使用：").Append(timeCourseOrder.usedSpecialCourseCount)
                             .Append("次；")
                             .AppendLine();
 
@@ -473,15 +473,15 @@ namespace SendCard
                         row.Cells[1].ReadOnly = true;
 
                         coursesGridView.Rows.Add(row);
+                        msg.Append(sb);
                     }
-                    msg = sb.ToString();
                 }
             }
             catch (Exception ex)
             {
-                msg = ex.Message;
+                msg.Append(ex.Message);
             }
-            this.usageStatusLb.Text = msg;
+            this.usageStatusLb.Text = msg.ToString();
         }
 
 

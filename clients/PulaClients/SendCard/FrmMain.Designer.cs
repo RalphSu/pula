@@ -44,15 +44,15 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.baseInfoLB = new System.Windows.Forms.Label();
             this.coursesGridView = new System.Windows.Forms.DataGridView();
-            this.specialCourseCB = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.addUsageBtn = new System.Windows.Forms.Button();
-            this.huodongUsageBtn = new System.Windows.Forms.CheckBox();
-            this.gongfangUsageBtn = new System.Windows.Forms.CheckBox();
-            this.courseUsageBtn = new System.Windows.Forms.CheckBox();
-            this.usageStatusLb = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.courseRB = new System.Windows.Forms.RadioButton();
+            this.gongfangRB = new System.Windows.Forms.RadioButton();
+            this.specialCourseRB = new System.Windows.Forms.RadioButton();
+            this.huodongUsageRB = new System.Windows.Forms.RadioButton();
+            this.usageStatusLb = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.coursesGridView)).BeginInit();
@@ -182,14 +182,14 @@
             // 
             this.groupBox1.AutoSize = true;
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox1.Controls.Add(this.huodongUsageRB);
+            this.groupBox1.Controls.Add(this.specialCourseRB);
+            this.groupBox1.Controls.Add(this.gongfangRB);
+            this.groupBox1.Controls.Add(this.courseRB);
             this.groupBox1.Controls.Add(this.baseInfoLB);
             this.groupBox1.Controls.Add(this.coursesGridView);
-            this.groupBox1.Controls.Add(this.specialCourseCB);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.addUsageBtn);
-            this.groupBox1.Controls.Add(this.huodongUsageBtn);
-            this.groupBox1.Controls.Add(this.gongfangUsageBtn);
-            this.groupBox1.Controls.Add(this.courseUsageBtn);
             this.groupBox1.Location = new System.Drawing.Point(420, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1328, 650);
@@ -221,16 +221,6 @@
             this.coursesGridView.Size = new System.Drawing.Size(1297, 462);
             this.coursesGridView.TabIndex = 7;
             // 
-            // specialCourseCB
-            // 
-            this.specialCourseCB.AutoSize = true;
-            this.specialCourseCB.Location = new System.Drawing.Point(336, 51);
-            this.specialCourseCB.Name = "specialCourseCB";
-            this.specialCourseCB.Size = new System.Drawing.Size(89, 19);
-            this.specialCourseCB.TabIndex = 6;
-            this.specialCourseCB.Text = "特殊课程";
-            this.specialCourseCB.UseVisualStyleBackColor = true;
-            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -252,46 +242,6 @@
             this.addUsageBtn.Text = "消费";
             this.addUsageBtn.UseVisualStyleBackColor = true;
             this.addUsageBtn.Click += new System.EventHandler(this.addUsageBtn_Click);
-            // 
-            // huodongUsageBtn
-            // 
-            this.huodongUsageBtn.AutoSize = true;
-            this.huodongUsageBtn.Location = new System.Drawing.Point(488, 51);
-            this.huodongUsageBtn.Name = "huodongUsageBtn";
-            this.huodongUsageBtn.Size = new System.Drawing.Size(59, 19);
-            this.huodongUsageBtn.TabIndex = 2;
-            this.huodongUsageBtn.Text = "活动";
-            this.huodongUsageBtn.UseVisualStyleBackColor = true;
-            // 
-            // gongfangUsageBtn
-            // 
-            this.gongfangUsageBtn.AutoSize = true;
-            this.gongfangUsageBtn.Location = new System.Drawing.Point(182, 51);
-            this.gongfangUsageBtn.Name = "gongfangUsageBtn";
-            this.gongfangUsageBtn.Size = new System.Drawing.Size(89, 19);
-            this.gongfangUsageBtn.TabIndex = 1;
-            this.gongfangUsageBtn.Text = "工坊课程";
-            this.gongfangUsageBtn.UseVisualStyleBackColor = true;
-            // 
-            // courseUsageBtn
-            // 
-            this.courseUsageBtn.AutoSize = true;
-            this.courseUsageBtn.Location = new System.Drawing.Point(25, 51);
-            this.courseUsageBtn.Name = "courseUsageBtn";
-            this.courseUsageBtn.Size = new System.Drawing.Size(89, 19);
-            this.courseUsageBtn.TabIndex = 0;
-            this.courseUsageBtn.Text = "系统课程";
-            this.courseUsageBtn.UseVisualStyleBackColor = true;
-            // 
-            // usageStatusLb
-            // 
-            this.usageStatusLb.AutoSize = true;
-            this.usageStatusLb.Cursor = System.Windows.Forms.Cursors.PanSW;
-            this.usageStatusLb.Location = new System.Drawing.Point(16, 114);
-            this.usageStatusLb.Name = "usageStatusLb";
-            this.usageStatusLb.Size = new System.Drawing.Size(87, 15);
-            this.usageStatusLb.TabIndex = 4;
-            this.usageStatusLb.Text = "          ";
             // 
             // groupBox2
             // 
@@ -318,6 +268,61 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(310, 360);
             this.panel1.TabIndex = 7;
+            // 
+            // courseRB
+            // 
+            this.courseRB.AutoSize = true;
+            this.courseRB.Location = new System.Drawing.Point(27, 45);
+            this.courseRB.Name = "courseRB";
+            this.courseRB.Size = new System.Drawing.Size(88, 19);
+            this.courseRB.TabIndex = 9;
+            this.courseRB.TabStop = true;
+            this.courseRB.Text = "系统课程";
+            this.courseRB.UseVisualStyleBackColor = true;
+            // 
+            // gongfangRB
+            // 
+            this.gongfangRB.AutoSize = true;
+            this.gongfangRB.Location = new System.Drawing.Point(181, 45);
+            this.gongfangRB.Name = "gongfangRB";
+            this.gongfangRB.Size = new System.Drawing.Size(88, 19);
+            this.gongfangRB.TabIndex = 10;
+            this.gongfangRB.TabStop = true;
+            this.gongfangRB.Text = "工坊课程";
+            this.gongfangRB.UseVisualStyleBackColor = true;
+            // 
+            // specialCourseRB
+            // 
+            this.specialCourseRB.AutoSize = true;
+            this.specialCourseRB.Location = new System.Drawing.Point(336, 45);
+            this.specialCourseRB.Name = "specialCourseRB";
+            this.specialCourseRB.Size = new System.Drawing.Size(88, 19);
+            this.specialCourseRB.TabIndex = 11;
+            this.specialCourseRB.TabStop = true;
+            this.specialCourseRB.Text = "特殊课程";
+            this.specialCourseRB.UseVisualStyleBackColor = true;
+            // 
+            // huodongUsageRB
+            // 
+            this.huodongUsageRB.AutoSize = true;
+            this.huodongUsageRB.Location = new System.Drawing.Point(487, 44);
+            this.huodongUsageRB.Name = "huodongUsageRB";
+            this.huodongUsageRB.Size = new System.Drawing.Size(58, 19);
+            this.huodongUsageRB.TabIndex = 12;
+            this.huodongUsageRB.TabStop = true;
+            this.huodongUsageRB.Text = "活动";
+            this.huodongUsageRB.UseVisualStyleBackColor = true;
+            // 
+            // usageStatusLb
+            // 
+            this.usageStatusLb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.usageStatusLb.Location = new System.Drawing.Point(19, 133);
+            this.usageStatusLb.Multiline = true;
+            this.usageStatusLb.Name = "usageStatusLb";
+            this.usageStatusLb.ReadOnly = true;
+            this.usageStatusLb.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.usageStatusLb.Size = new System.Drawing.Size(288, 224);
+            this.usageStatusLb.TabIndex = 5;
             // 
             // FrmMain
             // 
@@ -368,16 +373,16 @@
         private System.Windows.Forms.TextBox TbCardId;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button addUsageBtn;
-        private System.Windows.Forms.CheckBox huodongUsageBtn;
-        private System.Windows.Forms.CheckBox gongfangUsageBtn;
-        private System.Windows.Forms.CheckBox courseUsageBtn;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label usageStatusLb;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox specialCourseCB;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView coursesGridView;
         private System.Windows.Forms.Label baseInfoLB;
+        private System.Windows.Forms.RadioButton huodongUsageRB;
+        private System.Windows.Forms.RadioButton specialCourseRB;
+        private System.Windows.Forms.RadioButton gongfangRB;
+        private System.Windows.Forms.RadioButton courseRB;
+        private System.Windows.Forms.TextBox usageStatusLb;
     }
 }
 
