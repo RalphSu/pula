@@ -33,6 +33,7 @@ namespace SendCard
             commentColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             commentColumn.HeaderText = "订单详情";
             coursesGridView.Columns.Add(commentColumn);
+
         }
 
         private void BtnSetup_Click(object sender, EventArgs e)
@@ -440,20 +441,24 @@ namespace SendCard
                             .Append(timeCourseOrder.paiedCount)
                             .Append(" 已使用：")
                             .Append(timeCourseOrder.usedCount)
+                            .Append("次；")
                             .AppendLine();
                         sb.Append("工坊课次数：")
                             .Append(timeCourseOrder.gongfangCount)
                             .Append(" 已使用：")
                             .Append(timeCourseOrder.usedGongFangCount)
+                            .Append("次；")
                             .AppendLine();
                         sb.Append("活动次数：")
                             .Append(timeCourseOrder.huodongCount)
                             .Append(" 已使用：")
                             .Append(timeCourseOrder.usedHuodongCount)
+                            .Append("次；")
                             .AppendLine();
                         sb.Append("特殊课程次数：")
                             .Append(timeCourseOrder.specialCourseCount)
-                            .Append("已使用：").Append(timeCourseOrder.usedSpecialCourseCount)
+                            .Append(" 已使用：").Append(timeCourseOrder.usedSpecialCourseCount)
+                            .Append("次；")
                             .AppendLine();
 
                         var row = new DataGridViewRow();

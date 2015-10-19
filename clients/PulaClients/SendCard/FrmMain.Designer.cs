@@ -42,6 +42,7 @@
             this.BtnInitCard = new System.Windows.Forms.Button();
             this.TbCardId = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.baseInfoLB = new System.Windows.Forms.Label();
             this.coursesGridView = new System.Windows.Forms.DataGridView();
             this.specialCourseCB = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.usageStatusLb = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.baseInfoLB = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.coursesGridView)).BeginInit();
@@ -73,10 +73,11 @@
             // 
             // BtnRead
             // 
-            this.BtnRead.Location = new System.Drawing.Point(25, 71);
+            this.BtnRead.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.BtnRead.Location = new System.Drawing.Point(25, 57);
             this.BtnRead.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnRead.Name = "BtnRead";
-            this.BtnRead.Size = new System.Drawing.Size(309, 28);
+            this.BtnRead.Size = new System.Drawing.Size(309, 56);
             this.BtnRead.TabIndex = 0;
             this.BtnRead.Text = "读卡信息";
             this.BtnRead.UseVisualStyleBackColor = true;
@@ -100,10 +101,10 @@
             this.TssComPort,
             this.toolStripStatusLabel1,
             this.TssCardRfid});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 664);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 667);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1475, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1754, 25);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
@@ -180,6 +181,7 @@
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox1.Controls.Add(this.baseInfoLB);
             this.groupBox1.Controls.Add(this.coursesGridView);
             this.groupBox1.Controls.Add(this.specialCourseCB);
@@ -190,31 +192,42 @@
             this.groupBox1.Controls.Add(this.courseUsageBtn);
             this.groupBox1.Location = new System.Drawing.Point(420, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1014, 650);
+            this.groupBox1.Size = new System.Drawing.Size(1328, 650);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "上课登记";
+            // 
+            // baseInfoLB
+            // 
+            this.baseInfoLB.AutoSize = true;
+            this.baseInfoLB.Location = new System.Drawing.Point(25, 139);
+            this.baseInfoLB.Name = "baseInfoLB";
+            this.baseInfoLB.Size = new System.Drawing.Size(55, 15);
+            this.baseInfoLB.TabIndex = 8;
+            this.baseInfoLB.Text = "label1";
             // 
             // coursesGridView
             // 
             this.coursesGridView.AllowUserToAddRows = false;
             this.coursesGridView.AllowUserToDeleteRows = false;
             this.coursesGridView.AllowUserToOrderColumns = true;
+            this.coursesGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.coursesGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.coursesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.coursesGridView.Location = new System.Drawing.Point(25, 164);
             this.coursesGridView.Name = "coursesGridView";
             this.coursesGridView.RowTemplate.Height = 27;
-            this.coursesGridView.Size = new System.Drawing.Size(983, 462);
+            this.coursesGridView.Size = new System.Drawing.Size(1297, 462);
             this.coursesGridView.TabIndex = 7;
             // 
             // specialCourseCB
             // 
             this.specialCourseCB.AutoSize = true;
-            this.specialCourseCB.Location = new System.Drawing.Point(450, 50);
+            this.specialCourseCB.Location = new System.Drawing.Point(336, 51);
             this.specialCourseCB.Name = "specialCourseCB";
-            this.specialCourseCB.Size = new System.Drawing.Size(119, 19);
+            this.specialCourseCB.Size = new System.Drawing.Size(89, 19);
             this.specialCourseCB.TabIndex = 6;
-            this.specialCourseCB.Text = "消费特殊课程";
+            this.specialCourseCB.Text = "特殊课程";
             this.specialCourseCB.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -242,11 +255,11 @@
             // huodongUsageBtn
             // 
             this.huodongUsageBtn.AutoSize = true;
-            this.huodongUsageBtn.Location = new System.Drawing.Point(340, 51);
+            this.huodongUsageBtn.Location = new System.Drawing.Point(488, 51);
             this.huodongUsageBtn.Name = "huodongUsageBtn";
-            this.huodongUsageBtn.Size = new System.Drawing.Size(89, 19);
+            this.huodongUsageBtn.Size = new System.Drawing.Size(59, 19);
             this.huodongUsageBtn.TabIndex = 2;
-            this.huodongUsageBtn.Text = "消费活动";
+            this.huodongUsageBtn.Text = "活动";
             this.huodongUsageBtn.UseVisualStyleBackColor = true;
             // 
             // gongfangUsageBtn
@@ -254,9 +267,9 @@
             this.gongfangUsageBtn.AutoSize = true;
             this.gongfangUsageBtn.Location = new System.Drawing.Point(182, 51);
             this.gongfangUsageBtn.Name = "gongfangUsageBtn";
-            this.gongfangUsageBtn.Size = new System.Drawing.Size(104, 19);
+            this.gongfangUsageBtn.Size = new System.Drawing.Size(89, 19);
             this.gongfangUsageBtn.TabIndex = 1;
-            this.gongfangUsageBtn.Text = "消费工坊课";
+            this.gongfangUsageBtn.Text = "工坊课程";
             this.gongfangUsageBtn.UseVisualStyleBackColor = true;
             // 
             // courseUsageBtn
@@ -266,7 +279,7 @@
             this.courseUsageBtn.Name = "courseUsageBtn";
             this.courseUsageBtn.Size = new System.Drawing.Size(89, 19);
             this.courseUsageBtn.TabIndex = 0;
-            this.courseUsageBtn.Text = "消费课程";
+            this.courseUsageBtn.Text = "系统课程";
             this.courseUsageBtn.UseVisualStyleBackColor = true;
             // 
             // usageStatusLb
@@ -305,32 +318,23 @@
             this.panel1.Size = new System.Drawing.Size(310, 360);
             this.panel1.TabIndex = 7;
             // 
-            // baseInfoLB
-            // 
-            this.baseInfoLB.AutoSize = true;
-            this.baseInfoLB.Location = new System.Drawing.Point(25, 139);
-            this.baseInfoLB.Name = "baseInfoLB";
-            this.baseInfoLB.Size = new System.Drawing.Size(55, 15);
-            this.baseInfoLB.TabIndex = 8;
-            this.baseInfoLB.Text = "label1";
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1475, 689);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1754, 692);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.BtnSetup);
             this.Controls.Add(this.groupBox2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "普拉系统学生卡管理";
+            this.Text = "普拉星球创造力系统学生卡管理系统";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.Shown += new System.EventHandler(this.FrmMain_Shown);
             this.statusStrip1.ResumeLayout(false);
