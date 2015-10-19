@@ -135,7 +135,8 @@ public class TimeCourseOrderUsageController {
     @Transactional(isolation = Isolation.READ_COMMITTED)
     @Barrier(PurviewConstants.COURSE)
     public String _create(@ObjectParam("course") TimeCourseOrderUsage cli) {
-        if (cli.getUsedCount() == 0 && cli.getUsedGongfangCount() == 0 && cli.getUsedHuodongCount() == 0) {
+        if (cli.getUsedCount() == 0 && cli.getUsedGongfangCount() == 0 && cli.getUsedHuodongCount() == 0
+                && cli.getUsedSpecialCourseCount() == 0) {
             return ViewResult.JSON_SUCCESS;
         }
         

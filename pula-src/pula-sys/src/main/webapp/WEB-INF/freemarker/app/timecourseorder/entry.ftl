@@ -126,7 +126,7 @@ title="course.title">
 							id="course.comments" size="60" maxlength="80" /></td>
 					</tr>
 					<tr>
-						<td colspan="4"><input type="submit" value="<@b.text key=" submitBtn"/>"
+						<td colspan="4"><input type="submit" value="<@b.text key="submitBtn"/>"
 							id="submitBtn"/> <input type="hidden" name="course.id"
 							id="course.id" /></td>
 					</tr>
