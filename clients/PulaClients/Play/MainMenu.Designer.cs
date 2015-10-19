@@ -136,6 +136,8 @@
             this.Controls.Add(this.downloadCourseBtn);
             this.Controls.Add(this.serverSettingBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainMenu";
             this.Text = "普拉星球开课客户端";
             this.groupBox1.ResumeLayout(false);
