@@ -470,6 +470,7 @@ namespace SendCard
                         row.Height = 35;
                         row.Cells[1].ToolTipText = sb.ToString();
                         row.Tag = timeCourseOrder;
+                        row.ReadOnly = true;
 
                         coursesGridView.Rows.Add(row);
                     }
