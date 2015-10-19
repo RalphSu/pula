@@ -217,7 +217,6 @@
             this.coursesGridView.Location = new System.Drawing.Point(25, 164);
             this.coursesGridView.MultiSelect = false;
             this.coursesGridView.Name = "coursesGridView";
-            this.coursesGridView.ReadOnly = true;
             this.coursesGridView.RowTemplate.Height = 27;
             this.coursesGridView.Size = new System.Drawing.Size(1297, 462);
             this.coursesGridView.TabIndex = 7;
