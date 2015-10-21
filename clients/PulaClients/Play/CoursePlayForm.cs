@@ -16,7 +16,6 @@ namespace Play
     {
         private readonly FileInfo file;
         private readonly PlayConfig playConfig;
-        // private MemoryStream ms;
         private readonly string tmpFile;
 
         public CoursePlayForm(FileInfo tag, PlayConfig playConfig)
@@ -37,7 +36,6 @@ namespace Play
                 try
                 {
                     File.Delete(tmpFile);
-                    // ms.Close();
                 }
                 catch (Exception e)
                 {
@@ -51,9 +49,6 @@ namespace Play
             {
                 timerPlay.Enabled = true;
                 timerPlay.Interval = 1200;
-                // ms.Seek(0, SeekOrigin.Begin);
-                // FileStream input = new FileStream("swf/loading1.swf", FileMode.Open, FileAccess.Read);
-                // swf.OcxState = new AxHost.State(ms, 1, false, null);
                 swf.Movie = tmpFile;
                 swf.Play();
             }

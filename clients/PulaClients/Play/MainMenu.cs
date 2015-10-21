@@ -85,22 +85,6 @@ namespace Play
                 MessageBox.Show(result);
             }
 
-            //// validate could move out to LocalHelper
-            //if (!HttpHelper.validate(playConfig.Server, playConfig.UserName, playConfig.Password))
-            //{
-            //    MessageBox.Show(@"用户登录失败，请确保服务端配置正确!");
-            //    return;
-            //}
-            //if (LocalHelper.CheckFilePermission(playConfig.LocalFolder, true, true))
-            //{
-            //    MessageBox.Show(@"文件夹权限测试失败，需要读写权限，请确保本地配置正确!");
-            //    return;
-            //}
-
-            //// list
-            //var downloader = new CourseDownloader(playConfig);
-            //downloader.Download(sender, e, downloadCallback);
-
         }
 
         private void aboutUsBtn_Click(object sender, EventArgs e)
@@ -108,11 +92,5 @@ namespace Play
             var aboutUs = new AboutUs(playConfig);
             aboutUs.ShowDialog();
         }
-
-        //private void downloadCallback(object sender, EventArgs e, CourseDownloader downloader)
-        //{
-        //    localCourseBtn_Click(sender, e);
-        //    // update messages on UI
-        //}
     }
 }
