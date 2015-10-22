@@ -39,6 +39,7 @@ import pula.sys.daos.SysCategoryDao;
 import pula.sys.domains.Audition;
 import pula.sys.domains.Branch;
 import pula.sys.domains.SysCategory;
+import pula.sys.domains.SysUser;
 import pula.sys.forms.AuditionForm;
 import pula.sys.services.SessionUserService;
 import pula.sys.util.SmsUtil;
@@ -252,6 +253,7 @@ public class AuditionController {
             }
         }
         audition.setBranch(b);
+        audition.setOwner(SysUser.create(sessionUserService.getActorId()));
         audition.setBranchNo(b.getNo());
         Long id = auditionDao._save(audition);
         return JsonResult.create(MessageFormat.format("预订已提交，Id:{0}", id), null);

@@ -32,6 +32,7 @@ import pula.sys.domains.Branch;
 import pula.sys.forms.BranchForm;
 
 @Controller
+@Barrier(ignore = true)
 public class BranchController {
 
 	/**
@@ -97,7 +98,7 @@ public class BranchController {
 	@RequestMapping
 	@Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
 	@ResponseBody
-	@Barrier(PurviewConstants.BRANCH)
+    @Barrier(ignore = true)
 	public YuiResult list(
 			@ObjectParam("condition") BranchCondition condition,
 			@RequestParam(value = "pageIndex", required = false, defaultValue = "0") int pageIndex) {

@@ -77,7 +77,7 @@ title="course.title">
 							id="course.comments" size="60" maxlength="80" /></td>
 					</tr>
 					<tr>
-						<td colspan="4"><input type="submit" value="<@b.text key=" submitBtn"/>"
+						<td colspan="4"><input type="submit" value="<@b.text key="submitBtn"/>"
 							id="submitBtn"/> 
 						<input type="hidden" name="course.id"
 							id="course.id" /></td>
@@ -120,13 +120,7 @@ var lang = {
 	orderPayStatus:'订单支付状态', wxPayStatus:'微信支付状态'
 }
 
-
 	function check(){
-		if(isEmpty($F("course.no"))){
-			alert("请填写编号");
-			$("course.no").focus();
-			return false; 
-		}
 
 		var b = true;
 		var eel = null ;

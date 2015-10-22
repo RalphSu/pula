@@ -47,15 +47,20 @@ var PPage = new Class({
 				selectRow:onSelectRow.bind(this),
 				columns: [
 					{label:TTable.checkAll,width:24,key:'id',formatter:TTable.formatCheckbox},
-					{label:lang.no,width:150,key:'no'},
-					// {label:lang.buyType,width:100,key:'buyType'},
+					{label:lang.no,width:100,key:'no'},
+					{label:lang.studentNo,width:100,key:'studentNo'},
 					{label:lang.paied,width:100,key:'paied'},
+//					{label:lang.courseNo,width:150,key:'courseNo'},
 					{label:lang.paiedCount,width:100,key:'paiedCount'},
-					{label:lang.courseNo,width:150,key:'courseNo'},
-					{label:lang.studentNo,width:200,key:'studentNo'},
-					{label:lang.usedCount, width:200, key:'usedCount'},
-					{label:lang.updateTime,width:150, key:'updateTime'},
-					{label:lang.updator,width:150, key:'updator'},
+					{label:lang.usedCount, width:100, key:'usedCount'},
+					{label:lang.specialCourseCount, width:100, key:'specialCourseCount'},
+					{label:lang.usedSpecialCourseCount, width:100, key:'usedSpecialCourseCount'},
+					{label:lang.gongfangCount, width:100, key:'gongfangCount'},
+					{label:lang.usedGongFangCount, width:100, key:'usedGongFangCount'},
+					{label:lang.huodongCount, width:100, key:'huodongCount'},
+					{label:lang.usedHuodongCount, width:100, key:'usedHuodongCount'},
+//					{label:lang.updateTime,width:100, key:'updateTime'},
+//					{label:lang.updator,width:150, key:'updator'},
 				]
 			};
 

@@ -43,6 +43,10 @@ public class TimeCourseWorkDaoImpl extends HibernateGenericDao<TimeCourseWork, L
         if (!StringUtils.isEmpty(condition.getCourseNo())) {
             dc.add(Restrictions.like("courseNo", condition.getCourseNo()));
         }
+        
+        if (condition.getLimitedWorkEffectDate() != null) {
+            dc.add(Restrictions.eq("workEffectDate", condition.getLimitedWorkEffectDate()));
+        }
 
         if (condition.getRate() >= 0) {
             dc.add(Restrictions.eq("rate", condition.getRate()));

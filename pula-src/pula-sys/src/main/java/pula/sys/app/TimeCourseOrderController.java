@@ -75,6 +75,7 @@ public class TimeCourseOrderController {
             m.put("courseTime", obj.getCourseTime());
             m.put("specialCourseCount", obj.getSpecialCourseCount());
             m.put("usedSpecialCourseCount", obj.getUsedSpecialCourseCount());
+            m.put("level", obj.getLevel());
             return m;
         }
     };

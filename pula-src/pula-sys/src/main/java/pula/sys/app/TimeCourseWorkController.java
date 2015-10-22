@@ -129,7 +129,7 @@ public class TimeCourseWorkController {
         if (condition == null) {
             condition = new TimeCourseWorkCondition();
         }
-        PaginationSupport<TimeCourseWork> works = workDao.search(condition, 0);
+        PaginationSupport<TimeCourseWork> works = workDao.search(condition, pageIndex);
 
         YuiResult result = YuiResult.create(works, MAPPING);
         result.getRecords().clear();

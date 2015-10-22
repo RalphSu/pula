@@ -12,6 +12,7 @@ title="course.title">
 					<col style="width: 70px" />
 					<col />
 					<col style="width: 80px" />
+					<col />
 					<col style="width: 80px" />
 					<col style="width: 60px" />
 					<col style="width: 80px" />
@@ -26,6 +27,9 @@ title="course.title">
 					<td >学员编号</td>
 					<td><input type="text" name="condition.studentNo"
 						value="${condition.studentNo?if_exists?html}" /></td>
+					<td >上课时间</td>
+					<td><input type="text" name="condition.workEffectDate"
+						value="${condition.workEffectDate?if_exists?html}" class="dateField" /></td>
 				</tr>
 				<tr>
 					<td colspan="8"><input type="submit" value="查询" id="searchBtn" />
@@ -148,7 +152,7 @@ var pageVars = {
 var lang = {
 	name:'名称',no:'编号',domain:'作品管理',gender:'性别',status:'状态',print:'打印条码',printOK:'选中项已成功输出打印',file:'档案'
 	,view:'查看',birthday:'生日',branchName:'所在分支机构',assign:'指派',levelName:'级别',barcode:'卡号'
-	, studentName: '学员名字', courseName:'课程名', studentNo:'学员好', courseNo:'课程号'
+	, studentName: '学员名字', courseName:'课程名', studentNo:'学员编号', courseNo:'课程号'
 	, workEffectDate: '上课时间', rate:'评级', image: '作品', comments:'备注',
 	uploadPic:'上传照片',uploadFile:'上传附件'
 	

@@ -46,9 +46,12 @@
    name="usedHuodongCount" type="int"/>
   <property column="orderStatus" generated="never" lazy="false"
    name="orderStatus" type="int"/>
-  <property column="courseTime" name="courseTime" type="string"/>
-  <property column="usedSpecialCourseCount"
-   name="usedSpecialCourseCount" type="int"/>
-  <property column="specialCourseCount" name="specialCourseCount" type="int"/>
+  <property column="courseTime" generated="never" lazy="false"
+   name="courseTime" type="string"/>
+  <property column="usedSpecialCourseCount" generated="never"
+   lazy="false" name="usedSpecialCourseCount" type="int"/>
+  <property column="specialCourseCount" generated="never" lazy="false"
+   name="specialCourseCount" type="int"/>
+  <property column="level" name="level" type="string"/>
  </class>
 </hibernate-mapping>

@@ -69,6 +69,8 @@ public class TimeCourseOrder implements LoggablePo {
     private String courseTime;
 //    @JsonProperty
 //    private String effectTime;
+    @JsonProperty
+    private String level;
     
     /**
      * 订单状态
@@ -281,6 +283,14 @@ public class TimeCourseOrder implements LoggablePo {
 
     public void setUsedSpecialCourseCount(int usedSpecialCourseCount) {
         this.usedSpecialCourseCount = usedSpecialCourseCount;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
 }

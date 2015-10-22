@@ -49,12 +49,14 @@
 		<td >订单编号 <span class="redStar">*</span></td>
 		<td ><input type="text" name="course.orderNo" id="course.orderNo" size="20" maxlength="40"  /></td>
 	  </tr>
-	  
 	  <tr> 
-		<td >消费课程次数</td>
+		<td >消费系统课程次数</td>
 		<td colspan="1"><input type="text" name="course.usedCount" id="course.usedCount" size="20" maxlength="40" class="numberEdit"/> </td>
 	  </tr>
-	  
+	  <tr> 
+		<td >消费特殊课程次数</td>
+		<td colspan="1"><input type="text" name="course.usedSpecialCourseCount" id="course.usedSpecialCourseCount" size="20" maxlength="40" class="numberEdit"/> </td>
+	  </tr>
 	  <tr> 
 		<td >消费工坊次数</td>
 		<td colspan="1"><input type="text" name="course.usedGongfangCount" id="course.usedGongfangCount" size="20" maxlength="40" class="numberEdit"/> </td>
@@ -62,10 +64,6 @@
 	  <tr>
 		<td >消费活动次数</td>
 		<td colspan="1"><input type="text" name="course.usedHuodongCount" id="course.usedHuodongCount" size="20" maxlength="40" class="numberEdit"/> </td>
-	  </tr>
-	  <tr> 
-		<td >特殊课程次数</td>
-		<td colspan="1"><input type="text" name="course.usedSpecialCourseCount" id="course.usedSpecialCourseCount" size="20" maxlength="40" class="numberEdit"/> </td>
 	  </tr>
 	  <tr> 
 		<td >备注</td>
@@ -105,8 +103,9 @@ var lang = {
 	name:'名称',no:'编号',domain:'课程',expiredTime:'结束日期',publishTime:'开始日期',showInWeb:'显示在网站上',indexNo:'序号',
 	status:'状态', branchName: '分部', classRoomName: '教室',
 	buyType: '购买类型', paied:'购买付款', paiedCount:'购买次数', courseNo:'课程编号', studentNo:'学生编号', remainCount:'剩余次数', remainCost:'剩余款',
-	updateTime:'最后更新', updator:'操作人',usedCost:'消费', usedCount:'消费次数', orderNo:'订单编号', 
-	usedGongfangCount: '已用工坊次数', usedHuodongCount: '已用活动次数'
+	updateTime:'最后更新', updator:'操作人',usedCost:'消费', usedCount:'消费系统课程次数', orderNo:'订单编号', 
+	usedGongfangCount: '消费工坊次数', usedHuodongCount: '消费活动次数',
+	usedSpecialCourseCount: '消费特殊课程次数'
 }
 
 
