@@ -97,8 +97,8 @@ public class AuditionController {
 				m.put("resultName", "尚未结束");
 			}
             m.put("branchNo", obj.getBranch().getNo());
-			m.put("ownerName", obj.getOwner().getName());
-			m.put("branchName", obj.getBranch().getName());
+            m.put("ownerName", obj.getOwner() != null ? obj.getOwner().getName() : "");
+            m.put("branchName", obj.getBranch() != null ? obj.getBranch().getName() : "");
 			m.put("createdTime",obj.getCreatedTime());
 			return m;
 		}
@@ -120,8 +120,8 @@ public class AuditionController {
 
 		// load my
 
-		List<Audition> auditions = auditionDao.loadMy(sessionUserService
-				.getActorId());
+		List<Audition> auditions = auditionDao.loadByBranch(
+		        sessionUserService.getBranch().getNo());
 
 		boolean more = false;
 		if (auditions.size() > 100) {
@@ -147,13 +147,14 @@ public class AuditionController {
 		List<AuditionForm> items = prepareData(json);
 
 		// 更新自己未关闭的
-
-		Map<Long, Long> myIds = auditionDao.loadMyIds(sessionUserService
-				.getActorId());
-
 		Branch branch = Branch.create(sessionUserService.getBranch()
-				.getIdLong());
+		        .getIdLong());
 
+		Map<Long, Long> myIds = auditionDao.loadBranchAuditionIds(sessionUserService.getBranch().getNo());
+//				.getActorId());
+
+		JsonResult result = JsonResult.s();
+		StringBuilder mess = new StringBuilder();
 		for (AuditionForm item : items) {
 
 			if (item.isEmpty()) {
@@ -161,8 +162,10 @@ public class AuditionController {
 			}
 
 			item.setBranch(branch);
-			auditionDao.update(item.toAudition(),
-					sessionUserService.getActorId());
+			JsonResult r = update(item);
+			mess.append(r.getData());
+//			auditionDao.update(item.toAudition(),
+//					sessionUserService.getActorId());
 
 			if (myIds.containsKey(item.getId())) {
 				myIds.remove(item.getId());
@@ -174,7 +177,7 @@ public class AuditionController {
 		if (myIds.size() != 0)
 			auditionDao.remove(myIds.values());
 
-		return JsonResult.s();
+		return result;
 
 	}
 
@@ -263,39 +266,42 @@ public class AuditionController {
     @Transactional(isolation = Isolation.READ_COMMITTED)
     @ResponseBody
     @Barrier(ignore = true)
-    public JsonResult update(@ObjectParam("audition") Audition audition) {
+    public JsonResult update(@ObjectParam("audition") AuditionForm audition) {
         Audition existAudition = auditionDao.findById(audition.getId());
         if (existAudition == null) {
             return JsonResult.e(MessageFormat.format("找不到已有的预约Id:{0}！", audition.getId()));
         }
+        // new an audtion object to save the old status
         existAudition = new Audition(existAudition);
+        Audition updateAudition = audition.toAudition();
 
         try {
-            Branch b = branchDao.findByNo(audition.getBranchNo());
+            Branch b = branchDao.findByNo(updateAudition.getBranchNo());
             if (b == null) {
-                List<Branch> branches = branchDao.findByProperty("name", audition.getBranchName());
+                List<Branch> branches = branchDao.findByProperty("name", updateAudition.getBranchName());
                 if (branches.isEmpty()) {
-                    return JsonResult.e("未找到指定的分支结构: no : " + audition.getBranchNo() + " name : "
-                            + audition.getBranchName());
+                    return JsonResult.e("未找到指定的分支结构: no : " + updateAudition.getBranchNo() + " name : "
+                            + updateAudition.getBranchName());
                 } else {
                     b = branches.get(0);
                 }
             }
-            audition.setBranch(b);
-            auditionDao.update(audition, sessionUserService.getActorId());
+            updateAudition.setBranch(b);
+            // result id
+            auditionDao.update(updateAudition, sessionUserService.getActorId());
             // SMS when changed the time
-            Audition newAudition = auditionDao.findById(audition.getId());
+            Audition newAudition = auditionDao.findById(updateAudition.getId());
             if (!existAudition.getResult().getName().equals("尚未结束") && newAudition.getResult().getName().equals("成功")
                     || (!existAudition.getPlan1().equals(newAudition.getPlan1()))) {
                 // 从尚未结束变成成功，或者时间变化，发个短信
-                SendResult result = SmsUtil.sendBookingMessage(audition);
+                SendResult result = SmsUtil.sendBookingMessage(updateAudition);
                 if (result.succeed) {
                     logger.info("发送短信成功!");
                 } else {
                     logger.error("发送短信失败! :: " + result.message);
                 }
             }
-            return JsonResult.create("预约已更新!", null);
+            return JsonResult.create("预约已更新!", "");
         } catch (Exception e) {
             return JsonResult.e("预约修改为成功，报错了！", e);
         }

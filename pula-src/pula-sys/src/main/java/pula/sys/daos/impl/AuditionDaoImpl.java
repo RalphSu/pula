@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import puerta.support.PageInfo;
 import puerta.support.PaginationSupport;
-import puerta.support.Pe;
 import puerta.support.dao.HibernateTool;
 import puerta.support.dao.QueryJedi;
 import puerta.system.base.HibernateGenericDao;
@@ -27,9 +26,9 @@ public class AuditionDaoImpl extends HibernateGenericDao<Audition, Long>
 		implements AuditionDao {
 
 	@Override
-	public List<Audition> loadMy(String actorId) {
-		String sql = "select u from Audition u where u.removed=? and u.closed=? and u.owner.id=?";
-		return find(sql, false, false, actorId);
+	public List<Audition> loadByBranch(String branchNo) {
+		String sql = "select u from Audition u where u.removed=? and u.closed=? and u.branch.no=?";// and u.owner.id=?";
+		return find(sql, false, false, branchNo);// , actorId);
 	}
 
 	@Override
@@ -47,9 +46,9 @@ public class AuditionDaoImpl extends HibernateGenericDao<Audition, Long>
 			getHibernateTemplate().save(po);
 		} else {
 
-			if (!po.getOwner().getId().equals(actorId) || po.isRemoved()) {
-				Pe.raise("越权访问");
-			}
+//			if (!po.getOwner().getId().equals(actorId) || po.isRemoved()) {
+//				Pe.raise("越权访问");
+//			}
 
 			// 已经关了,界面还有,所以直接跳过
 			if (po.isClosed()) {
@@ -89,9 +88,9 @@ public class AuditionDaoImpl extends HibernateGenericDao<Audition, Long>
 	}
 
 	@Override
-	public Map<Long, Long> loadMyIds(String actorId) {
-		String sql = "select u.id,u.id from Audition u where u.removed=? and u.closed=? and u.owner.id=?";
-		return HibernateTool.asMap(find(sql, false, false, actorId));
+	public Map<Long, Long> loadBranchAuditionIds(String branchNo) {
+		String sql = "select u.id,u.id from Audition u where u.removed=? and u.closed=? and u.branch.no=?";//and u.owner.id=?";
+		return HibernateTool.asMap(find(sql, false, false, branchNo));
 	}
 
 	@Override
@@ -115,12 +114,12 @@ public class AuditionDaoImpl extends HibernateGenericDao<Audition, Long>
 		HibernateTool.betweenIfNotNull(dc, "createdTime",
 				condition.getBeginDate(), condition.getEndDate(), -1);
 
-		if (!StringUtils.isEmpty(condition.getSalesmanNo())) {
-			dc.createAlias("uu.owner", "usr", DetachedCriteria.LEFT_JOIN);
-			dc.createAlias("usr.salesman", "sm", DetachedCriteria.LEFT_JOIN);
-
-			HibernateTool.eq(dc, "sm.no", condition.getSalesmanNo());
-		}
+//		if (!StringUtils.isEmpty(condition.getSalesmanNo())) {
+//			dc.createAlias("uu.owner", "usr", DetachedCriteria.LEFT_JOIN);
+//			dc.createAlias("usr.salesman", "sm", DetachedCriteria.LEFT_JOIN);
+//
+//			HibernateTool.eq(dc, "sm.no", condition.getSalesmanNo());
+//		}
 
         if (!StringUtils.isEmpty(condition.getStudentNo())) {
             HibernateTool.eq(dc, "studentNo", condition.getStudentNo());

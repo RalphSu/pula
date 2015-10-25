@@ -33,6 +33,7 @@ public class Audition {
 	    this.parent = o.parent;
 	    this.content = o.content;
 	    this.comments = o.comments;
+	    this.result = o.result;
 	    this.plan1 = o.plan1;
 	    this.plan2 = o.plan2;
 	    this.plan3 = o.plan3;

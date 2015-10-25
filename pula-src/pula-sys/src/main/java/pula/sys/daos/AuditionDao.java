@@ -11,13 +11,13 @@ import pula.sys.domains.Audition;
 
 public interface AuditionDao extends BaseDao<Audition, Long> {
 
-	List<Audition> loadMy(String actorId);
+	List<Audition> loadByBranch(String branchNo);
 
 	void update(Audition item, String actorId);
 
 	void remove(Collection<Long> values);
 
-	Map<Long, Long> loadMyIds(String actorId);
+	Map<Long, Long> loadBranchAuditionIds(String actorId);
 
 	PaginationSupport<Audition> search(AuditionCondition condition, int pageIndex);
 
