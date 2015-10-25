@@ -114,7 +114,7 @@ public class NoticeOrderController {
             studentCondition.setBranchId(sessionUserService.getBranch().getIdLong());
         }
         PaginationSupport<MapBean> results = studentDao.search(studentCondition, 0, 500);
-        List<ThinStudent> students = new ArrayList<>();
+        List<ThinStudent> students = new ArrayList<ThinStudent>();
         for (MapBean stu : results.getItems()) {
             ThinStudent ts = new ThinStudent();
             ts.id = stu.asLong("id");
