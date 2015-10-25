@@ -151,8 +151,13 @@ public class NoticeOrderController {
             Notice notice = noticeDao.findByNo(u.getNoticeNo());
             if (notice != null) {
                 Map<String, Object> m = MAPPING.toMap(u);
-
+                // icon
                 FileUtil.addIconToJson(fileAttachmentDao, notice, m);
+
+                Map<String, Object> mNotice = NoticeController.MAPPING.toMap(notice);
+                // icon again
+                FileUtil.addIconToJson(fileAttachmentDao, notice, mNotice);
+                m.put("notice", mNotice);
 
                 result.getRecords().add(m);
             }
@@ -215,6 +220,13 @@ public class NoticeOrderController {
 
             FileUtil.addIconToJson(fileAttachmentDao, notice, m);
 
+
+            Map<String, Object> mNotice = NoticeController.MAPPING.toMap(notice);
+            // icon again
+            FileUtil.addIconToJson(fileAttachmentDao, notice, mNotice);
+            m.put("notice", mNotice);
+
+            
 //            result.getRecords().add(m);
 //        }
         }

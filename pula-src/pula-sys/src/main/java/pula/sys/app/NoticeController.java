@@ -60,7 +60,7 @@ import pula.sys.util.FileUtil;
 public class NoticeController {
 
     private static final Logger logger = Logger.getLogger(Course.class);
-    private static final YuiResultMapper<Notice> MAPPING = new YuiResultMapper<Notice>() {
+    public static final YuiResultMapper<Notice> MAPPING = new YuiResultMapper<Notice>() {
         @Override
         public Map<String, Object> toMap(Notice obj) {
             Map<String, Object> m = WxlSugar.newHashMap();
