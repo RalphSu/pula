@@ -75,7 +75,7 @@ public class StudentDaoImpl extends HibernateGenericDao<Student, Long>
 
 	@Override
 	public PaginationSupport<MapBean> search(StudentCondition condition,
-			int pageIndex) {
+			int pageIndex, int pageSize) {
 		DetachedCriteria dc = makeDetachedCriteria(condition);
 		ProjectionList proList = Projections.projectionList();// 设置投影集合
 
@@ -85,7 +85,7 @@ public class StudentDaoImpl extends HibernateGenericDao<Student, Long>
 		dc.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
 
 		PaginationSupport<Map<String, Object>> es = super.findPageByCriteria(
-				dc, new PageInfo(pageIndex), Order.asc("uu.no"));
+				dc, new PageInfo(pageIndex, pageSize), Order.asc("uu.no"));
 		return MapList.createPage(es);
 	}
 

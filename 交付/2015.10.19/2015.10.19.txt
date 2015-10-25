@@ -59,8 +59,8 @@ APP反馈
 5. 支付
 
 服务端shengyu总结：
-	1. 预订 API 需要调通
-	2. 我的活动(活动订单)所有的操作需要调通 (create/update/list)
+	1. 预订 API 需要调通 - done
+	2. 我的活动(活动订单)所有的操作需要调通 (create/update/list) - done
 	3. 活动订单直接返回图片地址在返回的json中
 	4. 分享的title，分享要隐藏一个张图片
 		包括，课程/活动/我的作品 appshow，要有和客户端背景色

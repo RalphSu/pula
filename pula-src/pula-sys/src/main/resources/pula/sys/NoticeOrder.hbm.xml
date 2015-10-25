@@ -19,19 +19,28 @@
    name="updateTime" type="date"/>
   <property column="no" generated="never" lazy="false" name="no" type="string"/>
   <property column="noticePrice" generated="never" lazy="false"
-   name="noticePrice" type="int"/>
+   name="noticePrice" type="long"/>
   <property column="noticeId" generated="never" lazy="false"
    name="noticeId" type="long"/>
-  <property column="noticeNo" name="noticeNo" type="string"/>
-  <property column="noticeName" name="noticeName" type="string"/>
-  <property column="count" name="count" type="int"/>
-  <property column="studentNo" name="studentNo" type="string"/>
-  <property column="studentId" name="studentId" type="long"/>
-  <property column="orderPayStatus" name="orderPayStatus" type="int"/>
-  <property column="paied" name="paied" type="double"/>
-  <property column="prepayId" name="prepayId" type="long"/>
-  <property column="accessToken" name="accessToken" type="string"/>
-  <property column="wxOrderId" name="wxOrderId" type="string"/>
-  <property column="wxOrderDetail" name="wxOrderDetail" type="string"/>
+  <property column="noticeNo" generated="never" lazy="false"
+   name="noticeNo" type="string"/>
+  <property column="noticeName" generated="never" lazy="false"
+   name="noticeName" type="string"/>
+  <property column="count" generated="never" lazy="false" name="count" type="int"/>
+  <property column="studentNo" generated="never" lazy="false"
+   name="studentNo" type="string"/>
+  <property column="studentId" generated="never" lazy="false"
+   name="studentId" type="long"/>
+  <property column="orderPayStatus" generated="never" lazy="false"
+   name="orderPayStatus" type="int"/>
+  <property column="paied" generated="never" lazy="false" name="paied" type="double"/>
+  <property column="prepayId" generated="never" lazy="false"
+   name="prepayId" type="string"/>
+  <property column="accessToken" generated="never" lazy="false"
+   name="accessToken" type="string"/>
+  <property column="wxOrderId" generated="never" lazy="false"
+   name="wxOrderId" type="string"/>
+  <property column="wxOrderDetail" generated="never" lazy="false"
+   name="wxOrderDetail" type="string"/>
  </class>
 </hibernate-mapping>

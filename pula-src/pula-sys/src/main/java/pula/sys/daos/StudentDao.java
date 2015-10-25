@@ -11,7 +11,7 @@ public interface StudentDao extends BaseDao<Student, Long> {
 
 	void updatePoints(int points, long id);
 
-	PaginationSupport<MapBean> search(StudentCondition condition, int pageIndex);
+	PaginationSupport<MapBean> search(StudentCondition condition, int pageIndex, int pageSize);
 
 	Student update(Student cc, boolean changePassword);
 

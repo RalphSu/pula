@@ -6,7 +6,7 @@ var PPage = new Class({
 		},
 	
 		init : function(){
-			this.initBase({focusField:'course.no'});
+			this.initBase({focusField:'course.noticeNo'});
 			this.initToolBar({add:true,remove:true,condition:true});
 			this.initSaveForm();
 			this.initSearchForm();

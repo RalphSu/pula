@@ -42,18 +42,34 @@ title="course.title">
 								</div></td>
 					</tr>
 					<tr>
-						<td>活动编号<span class="redStar">*</span></td>
-						<td><input type="text" name="course.noticeNo"
-							id="course.noticeNo" size="20" maxlength="40" /></td>
+						<td>活动<span class="redStar">*</span></td>
+						<td>
+						<select name="course.noticeNo" id="course.noticeNo">
+						<#list notices as tp>
+						<option value="${tp.no?if_exists?html}">${tp.title?if_exists?html}</option>
+						</#list>
+						</select>
+						</td>
+						<!-- <td><input type="text" name="course.noticeNo"
+							id="course.noticeNo" size="20" maxlength="40" /></td> -->
 						<td>购买次数<span class="redStar">*</span></td>
 						<td><input type="text" name="course.count"
 							id="course.count" size="20" maxlength="40" /></td>
 					</tr>
 
 					<tr>
-						<td>学生编号<span class="redStar">*</span></td>
+						<td>学生<span class="redStar">*</span></td>
+						<!-- <td>
+						<select name="course.studentNo" id="course.studentNo">
+						<#list students as tp>
+						<option value="${tp.no?if_exists?html}">${tp.name?if_exists?html}</option>
+						</#list>
+						</select>
+						</td> -->
+						
 						<td><input type="text" name="course.studentNo"
 							id="course.studentNo" size="20" maxlength="40" /></td>
+
 						<td>订单状态(0 - 未支付,1 - 完成)</td>
 						<td><input type="text" name="course.orderPayStatus"
 							id="course.orderPayStatus" size="20" maxlength="40"
@@ -67,8 +83,7 @@ title="course.title">
 						</td>
 						<td>微信预支付ID</td>
 						<td><input type="text" name="course.prepayId"
-							id="course.prepayId" size="20" maxlength="40"
-							class="numberEdit" /></td>
+							id="course.prepayId" size="20" maxlength="40" /></td>
 					</tr>
 
 					<tr>

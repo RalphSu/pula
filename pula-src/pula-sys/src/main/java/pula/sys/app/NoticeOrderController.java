@@ -4,6 +4,9 @@
 package pula.sys.app;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -25,13 +28,19 @@ import puerta.support.annotation.Barrier;
 import puerta.support.annotation.ObjectParam;
 import puerta.support.utils.WxlSugar;
 import puerta.system.vo.JsonResult;
+import puerta.system.vo.MapBean;
 import puerta.system.vo.YuiResult;
 import puerta.system.vo.YuiResultMapper;
 import pula.sys.PurviewConstants;
 import pula.sys.conditions.NoticeOrderCondition;
+import pula.sys.conditions.StudentCondition;
+import pula.sys.daos.NoticeDao;
 import pula.sys.daos.NoticeOrderDao;
+import pula.sys.daos.StudentDao;
+import pula.sys.domains.Notice;
 import pula.sys.domains.NoticeOrder;
 import pula.sys.forms.NoticeOrderForm;
+import pula.sys.services.SessionUserService;
 
 @Controller
 @Barrier(ignore = true)
@@ -74,6 +83,12 @@ public class NoticeOrderController {
 
     @Resource
     NoticeOrderDao noticeOrderDao;
+    @Resource
+    StudentDao studentDao;
+    @Resource
+    NoticeDao noticeDao;
+    @Resource
+    SessionUserService sessionUserService;
 
     @RequestMapping
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
@@ -81,7 +96,7 @@ public class NoticeOrderController {
     public String create() {
         return null;
     }
-    
+
     @RequestMapping
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
     @Barrier(PurviewConstants.COURSE)
@@ -90,10 +105,32 @@ public class NoticeOrderController {
             condition = new NoticeOrderCondition();
         }
 
-        return new ModelAndView().addObject("condition", condition);
+        List<Notice> notices = noticeDao.loadAll();
+
+        StudentCondition studentCondition = new StudentCondition();
+        if (!sessionUserService.isHeadquarter()) {
+            studentCondition.setBranchId(sessionUserService.getBranch().getIdLong());
+        }
+        PaginationSupport<MapBean> results = studentDao.search(studentCondition, 0, 500);
+        List<ThinStudent> students = new ArrayList<>();
+        for (MapBean stu : results.getItems()) {
+            ThinStudent ts = new ThinStudent();
+            ts.id = stu.asLong("id");
+            ts.no = stu.string("no");
+            ts.name = stu.string("name");
+
+            students.add(ts);
+        }
+
+        return new ModelAndView().addObject("condition", condition).addObject("notices", notices)
+                .addObject("students", students);
     }
 
-    
+    public static class ThinStudent {
+        public long id;
+        public String no;
+        public String name;
+    }
 
     @RequestMapping
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
@@ -111,8 +148,26 @@ public class NoticeOrderController {
     @RequestMapping
     @Transactional()
     @Barrier(PurviewConstants.COURSE)
+    public String _create(@ObjectParam("course") NoticeOrderForm cli) {
+        NoticeOrder order = new NoticeOrder(cli);
+
+        if (StringUtils.isEmpty(cli.getStudentNo()) || studentDao.findByNo(cli.getStudentNo()) == null) {
+            Pe.raise(MessageFormat.format("找不到学生编号{0}", cli.getStudentNo()));
+        }
+
+        order.setCreateTime(new Date());
+        order.setUpdateTime(new Date());
+
+        NoticeOrder savedOrder = noticeOrderDao.save(order);
+
+        return ViewResult.JSON_SUCCESS;
+    }
+
+    @RequestMapping
+    @Transactional()
+    @Barrier(PurviewConstants.COURSE)
     public String _update(@ObjectParam("course") NoticeOrderForm cli) {
-        if (StringUtils.isEmpty(cli.getStudentNo()) || noticeOrderDao.findByNo(cli.getStudentNo()) == null) {
+        if (StringUtils.isEmpty(cli.getStudentNo()) || studentDao.findByNo(cli.getStudentNo()) == null) {
             Pe.raise(MessageFormat.format("找不到学生编号{0}", cli.getStudentNo()));
         }
 
@@ -121,7 +176,7 @@ public class NoticeOrderController {
 
         return ViewResult.JSON_SUCCESS;
     }
-    
+
     @RequestMapping
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
     @ResponseBody
@@ -133,7 +188,6 @@ public class NoticeOrderController {
 
         return JsonResult.s(m);
     }
-
 
     @RequestMapping
     @Transactional()
@@ -151,8 +205,8 @@ public class NoticeOrderController {
         return ViewResult.JSON_SUCCESS;
     }
 
-//    public String submit() {
-//
-//    }
+    // public String submit() {
+    //
+    // }
 
 }

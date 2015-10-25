@@ -70,6 +70,33 @@ public class NoticeOrder implements LoggablePo {
     @JsonProperty
     private String comments;
 
+    public NoticeOrder() {
+    }
+
+    public NoticeOrder(NoticeOrder o) {
+        this.id = o.id;
+        this.no = o.no;
+        this.accessToken = o.accessToken;
+        this.comments = o.comments;
+        this.count = o.count;
+        this.createTime = o.createTime;
+        this.updateTime = o.updateTime;
+        this.enabled = o.enabled;
+        this.removed = o.removed;
+        this.noticeId = o.noticeId;
+        this.noticeName = o.noticeName;
+        this.noticeNo = o.noticeNo;
+        this.noticePrice = o.noticePrice;
+        this.orderPayStatus = o.orderPayStatus;
+        this.paied = o.paied;
+        this.prepayId = o.prepayId;
+        this.studentId = o.studentId;
+        this.studentNo = o.studentNo;
+        this.wxOrderDetail = o.wxOrderDetail;
+        this.wxOrderId = o.wxOrderId;
+        this.wxPayStatus = o.wxPayStatus;
+    }
+
     @Override
     public String toLogString() {
         StringBuilder sb = new StringBuilder();

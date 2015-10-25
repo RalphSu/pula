@@ -139,7 +139,7 @@ public class StudentController {
 		}
 
 		PaginationSupport<MapBean> results = studentDao.search(condition,
-				pageIndex);
+				pageIndex, PaginationSupport.PAGESIZE);
 
 		return YuiResult.create(results, MAPPING_FIX);
 	}
