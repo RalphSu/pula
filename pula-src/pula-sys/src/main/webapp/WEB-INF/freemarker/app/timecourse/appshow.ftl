@@ -17,9 +17,5 @@
 	<p>发布日期: ${course.updateTime}
 	
 	<hr/>
-	优秀作品集：<br/>
-	<img src="" class="img-responsive" alt="Responsive image">
-	<br/>
-	<img src="" class="img-responsive" alt="Responsive image">
 </body>
 </html>

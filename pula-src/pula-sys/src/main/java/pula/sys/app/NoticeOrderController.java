@@ -34,6 +34,7 @@ import puerta.system.vo.YuiResultMapper;
 import pula.sys.PurviewConstants;
 import pula.sys.conditions.NoticeOrderCondition;
 import pula.sys.conditions.StudentCondition;
+import pula.sys.daos.FileAttachmentDao;
 import pula.sys.daos.NoticeDao;
 import pula.sys.daos.NoticeOrderDao;
 import pula.sys.daos.StudentDao;
@@ -41,6 +42,7 @@ import pula.sys.domains.Notice;
 import pula.sys.domains.NoticeOrder;
 import pula.sys.forms.NoticeOrderForm;
 import pula.sys.services.SessionUserService;
+import pula.sys.util.FileUtil;
 
 @Controller
 @Barrier(ignore = true)
@@ -142,7 +144,21 @@ public class NoticeOrderController {
             condition = new NoticeOrderCondition();
         }
         PaginationSupport<NoticeOrder> results = noticeOrderDao.search(condition, pageIndex);
-        return YuiResult.create(results, MAPPING);
+        // add icon
+        YuiResult result = YuiResult.create(results, MAPPING);
+        result.getRecords().clear();
+        for (NoticeOrder u : results.getItems()) {
+            Notice notice = noticeDao.findByNo(u.getNoticeNo());
+            if (notice != null) {
+                Map<String, Object> m = MAPPING.toMap(u);
+
+                FileUtil.addIconToJson(fileAttachmentDao, notice, m);
+
+                result.getRecords().add(m);
+            }
+        }
+
+        return result;
     }
 
     @RequestMapping
@@ -176,6 +192,9 @@ public class NoticeOrderController {
 
         return ViewResult.JSON_SUCCESS;
     }
+    
+    @Resource
+    private FileAttachmentDao fileAttachmentDao;
 
     @RequestMapping
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
@@ -185,6 +204,20 @@ public class NoticeOrderController {
         NoticeOrder u = noticeOrderDao.findById(id);
 
         Map<String, Object> m = MAPPING.toMap(u);
+
+        Notice notice = noticeDao.findByNo(u.getNoticeNo());
+        if (notice != null) {
+
+//        YuiResult result = YuiResult.create(results, MAPPING);
+//        result.getRecords().clear();
+//        for (Notice u : results.getItems()) {
+//            Map<String, Object> m = MAPPING.toMap(u);
+
+            FileUtil.addIconToJson(fileAttachmentDao, notice, m);
+
+//            result.getRecords().add(m);
+//        }
+        }
 
         return JsonResult.s(m);
     }
@@ -205,8 +238,39 @@ public class NoticeOrderController {
         return ViewResult.JSON_SUCCESS;
     }
 
+
     // public String submit() {
     //
     // }
+
+
+    /**
+     * show the contents of a given notice in web page.
+     * 
+     * @param id
+     * @return
+     */
+    @RequestMapping
+    public ModelAndView appshow(@RequestParam(value = "id", required = false) Long id,
+            @RequestParam(value = "no", required = false) String no) {
+        NoticeOrder u = null;
+        if (id != null) {
+            u = noticeOrderDao.findById(id);
+        } else if (!StringUtils.isAlpha(no)) {
+            u = noticeOrderDao.findByNo(no);
+        }
+
+        ModelAndView view = new ModelAndView();
+        if (u == null) {
+            view.setViewName("error");
+            Exception e = new Exception(String.format("找不到指定的Order:！" + id + no));
+            view.addObject("exception", e);
+            return view;
+        }
+
+        Notice notice = noticeDao.findByNo(u.getNoticeNo());
+
+        return view.addObject("noticeOrder", u).addObject("notice", notice);
+    }
 
 }
