@@ -331,6 +331,12 @@ public class TimeCourseController {
             view.addObject("exception", e);
             return view;
         }
+
+        List<FileAttachment> attachments = fileAttachmentDao.loadByRefId(u.toRefId(), u.getTypeRange());
+        if (attachments.size() > 0) {
+            view.addObject("img", attachments.get(0));
+        }
+
         view.addObject("course", u);
         return view;
     }

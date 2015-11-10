@@ -53,5 +53,61 @@
   <property column="specialCourseCount" generated="never" lazy="false"
    name="specialCourseCount" type="int"/>
   <property column="level" name="level" type="string"/>
+  
+   <!-- wechat notify entity -->
+   <property column="return_code" generated="never" lazy="false"
+   name="return_code" type="string"/>
+   
+   <property column="return_msg" generated="never" lazy="false"
+   name="return_msg" type="string"/>
+   <property column="appid" generated="never" lazy="false"
+   name="appid" type="string"/>
+   <property column="mch_id" generated="never" lazy="false"
+   name="mch_id" type="string"/>
+   <property column="device_info" generated="never" lazy="false"
+   name="device_info" type="string"/>
+   <property column="nonce_str" generated="never" lazy="false"
+   name="nonce_str" type="string"/>
+   <property column="sign" generated="never" lazy="false"
+   name="sign" type="string"/>
+   <property column="result_code" generated="never" lazy="false"
+   name="result_code" type="string"/>
+   <property column="err_code" generated="never" lazy="false"
+   name="err_code" type="string"/>
+   <property column="err_code_des" generated="never" lazy="false"
+   name="err_code_des" type="string"/>
+   <property column="openid" generated="never" lazy="false"
+   name="openid" type="string"/>
+   <property column="is_subscribe" generated="never" lazy="false"
+   name="is_subscribe" type="string"/>
+   <property column="trade_type" generated="never" lazy="false"
+   name="trade_type" type="string"/>
+   <property column="bank_type" generated="never" lazy="false"
+   name="bank_type" type="string"/>
+   <property column="fee_type" generated="never" lazy="false"
+   name="fee_type" type="string"/>
+   
+   <property column="cash_fee_type" generated="never" lazy="false"
+   name="cash_fee_type" type="string"/>
+   <property column="transaction_id" generated="never" lazy="false"
+   name="transaction_id" type="string"/>
+   <property column="out_trade_no" generated="never" lazy="false"
+   name="out_trade_no" type="string"/>
+   
+   <property column="attach" generated="never" lazy="false"
+   name="attach" type="string"/>
+   <property column="time_end" generated="never" lazy="false"
+   name="time_end" type="string"/>
+   
+   <!-- int -->
+   <property column="total_fee" generated="never" lazy="false"
+   name="total_fee" type="int"/>
+   <property column="cash_fee" generated="never" lazy="false"
+   name="cash_fee" type="int"/>
+   <property column="coupon_fee" generated="never" lazy="false"
+   name="coupon_fee" type="int"/>
+   <property column="coupon_count" generated="never" lazy="false"
+   name="coupon_count" type="int"/>
+  
  </class>
 </hibernate-mapping>
