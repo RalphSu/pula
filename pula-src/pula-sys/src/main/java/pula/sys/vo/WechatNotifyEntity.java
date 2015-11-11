@@ -5,7 +5,13 @@ package pula.sys.vo;
 
 import java.util.Map;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.apache.commons.lang.math.NumberUtils;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -15,6 +21,9 @@ import org.codehaus.jackson.annotate.JsonProperty;
  *
  */
 
+
+@XmlRootElement(name="xml", namespace="xml")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class WechatNotifyEntity {
 	@JsonProperty
 	private String return_code = "";
@@ -342,6 +351,37 @@ public class WechatNotifyEntity {
 
 	public void setTime_end(String time_end) {
 		this.time_end = time_end;
+	}
+	
+	@XmlTransient
+	@JsonIgnore
+	public void toParameterMap(Map paramMap) {
+		paramMap.put("return_code", return_code);
+		paramMap.put("appid", this.appid);
+		paramMap.put("attach", this.attach);
+		paramMap.put("bank_type", this.bank_type);
+		paramMap.put("cash_fee", this.cash_fee);
+		paramMap.put("cash_fee_type", this.cash_fee_type);
+		paramMap.put("coupon_count", this.coupon_count);
+		paramMap.put("coupon_fee", this.coupon_fee);
+		paramMap.put("device_info", this.device_info);
+		paramMap.put("err_code", this.err_code);
+		paramMap.put("err_code_des", this.err_code_des);
+		paramMap.put("fee_type", this.fee_type);
+		paramMap.put("is_subscribe", this.is_subscribe);
+		paramMap.put("mch_id", this.mch_id);
+		paramMap.put("nonce_str", this.nonce_str);
+		paramMap.put("openid", this.openid);
+		paramMap.put("out_trade_no", this.out_trade_no);
+		paramMap.put("result_code", this.result_code);
+		paramMap.put("return_code", this.return_code);
+		paramMap.put("return_msg", this.return_msg);
+		paramMap.put("sign", this.sign);
+		paramMap.put("time_end", this.time_end);
+		paramMap.put("total_fee", this.total_fee);
+		paramMap.put("trade_type", this.trade_type);
+		paramMap.put("transaction_id", this.transaction_id);
+
 	}
 
 }

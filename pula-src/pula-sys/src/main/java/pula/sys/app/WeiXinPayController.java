@@ -179,7 +179,7 @@ public class WeiXinPayController extends ResponsePage {
 	@Resource
 	private TimeCourseDao tcDao;
 
-	@RequestMapping("wechatPayNotify")
+	@RequestMapping(value="wechatPayNotify", headers={"content-type=text/*"})
 	@Transactional
 	@ResponseBody
 	public String wechatPayNotify(@RequestBody String xml,
@@ -224,7 +224,7 @@ public class WeiXinPayController extends ResponsePage {
 		}
 
 		// write log
-		if (code == "FAIL") {
+		if (code.equalsIgnoreCase("FAIL")) {
 			log.error(message);
 		} else {
 			log.info(message);
@@ -285,6 +285,8 @@ public class WeiXinPayController extends ResponsePage {
 				cc.setNo("TCO:"
 						+ MD5.GetMD5String("tco@" + System.currentTimeMillis()));
 				cc.setBuyType(1);
+				cc.setPaied(notifyEntity.getTotal_fee());
+//				cc.setPaiedCount(paiedCount);// TODO
 				cc.setStudentNo(studentNo);
 				cc.setCourseNo(tcNo);
 				cc.setCourseTime("");
@@ -329,6 +331,7 @@ public class WeiXinPayController extends ResponsePage {
 						+ MD5.GetMD5String("tco@" + System.currentTimeMillis()));
 				cc.setStudentNo(studentNo);
 				cc.setNoticeNo(noticeNo);
+				cc.setPaied(notifyEntity.getTotal_fee());
 				cc.setEnabled(true);
 				if (tc != null) {
 					cc.setNoticeId(tc.getId());

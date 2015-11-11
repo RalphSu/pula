@@ -1,9 +1,11 @@
 package pula.sys.wechat.pay;
 
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -12,7 +14,13 @@ import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import pula.sys.vo.WechatNotifyEntity;
 import pula.sys.wechat.pay.util.MD5Util;
 import pula.sys.wechat.pay.util.TenpayUtil;
 
@@ -23,6 +31,7 @@ import pula.sys.wechat.pay.util.TenpayUtil;
  *
  */
 public class ResponseHandler { 
+	private static final Logger logger= LoggerFactory.getLogger(RequestHandler.class);
 	
 	/** ��Կ */
 	private String key;
@@ -64,10 +73,22 @@ public class ResponseHandler {
 			String v = ((String[]) m.get(k))[0];			
 			this.setParameter(k, v);
 		}
-		
+
 		// load parameter from the request body xml
 		{
-			// TODO
+			try {
+				JAXBContext jc = JAXBContext
+						.newInstance(WechatNotifyEntity.class);
+				Unmarshaller unmarshaller = jc.createUnmarshaller();
+				WechatNotifyEntity sc = (WechatNotifyEntity) unmarshaller
+						.unmarshal(new ByteArrayInputStream(requestBodyXml
+								.getBytes(Charset.forName("utf8"))));
+				if (sc != null) {
+					sc.toParameterMap(this.parameters);
+				}
+			} catch (Exception e) {
+				logger.error("wechat notify xml parse error!", e);
+			}
 		}
 
 	}
