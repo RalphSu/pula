@@ -249,13 +249,21 @@ public class WeiXinPayController extends ResponsePage {
 				String[] ids = attach.split("@nt@");
 				String studentNo = ids[0];
 				String noticeNo = ids[1];
-				createNoticeOrder(noticeNo, studentNo, notifyEntity, msgBuilder, codeBuilder);
+				int count =1;
+				if (ids.length > 2) {
+					count = parseCount(ids[2]);
+				}
+				createNoticeOrder(noticeNo, studentNo, count, notifyEntity, msgBuilder, codeBuilder);
 
 			} else if (attach.contains("@tc@")) {
 				String[] ids = attach.split("@tc@");
 				String studentNo = ids[0];
 				String tcNo = ids[1];
-				createTimeCourseOrder(tcNo, studentNo, notifyEntity, msgBuilder, codeBuilder);
+				int count =1;
+				if (ids.length > 2) {
+					count = parseCount(ids[2]);
+				}
+				createTimeCourseOrder(tcNo, studentNo, count, notifyEntity, msgBuilder, codeBuilder);
 			} else {
 				codeBuilder.append("FAIL");
 				msgBuilder.append("Attach 格式错误,不能服务! NotifyEntity: " + JSON.toJSONString(notifyEntity));
@@ -266,8 +274,19 @@ public class WeiXinPayController extends ResponsePage {
 		}
 	}
 
+	private int parseCount(String string) {
+		try {
+			return Integer.parseInt(string);
+		} catch (Exception e) {
+			log.error(MessageFormat.format(
+					"Parse weixin order count failed, count string : {0}!",
+					string), e);
+			return 1;
+		}
+	}
+
 	private void createTimeCourseOrder(String tcNo, String studentNo,
-			WechatNotifyEntity notifyEntity, StringBuilder msgBuilder,
+			int count, WechatNotifyEntity notifyEntity, StringBuilder msgBuilder,
 			StringBuilder codeBuilder) {
 		try {
 			TimeCourse tc = tcDao.findByNo(tcNo);
@@ -286,7 +305,7 @@ public class WeiXinPayController extends ResponsePage {
 						+ MD5.GetMD5String("tco@" + System.currentTimeMillis()));
 				cc.setBuyType(1);
 				cc.setPaied(notifyEntity.getTotal_fee());
-//				cc.setPaiedCount(paiedCount);// TODO
+				cc.setPaiedCount(count);
 				cc.setStudentNo(studentNo);
 				cc.setCourseNo(tcNo);
 				cc.setCourseTime("");
@@ -311,7 +330,7 @@ public class WeiXinPayController extends ResponsePage {
 	}
 
 	private void createNoticeOrder(String noticeNo, String studentNo,
-			WechatNotifyEntity notifyEntity, StringBuilder msgBuilder,
+			int count, WechatNotifyEntity notifyEntity, StringBuilder msgBuilder,
 			StringBuilder codeBuilder) {
 		try {
 			Notice tc = noticeDao.findByNo(noticeNo);
@@ -331,6 +350,7 @@ public class WeiXinPayController extends ResponsePage {
 						+ MD5.GetMD5String("tco@" + System.currentTimeMillis()));
 				cc.setStudentNo(studentNo);
 				cc.setNoticeNo(noticeNo);
+				cc.setCount(count);
 				cc.setPaied(notifyEntity.getTotal_fee());
 				cc.setEnabled(true);
 				if (tc != null) {
