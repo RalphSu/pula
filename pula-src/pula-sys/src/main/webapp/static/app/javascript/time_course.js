@@ -81,7 +81,7 @@ var PPage = new Class({
 		},view : function(id ){
 			var url = encodeURIComponent('../timecourse/view?id='+id);
 			centerWindow('../my/window?u=' + url,1100, 480);
-		},
+		}
 		
 });
 

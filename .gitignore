@@ -78,3 +78,6 @@ packages/
 *.rar
 
 mobileapp
+
+.classpath
+.project
