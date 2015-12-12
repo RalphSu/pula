@@ -149,8 +149,8 @@ public class ResponseHandler {
 		while(it.hasNext()) {
 			Map.Entry entry = (Map.Entry)it.next();
 			String k = (String)entry.getKey();
-			String v = (String)entry.getValue();
-			if(!"sign".equals(k) && null != v && !"".equals(v)) {
+			if(!"sign".equals(k) && entry.getValue() != null && !"".equals(entry.getValue().toString())) {
+				String v = entry.getValue().toString();
 				sb.append(k + "=" + v + "&");
 			}
 		}
@@ -166,6 +166,7 @@ public class ResponseHandler {
 		//debug��Ϣ
 		this.setDebugInfo(sb.toString() + " => sign:" + sign +
 				" tenpaySign:" + tenpaySign);
+		logger.info(debugInfo);
 		
 		return tenpaySign.equals(sign);
 	}

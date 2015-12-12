@@ -18,6 +18,7 @@
 			<list>
 				<ref bean="attachmentFileMessageConverter"/>
 				<ref bean="mappingJacksonHttpMessageConverter"/>
+				<ref bean="utf8XmlHttpMessageConverter"/>
 			</list>
 		</property>
 		<property name="customArgumentResolver">
@@ -28,6 +29,8 @@
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
 	<bean id="attachmentFileMessageConverter"
 		class="puerta.support.AttachmentFileMessageConverter"/>
+	<bean id="utf8XmlHttpMessageConverter"
+        class="puerta.support.UTF8XmlHttpMessageConverter"/>
 	
 	<!-- Forwards requests to the "/" resource to the "welcome" view -->
 	<!-- <mvc:view-controller path="/" view-name="index"/> -->

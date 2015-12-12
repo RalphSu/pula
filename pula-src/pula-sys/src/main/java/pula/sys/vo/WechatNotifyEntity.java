@@ -7,77 +7,101 @@ import java.util.Map;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 import org.apache.commons.lang.math.NumberUtils;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
+ * 
+ * <pre>
+ *  <xml>
+ *   <appid><![CDATA[wx2421b1c4370ec43b]]></appid>
+ *   <attach><![CDATA[支付测试]]></attach>
+ *   <bank_type><![CDATA[CFT]]></bank_type>
+ *   <fee_type><![CDATA[CNY]]></fee_type>
+ *   <is_subscribe><![CDATA[Y]]></is_subscribe>
+ *   <mch_id><![CDATA[10000100]]></mch_id>
+ *   <nonce_str><![CDATA[5d2b6c2a8db53831f7eda20af46e531c]]></nonce_str>
+ *   <openid><![CDATA[oUpF8uMEb4qRXf22hE3X68TekukE]]></openid>
+ *   <out_trade_no><![CDATA[1409811653]]></out_trade_no>
+ *   <result_code><![CDATA[SUCCESS]]></result_code>
+ *   <return_code><![CDATA[SUCCESS]]></return_code>
+ *   <sign><![CDATA[B552ED6B279343CB493C5DD0D78AB241]]></sign>
+ *   <sub_mch_id><![CDATA[10000100]]></sub_mch_id>
+ *   <time_end><![CDATA[20140903131540]]></time_end>
+ *   <total_fee>1</total_fee>
+ *   <trade_type><![CDATA[JSAPI]]></trade_type>
+ *   <transaction_id><![CDATA[1004400740201409030005092168]]></transaction_id>
+ *  </xml>
+ * </pre>
+ * 
  * Wechat notify request entity
  * 
  * @author Administrator
- *
  */
-
-
-@XmlRootElement(name="xml", namespace="xml")
+@XmlRootElement(name="xml")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class WechatNotifyEntity {
-	@JsonProperty
+	@XmlElement
 	private String return_code = "";
-	@JsonProperty
+	@XmlElement
 	private String return_msg;
-	@JsonProperty
+	@XmlElement
 	private String appid;
-	@JsonProperty
+	@XmlElement
 	private String mch_id;
-	@JsonProperty
+	@XmlElement
 	private String device_info;
-	@JsonProperty
+	@XmlElement
 	private String nonce_str;
-	@JsonProperty
+	@XmlElement
 	private String sign;
-	@JsonProperty
+	@XmlElement
 	private String result_code;
-	@JsonProperty
+	@XmlElement
 	private String err_code;
-	@JsonProperty
+	@XmlElement
 	private String err_code_des;
-	@JsonProperty
+	@XmlElement
 	private String openid;
-	@JsonProperty
+	@XmlElement
 	private String is_subscribe;
-	@JsonProperty
+	@XmlElement
 	private String trade_type;
-	@JsonProperty
+	@XmlElement
 	private String bank_type;
-	@JsonProperty
+	@XmlElement
 	private int total_fee;
-	@JsonProperty
+	@XmlElement
 	private String fee_type;
-	@JsonProperty
+	@XmlElement
 	private int cash_fee;
-	@JsonProperty
+	@XmlElement
 	private String cash_fee_type;
-	@JsonProperty
+	@XmlElement
 	private int coupon_fee;
-	@JsonProperty
+	@XmlElement
 	private int coupon_count;
 	/*
-	 * 代金券或立减优惠ID coupon_id_$n @JsonProperty否 String(20) 10000
+	 * 代金券或立减优惠ID coupon_id_$n @XmlElement否 String(20) 10000
 	 * 代金券或立减优惠ID,$n为下标，从0开始编号 单个代金券或立减优惠支付金额 coupon_fee_$n 否 Int 100
 	 * 单个代金券或立减优惠支付金额,$n为下标，从0开始编号
 	 */
-	@JsonProperty
+	@XmlElement
 	private String transaction_id;
-	@JsonProperty
+	@XmlElement
 	private String out_trade_no;
-	@JsonProperty
+	@XmlElement
 	private String attach;
-	@JsonProperty
+	@XmlElement
 	private String time_end;
+	@XmlElement
+	private String sub_mch_id;
+	
+	public WechatNotifyEntity()
+	{
+	}
 
 	public WechatNotifyEntity(@SuppressWarnings("rawtypes") Map allParameters) {
 		if (allParameters.get("return_code") != null) {
@@ -158,6 +182,9 @@ public class WechatNotifyEntity {
 		}
 		if (allParameters.get("time_end") != null) {
 			time_end = allParameters.get("time_end").toString();
+		}
+		if (allParameters.get("sub_mch_id") != null) {
+			sub_mch_id = allParameters.get("sub_mch_id").toString();
 		}
 	}
 
@@ -353,9 +380,16 @@ public class WechatNotifyEntity {
 		this.time_end = time_end;
 	}
 	
-	@XmlTransient
-	@JsonIgnore
-	public void toParameterMap(Map paramMap) {
+	public String getSub_mch_id() {
+		return sub_mch_id;
+	}
+
+	public void setSub_mch_id(String sub_mch_id) {
+		this.sub_mch_id = sub_mch_id;
+	}
+
+	@SuppressWarnings("unchecked")
+	public void toParameterMap(@SuppressWarnings("rawtypes") Map paramMap) {
 		paramMap.put("return_code", return_code);
 		paramMap.put("appid", this.appid);
 		paramMap.put("attach", this.attach);
@@ -381,7 +415,7 @@ public class WechatNotifyEntity {
 		paramMap.put("total_fee", this.total_fee);
 		paramMap.put("trade_type", this.trade_type);
 		paramMap.put("transaction_id", this.transaction_id);
-
+		paramMap.put("sub_mch_id", this.sub_mch_id);
 	}
 
 }
