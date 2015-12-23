@@ -86,7 +86,7 @@ cursor:pointer;
 	</td>
 	</tr>
    <tr>
-   		<td>编号 <font color=red>*</font> </td>
+   		<td>学号 <font color=red>*</font> </td>
 		<td ><input type="text" value="${no?if_exists}" name="student.no" id="student.no" maxlength="10" size="12" class="number"/></td>
 		
 	<td>生日</td>

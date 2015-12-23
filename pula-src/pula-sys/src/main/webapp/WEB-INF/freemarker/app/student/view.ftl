@@ -166,7 +166,7 @@ var pageVars = {
 }
 
 var lang = {
-	name:'名称',no:'编号',domain:'<#if updateMode>修改<#else>新增</#if>学生',
+	name:'名称',no:'学号',domain:'<#if updateMode>修改<#else>新增</#if>学生',
 	materialNo:'材料编号',
 	materialName:'材料名称',space:'区域',picNo:'图号',msgSelectFirst:'请选择...',uploadPic:'上传照片',uploadFile:'上传附件',
 	quantity:'数量',lineMsg:"第{index}行:{message}\n",needQty:'需要填写数量',needSpace:'需要选取区域',

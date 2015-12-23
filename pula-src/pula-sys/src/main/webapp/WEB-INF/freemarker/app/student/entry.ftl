@@ -14,7 +14,7 @@
           <tr class="title">
             <td colspan="8">查询条件</td></tr>
 		 <tr> 
-		<td>编号</td>
+		<td>学号</td>
 		<td>
 		<input type="text" name="condition.no" value="${condition.no?if_exists?html}"/>
 		</td>
@@ -87,7 +87,7 @@
               <div class="r">
               <div class="backToList " id="backToList"><A href="javascript:pes.backToList()">返回至列表</A></div></td>
 	  </tr> <tr> 
-		<td >编号<span class="redStar">*</span></td>
+		<td >学号<span class="redStar">*</span></td>
 		<td ><input type="text" name="employee.no" id="employee.no" size="20" maxlength="40"/> </td>
 	  
 		<td >名称<span class="redStar">*</span></td>
@@ -153,7 +153,7 @@ var pageVars = {
 }
 
 var lang = {
-	name:'名称',no:'编号',domain:'学生信息管理',gender:'性别',status:'状态',print:'打印条码',printOK:'选中项已成功输出打印',file:'档案'
+	name:'名称',no:'学号',domain:'学生信息管理',gender:'性别',status:'状态',print:'打印条码',printOK:'选中项已成功输出打印',file:'档案'
 	,view:'查看',birthday:'生日',branchName:'所在分支机构',assign:'指派',levelName:'级别',barcode:'卡号'
 }
 
