@@ -85,7 +85,7 @@
 			</select>
 			</td>
 
-			<td>学生编号<span class="redStar">*</span></td>
+			<td>学号<span class="redStar">*</span></td>
 			<td><input type="text" name="work.studentNo"
 				id="work.studentNo" size="20" maxlength="40" /></td>
 		</tr>

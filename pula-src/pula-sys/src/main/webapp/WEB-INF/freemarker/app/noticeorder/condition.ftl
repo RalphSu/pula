@@ -13,7 +13,7 @@
 			<td colspan="4">查询条件</td>
 		</tr>
 		<tr>
-			<td>学生编号</td>
+			<td>学号</td>
 			<td><input type="text" name="condition.studentNo"
 				value="${condition.studentNo?if_exists?html}" /></td>
 			<td colspan="2"></td>

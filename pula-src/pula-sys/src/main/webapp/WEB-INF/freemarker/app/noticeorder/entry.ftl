@@ -58,7 +58,7 @@ title="course.title">
 					</tr>
 
 					<tr>
-						<td>学生<span class="redStar">*</span></td>
+						<td>学号<span class="redStar">*</span></td>
 						<!-- <td>
 						<select name="course.studentNo" id="course.studentNo">
 						<#list students as tp>
