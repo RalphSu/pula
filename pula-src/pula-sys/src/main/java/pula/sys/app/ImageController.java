@@ -113,7 +113,7 @@ public class ImageController {
 		try {
 			Collection<File> files = (Collection<File>) FileUtils.listFiles(
 					new File(srcPath), new SuffixFileFilter(
-							new String[] { "png" }), null);
+							new String[] { "png", "jpg" }), null);
 			for (File f : files) {
 				IconInfo ii = new IconInfo();
 				ii.sub = sub;
