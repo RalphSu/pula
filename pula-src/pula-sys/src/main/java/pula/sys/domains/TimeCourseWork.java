@@ -55,6 +55,9 @@ public class TimeCourseWork implements LoggablePo, RefIdSupport {
     private String updator;
     @JsonProperty
     private String attachmentKey;
+    
+    private String studentName;
+    private String courseName;
 
     public TimeCourseWork() {
     }
@@ -202,7 +205,23 @@ public class TimeCourseWork implements LoggablePo, RefIdSupport {
         return sb.toString();
     }
 
-    @Override
+    public String getStudentName() {
+		return studentName;
+	}
+
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+	@Override
     public String toRefId() {
         return CourseTaskResultWork.buildRefId(id, attachmentKey);
     }

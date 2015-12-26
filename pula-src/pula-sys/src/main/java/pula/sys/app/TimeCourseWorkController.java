@@ -341,7 +341,19 @@ public class TimeCourseWorkController {
         }
 
         if (u == null) {
-            return new ModelAndView("error");
+        	ModelAndView view = new ModelAndView("jsonError");
+        	Exception e = new Exception(String.format("找不到指定的通知:！" + id + no));
+            view.addObject("exception", e);
+            return view;
+        }
+        
+        Student student = studentDao.findByNo(u.getStudentNo());
+        if (student != null) {
+        	u.setStudentName(student.getName());
+        }
+        TimeCourse tc = courseDao.findByNo(u.getCourseNo());
+        if (tc != null) {
+        	u.setCourseName(tc.getName());
         }
         
         ModelAndView view = new ModelAndView();
