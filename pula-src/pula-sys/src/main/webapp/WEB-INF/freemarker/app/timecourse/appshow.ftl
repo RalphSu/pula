@@ -10,6 +10,8 @@
 <head>
 　<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+<title>${course.name !? js_string} 普拉星球课程简介</title>
+
 <!-- wechat title and images -->
 <div id='wx_pic' style='margin:0 auto;display:none;'>
 <#if af?? >
@@ -25,7 +27,7 @@
     
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			<h3 class="panel-title">${course.name}</h3>
+			<h3 class="panel-title">${course.name !? js_string}</h3>
 		</div>
 		<div class="panel-body">
 		                  分部：<b>${course.branchName}</b><p/>适用年龄：${course.applicableAges} 岁

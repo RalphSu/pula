@@ -10,6 +10,7 @@
 <head>
 　<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+<title>${notice.title !? js_string} 普拉星球活动简介</title>
 
 <!-- wechat title and images -->
 <div id='wx_pic' style='margin:0 auto;display:none;'>

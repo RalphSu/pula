@@ -8,6 +8,7 @@
 <head>
 　<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+<title>${work.studentName !? js_string} 普拉星球个人作品</title>
 <!-- wechat title and images -->
 <div id='wx_pic' style='margin:0 auto;display:none;'>
 <#if af?? >
