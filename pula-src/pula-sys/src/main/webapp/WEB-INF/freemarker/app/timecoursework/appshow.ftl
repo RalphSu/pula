@@ -19,13 +19,12 @@
 	</div>
 	<p>发布日期: ${work.updateTime !? js_string}</p>
 	<#if af??>
-                        评价：
-            <select id="work.rate" name="work.rate" class="rating">
-                <option value="1">还不错哦</option>
-                <option value="2">画的很好</option>
-                <option value="3">很棒的作品</option>
-                <option value="4">非常棒</option>
-                <option value="5">最棒的</option>
+                        评价：<select id="work.rate" name="work.rate" class="rating">
+                <option value="1" <#if work.rate == 1> selected='true' </#if> >还不错哦</option>
+                <option value="2" <#if work.rate == 2> selected='true' </#if> >画的很好</option>
+                <option value="3" <#if work.rate == 3> selected='true' </#if> >很棒的作品</option>
+                <option value="4" <#if work.rate == 4> selected='true' </#if> >非常棒</option>
+                <option value="5" <#if work.rate == 5> selected='true' </#if> >最棒的</option>
             </select>
         <br/>
         <img src='./icon?fp=${af.fileId}&id=${af.id}' class="img-responsive" alt="Responsive image" > </img>
@@ -34,8 +33,7 @@
     
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.rating').rating();
-            $('#work.rate').val(5).change();
+            $('.rating').rating({disabled:true,showCancel:false});
         });
     </script>
 	
