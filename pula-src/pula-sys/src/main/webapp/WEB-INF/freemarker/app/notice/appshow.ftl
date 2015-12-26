@@ -17,13 +17,40 @@
     <img src='${base}/static/app/images/icon/index/logo_300.png' class="img-responsive" alt="Responsive image" > </img>
 </div>
 
+<style type="text/css">
+.panel-notice {
+  // background-color : #D7B704;
+  border: 3px;
+  border-color: #D7B704;
+}
+.panel-notice > .panel-heading {
+  // color: #fff;
+  background-color: #D7B704;
+  border: 3px;
+  border-color: #D7B704;
+}
+.panel-notice > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #D7B704;
+  border: 3px;
+}
+.panel-notice > .panel-heading .badge {
+  // color: #fff;
+  background-color: #D7B704;
+}
+.panel-notice > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #D7B704;
+   border-bottom: 3px solid;
+}
+
+</style>
+
 </head>
 <body>
 <link rel="stylesheet" media="screen" type="text/css" href="${base}/static/library/bootstrap/css/bootstrap.min.css" />
     
-	<div class="panel panel-primary">
+	<div class="panel-notice">
 		<div class="panel-heading">
-			<h3 class="panel-title">${notice.title !? js_string}</h3>
+			<h3 class="panel-title"><b>${notice.title !? js_string}</b></h3>
 		</div>
 		<div class="panel-body">
             <p>${notice.content}</p>

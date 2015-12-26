@@ -6,7 +6,9 @@ package pula.sys.app;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +29,8 @@ import puerta.support.Pe;
 import puerta.support.annotation.Barrier;
 import puerta.system.keeper.ParameterKeeper;
 import puerta.system.service.SessionService;
+import puerta.system.vo.JsonResult;
+import puerta.system.vo.YuiResultMapper;
 import pula.sys.BhzqConstants;
 import pula.sys.PurviewConstants;
 import pula.sys.daos.FileAttachmentDao;
@@ -86,7 +90,7 @@ public class ImageController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping
 	@ResponseBody
-	public List<IconInfo> listDir(
+	public JsonResult listDir(
 			@RequestParam(value = "sub", required = false) String sub,
 			HttpServletResponse res) {
 		if (sub.contains("/") || sub.contains(File.separator)
@@ -124,9 +128,24 @@ public class ImageController {
 		} catch (Exception e) {
 			logger.error("list folder error", e);
 		}
+		
+		JsonResult result = JsonResult.s(results);
 
-		return results;
+		return result;
 	}
+
+	private static final class IconInfoMapper implements
+			YuiResultMapper<IconInfo> {
+		@Override
+		public Map<String, Object> toMap(IconInfo obj) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("sub", obj.sub);
+			map.put("fp", obj.fp);
+			return map;
+		}
+	}
+	
+	private static IconInfoMapper MAPPER = new IconInfoMapper();
 
 	public static class IconInfo {
 		@JsonProperty
