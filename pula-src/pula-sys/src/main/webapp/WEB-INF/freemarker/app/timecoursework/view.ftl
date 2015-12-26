@@ -104,6 +104,21 @@
 				id="work.comments" size="20" maxlength="80" /></td>
 			<td colspan="2"></td>
 		</tr>
+		
+		<tr>
+            <td>评分</td>
+            <td><input type="text" name="work.rate"
+                id="work.rate" size="20" maxlength="80" /></td>
+            <td colspan="2">
+                <select id="work.select.rate" class="rating">
+                    <option value="1">Did not like</option>
+                    <option value="2">Ok</option>
+                    <option value="3">Liked</option>
+                    <option value="4">Loved!</option>
+                    <option value="5">Loved!</option>
+                </select>
+            </td>
+        </tr>
 
 		<tr>
 			<td>作品:<span class="redStar">*</span></td>
@@ -179,15 +194,16 @@ var lang = {
 
 	var pes = null ;
 	window.addEvent('domready',function(){
+        $(".rating").rating();
 		pes = new PPage({"id":"pes","pageMode":"pageMode","searchForm":"searchForm","addForm":"addForm"});
 
-		//set value 
-		
+		//set value
 		$('work.studentNo').value = "${work.studentNo!?js_string}";
 		$('work.courseNo').value = "${work.courseNo!?js_string}";
 		$('work.imagePath').value = "${work.imagePath!?js_string}";
 		$('work.comments').value = "${work.comments!?js_string}";
 		$('work.workEffectDate').value = "${work.workEffectDate!?js_string}";
+        $('work.select.rate').value="${work.rate !? js_string}";
 
 		//icon
 		<#if icon??>

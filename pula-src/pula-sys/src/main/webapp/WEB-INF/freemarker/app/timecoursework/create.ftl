@@ -95,6 +95,18 @@
 				<td colspan="3"><input type="text" name="work.comments" id="work.comments"
 					size="60" maxlength="60" /></td>
 			</tr>
+			<tr>
+                <td>评分</td>
+                <td colspan="3">
+                    <select id="work.rate" name="work.rate" class="rating">
+                        <option value="1">还不错哦</option>
+                        <option value="2">画的很好</option>
+                        <option value="3" selected="true">很棒的作品</option>
+                        <option value="4">非常棒</option>
+                        <option value="5">最棒的</option>
+                    </select>
+                </td>
+            </tr>
 
 			<tr>
 				<td>作品:<span class="redStar">*</span></td>
@@ -140,6 +152,7 @@
 	src="${base}/static/library/puerta/t-datagrid.js"></script>
 <script type="text/javascript"
 	src="${base}/static/library/mootools/modules/UUID.js"></script>
+
 <script type="text/javascript">
 
 var pageVars = {
@@ -192,7 +205,7 @@ var lang = {
 	var pes = null ;
 	window.addEvent('domready',function(){
 		pes = new PPage({"id":"pes","pageMode":"pageMode","searchForm":"searchForm","addForm":"addForm"});
-
+        // $('work.rate').rating();
 	<#if updateMode>
 		//set value 
 		// $('work.no').value = "${work.no!?js_string}";
@@ -202,7 +215,7 @@ var lang = {
 		$('work.comments').value = "${work.comments!?js_string}";
 		$('work.workEffectDateText').value = "${work.workEffectDate!?js_string}";
 		$('work.id').value = "${work.id}";
-
+        $('work.rate').value="${work.rate !? js_string}";
 		//icon
 		<#if icon??>
 			pes.showPic( '${icon.fileId!?js_string}','${icon.id}') ;
