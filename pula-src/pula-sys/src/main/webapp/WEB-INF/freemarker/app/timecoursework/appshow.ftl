@@ -11,11 +11,7 @@
 <title>${work.studentName !? js_string} 普拉星球个人作品</title>
 <!-- wechat title and images -->
 <div id='wx_pic' style='margin:0 auto;display:none;'>
-<#if af?? >
-    <img src='./icon?fp=${af.fileId}&id=${af.id}' class="img-responsive" alt="Responsive image" > </img>
-<#else>
     <img src='${base}/static/app/images/icon/index/logo_300.png' class="img-responsive" alt="Responsive image" > </img>
-</#if>
 </div>
 
 </head>
