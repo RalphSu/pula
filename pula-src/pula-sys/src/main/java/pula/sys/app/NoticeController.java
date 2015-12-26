@@ -255,32 +255,6 @@ public class NoticeController {
     }
 
 
-//    @RequestMapping
-//    @Transactional
-//    @Barrier(PurviewConstants.COURSE)
-//    public String _create(@ObjectParam("course") Notice cli) {
-//        Notice cc = cli;
-//        cc.setCreator(sessionService.get().getName());
-//        cc.setUpdator(sessionService.get().getName());
-//        cc.setEnabled(true);
-//
-//        noticeDao.save(cc);
-//
-//        return ViewResult.JSON_SUCCESS;
-//    }
-
-//    @RequestMapping
-//    @Transactional()
-//    @Barrier(PurviewConstants.COURSE)
-//    public String _update(@ObjectParam("course") Notice cli) {
-//        Notice cc = cli;
-//        cc.setUpdator(sessionService.get().getName());
-//
-//        noticeDao.update(cc);
-//
-//        return ViewResult.JSON_SUCCESS;
-//    }
-
     @Transactional
     @RequestMapping
     @Barrier(PurviewConstants.COURSE)
@@ -334,6 +308,11 @@ public class NoticeController {
             if (tc != null) {
                 u.setNoticeCourseName(tc.getName());
             }
+        }
+        
+        List<FileAttachment> attachments = fileAttachmentDao.loadByRefId(u.toRefId(), u.getTypeRange());
+        if (attachments != null && attachments.size() > 0) {
+            view.addObject("af", attachments.get(0));
         }
 
         return view.addObject("notice", u);
