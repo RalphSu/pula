@@ -100,7 +100,7 @@ var PPage = new Class({
 					//{label:TTable.checkAll,width:24,key:'id',formatter:TTable.formatCheckbox},
 					{label:'开始时间',width:150,key:'startTime',formatter:TTable.formatDateTime},
 					{label:'结束时间',width:150,key:'endTime',formatter:TTable.formatDateTime},
-					{label:'学生编号',width:80,key:'studentNo',},
+					{label:'学号',width:80,key:'studentNo',},
 					{label:'学生姓名',width:60,key:'studentName'},
 					{label:'主教师',key:'masterName',width:60},
 					{label:'助教1',key:'assistant1Name',width:70},

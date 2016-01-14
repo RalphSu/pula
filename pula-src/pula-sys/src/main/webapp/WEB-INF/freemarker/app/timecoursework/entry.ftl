@@ -83,7 +83,7 @@ title="course.title">
 						</select>
 					</td>
 
-					<td>学生编号<span class="redStar">*</span></td>
+					<td>学号<span class="redStar">*</span></td>
 					<td><input type="text" name="course.studentNo" id="course.studentNo"
 						size="20" maxlength="40" /></td>
 				</tr>

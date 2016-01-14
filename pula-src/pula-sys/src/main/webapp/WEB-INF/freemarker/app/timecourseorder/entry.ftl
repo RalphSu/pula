@@ -51,7 +51,7 @@ title="course.title">
 					</tr>
 
 					<tr>
-						<td>学生编号<span class="redStar">*</span></td>
+						<td>学号<span class="redStar">*</span></td>
 						<td><input type="text" name="course.studentNo"
 							id="course.studentNo" size="20" maxlength="40" /></td>
 						<!-- <td >购买类型(0/1)</td>
@@ -164,7 +164,7 @@ var pageVars = {
 var lang = {
 	name:'名称',no:'编号',domain:'课程',expiredTime:'结束日期',publishTime:'开始日期',showInWeb:'显示在网站上',indexNo:'序号',
 	status:'状态', branchName: '分部', classRoomName: '教室',
-	buyType: '购买类型', paied:'购买付款', paiedCount:'系统课程次数', courseNo:'课程编号', studentNo:'学生编号', 
+	buyType: '购买类型', paied:'购买付款', paiedCount:'系统课程次数', courseNo:'课程编号', studentNo:'学号', 
 	usedCount:'已用系统课程次数', remainCost:'剩余款',
 	gongfangCount:'工坊次数', huodongCount:'活动次数', specialCourseCount:'特殊课程次数',
 	usedGongFangCount:'已用工坊次数', usedHuodongCount:'已用活动次数', usedSpecialCourseCount:'已用特殊课程次数',

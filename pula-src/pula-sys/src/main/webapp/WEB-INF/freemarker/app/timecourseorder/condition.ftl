@@ -12,7 +12,7 @@
 		<td>
 		<input type="text" name="condition.courseNo" value="${condition.courseNo?if_exists?html}"/>
 		</td>
-		<td >学生编号</td>
+		<td >学号</td>
 		<td>
 		<input type="text" name="condition.studentNo" value="${condition.studentNo?if_exists?html}"/>
 		</td>

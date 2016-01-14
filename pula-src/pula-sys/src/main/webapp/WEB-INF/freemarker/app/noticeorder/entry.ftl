@@ -130,7 +130,7 @@ var pageVars = {
 var lang = {
 	name:'名称',no:'编号',domain:'课程',expiredTime:'结束日期',publishTime:'开始日期',showInWeb:'显示在网站上',indexNo:'序号',
 	status:'状态', branchName: '分部', classRoomName: '教室',
-	buyType: '购买类型', paied:'付款金额', paiedCount:'购买次数', courseNo:'课程编号', studentNo:'学生编号', usedCount:'已使用次数', remainCost:'剩余款',
+	buyType: '购买类型', paied:'付款金额', paiedCount:'购买次数', courseNo:'课程编号', studentNo:'学号', usedCount:'已使用次数', remainCost:'剩余款',
 	updateTime:'最后更新', updator:'操作人',
 	orderPayStatus:'订单支付状态', wxPayStatus:'微信支付状态'
 }

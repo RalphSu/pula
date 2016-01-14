@@ -8,7 +8,7 @@
           <tr class="title">
             <td colspan="6">查询条件</td></tr>
 		 <tr> 
-		<td>学生编号</td>
+		<td>学号</td>
 		<td>
 		<div id="sStudent"></div>
 		</td><td>课程</td>

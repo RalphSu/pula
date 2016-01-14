@@ -13,7 +13,7 @@
             <tr class="title">
             <td colspan="4">查询条件</td></tr>
 		 <tr> 
-		<td>学生编号</td>
+		<td>学号</td>
 		<td>
 		<div id="conditionUserNo"></div>
 		</td>
@@ -67,7 +67,7 @@
             <td colspan="2"><div class="l">手动调整积分 <span id="pageMode" style="color:blue" class="h"></span></div>
               </td>
 	  </tr><tr>
-		<td>学生编号</td>
+		<td>学号</td>
 		<td ><div id="sUser"></div></td>
 	</tr>
     <tr> 
@@ -95,7 +95,7 @@
             <td colspan="2"><div class="l">积分兑换礼品</div>
               </td>
 	  </tr><tr>
-		<td>学生编号<font color=red>*</font></td>
+		<td>学号<font color=red>*</font></td>
 		<td ><div id="sUser2"></div></td>
 	</tr>
 	<tr><td>礼品编号<font color=red>*</font></td>
@@ -140,13 +140,13 @@ var pageVars = {
 
 var lang = {
 	no:'编号',name:'名称',createdTime:'创建时间',comments:'备注',status:'状态',points:'积分',domain:'学生积分',
-	admin:'用户',type:'类型',owner:'学生编号'
+	admin:'用户',type:'类型',owner:'学号'
 }
 
 	function checkCost(){
 		
 		if(isEmpty($F("studentId_cost"))){
-			alert("请填写学生编号");
+			alert("请填写学号");
 			$("studentId_cost").focus();
 			return false;
 		}
@@ -180,7 +180,7 @@ var lang = {
 	function check(){
 		
 		if(isEmpty($F("studentId"))){
-			alert("请填写学生编号");
+			alert("请填写学号");
 			$("studentId").focus();
 			return false;
 		}

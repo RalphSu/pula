@@ -154,7 +154,7 @@ var PPage = new Class({
 				selectRow:onSelectRow.bind(this),noFooter:true,
 				columns: [
 					//{label:TTable.checkAll,width:24,key:'id',formatter:TTable.formatCheckbox},
-					{label:'学生编号',width:80,key:'studentNo',},
+					{label:'学号',width:80,key:'studentNo',},
 					{label:'学生姓名',width:80,key:'studentName'},
 					{label:'作品下载',width:80,key:'workId',formatter:TTable.formatLinkJs.bind({func:'pes.viewPic',label:'下载'}),align:'center'},
 					{label:'作品上传',width:80,key:'id',formatter:TTable.formatLinkJs.bind({func:'pes.uploadPicProxy',label:'上传'}),align:'center'},

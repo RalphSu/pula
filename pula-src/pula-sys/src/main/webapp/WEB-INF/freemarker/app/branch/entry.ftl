@@ -65,7 +65,7 @@
 		
 		</td>
 	  </tr> <tr> 
-		<td >学生编号前缀</td>
+		<td >学号前缀</td>
 		<td ><input type="text" name="branch.prefix" id="form.prefix" size="4" maxlength="4"/> <span class="tips">四位字符</span></td>
 	  
 	
@@ -118,7 +118,7 @@ var pageVars = {
 }
 
 var lang = {
-	name:'名称',no:'编号',domain:'分支机构',linkman:'联系人',phone:'电话',email:'Email',status:'状态',prefix:'学生编号前缀'
+	name:'名称',no:'编号',domain:'分支机构',linkman:'联系人',phone:'电话',email:'Email',status:'状态',prefix:'学号前缀'
 }
 
 

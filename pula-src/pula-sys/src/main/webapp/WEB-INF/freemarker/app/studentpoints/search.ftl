@@ -13,7 +13,7 @@
             <tr class="title">
             <td colspan="4">查询条件</td></tr>
 		 <tr> 
-		<td>学生编号</td>
+		<td>学号</td>
 		<td>
 		<div id="conditionUserNo"></div>
 		</td>
@@ -77,13 +77,13 @@ var pageVars = {
 
 var lang = {
 	no:'编号',name:'名称',createdTime:'创建时间',comments:'备注',status:'状态',points:'积分',domain:'学生积分查询',
-	admin:'用户',type:'类型',owner:'学生编号'
+	admin:'用户',type:'类型',owner:'学号'
 }
 
 	function checkCost(){
 		
 		if(isEmpty($F("studentId_cost"))){
-			alert("请填写学生编号");
+			alert("请填写学号");
 			$("studentId_cost").focus();
 			return false;
 		}
@@ -104,7 +104,7 @@ var lang = {
 	function check(){
 		
 		if(isEmpty($F("studentId"))){
-			alert("请填写学生编号");
+			alert("请填写学号");
 			$("studentId").focus();
 			return false;
 		}
