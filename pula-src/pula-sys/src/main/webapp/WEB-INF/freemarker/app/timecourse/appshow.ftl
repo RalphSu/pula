@@ -14,7 +14,7 @@
 
 <!-- wechat title and images -->
 <div id='wx_pic' style='margin:0 auto;display:none;'>
-    <img src='${base}/static/app/images/icon/index/logo_300.png' class="img-responsive" alt="Responsive image" > </img>
+    <img src='${base}/static/app/images/icon/index/logo_300.jpg' class="img-responsive" alt="Responsive image" > </img>
 </div>
 
 
