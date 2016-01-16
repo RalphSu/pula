@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoursePlayForm));
             this.swf = new AxShockwaveFlashObjects.AxShockwaveFlash();
             this.btnStart = new System.Windows.Forms.Button();
             this.timerPlay = new System.Windows.Forms.Timer(this.components);
@@ -40,17 +41,19 @@
             this.swf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.swf.Enabled = true;
             this.swf.Location = new System.Drawing.Point(0, 0);
-            this.swf.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.swf.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.swf.Name = "swf";
-            this.swf.Size = new System.Drawing.Size(1110, 654);
+            this.swf.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("swf.OcxState")));
+            this.swf.Size = new System.Drawing.Size(1249, 785);
             this.swf.TabIndex = 2;
+            this.swf.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.swf_PreviewKeyDown);
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(508, 430);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnStart.Location = new System.Drawing.Point(572, 516);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(100, 27);
+            this.btnStart.Size = new System.Drawing.Size(112, 32);
             this.btnStart.TabIndex = 3;
             this.btnStart.Text = "btnStart";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -59,16 +62,21 @@
             // 
             // CoursePlayForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1110, 654);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1249, 785);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.swf);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CoursePlayForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "课件播放";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.DoubleClick += new System.EventHandler(this.CoursePlayForm_DoubleClick);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CoursePlayForm_KeyPress);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.CoursePlayForm_MouseDoubleClick);
             ((System.ComponentModel.ISupportInitialize)(this.swf)).EndInit();
             this.ResumeLayout(false);
 
