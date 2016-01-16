@@ -17,7 +17,7 @@ namespace Play
             LocalFolder = "./";
 
             EnforceUserCheck = false;
-            CourseMaker = true;
+            CourseMaker = false;
 
             MajorVersion = 1;
             MinorVersion = 0;
