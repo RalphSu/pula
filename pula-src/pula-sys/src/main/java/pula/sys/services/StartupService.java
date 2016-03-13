@@ -73,7 +73,7 @@ public class StartupService implements SmartLifecycle {
 		// sysCategoryDao.registerSetting();
 		try {
 			String webRoot = projectPath.getWebRoot();
-			FileHelper.generateEmptyFile(webRoot, "server.startup");
+			FileHelper.generateEmptyFile("./", "server.startup");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

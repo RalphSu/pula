@@ -36,6 +36,8 @@ public class TimeCourseOrderUsage implements LoggablePo {
     @JsonProperty
     private Date updateTime;
     @JsonProperty
+    private Date usageTime;
+    @JsonProperty
     private String comments;
     @JsonProperty
     private boolean removed;
@@ -197,5 +199,13 @@ public class TimeCourseOrderUsage implements LoggablePo {
     public void setUsedSpecialCourseCount(int usedSpecialCourseCount) {
         this.usedSpecialCourseCount = usedSpecialCourseCount;
     }
+
+	public Date getUsageTime() {
+		return usageTime;
+	}
+
+	public void setUsageTime(Date usageTime) {
+		this.usageTime = usageTime;
+	}
 
 }
