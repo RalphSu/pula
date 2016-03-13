@@ -37,7 +37,8 @@
    name="usedGongfangCount" type="int"/>
   <property column="usedHuodongCount" generated="never" lazy="false"
    name="usedHuodongCount" type="int"/>
-  <property column="usedSpecialCourseCount"
-   name="usedSpecialCourseCount" type="int"/>
+  <property column="usedSpecialCourseCount" generated="never"
+   lazy="false" name="usedSpecialCourseCount" type="int"/>
+  <property column="usageTime" name="usageTime" type="date"/>
  </class>
 </hibernate-mapping>
