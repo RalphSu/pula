@@ -54,6 +54,7 @@ public class TimeCourseOrderUsageDaoImpl extends HibernateGenericDao<TimeCourseO
     public TimeCourseOrderUsage save(TimeCourseOrderUsage cc) {
         cc.setCreateTime(new Date());
         cc.setUpdateTime(new Date());
+        cc.setUsageTime(new Date());
         cc.setEnabled(true);
         _save(cc);
         return cc;
@@ -83,6 +84,7 @@ public class TimeCourseOrderUsageDaoImpl extends HibernateGenericDao<TimeCourseO
         n.setUsedCount(cc.getUsedCount());
 //        n.setNo(cc.getNo());
         n.setUpdator(cc.getUpdator());
+        n.setUsageTime(cc.getUsageTime());
         n.setComments(cc.getComments());
         n.setUsedGongfangCount(cc.getUsedGongfangCount());
         n.setUsedHuodongCount(cc.getUsedHuodongCount());

@@ -53,6 +53,11 @@ public class TimeCourseOrderUsage implements LoggablePo {
     private int usedHuodongCount;
     @JsonProperty
     private int usedSpecialCourseCount;
+    
+    @JsonProperty
+    private String courseName;
+    @JsonProperty
+    private String studentName;
 
     @Override
     public String toLogString() {
@@ -62,6 +67,10 @@ public class TimeCourseOrderUsage implements LoggablePo {
                 .append(comments).append("updateTime=").append(updateTime);
         sb.append("】");
         return sb.toString();
+    }
+    
+    public String toString() {
+        return toLogString();
     }
 
     public Long getId() {
@@ -207,5 +216,21 @@ public class TimeCourseOrderUsage implements LoggablePo {
 	public void setUsageTime(Date usageTime) {
 		this.usageTime = usageTime;
 	}
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
 
 }

@@ -26,9 +26,7 @@ public class RequestHistoryService {
 	private PurviewDao purviewDao;
 
 	private String buildExtras(HttpServletRequest request) {
-		@SuppressWarnings("unchecked")
-		Map<String, Object> pm = (Map<String, Object>) request
-				.getParameterMap();
+		Map<String, String[]> pm = (Map<String, String[]>) request.getParameterMap();
 		StringBuilder sb = new StringBuilder();
 		for (String k : pm.keySet()) {
 			if (StringUtils.equals(k, "_date")) {

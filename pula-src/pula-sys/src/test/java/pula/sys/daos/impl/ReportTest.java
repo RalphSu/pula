@@ -3,10 +3,11 @@
  */
 package pula.sys.daos.impl;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pula.sys.app.ReportController;
 import pula.sys.daos.TimeCourseUsageDao;
+import pula.sys.domains.TimeCourseOrderUsage;
 
 /**
  * @author Administrator
@@ -24,15 +26,18 @@ import pula.sys.daos.TimeCourseUsageDao;
 		"classpath*:/servlet-context.xml" })
 public class ReportTest {
 
-//	@Resource
-//	ReportController report;
 	@Resource
 	TimeCourseUsageDao usageDao;
 
 	@Test
 	public void testLogin() {
+
+	    DateTime dt = new DateTime();
+		List<TimeCourseOrderUsage> usages = ReportController.readCourseUsage(usageDao, "文峰", dt.toDate());
 		
-		ReportController.readCourseUsage(usageDao, "文峰分校", new Date());
+		System.out.print(usages.size());
+		
+		System.out.println(usages);
 	}
 
 }

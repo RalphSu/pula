@@ -108,6 +108,11 @@ var lang = {
 	usedSpecialCourseCount: '消费特殊课程次数'
 }
 
+function openDaily()
+{ 
+	window.open("../report?branch=&date=");
+} 
+
 
 	function check(){
 		/* if(isEmpty($F("course.no"))){

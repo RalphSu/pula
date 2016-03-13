@@ -69,6 +69,7 @@ public class TimeCourseOrderUsageController {
             m.put("usedCount", obj.getUsedCount());
             m.put("usedGongfangCount", obj.getUsedGongfangCount());
             m.put("usedHuodongCount", obj.getUsedHuodongCount());
+            m.put("usageTime", obj.getUsageTime());
 
             m.put("usedSpecialCourseCount", obj.getUsedSpecialCourseCount());
             return m;

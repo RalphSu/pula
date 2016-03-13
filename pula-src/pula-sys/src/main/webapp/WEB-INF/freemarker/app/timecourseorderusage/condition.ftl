@@ -25,4 +25,8 @@
 		</td>
 	  </tr> 
 	</table>
+	<!-- 
+		<input type="button" onclick=openDaily() >每日课程查询</input>
+	-->
+	<button onclick=openDaily()> 每日课程查询</button>
 	 </form>
