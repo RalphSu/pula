@@ -13,7 +13,7 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="net.sourceforge.jtds.jdbc.Driver"/>
 		<property name="jdbcUrl"
-			value="jdbc:jtds:sqlserver://121.40.151.183:1433/pula_sys;charset=CP936"/>
+			value="jdbc:jtds:sqlserver://localhost:1433/pula_sys;charset=CP936"/>
 		<property name="maxPoolSize" value="20"/>
 		<property name="acquireIncrement" value="5"/>
 		<property name="properties">
