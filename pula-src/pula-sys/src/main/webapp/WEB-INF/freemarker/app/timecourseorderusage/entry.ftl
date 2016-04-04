@@ -110,7 +110,7 @@ var lang = {
 
 function openDaily()
 { 
-	window.open("../report?branch=&date=");
+	window.open("../report/entry?branch=&date=");
 } 
 
 

@@ -61,7 +61,7 @@ public class ReportController {
                 + " WHERE usage.usageTime = '%s' and course.branchName = '%s' "
                 + " AND usage.courseNo = course.no "
                 + " AND usage.studentNo = student.no ";
-        hql = String.format(hql, DateTimeFormat.longDate().print(startDate.getTime()), branch);
+        hql = String.format(hql, DateTimeFormat.forPattern("yyyy-MM-dd").print(startDate.getTime()), branch);
 
         List<TimeCourseOrderUsage> courseUsages = usageDao.find(hql);
 

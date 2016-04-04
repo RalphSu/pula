@@ -45,7 +45,7 @@
 <table border="1" class="table table-striped table-condensed" class="grid" width="1200" >
 	<thead>
 	<tr>
-		<td>消费编号</td>
+		<td width="100">消费编号</td>
 		<td>订单编号</td>
 		<td>消费系统课程次数</td>
 		<td>消费特殊课程次数</td>
@@ -61,7 +61,7 @@
 	
 	<#list usages as u>
 		<tr>
-			<td>u.no</td>
+			<td>${u.no}</td>
 			<td>u.orderNo</td>
 			<td>u.usedCount</td>
 			<td>u.usedSpecialCourseCount</td>
