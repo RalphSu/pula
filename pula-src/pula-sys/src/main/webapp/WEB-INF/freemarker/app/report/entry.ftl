@@ -15,7 +15,7 @@
 
 <body class="container-fluid ">
 
-普拉星球学生课程查询页:<br/>
+<h5>普拉星球学生课程查询:<h5>
 
 <form method="get">
 
@@ -61,15 +61,15 @@
 	
 	<#list usages as u>
 		<tr>
-			<td>${u.no}</td>
-			<td>u.orderNo</td>
-			<td>u.usedCount</td>
-			<td>u.usedSpecialCourseCount</td>
-			<td>u.usedGongfangCount</td>
-			<td>u.usedHuodongCount</td>
-			<td>u.courseNo</td>
-			<td>u.studentNo</td>
-			<td>u.studentName</td>
+			<td>${u.id?if_exists?html}</td>
+			<td>${u.orderNo?if_exists?html}</td>
+			<td>${u.usedCount?if_exists?html}</td>
+			<td>${u.usedSpecialCourseCount?if_exists?html}</td>
+			<td>${u.usedGongfangCount?if_exists?html}</td>
+			<td>${u.usedHuodongCount?if_exists?html}</td>
+			<td>${u.courseNo?if_exists?html}</td>
+			<td>${u.studentNo?if_exists?html}</td>
+			<td>${u.studentName?if_exists?html}</td>
 		</tr>
 	</#list>
 	</tbody>

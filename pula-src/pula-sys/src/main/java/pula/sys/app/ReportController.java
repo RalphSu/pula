@@ -3,6 +3,7 @@
  */
 package pula.sys.app;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pula.sys.daos.TimeCourseUsageDao;
+import pula.sys.domains.Student;
+import pula.sys.domains.TimeCourse;
 import pula.sys.domains.TimeCourseOrderUsage;
 
 /**
@@ -53,7 +56,7 @@ public class ReportController {
 	}
 
     public static List<TimeCourseOrderUsage> readCourseUsage(TimeCourseUsageDao usageDao, String branch, Date startDate) {
-        String hql = " select usage, student "
+        String hql = " select usage, student, course "
                 + " From "
                 + " TimeCourseOrderUsage usage,"
                 + " TimeCourse course, "
@@ -63,8 +66,18 @@ public class ReportController {
                 + " AND usage.studentNo = student.no ";
         hql = String.format(hql, DateTimeFormat.forPattern("yyyy-MM-dd").print(startDate.getTime()), branch);
 
-        List<TimeCourseOrderUsage> courseUsages = usageDao.find(hql);
+        List<Object[]> result = usageDao.find(hql);
 
+        List<TimeCourseOrderUsage> courseUsages = new ArrayList<TimeCourseOrderUsage>();
+        for (Object[] pair : result) {
+        	TimeCourseOrderUsage u = (TimeCourseOrderUsage)pair[0];
+        	Student stu = (Student)pair[1];
+        	TimeCourse course = (TimeCourse)pair[2];
+        	u.setStudentName(stu.getName());
+        	u.setCourseName(course.getName());
+        	courseUsages.add(u);
+        }
+        
         return courseUsages;
     }
 
