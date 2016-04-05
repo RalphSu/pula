@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,8 @@ import pula.sys.domains.TimeCourse;
 import pula.sys.domains.TimeCourseOrderUsage;
 
 /**
- * Provide daily order report based on branch
- * <br/> 
- * 每日全部 每日某个分部的上课单子 某个学生的全部上课订单
- * *消费页可直接查*
+ * Provide daily order report based on branch <br/>
+ * 每日全部 每日某个分部的上课单子 某个学生的全部上课订单 *消费页可直接查*
  * 
  * @author Administrator
  *
@@ -36,17 +35,23 @@ public class ReportController {
 	private TimeCourseUsageDao usageDao;
 
 	@RequestMapping
-	public ModelAndView entry(@RequestParam(value="branch", required = false) String branch,
+	public ModelAndView entry(
+			@RequestParam(value = "branch", required = false) String branch,
 			@RequestParam(value = "date", required = false) String startDate) {
-	    Date givenDate = null;
-		if (startDate == null) {
-		    givenDate = new Date();
+		Date givenDate = null;
+		if (StringUtils.isEmpty(startDate)) {
+			givenDate = new Date();
 		} else {
-		    DateTime dt = DateTimeFormat.forPattern("yyyy-MM-dd").parseDateTime(startDate);
-		    givenDate = dt.toDate();
+			try {
+				DateTime dt = DateTimeFormat.forPattern("yyyy-MM-dd").parseDateTime(startDate);
+				givenDate = dt.toDate();
+			} catch (Exception e) {
+				givenDate = new Date();
+			}
 		}
 
-		List<TimeCourseOrderUsage> usages = readCourseUsage(usageDao, branch, givenDate);
+		List<TimeCourseOrderUsage> usages = new ArrayList<>();
+		usages = readCourseUsage(usageDao, branch, givenDate);
 
 		ModelAndView view = new ModelAndView();
 		view.addObject("usages", usages);
@@ -55,30 +60,32 @@ public class ReportController {
 		return view;
 	}
 
-    public static List<TimeCourseOrderUsage> readCourseUsage(TimeCourseUsageDao usageDao, String branch, Date startDate) {
-        String hql = " select usage, student, course "
-                + " From "
-                + " TimeCourseOrderUsage usage,"
-                + " TimeCourse course, "
-                + " Student student "
-                + " WHERE usage.usageTime = '%s' and course.branchName = '%s' "
-                + " AND usage.courseNo = course.no "
-                + " AND usage.studentNo = student.no ";
-        hql = String.format(hql, DateTimeFormat.forPattern("yyyy-MM-dd").print(startDate.getTime()), branch);
+	public static List<TimeCourseOrderUsage> readCourseUsage(
+			TimeCourseUsageDao usageDao, String branch, Date startDate) {
+		String hql = " select usage, student, course " + " From "
+				+ " TimeCourseOrderUsage usage," + " TimeCourse course, "
+				+ " Student student "
+				+ " WHERE usage.usageTime = '%s' and course.branchName = '%s' "
+				+ " AND usage.courseNo = course.no "
+				+ " AND usage.studentNo = student.no ";
+		hql = String.format(
+				hql,
+				DateTimeFormat.forPattern("yyyy-MM-dd").print(
+						startDate.getTime()), branch);
 
-        List<Object[]> result = usageDao.find(hql);
+		List<Object[]> result = usageDao.find(hql);
 
-        List<TimeCourseOrderUsage> courseUsages = new ArrayList<TimeCourseOrderUsage>();
-        for (Object[] pair : result) {
-        	TimeCourseOrderUsage u = (TimeCourseOrderUsage)pair[0];
-        	Student stu = (Student)pair[1];
-        	TimeCourse course = (TimeCourse)pair[2];
-        	u.setStudentName(stu.getName());
-        	u.setCourseName(course.getName());
-        	courseUsages.add(u);
-        }
-        
-        return courseUsages;
-    }
+		List<TimeCourseOrderUsage> courseUsages = new ArrayList<TimeCourseOrderUsage>();
+		for (Object[] pair : result) {
+			TimeCourseOrderUsage u = (TimeCourseOrderUsage) pair[0];
+			Student stu = (Student) pair[1];
+			TimeCourse course = (TimeCourse) pair[2];
+			u.setStudentName(stu.getName());
+			u.setCourseName(course.getName());
+			courseUsages.add(u);
+		}
+
+		return courseUsages;
+	}
 
 }

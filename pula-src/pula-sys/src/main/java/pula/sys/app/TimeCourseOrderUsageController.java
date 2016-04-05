@@ -108,7 +108,7 @@ public class TimeCourseOrderUsageController {
         if (condition == null) {
             condition = new CourseCondition();
         }
-
+ 
         return new ModelAndView().addObject("condition", condition);
     }
 
