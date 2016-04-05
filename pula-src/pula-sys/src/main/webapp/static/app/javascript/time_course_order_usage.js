@@ -101,6 +101,9 @@ var PPage = new Class({
 					if( data.endTime) {
 						$('course.endTimeText').value = data.endTime; // ).format('yyyy-MM-dd');
 					}
+					if( data.usageTime) {
+						$('course.usageTimeText').value = data.usageTime; // ).format('yyyy-MM-dd');
+					}
 
 					this.showInput(true);
 					this.vars.action='_update';

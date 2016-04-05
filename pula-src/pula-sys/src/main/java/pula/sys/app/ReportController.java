@@ -50,7 +50,7 @@ public class ReportController {
 			}
 		}
 
-		List<TimeCourseOrderUsage> usages = new ArrayList<>();
+		List<TimeCourseOrderUsage> usages = new ArrayList<TimeCourseOrderUsage>();
 		usages = readCourseUsage(usageDao, branch, givenDate);
 
 		ModelAndView view = new ModelAndView();

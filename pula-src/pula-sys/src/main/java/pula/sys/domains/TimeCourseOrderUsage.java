@@ -9,6 +9,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
+import pula.sys.forms.TimeCourseForm;
 
 /**
  * @author Liangfei
@@ -37,6 +38,9 @@ public class TimeCourseOrderUsage implements LoggablePo {
     private Date updateTime;
     @JsonProperty
     private Date usageTime;
+    
+    @JsonProperty
+    private String usageTimeText;
     @JsonProperty
     private String comments;
     @JsonProperty
@@ -232,5 +236,14 @@ public class TimeCourseOrderUsage implements LoggablePo {
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
+
+	public String getUsageTimeText() {
+		return usageTimeText;
+	}
+
+	public void setUsageTimeText(String usageTimeText) {
+		this.usageTimeText = usageTimeText;
+		this.usageTime = TimeCourseForm.getDate(usageTimeText);
+	}
 
 }
