@@ -1,3 +1,4 @@
+<#import "/app/macros/commonBase.ftl" as b><@b.html title="学生课程消费查询">
 
 <#macro basePath><#if springMacroRequestContext.getContextPath()=="/"><#else>${springMacroRequestContext.getContextPath()}</#if></#macro>
 <#macro urlPath>${springMacroRequestContext.getRequestUri()}<#if springMacroRequestContext.getQueryString()?exists>?${springMacroRequestContext.queryString}</#if></#macro>
@@ -5,13 +6,19 @@
 <#global base><@basePath/></#global>
 <#global url><@urlPath/></#global>
 
-<html>
 
-<head>
-<title>学生课程消费查询</title>
 <link rel="stylesheet" media="screen" type="text/css" href="${base}/static/library/bootstrap/css/bootstrap.min.css" />
 
-</head>
+
+<#include "/calendar.ftl"/>
+<link rel="stylesheet" type="text/css" href="${base}/static/app/css/t-style.css"></link>
+<script type="text/javascript" src="${base}/static/library/puerta/t-table.js"></script>
+<script type="text/javascript" src="${base}/static/app/javascript/timecoursework_view.js"></script>
+<script type="text/javascript" src="${base}/static/library/mootools/modules/mbox/mt.mbox.js"></script>
+<script type="text/javascript" src="${base}/static/library/puerta/t-simple-no.js"></script>
+<script type="text/javascript" src="${base}/static/library/puerta/t-datagrid.js"></script>
+<script type="text/javascript" src="${base}/static/library/mootools/modules/UUID.js"></script>
+
 
 <body class="container-fluid ">
 
@@ -31,9 +38,14 @@
 		</tr>
 		<tr>
 			<td>分部</td>
-			<td><input type="text" name="branch" value="${branch?if_exists?html}" /></td>
+			<td>
+			<select name="branch" id="branch"> 
+                <#list branches as b>
+                    <option value="${b?if_exists?html}" <#if b==branch>selected</#if> >${b?if_exists?html}</option>
+                </#list>
+			</td>
 			<td>消费时间</td>
-			<td><input type="text" name="date" value="${date?if_exists?html}" /></td>
+			<td><input type="text" id="date" name="date" class="dateField" value="${date?if_exists?html}" /></td>
 		</tr>
 
 		<tr>
@@ -76,6 +88,4 @@
 
 </table>
 
-</body>
-
-</html>
+    </@b.html>

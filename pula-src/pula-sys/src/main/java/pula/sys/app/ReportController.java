@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Transformer;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import pula.sys.daos.BranchDao;
 import pula.sys.daos.TimeCourseUsageDao;
+import pula.sys.domains.Branch;
 import pula.sys.domains.Student;
 import pula.sys.domains.TimeCourse;
 import pula.sys.domains.TimeCourseOrderUsage;
@@ -33,6 +37,9 @@ public class ReportController {
 
 	@Autowired
 	private TimeCourseUsageDao usageDao;
+	
+	@Autowired
+	private BranchDao branchDao;
 
 	@RequestMapping
 	public ModelAndView entry(
@@ -52,8 +59,18 @@ public class ReportController {
 
 		List<TimeCourseOrderUsage> usages = new ArrayList<TimeCourseOrderUsage>();
 		usages = readCourseUsage(usageDao, branch, givenDate);
+		List<Branch> branches = branchDao.loadEnabled();
+		@SuppressWarnings("unchecked")
+		List<String> branchNames = (List<String>)CollectionUtils.collect(branches, new Transformer() {
+			
+			@Override
+			public Object transform(Object input) {
+				return ((Branch)input).getName();
+			}
+		});
 
 		ModelAndView view = new ModelAndView();
+		view.addObject("branches", branchNames);
 		view.addObject("usages", usages);
 		view.addObject("branch", branch);
 		view.addObject("date", startDate);
@@ -67,7 +84,8 @@ public class ReportController {
 				+ " Student student "
 				+ " WHERE usage.usageTime = '%s' and course.branchName = '%s' "
 				+ " AND usage.courseNo = course.no "
-				+ " AND usage.studentNo = student.no ";
+				+ " AND usage.studentNo = student.no "
+				+ " AND usage.removed = 0 AND usage.enabled=1";
 		hql = String.format(
 				hql,
 				DateTimeFormat.forPattern("yyyy-MM-dd").print(
