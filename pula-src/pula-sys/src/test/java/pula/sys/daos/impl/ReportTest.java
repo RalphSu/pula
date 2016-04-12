@@ -32,8 +32,9 @@ public class ReportTest {
 	@Test
 	public void testLogin() {
 
-	    DateTime dt = new DateTime();
-		List<TimeCourseOrderUsage> usages = ReportController.readCourseUsage(usageDao, "文峰", dt.toDate());
+	    DateTime dt = DateTime.parse("2016-04-12");
+
+		List<TimeCourseOrderUsage> usages = ReportController.readCourseUsage(usageDao, "文峰店", dt.toDate());
 		
 		System.out.print(usages.size());
 		

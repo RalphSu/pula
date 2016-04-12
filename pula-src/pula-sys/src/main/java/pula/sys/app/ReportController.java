@@ -85,7 +85,9 @@ public class ReportController {
 				+ " WHERE usage.usageTime = '%s' and course.branchName = '%s' "
 				+ " AND usage.courseNo = course.no "
 				+ " AND usage.studentNo = student.no "
-				+ " AND usage.removed = 0 AND usage.enabled=1";
+				+ " AND usage.removed = 0 AND usage.enabled=1 "
+				+ " AND student.removed=0 AND student.enabled=1 "
+				+ " AND course.removed=0 AND course.enabled=1 ";
 		hql = String.format(
 				hql,
 				DateTimeFormat.forPattern("yyyy-MM-dd").print(
