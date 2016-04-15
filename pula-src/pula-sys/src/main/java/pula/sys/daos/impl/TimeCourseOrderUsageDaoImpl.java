@@ -9,6 +9,10 @@ import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import puerta.support.PageInfo;
@@ -26,6 +30,8 @@ import pula.sys.domains.TimeCourseOrderUsage;
 @Repository
 public class TimeCourseOrderUsageDaoImpl extends HibernateGenericDao<TimeCourseOrderUsage, Long> implements
         TimeCourseUsageDao {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(TimeCourseOrderUsageDaoImpl.class);
 
     @Override
     public PaginationSupport<TimeCourseOrderUsage> search(TimeCourseOrderUsageCondition condition, int pageIndex) {
@@ -33,22 +39,37 @@ public class TimeCourseOrderUsageDaoImpl extends HibernateGenericDao<TimeCourseO
         return super.findPageByCriteria(criteria, new PageInfo(pageIndex), Order.desc("updateTime"));
     }
 
-    public DetachedCriteria makeSearchCriteria(TimeCourseOrderUsageCondition condition) {
-        DetachedCriteria dc = DetachedCriteria.forClass(this.pojoClass, "uu");
-        if (!StringUtils.isEmpty(condition.getStudentNo())) {
-            dc.add(Restrictions.like("studentNo", condition.getStudentNo()));
-        }
+	public DetachedCriteria makeSearchCriteria(TimeCourseOrderUsageCondition condition) {
+		DetachedCriteria dc = DetachedCriteria.forClass(this.pojoClass, "uu");
+		if (!StringUtils.isEmpty(condition.getStudentNo())) {
+			dc.add(Restrictions.like("studentNo", condition.getStudentNo()));
+		}
 
-        if (!StringUtils.isEmpty(condition.getCourseNo())) {
-            dc.add(Restrictions.like("courseNo", condition.getCourseNo()));
-        }
+		if (!StringUtils.isEmpty(condition.getCourseNo())) {
+			dc.add(Restrictions.like("courseNo", condition.getCourseNo()));
+		}
 
-        if (domainPo) {
-            dc.add(Restrictions.eq("removed", false));
-        }
+		// FIXME : move this to condition
+		if (!StringUtils.isEmpty(condition.getUsageTimeText())) {
+			String str = condition.getUsageTimeText();
+			Date givenDate = null;
+			try {
+				DateTime dt = DateTimeFormat.forPattern("yyyy-MM-dd").parseDateTime(str);
+				givenDate = dt.toDate();
+			} catch (Exception e) {
+				LOG.error("fail to parse the date", e);
+			}
+			if (givenDate != null) {
+				dc.add(Restrictions.eq("usageTime", givenDate));
+			}
+		}
 
-        return dc;
-    }
+		if (domainPo) {
+			dc.add(Restrictions.eq("removed", false));
+		}
+
+		return dc;
+	}
 
     @Override
     public TimeCourseOrderUsage save(TimeCourseOrderUsage cc) {

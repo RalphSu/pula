@@ -44,7 +44,7 @@
                     <option value="${b?if_exists?html}" <#if b==branch>selected</#if> >${b?if_exists?html}</option>
                 </#list>
 			</td>
-			<td>消费时间</td>
+			<td tooltip="格式示例：2016-04-08">消费时间(比如：2016-04-15):</td>
 			<td><input type="text" id="date" name="date" class="dateField" value="${date?if_exists?html}" /></td>
 		</tr>
 
@@ -57,15 +57,15 @@
 <table border="1" class="table table-striped table-condensed" class="grid" width="1200" >
 	<thead>
 	<tr>
-		<td width="100">消费编号</td>
-		<td>订单编号</td>
+		<td>学号</td>
+		<td>学生名字</td>
+		<td>消费日期</td>
+		<td>本日消费次数</td>
 		<td>消费系统课程次数</td>
 		<td>消费特殊课程次数</td>
 		<td>消费工坊次数</td>
 		<td>消费活动次数</td>
-		<td>课程编号</td>
-		<td>学号</td>
-		<td>学生名字</td>
+		<td>课程名字</td>
 	</tr>
 	</thead>
 	
@@ -73,15 +73,15 @@
 	
 	<#list usages as u>
 		<tr>
-			<td>${u.id?if_exists?html}</td>
-			<td>${u.orderNo?if_exists?html}</td>
+			<td>${u.studentNo?if_exists?html}</td>
+			<td>${u.studentName?if_exists?html}</td>
+			<td>${u.usageTime?if_exists?html}</td>
+			<td>${u.dayCount?if_exists?html}
 			<td>${u.usedCount?if_exists?html}</td>
 			<td>${u.usedSpecialCourseCount?if_exists?html}</td>
 			<td>${u.usedGongfangCount?if_exists?html}</td>
 			<td>${u.usedHuodongCount?if_exists?html}</td>
-			<td>${u.courseNo?if_exists?html}</td>
-			<td>${u.studentNo?if_exists?html}</td>
-			<td>${u.studentName?if_exists?html}</td>
+			<td>${u.courseName?if_exists?html}</td>
 		</tr>
 	</#list>
 	</tbody>

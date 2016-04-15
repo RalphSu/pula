@@ -5,7 +5,9 @@ package pula.sys.app;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
@@ -44,7 +46,8 @@ public class ReportController {
 	@RequestMapping
 	public ModelAndView entry(
 			@RequestParam(value = "branch", required = false) String branch,
-			@RequestParam(value = "date", required = false) String startDate) {
+			@RequestParam(value = "date", required = false) String startDate,
+			@RequestParam(value = "aggregate", required = false, defaultValue="true") boolean aggregate) {
 		Date givenDate = null;
 		if (StringUtils.isEmpty(startDate)) {
 			givenDate = new Date();
@@ -58,7 +61,7 @@ public class ReportController {
 		}
 
 		List<TimeCourseOrderUsage> usages = new ArrayList<TimeCourseOrderUsage>();
-		usages = readCourseUsage(usageDao, branch, givenDate);
+		usages = readCourseUsage(usageDao, branch, givenDate, aggregate);
 		List<Branch> branches = branchDao.loadEnabled();
 		@SuppressWarnings("unchecked")
 		List<String> branchNames = (List<String>)CollectionUtils.collect(branches, new Transformer() {
@@ -78,7 +81,7 @@ public class ReportController {
 	}
 
 	public static List<TimeCourseOrderUsage> readCourseUsage(
-			TimeCourseUsageDao usageDao, String branch, Date startDate) {
+			TimeCourseUsageDao usageDao, String branch, Date startDate, boolean aggregate) {
 		String hql = " select usage, student, course " + " From "
 				+ " TimeCourseOrderUsage usage," + " TimeCourse course, "
 				+ " Student student "
@@ -96,15 +99,35 @@ public class ReportController {
 		List<Object[]> result = usageDao.find(hql);
 
 		List<TimeCourseOrderUsage> courseUsages = new ArrayList<TimeCourseOrderUsage>();
+		
+		Map<String, TimeCourseOrderUsage> student2UsageMap = new HashMap<String, TimeCourseOrderUsage>();
 		for (Object[] pair : result) {
 			TimeCourseOrderUsage u = (TimeCourseOrderUsage) pair[0];
 			Student stu = (Student) pair[1];
 			TimeCourse course = (TimeCourse) pair[2];
 			u.setStudentName(stu.getName());
 			u.setCourseName(course.getName());
-			courseUsages.add(u);
+
+			if (aggregate) {
+				TimeCourseOrderUsage usage = student2UsageMap.get(u.getStudentName());
+				if (usage == null) {
+					student2UsageMap.put(u.getStudentName(), u);
+				} else {
+					// merge count
+					usage.setDayCount(usage.getDayCount() + 1);
+					usage.setUsedCount(usage.getUsedCount() + u.getUsedCost());
+					usage.setUsedGongfangCount(usage.getUsedGongfangCount() + u.getUsedGongfangCount());
+					usage.setUsedHuodongCount(usage.getUsedHuodongCount() + u.getUsedHuodongCount());
+					usage.setUsedSpecialCourseCount(usage.getUsedSpecialCourseCount() + u.getUsedSpecialCourseCount());
+				}
+			} else {
+				courseUsages.add(u);
+			}
 		}
 
+		if (aggregate) {
+			courseUsages.addAll(student2UsageMap.values());
+		}
 		return courseUsages;
 	}
 

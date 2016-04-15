@@ -42,6 +42,9 @@ public class TimeCourseOrderUsage implements LoggablePo {
     @JsonProperty
     private String usageTimeText;
     @JsonProperty
+    private int dayCount = 1;
+    
+    @JsonProperty
     private String comments;
     @JsonProperty
     private boolean removed;
@@ -244,6 +247,14 @@ public class TimeCourseOrderUsage implements LoggablePo {
 	public void setUsageTimeText(String usageTimeText) {
 		this.usageTimeText = usageTimeText;
 		this.usageTime = TimeCourseForm.getDate(usageTimeText);
+	}
+
+	public int getDayCount() {
+		return dayCount;
+	}
+
+	public void setDayCount(int dayCount) {
+		this.dayCount = dayCount;
 	}
 
 }

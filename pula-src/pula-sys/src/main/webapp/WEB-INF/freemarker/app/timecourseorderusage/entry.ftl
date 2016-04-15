@@ -109,7 +109,7 @@ var lang = {
 	buyType: '购买类型', paied:'购买付款', paiedCount:'购买次数', courseNo:'课程编号', studentNo:'学号', remainCount:'剩余次数', remainCost:'剩余款',
 	updateTime:'最后更新', updator:'操作人',usedCost:'消费', usedCount:'消费系统课程次数', orderNo:'订单编号', 
 	usedGongfangCount: '消费工坊次数', usedHuodongCount: '消费活动次数',
-	usedSpecialCourseCount: '消费特殊课程次数'
+	usedSpecialCourseCount: '消费特殊课程次数', usageTime: '消费时间'
 }
 
 function openDaily()

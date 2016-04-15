@@ -49,14 +49,14 @@ var PPage = new Class({
 					{label:TTable.checkAll,width:24,key:'id',formatter:TTable.formatCheckbox},
 					{label:lang.no,width:150,key:'no'},
 					{label:lang.orderNo,width:100,key:'orderNo'},
-					{label:lang.usedCount,width:100,key:'usedCount'},
-					{label:lang.usedSpecialCourseCount,width:100,key:'usedSpecialCourseCount'},
-					{label:lang.usedGongfangCount,width:100,key:'usedGongfangCount'},
-					{label:lang.usedHuodongCount,width:100,key:'usedHuodongCount'},
+					{label:lang.usedCount,width:50,key:'usedCount'},
+					{label:lang.usedSpecialCourseCount,width:50,key:'usedSpecialCourseCount'},
+					{label:lang.usedGongfangCount,width:50,key:'usedGongfangCount'},
+					{label:lang.usedHuodongCount,width:50,key:'usedHuodongCount'},
 					{label:lang.courseNo,width:100,key:'courseNo'},
 					{label:lang.studentNo,width:100,key:'studentNo'},
 					{label:lang.updateTime,width:100, key:'updateTime'},
-					// {label:lang.updator,width:150, key:'updator'},
+					{label:lang.usageTime,width:200, key:'usageTime'},
 				]
 			};
 
