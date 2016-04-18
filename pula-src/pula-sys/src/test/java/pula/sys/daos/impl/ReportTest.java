@@ -34,7 +34,7 @@ public class ReportTest {
 
 	    DateTime dt = DateTime.parse("2016-04-12");
 
-		List<TimeCourseOrderUsage> usages = ReportController.readCourseUsage(usageDao, "文峰店", dt.toDate());
+		List<TimeCourseOrderUsage> usages = ReportController.readCourseUsage(usageDao, "文峰店", dt.toDate(), true);
 		
 		System.out.print(usages.size());
 		
