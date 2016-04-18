@@ -115,7 +115,7 @@ public class ReportController {
 				} else {
 					// merge count
 					usage.setDayCount(usage.getDayCount() + 1);
-					usage.setUsedCount(usage.getUsedCount() + u.getUsedCost());
+					usage.setUsedCount(usage.getUsedCount() + u.getUsedCount());
 					usage.setUsedGongfangCount(usage.getUsedGongfangCount() + u.getUsedGongfangCount());
 					usage.setUsedHuodongCount(usage.getUsedHuodongCount() + u.getUsedHuodongCount());
 					usage.setUsedSpecialCourseCount(usage.getUsedSpecialCourseCount() + u.getUsedSpecialCourseCount());
