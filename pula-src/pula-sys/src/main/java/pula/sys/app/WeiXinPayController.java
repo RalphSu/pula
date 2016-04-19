@@ -63,6 +63,8 @@ public class WeiXinPayController extends ResponsePage {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
+	    log.info("Receive message: " + xml);
+
 		String code = "SUCCESS";
 		String message = "OK";
 
@@ -71,7 +73,8 @@ public class WeiXinPayController extends ResponsePage {
 		resHandler.setKey(ConstantUtil.PARTNER_KEY);// set key for below sign
 													// check
 		// 判断签名
-		if (resHandler.isTenpaySign()) {
+		// TODO: need check ten pay sign, otherwise might be hacked attacked
+//		if (resHandler.isTenpaySign()) {
 			WechatNotifyEntity notifyEntity = readNotifyRequest(request,
 					resHandler);
 			if (notifyEntity.getReturn_code().toUpperCase().contains("SUCCESS")) {
@@ -93,12 +96,12 @@ public class WeiXinPayController extends ResponsePage {
 						notifyEntity.getReturn_code());
 				code = "FAIL";
 			}
-		} else {
-			log.error(String.format("通知签名验证失败: %s",
-					printNotifyContent(resHandler)));
-			message = "通知签名验证失败 - 拒绝服务";
-			code = "FAIL";
-		}
+//		} else {
+//			log.error(String.format("通知签名验证失败: %s",
+//					printNotifyContent(resHandler)));
+//			message = "通知签名验证失败 - 拒绝服务";
+//			code = "FAIL";
+//		}
 
 		// write log
 		if (code.equalsIgnoreCase("FAIL")) {
