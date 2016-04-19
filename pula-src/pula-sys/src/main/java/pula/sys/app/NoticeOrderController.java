@@ -148,9 +148,9 @@ public class NoticeOrderController {
         YuiResult result = YuiResult.create(results, MAPPING);
         result.getRecords().clear();
         for (NoticeOrder u : results.getItems()) {
+            Map<String, Object> m = MAPPING.toMap(u);
             Notice notice = noticeDao.findByNo(u.getNoticeNo());
             if (notice != null) {
-                Map<String, Object> m = MAPPING.toMap(u);
                 // icon
                 FileUtil.addIconToJson(fileAttachmentDao, notice, m);
 
@@ -159,8 +159,8 @@ public class NoticeOrderController {
                 FileUtil.addIconToJson(fileAttachmentDao, notice, mNotice);
                 m.put("notice", mNotice);
 
-                result.getRecords().add(m);
             }
+            result.getRecords().add(m);
         }
 
         return result;

@@ -191,7 +191,7 @@ public class WeiXinPayController extends ResponsePage {
 				cc.setCourseTime("");
 				cc.setCreator("byApp");
 				cc.setEnabled(true);
-				cc.setOrderStatus(1);;
+				cc.setOrderStatus(1);
 
 				cc.setNotify(notifyEntity);
 

@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.math.NumberUtils;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Single;
 
 /**
  * 
