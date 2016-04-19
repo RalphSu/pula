@@ -16,16 +16,31 @@
  */
 package pula.sys.daos.impl;
 
-import java.io.File;
-
-import org.apache.commons.io.FileUtils;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import pula.sys.app.WeiXinPayController;
+import pula.sys.vo.WechatNotifyEntity;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath*:/root-context.xml", "classpath*:/servlet-context.xml" })
 public class TenantPayTest {
+	
+	@Autowired
+	private WeiXinPayController controller;
 
-    @Test
-    public void testSign() throws Exception {
-        String str = FileUtils.readFileToString(new File("/callback.json"));
-        
-    }
+	@Test
+	public void test() {
+		WechatNotifyEntity notifyEntity = new WechatNotifyEntity();
+		notifyEntity.setTransaction_id("ididdidi");
+		StringBuilder msgBuilder = new StringBuilder();
+		StringBuilder codeBuilder = new StringBuilder();
+		controller.createNoticeOrder("x", "dd", 1, notifyEntity, msgBuilder, codeBuilder);
+		
+		
+		controller.createTimeCourseOrder("x", "x", 1, notifyEntity, msgBuilder, codeBuilder);
+	}
 }

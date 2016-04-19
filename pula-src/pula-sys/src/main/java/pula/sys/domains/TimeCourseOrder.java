@@ -50,9 +50,9 @@ public class TimeCourseOrder implements LoggablePo {
     @JsonProperty
     private boolean enabled;
     @JsonProperty
-    private String creator;
+    private String creator="";
     @JsonProperty
-    private String updator;
+    private String updator="";
 
     @JsonProperty
     private int gongfangCount;
@@ -68,41 +68,41 @@ public class TimeCourseOrder implements LoggablePo {
     private int usedSpecialCourseCount;
     
     @JsonProperty
-    private String courseTime;
+    private String courseTime="";
 //    @JsonProperty
 //    private String effectTime;
     @JsonProperty
-    private String level;
+    private String level="";
     
     // wechat order related
     @JsonProperty
-	private String return_code;
+	private String return_code="";
 	@JsonProperty
-	private String return_msg;
+	private String return_msg="";
 	@JsonProperty
-	private String appid;
+	private String appid="";
 	@JsonProperty
-	private String mch_id;
+	private String mch_id="";
 	@JsonProperty
-	private String device_info;
+	private String device_info="";
 	@JsonProperty
-	private String nonce_str;
+	private String nonce_str="";
 	@JsonProperty
-	private String sign;
+	private String sign="";
 	@JsonProperty
-	private String result_code;
+	private String result_code="";
 	@JsonProperty
-	private String err_code;
+	private String err_code="";
 	@JsonProperty
-	private String err_code_des;
+	private String err_code_des="";
 	@JsonProperty
-	private String openid;
+	private String openid="";
 	@JsonProperty
-	private String is_subscribe;
+	private String is_subscribe="";
 	@JsonProperty
-	private String trade_type;
+	private String trade_type="";
 	@JsonProperty
-	private String bank_type;
+	private String bank_type="";
 	@JsonProperty
 	private int total_fee;
 	@JsonProperty
@@ -110,7 +110,7 @@ public class TimeCourseOrder implements LoggablePo {
 	@JsonProperty
 	private int cash_fee;
 	@JsonProperty
-	private String cash_fee_type;
+	private String cash_fee_type="";
 	@JsonProperty
 	private int coupon_fee;
 	@JsonProperty
@@ -120,13 +120,13 @@ public class TimeCourseOrder implements LoggablePo {
 单个代金券或立减优惠支付金额	coupon_fee_$n	否	Int	100	单个代金券或立减优惠支付金额,$n为下标，从0开始编号
 	*/ 
 	@JsonProperty
-	private String transaction_id;
+	private String transaction_id="";
 	@JsonProperty
-	private String out_trade_no;
+	private String out_trade_no="";
 	@JsonProperty
-	private String attach;
+	private String attach="";
 	@JsonProperty
-	private String time_end;
+	private String time_end="";
     
     
     /**

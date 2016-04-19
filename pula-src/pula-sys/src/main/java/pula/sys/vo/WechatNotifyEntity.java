@@ -12,6 +12,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.math.NumberUtils;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Single;
+
 /**
  * 
  * <pre>
@@ -189,7 +191,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getReturn_code() {
-		return return_code;
+		return return_code == null ? "" : return_code;
 	}
 
 	public void setReturn_code(String return_code) {
@@ -197,7 +199,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getReturn_msg() {
-		return return_msg;
+		return return_msg == null ? "" : return_msg;
 	}
 
 	public void setReturn_msg(String return_msg) {
@@ -205,7 +207,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getAppid() {
-		return appid;
+		return appid == null ? "" : appid;
 	}
 
 	public void setAppid(String appid) {
@@ -213,7 +215,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getMch_id() {
-		return mch_id;
+		return mch_id == null ? "" : mch_id;
 	}
 
 	public void setMch_id(String mch_id) {
@@ -221,7 +223,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getDevice_info() {
-		return device_info;
+		return device_info == null ? "" : device_info;
 	}
 
 	public void setDevice_info(String device_info) {
@@ -229,7 +231,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getNonce_str() {
-		return nonce_str;
+		return nonce_str == null ? "" :nonce_str;
 	}
 
 	public void setNonce_str(String nonce_str) {
@@ -237,7 +239,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getSign() {
-		return sign;
+		return sign == null ? "" : sign;
 	}
 
 	public void setSign(String sign) {
@@ -245,7 +247,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getResult_code() {
-		return result_code;
+		return result_code == null ? "" : result_code;
 	}
 
 	public void setResult_code(String result_code) {
@@ -253,7 +255,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getErr_code() {
-		return err_code;
+		return err_code == null ? "": err_code;
 	}
 
 	public void setErr_code(String err_code) {
@@ -261,7 +263,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getErr_code_des() {
-		return err_code_des;
+		return err_code_des == null ? "" :err_code_des;
 	}
 
 	public void setErr_code_des(String err_code_des) {
@@ -269,7 +271,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getOpenid() {
-		return openid;
+		return openid == null ? "" : openid;
 	}
 
 	public void setOpenid(String openid) {
@@ -277,7 +279,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getIs_subscribe() {
-		return is_subscribe;
+		return is_subscribe == null ? "" : is_subscribe;
 	}
 
 	public void setIs_subscribe(String is_subscribe) {
@@ -285,7 +287,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getTrade_type() {
-		return trade_type;
+		return trade_type == null ? "" : trade_type;
 	}
 
 	public void setTrade_type(String trade_type) {
@@ -293,7 +295,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getBank_type() {
-		return bank_type;
+		return bank_type == null ? "" : bank_type;
 	}
 
 	public void setBank_type(String bank_type) {
@@ -309,7 +311,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getFee_type() {
-		return fee_type;
+		return fee_type == null ? "" : fee_type;
 	}
 
 	public void setFee_type(String fee_type) {
@@ -325,7 +327,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getCash_fee_type() {
-		return cash_fee_type;
+		return cash_fee_type == null ? "" : cash_fee_type;
 	}
 
 	public void setCash_fee_type(String cash_fee_type) {
@@ -349,7 +351,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getTransaction_id() {
-		return transaction_id;
+		return transaction_id == null ? "" : transaction_id;
 	}
 
 	public void setTransaction_id(String transaction_id) {
@@ -357,7 +359,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getOut_trade_no() {
-		return out_trade_no;
+		return out_trade_no == null ? "" :out_trade_no;
 	}
 
 	public void setOut_trade_no(String out_trade_no) {
@@ -365,7 +367,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getAttach() {
-		return attach;
+		return attach ==null ? "" : attach;
 	}
 
 	public void setAttach(String attach) {
@@ -373,7 +375,7 @@ public class WechatNotifyEntity {
 	}
 
 	public String getTime_end() {
-		return time_end;
+		return time_end == null ? "" : time_end;
 	}
 
 	public void setTime_end(String time_end) {
@@ -381,7 +383,7 @@ public class WechatNotifyEntity {
 	}
 	
 	public String getSub_mch_id() {
-		return sub_mch_id;
+		return sub_mch_id == null ? "" :sub_mch_id;
 	}
 
 	public void setSub_mch_id(String sub_mch_id) {

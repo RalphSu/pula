@@ -8,6 +8,7 @@ import java.util.Date;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import puerta.support.annotation.WxlDomain;
 import puerta.support.dao.LoggablePo;
 import pula.sys.vo.WechatNotifyEntity;
 
@@ -15,18 +16,19 @@ import pula.sys.vo.WechatNotifyEntity;
  * @author Liangfei
  *
  */
+@WxlDomain("活动通知")
 public class NoticeOrder implements LoggablePo {
 
 	@JsonProperty
 	private long id;
 	@JsonProperty
-	private String no;
+	private String no="";
 	@JsonProperty
 	private long noticeId;
 	@JsonProperty
-	private String noticeNo;
+	private String noticeNo="";
 	@JsonProperty
-	private String noticeName;
+	private String noticeName="";
 	@JsonProperty
 	private int count;
 	@JsonProperty
@@ -36,7 +38,7 @@ public class NoticeOrder implements LoggablePo {
 	@JsonProperty
 	private Date updateTime;
 	@JsonProperty
-	private String studentNo;
+	private String studentNo="";
 	@JsonProperty
 	private long studentId;
 	@JsonProperty
@@ -56,50 +58,50 @@ public class NoticeOrder implements LoggablePo {
 	@JsonProperty
 	private double paied;
 	@JsonProperty
-	private String prepayId;
+	private String prepayId="";
 	@JsonProperty
-	private String accessToken;
+	private String accessToken="";
 	@JsonProperty
-	private String wxOrderId;
+	private String wxOrderId="";
 	@JsonProperty
-	private String wxOrderDetail;
+	private String wxOrderDetail="";
 
 	@JsonProperty
-	private String return_code;
+	private String return_code="";
 	@JsonProperty
-	private String return_msg;
+	private String return_msg="";
 	@JsonProperty
-	private String appid;
+	private String appid="";
 	@JsonProperty
-	private String mch_id;
+	private String mch_id="";
 	@JsonProperty
-	private String device_info;
+	private String device_info="";
 	@JsonProperty
-	private String nonce_str;
+	private String nonce_str="";
 	@JsonProperty
-	private String sign;
+	private String sign="";
 	@JsonProperty
-	private String result_code;
+	private String result_code="";
 	@JsonProperty
-	private String err_code;
+	private String err_code="";
 	@JsonProperty
-	private String err_code_des;
+	private String err_code_des="";
 	@JsonProperty
-	private String openid;
+	private String openid="";
 	@JsonProperty
-	private String is_subscribe;
+	private String is_subscribe="";
 	@JsonProperty
-	private String trade_type;
+	private String trade_type="";
 	@JsonProperty
-	private String bank_type;
+	private String bank_type="";
 	@JsonProperty
 	private int total_fee;
 	@JsonProperty
-	private String fee_type;
+	private String fee_type="";
 	@JsonProperty
 	private int cash_fee;
 	@JsonProperty
-	private String cash_fee_type;
+	private String cash_fee_type="";
 	@JsonProperty
 	private int coupon_fee;
 	@JsonProperty
@@ -110,13 +112,13 @@ public class NoticeOrder implements LoggablePo {
 	 * 单个代金券或立减优惠支付金额,$n为下标，从0开始编号
 	 */
 	@JsonProperty
-	private String transaction_id;
+	private String transaction_id="";
 	@JsonProperty
-	private String out_trade_no;
+	private String out_trade_no="";
 	@JsonProperty
-	private String attach;
+	private String attach="";
 	@JsonProperty
-	private String time_end;
+	private String time_end="";
 
 	/**
 	 * 微信支付的状态

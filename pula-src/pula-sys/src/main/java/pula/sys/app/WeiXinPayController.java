@@ -165,13 +165,13 @@ public class WeiXinPayController extends ResponsePage {
 		}
 	}
 
-	private void createTimeCourseOrder(String tcNo, String studentNo,
+	public void createTimeCourseOrder(String tcNo, String studentNo,
 			int count, WechatNotifyEntity notifyEntity, StringBuilder msgBuilder,
 			StringBuilder codeBuilder) {
 		try {
 			TimeCourse tc = tcDao.findByNo(tcNo);
 			
-			String hql = "SELECT a FROM timecourseorder as a WHERE a.transaction_id=? AND a.enabled=?";
+			String hql = "SELECT a FROM TimeCourseOrder as a WHERE a.transaction_id=? AND a.enabled=?";
 
 			List<TimeCourseOrder> orders = tcOrderDao.find(hql, new Object[] {notifyEntity.getTransaction_id(), true});
 			if (orders.size() > 0) {
@@ -209,13 +209,13 @@ public class WeiXinPayController extends ResponsePage {
 		}
 	}
 
-	private void createNoticeOrder(String noticeNo, String studentNo,
+	public void createNoticeOrder(String noticeNo, String studentNo,
 			int count, WechatNotifyEntity notifyEntity, StringBuilder msgBuilder,
 			StringBuilder codeBuilder) {
 		try {
 			Notice tc = noticeDao.findByNo(noticeNo);
 			
-			String hql = "SELECT a FROM noticeorder as a WHERE a.transaction_id=? AND a.enabled=?";
+			String hql = "SELECT a FROM NoticeOrder as a WHERE a.transaction_id=? AND a.enabled=?";
 
 			List<NoticeOrder> orders = noticeOrderDao.find(hql, new Object[] {
 					notifyEntity.getTransaction_id(), true });
