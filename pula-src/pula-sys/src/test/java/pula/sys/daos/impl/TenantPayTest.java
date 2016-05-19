@@ -16,6 +16,12 @@
  */
 package pula.sys.daos.impl;
 
+import java.io.File;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +32,10 @@ import pula.sys.app.WeiXinPayController;
 import pula.sys.vo.WechatNotifyEntity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath*:/root-context.xml", "classpath*:/servlet-context.xml" })
+@ContextConfiguration(locations = { "classpath*:/root-context.xml",
+		"classpath*:/servlet-context.xml" })
 public class TenantPayTest {
-	
+
 	@Autowired
 	private WeiXinPayController controller;
 
@@ -38,9 +45,27 @@ public class TenantPayTest {
 		notifyEntity.setTransaction_id("ididdidi");
 		StringBuilder msgBuilder = new StringBuilder();
 		StringBuilder codeBuilder = new StringBuilder();
-		controller.createNoticeOrder("x", "dd", 1, notifyEntity, msgBuilder, codeBuilder);
-		
-		
-		controller.createTimeCourseOrder("x", "x", 1, notifyEntity, msgBuilder, codeBuilder);
+		controller.createNoticeOrder("x", "dd", 1, notifyEntity, msgBuilder,
+				codeBuilder);
+
+		controller.createTimeCourseOrder("x", "x", 1, notifyEntity, msgBuilder,
+				codeBuilder);
+	}
+
+	@Test
+	public void test2() throws Exception {
+		String contents = FileUtils.readFileToString(new File(
+				TenantPayTest.class.getResource("/callback.xml").getPath()));
+		String resp = controller.wechatPayNotify(contents,
+				createSampleRequest(), createSampleResponse());
+		System.out.println(resp);
+	}
+
+	private HttpServletRequest createSampleRequest() {
+		return new SimpleHttpRequest();
+	}
+
+	private HttpServletResponse createSampleResponse() {
+		return new SimpleHttpResponse();
 	}
 }

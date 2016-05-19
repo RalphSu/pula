@@ -63,7 +63,10 @@ public class WeiXinPayController extends ResponsePage {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-	    log.info("Receive message: " + xml);
+		log.info("Receive message: " + xml);
+		log.info("request parameter map: " + request.getParameterMap());
+		log.info("request encoding: " + request.getCharacterEncoding());
+		log.info("response encoding: " + response.getCharacterEncoding());
 
 		String code = "SUCCESS";
 		String message = "OK";
