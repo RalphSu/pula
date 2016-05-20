@@ -1,4 +1,5 @@
-<xml><appid><![CDATA[wx90816ac92bb628a7]]></appid>
+2016-05-19 23:01:12,725  INFO (pula.sys.app.WeiXinPayController:66) - Receive me
+ssage: <xml><appid><![CDATA[wx90816ac92bb628a7]]></appid>
 <attach><![CDATA[PD0DB005@nt@GF2005001@nt@1]]></attach>
 <bank_type><![CDATA[CFT]]></bank_type>
 <cash_fee><![CDATA[1]]></cash_fee>
@@ -6,14 +7,20 @@
 <fee_type><![CDATA[CNY]]></fee_type>
 <is_subscribe><![CDATA[N]]></is_subscribe>
 <mch_id><![CDATA[1277147701]]></mch_id>
-<nonce_str><![CDATA[449689643]]></nonce_str>
+<nonce_str><![CDATA[477051439]]></nonce_str>
 <openid><![CDATA[oKz1SuJTr-VbF0QqDCJeXMJq1PCY]]></openid>
-<out_trade_no><![CDATA[PD0DB005ZZ20160519223324]]></out_trade_no>
+<out_trade_no><![CDATA[PD0DB005ZZ20160519230032]]></out_trade_no>
 <result_code><![CDATA[SUCCESS]]></result_code>
 <return_code><![CDATA[SUCCESS]]></return_code>
-<sign><![CDATA[3B0C043F1C92C6066B586D9E4F03EEB8]]></sign>
-<time_end><![CDATA[20160519223336]]></time_end>
+<sign><![CDATA[89C4F6F21CD2832A2FE09CDFECF12BD6]]></sign>
+<time_end><![CDATA[20160519230040]]></time_end>
 <total_fee>1</total_fee>
 <trade_type><![CDATA[APP]]></trade_type>
-<transaction_id><![CDATA[4002802001201605196048751193]]></transaction_id>
+<transaction_id><![CDATA[4002802001201605196050446380]]></transaction_id>
 </xml>
+2016-05-19 23:01:12,741  INFO (pula.sys.app.WeiXinPayController:67) - request pa
+rameter map: {}
+2016-05-19 23:01:12,741  INFO (pula.sys.app.WeiXinPayController:68) - request en
+coding: utf-8
+2016-05-19 23:01:12,741  INFO (pula.sys.app.WeiXinPayController:69) - response e
+ncoding: ISO-8859-1
