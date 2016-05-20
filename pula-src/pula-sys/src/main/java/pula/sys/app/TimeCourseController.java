@@ -315,9 +315,17 @@ public class TimeCourseController {
     }
 
     @RequestMapping
-    public ModelAndView appshow(@RequestParam(value = "id", required = false) Long id,
-            @RequestParam(value = "no", required = false) String no) {
+	public ModelAndView appshow(
+			@RequestParam(value = "id", required = false) Long id,
+			@RequestParam(value = "no", required = false) String no,
+			@RequestParam(value = "color", required = false) String color) {
         ModelAndView view = new ModelAndView();
+
+		if (StringUtils.isEmpty(color)) {
+			color = "#ee7600";
+		} else if (!color.startsWith("#")) {
+			color = "#" + color;
+		}
 
         TimeCourse u = null;
         if (id != null) {
@@ -332,16 +340,17 @@ public class TimeCourseController {
             return view;
         }
 
-        List<FileAttachment> attachments = fileAttachmentDao.loadByRefId(u.toRefId(), u.getTypeRange());
-        if (attachments.size() > 0) {
-            view.addObject("af", attachments.get(0));
-        }
+		List<FileAttachment> attachments = fileAttachmentDao.loadByRefId(
+				u.toRefId(), u.getTypeRange());
+		if (attachments.size() > 0) {
+			view.addObject("af", attachments.get(0));
+		}
 
-        view.addObject("course", u);
-        return view;
-    }
+		view.addObject("course", u).addObject("color", color);
+		return view;
+	}
 
-    @RequestMapping
+	@RequestMapping
     @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
     @ResponseBody
     @Barrier()

@@ -264,13 +264,20 @@ public class NoticeOrderController {
      */
     @RequestMapping
     public ModelAndView appshow(@RequestParam(value = "id", required = false) Long id,
-            @RequestParam(value = "no", required = false) String no) {
+            @RequestParam(value = "no", required = false) String no,
+            @RequestParam(value = "color", required = false) String color) {
         NoticeOrder u = null;
         if (id != null) {
             u = noticeOrderDao.findById(id);
         } else if (!StringUtils.isAlpha(no)) {
             u = noticeOrderDao.findByNo(no);
         }
+        
+		if (StringUtils.isEmpty(color)) {
+			color = "#D7B704";
+		} else if (!color.startsWith("#")) {
+			color = "#" + color;
+		}
 
         ModelAndView view = new ModelAndView();
         if (u == null) {
@@ -282,7 +289,7 @@ public class NoticeOrderController {
 
         Notice notice = noticeDao.findByNo(u.getNoticeNo());
 
-        return view.addObject("noticeOrder", u).addObject("notice", notice);
+        return view.addObject("noticeOrder", u).addObject("notice", notice).addObject("color", color);
     }
 
 }

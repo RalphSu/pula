@@ -331,7 +331,8 @@ public class TimeCourseWorkController {
     @RequestMapping
     public ModelAndView appshow(
             @RequestParam(value = "id", required = false) Long id,
-            @RequestParam(value = "no", required = false) String no) {
+            @RequestParam(value = "no", required = false) String no,
+            @RequestParam(value = "color", required = false) String color) {
         
         TimeCourseWork u = null;
         if (id != null) {
@@ -339,6 +340,12 @@ public class TimeCourseWorkController {
         } else if (!StringUtils.isEmpty(no)) {
             u = workDao.findByNo(no);
         }
+
+		if (StringUtils.isEmpty(color)) {
+			color = "#D7B704";
+		} else if (!color.startsWith("#")) {
+			color = "#" + color;
+		}
 
         if (u == null) {
         	ModelAndView view = new ModelAndView("jsonError");
@@ -361,10 +368,10 @@ public class TimeCourseWorkController {
         List<FileAttachment> attachments = fileAttachmentDao.loadByRefId(u.toRefId(), FileAttachment.TYPE_STUENDT_TIME_COURSE_WORK);
         if (attachments != null && attachments.size() > 0) {
             view.addObject("af", attachments.get(0));
-        }
-        view.addObject("work", u);
-        return view;
-    }
+		}
+		view.addObject("work", u).addObject("color", color);
+		return view;
+	}
 
     @Transactional
     @RequestMapping

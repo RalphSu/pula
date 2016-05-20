@@ -20,23 +20,20 @@
 
 <style type="text/css">
 .panel-course {
-  // background-color : #ee7600;
-  border-color: #ee7600;
+  border-color: ${color !? js_string};
 }
 .panel-course > .panel-heading {
-  // color: #fff;
-  background-color: #ee7600;
-  border-color: #ee7600;
+  background-color: ${color !? js_string};
+  border-color: ${color !? js_string};
 }
 .panel-course > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: #ee7600;
+  border-top-color: ${color !? js_string};
 }
 .panel-course > .panel-heading .badge {
-  // color: #fff;
-  background-color: #ee7600;
+  background-color: ${color !? js_string};
 }
 .panel-course > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: #ee7600;
+  border-bottom-color: ${color !? js_string};
 }
 
 </style>

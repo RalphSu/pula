@@ -19,26 +19,23 @@
 
 <style type="text/css">
 .panel-notice {
-  // background-color : #D7B704;
   border: 3px;
-  border-color: #D7B704;
+  border-color: ${color !? js_string};
 }
 .panel-notice > .panel-heading {
-  // color: #fff;
-  background-color: #D7B704;
+  background-color: ${color !? js_string};;
   border: 3px;
-  border-color: #D7B704;
+  border-color: ${color !? js_string};;
 }
 .panel-notice > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: #D7B704;
+  border-top-color: ${color !? js_string};;
   border: 3px;
 }
 .panel-notice > .panel-heading .badge {
-  // color: #fff;
-  background-color: #D7B704;
+  background-color: ${color !? js_string};;
 }
 .panel-notice > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: #D7B704;
+   border-bottom-color: ${color !? js_string};;
    border-bottom: 3px solid;
 }
 

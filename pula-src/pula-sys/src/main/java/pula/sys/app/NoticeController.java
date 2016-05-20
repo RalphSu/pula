@@ -286,14 +286,21 @@ public class NoticeController {
      */
     @RequestMapping
     public ModelAndView appshow(@RequestParam(value = "id", required = false) Long id,
-            @RequestParam(value = "no", required = false) String no) {
+            @RequestParam(value = "no", required = false) String no,
+            @RequestParam(value = "color", required = false) String color) {
         Notice u = null;
         if (id != null) {
             u = noticeDao.findById(id);
         } else if (!StringUtils.isAlpha(no)) {
             u = noticeDao.findByNo(no);
         }
-        
+
+		if (StringUtils.isEmpty(color)) {
+			color = "#D7B704";
+		} else if (!color.startsWith("#")) {
+			color = "#" + color;
+		}
+
         ModelAndView view = new ModelAndView();
         if (u == null) {
             view.setViewName("error");
@@ -315,7 +322,7 @@ public class NoticeController {
             view.addObject("af", attachments.get(0));
         }
 
-        return view.addObject("notice", u);
+        return view.addObject("notice", u).addObject("color", color);
     }
     
     /**

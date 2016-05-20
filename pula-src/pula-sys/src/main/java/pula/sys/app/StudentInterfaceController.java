@@ -1,6 +1,7 @@
 package pula.sys.app;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -141,32 +142,46 @@ public class StudentInterfaceController {
         return JsonResult.s(MapBean.map("data", courses).add("hits", hits));
 
     }
-    
-    @ResponseBody
-    @RequestMapping
-    @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
-    public JsonResult listTimeCourses(@RequestParam("studentNo") String studentNo) {
 
-//        MD5Checker.check(parameterKeeper, md5, type, actorId, ip);
+	@ResponseBody
+	@RequestMapping
+	@Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
+	public JsonResult listTimeCourses(@RequestParam("studentNo") String studentNo) {
 
-        Student student = studentDao.findByNo(studentNo);
-        if (student == null){
-            return JsonResult.e("no student found!");
-        }
+		// MD5Checker.check(parameterKeeper, md5, type, actorId, ip);
 
-        // course no -> student course
-        Map<String, StudentCourse> result = new HashMap<String, StudentCourse>();
+		Student student = studentDao.findByNo(studentNo);
+		if (student == null) {
+			return JsonResult.e("no student found!");
+		}
 
-        // from orders
-        getOrderCourses(studentNo, result);
-        
-        // from detail order usage
-        getOrderUsageCourses(studentNo, result);
+		// course no -> student course
+		Map<String, StudentCourse> result = new HashMap<String, StudentCourse>();
 
-        return JsonResult.s(new ArrayList<StudentCourse>(result.values()));
-    }
+		// from orders
+		getOrderCourses(studentNo, result);
 
-    private void getOrderUsageCourses(String studentNo, Map<String, StudentCourse> result) {
+		// from detail order usage
+		getOrderUsageCourses(studentNo, result);
+
+		StudentCourse merged = mergeStudentCourses(result);
+		return JsonResult.s(Arrays.asList(merged));
+	}
+
+	private StudentCourse mergeStudentCourses(Map<String, StudentCourse> result) {
+		StudentCourse merged = new StudentCourse();
+		merged.setCourse(new TimeCourse());
+		for (StudentCourse course : result.values()) {
+			if (merged.getCourse() == null || course.getCourse() != null) {
+				merged.setCourse(course.getCourse());
+			}
+
+			merged.getOrders().addAll(course.getOrders());
+		}
+		return merged;
+	}
+
+	private void getOrderUsageCourses(String studentNo, Map<String, StudentCourse> result) {
         TimeCourseOrderUsageCondition usageCondition = new TimeCourseOrderUsageCondition();
         usageCondition.setStudentNo(studentNo);
         PaginationSupport<TimeCourseOrderUsage> usages = timeCourseUsageDao.search(usageCondition, 0);
