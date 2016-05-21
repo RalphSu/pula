@@ -65,11 +65,13 @@
 	</div>
 <br/>
 
+<#if showappstore >
 <div id="appstore">
 苹果appstore下载：<p>
 <img src='${base}/static/app/images/pula_app_store.png' class="img-responsive" alt="Responsive image" > </img>
 </p>
 </div>
+</#if>
 
 </body>
 </html>

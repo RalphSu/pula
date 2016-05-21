@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -318,7 +319,8 @@ public class TimeCourseController {
 	public ModelAndView appshow(
 			@RequestParam(value = "id", required = false) Long id,
 			@RequestParam(value = "no", required = false) String no,
-			@RequestParam(value = "color", required = false) String color) {
+			@RequestParam(value = "color", required = false) String color,
+			@RequestParam(value = "showappstore", required = false) String showappstore) {
         ModelAndView view = new ModelAndView();
 
 		if (StringUtils.isEmpty(color)) {
@@ -326,6 +328,7 @@ public class TimeCourseController {
 		} else if (!color.startsWith("#")) {
 			color = "#" + color;
 		}
+		boolean showLink = BooleanUtils.toBoolean(showappstore);
 
         TimeCourse u = null;
         if (id != null) {
@@ -346,7 +349,7 @@ public class TimeCourseController {
 			view.addObject("af", attachments.get(0));
 		}
 
-		view.addObject("course", u).addObject("color", color);
+		view.addObject("course", u).addObject("color", color).addObject("showappstore", showLink);
 		return view;
 	}
 

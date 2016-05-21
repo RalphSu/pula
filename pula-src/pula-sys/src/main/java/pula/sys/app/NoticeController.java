@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -287,7 +288,8 @@ public class NoticeController {
     @RequestMapping
     public ModelAndView appshow(@RequestParam(value = "id", required = false) Long id,
             @RequestParam(value = "no", required = false) String no,
-            @RequestParam(value = "color", required = false) String color) {
+            @RequestParam(value = "color", required = false) String color,
+            @RequestParam(value = "showappstore", required = false) String showappstore) {
         Notice u = null;
         if (id != null) {
             u = noticeDao.findById(id);
@@ -300,6 +302,8 @@ public class NoticeController {
 		} else if (!color.startsWith("#")) {
 			color = "#" + color;
 		}
+		
+		boolean showLink = BooleanUtils.toBoolean(showappstore);
 
         ModelAndView view = new ModelAndView();
         if (u == null) {
@@ -322,7 +326,7 @@ public class NoticeController {
             view.addObject("af", attachments.get(0));
         }
 
-        return view.addObject("notice", u).addObject("color", color);
+        return view.addObject("notice", u).addObject("color", color).addObject("showappstore", showLink);
     }
     
     /**
