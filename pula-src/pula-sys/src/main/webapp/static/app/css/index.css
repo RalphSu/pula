@@ -165,7 +165,7 @@ body {
 #rightWrapper{
 	background:url("../images/index/right.png");
 	height:100px;
-	width:551px;
+	width:38.3%;
 	float:right;
 }
 
@@ -189,7 +189,7 @@ body {
 }
 
 #logoPanel{
-	width:889px;
+	width:61.7%;
 	height:100px;
 	float :left;
 	background-image: url("../images/index/left.png");
